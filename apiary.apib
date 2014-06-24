@@ -1,0 +1,849 @@
+HOST: https://co2.eaternity.ch/api/
+
+--- Eaternity API ---
+---
+The Eaternity API is a Web Service that calculates the CO2-footprint of recipes and restaurants dynamically and provides a CO2-indicator for ingredients. It includes daily changing information on origin, 
+seasonality and other factors in the calculation. It further, delivers CO2-reports with sophisticated and easy to understand statistics, graphsand analysis. 
+
+The Eaternity API is a [RESTful](http://en.wikipedia.org/wiki/Representational_State_Transfer) interface, providing programmatic access to Eaternity’s calculation algorithms, indicator systems and data collections. It provides 
+predictable URLs for accessing resources, and uses built-in HTTP features to receive commands (GET, POST, PUT, DELETE) and return responses.
+
+## Authentication 
+Each client gets his own unique API key, which he needs to provide to be able to talk to the Eaternity API.
+
+To authenticate a request, clients should use the widely supported HTTPS Basic Authentication and pass the API key as the username, and an empty password. Note that the API only accepts secure connections via **HTTPS**. Most HTTP request utilities and libraries that allow to specify a username and password will handle proper encoding of the header for you.
+
+API Key Example: FmZ23.M4mTKmDA4ssLCkEnYi
+
+
+## CO₂-Values
+The CO₂-Values are given in the following unit for the different resources.
+
+- Recipes: 
+    - With a date: [g CO₂e(quivalent) / serving]
+    - Without a date: Rating [A,B,C,D,E]. A is best, E is worst.
+- Supplies: 
+    - [kg CO₂e(quivalent)]
+- Ingredients: 
+    - Rating [A,B,C,D,E]. A is best, E is worst. The ranges of the rating per 100g are: 
+        - A = <  64g CO₂e
+        - B = < 160g CO₂e
+        - C = < 400g CO₂e
+        - D =< 1000g CO₂e
+        - E  > 1000g CO₂e
+    - Bar Chart [0% - 100%]. How much this ingredient contributes to the total C0₂-Value of the recipe or the supply in percent
+
+
+
+###### Notes on the format:
+
+
+The API accepts JSON in requests. It returns JSON in all of its responses, including errors. Only the UTF-8 character encoding is supported for both requests and responses.
+
+###### Possible Server Responses
+A successful request will be prompted with either `200 - success`, `201 - created` or `204 - No Content`. 
+
+Sadly, sometimes requests to the API are not successful. Failures can occur for a wide range of reasons. In all cases, the API should return an HTTP Status Code that indicates the nature of the failure (below), with a response body in JSON format containing additional information.
+
+* 200	`Success` - If a resource was requested, it will be available at the top level of the response body.
+* 201   `Created` -  The request was successful and a resource was created.
+* 204   `No Content` - The request was successful and the body intentionally contains no data.
+* 400   `Invalid request` - This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.
+* 401	`No authorization` - A valid API key was not provided with the request, so the API could not associate a client with the request.
+* 404	`Not found` - Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.
+* 406	`Not matched ingredient` - An ingredient was requested, whose ID is not yet matched to the Eaternity database. Retry once a day .
+* 500	`Server error` - There was a problem on Eaternity's end.
+
+---
+
+--
+Recipe Resources
+
+The CO₂-values are given in **g CO₂e** for the recipe resource.
+
+
+##Recipe Properties
+
+| Property | Type  | Description      | Required |
+|:----------|:--------|:------------------|----------|
+|title|	string|	title of the recipe	|no|
+|author|string|original author of the recipe|no|
+|date|yyyy-mm-dd|the date the recipe is served. If **no date** is provided, **only a rating** of the recipe is returned.|best practice|
+|location|string|location where the recipe is cooked. Address or country (arbitrary format) |yes if recipe is not provided in a kitchen|
+|planned|int|number of servings planned|no|
+|prepared|int|number of servings prepared to serve|no|
+|servings|int|for how many servings the ingredients are given. Required for the evaluation of the Eaternity Award.|yes for the Eaternity Award|
+|feedbacks|list[string]|qualitativ customer feedbacks on the menu|no|
+|customer-rating|float|quantitative customer rating from 1 (worst) to 5 (best)|no|
+|instruction|string	|cooking instructions for the recipe|	no|
+|ingredients|list|a list of all ingredient resources in this recipe |yes|
+|**Response**||||
+|co2-value|float|the C0₂-Value of the whole recipe||
+|info-text| string | notes on the calculated recipe C0₂-value, e.g. when properties like origin or transport are missing. (max. 400 characters)||
+|eaternity-award|boolean|true if the C0₂-Value of the recipe is climate friendly, false otherwise | |
+|rating|string|the CO₂-recipe rating [A,B,C,D,E] if the date of the recipe is missing. A is best, E is worst.| .|
+
+##Ingredient Properties
+| Property | Type  | Description    | Required |
+|:----------|:--------|:------------------|:----------|
+|id|int| id of the ingredient used by the client|yes|
+|name|string|full name of ingredient|yes|
+|amount|float|amount of the ingredient (in specified unit / currently only *gram*)|yes|
+|unit|string|unit of the given amount of the ingredient, currently only *gram* (defaults to *gram*)|no|
+|origin	|string|origin of the ingredient: address or country (arbitrary format) |best practice|
+|transport|string|means of transport from ”origin” to ”location”. Values: *air* or *ground*|best practice|
+|production	|string|production of the base material. Values: *organic* or *greenhouse* or *farm* or *standard*|best practice|
+|processing| string| processing and convenience. Values: *raw* or *cut* or *cooked* or *fried* or *peeled* or *smoked* or *baked* or *grained* or *steamed* or *washed* or *boiled* or *mashed* or *primed* or *boned* or *skinned* |no|
+|conservation| string| conservation for longer storage life. Values: *fresh* or *frozen* or *dried* or *canned* or *bottled* |best practice|
+|packaging| string| how the product is packaged. Values:  *tin* or *shrink-wrapped* or *plastic* or *cardboard* or *paper* or *tube*|no|
+|storage| int| duration of storage in days | no|
+|price|float|price of the purchased product in CHF|no|
+|**Response**| | | |
+|rating|string|the CO₂-ingredient rating [A,B,C,D,E]. A is best, E is worst.||
+|bar-chart|float|to generate a bar chart for all ingredients of a recipe. How much this ingredient contributes to the total C0₂-value of the recipe in percent (0% - 100%)|.|
+
+The more properties are provided the more accurate are the CO₂ values. More options will be added over time. 
+Missing properties are estimated.
+
+Information on the estimations (and other comments) are given in the `info-text` property of the recipe. Display this information next to the CO2-value in your interface.
+
+Provide the parameter `transient=true` in the URL if the recipe is not considered for later statistics and reports. The resource will not be permenantly stored on our servers.
+
+--
+Create a recipe resource and receive the CO₂-Value and Eaternity Award.
+POST /recipes
+{   "recipe": {
+        "title": "Oven baked potatos with chicken",
+        "author": "Hans Muster",
+    	"date": "2013-10-14",	
+    	"location": "zurich, switzerland",
+    	"planned": 200,		
+    	"prepared": 150,
+    	"servings": 140,
+    	"feedbacks": ["very nice!", "amazing"],			
+    	"customer-rating": 2,				
+    	"instruction": "bake it, slice it, wrap it and forget it",
+    	"ingredients": [
+    	    {
+    	    "id": 298736,
+    	    "name": "tomato",
+    	    "amount": 150,
+    	    "unit": "gram",
+    	    "origin": "spain",
+    	    "transport": "air",
+    	    "production": "greenhouse",
+    	    "processing": "sliced",
+    	    "conservation": "fresh",
+    	    "packaging": "bottle",  
+    	    "storage": 3,
+    	    "price": 1.20
+    	    },
+    	    {
+    	    "id": 298736,
+    	    "name": "onion",
+    	    "amount": 150,
+    	    "unit": "gram",
+    	    "origin": "france",
+    	    "transport": "ground",
+    	    "production": "organic",
+    	    "processing": "",
+    	    "conservation": "",
+    	    "packaging": "",  
+    	    "storage": 0,
+    	    "price": 0.65
+    	    }
+        ]
+    }
+}
+< 201
+{
+    "recipe": {
+        "uri": "/recipes/9872673",
+        "co2-value": 765,
+        "info-text": "Two ingredient origins have been estimated.",
+        "eaternity-award": "false"
+    }   
+}
+
+
+Get the whole recipe resource
+GET /recipes/{recipe_id}
+< 200
+{   "recipe": {
+        "uri": "/recipes/9872673",
+        "co2-value": 765,
+        "info-text": "Two ingredient origins have been estimated.",
+        "eaternity-award": "false"
+        "title": "Oven baked potatos with chicken",
+        "author": "Hans Muster",
+    	"date": "2013-10-14",	
+    	"location": "zurich, switzerland",
+    	"planned": 200,			
+    	"prepared": 150,
+    	"servings": 140,
+    	"feedbacks": ["very nice!", "amazing"],			
+    	"customer-rating": 2,				
+    	"instruction": "bake it, slice it and forget it",
+    	"ingredients": [
+    	    {
+    	    "id": 298736,
+    	    "name": "tomato",
+    	    "amount": 150,
+    	    "unit": "gram",
+    	    "origin": "spain",
+    	    "transport": "air",
+    	    "production": "greenhouse",
+    	    "processing": "sliced",
+    	    "conservation": "frozen",
+    	    "packaging": "bottle",  
+    	    "storage": 3,
+    	    "price": 1.20,
+    	    "rating": "B",
+    	    "bar-chart": 22.45
+    	    },
+    	    {
+    	    "id": 298736,
+    	    "name": "onion",
+    	    "amount": 150,
+    	    "unit": "gram",
+    	    "origin": "france",
+    	    "transport": "ground",
+    	    "production": "organic",
+    	    "processing": "",
+    	    "conservation": "",
+    	    "packaging": "",  
+    	    "storage": 0,
+    	    "price": 0.65,
+    	    "rating": "C",
+    	    "bar-chart": 45.60
+    	    }
+        ]
+    }
+}
+
+
+Update or create a certain recipe with this id. The whole recipe resource with all ingredients must be provided again. (PUT overrides the existing resource).
+This is an example when no date for the recipe is provided.
+PUT /recipes/{recipe_id}
+{   "recipe": {
+        "title": "Oven baked potatos with chicken",
+        "author": "Hans Muster",
+    	"location": "zurich, switzerland",
+    	"planned": 200,			
+    	"prepared": 150,
+    	"servings": 140,
+    	"feedbacks": ["very nice!", "amazing"],			
+    	"customer-rating": 2,				
+    	"instruction": "bake it, slice it and forget it",
+    	"ingredients": [
+    	    {
+    	    "id": 298736,
+    	    "name": "tomato",
+    	    "amount": 150,
+    	    "unit": "gram",
+    	    "origin": "spain",
+    	    "transport": "air",
+    	    "production": "greenhouse",
+    	    "processing": "sliced",
+    	    "conservation": "fresh",
+    	    "packaging": "bottle",  
+    	    "storage": 3,
+    	    "price": 1.20
+    	    },
+    	    {
+    	    "id": 298736,
+    	    "name": "onion",
+    	    "amount": 150,
+    	    "unit": "gram",
+    	    "origin": "france",
+    	    "transport": "ground",
+    	    "production": "organic",
+    	    "processing": "",
+    	    "conservation": "",
+    	    "packaging": "",  
+    	    "storage": 0,
+    	    "price": 0.65
+    	    }
+        ]
+    }
+}
+< 200
+{
+    "recipe": {
+        "uri": "/recipes/9872673",
+        "rating": "B",
+        "info-text": "Two ingredient origins have been estimated.",
+        "eaternity-award": "false"
+    }   
+}
+
+Deletes this recipe from the server
+DELETE /recipes/{recipe_id}
+< 204
+
+
+
+--
+
+#####Methods for recipe resources beeing part of a kitchen:
+No recipe location needs to be provided.
+
+--
+
+
+Create a recipe resource in a specific kitchen and receive the CO₂-Value and Eaternity Award 
+POST /kitchens/{kitchen_id}/recipes
+{   "recipe": {
+        "title": "Oven baked potatos with chicken",
+        "author": "Hans Muster",
+    	"date": "2013-10-14",	
+    	"planned": 200,		
+    	"prepared": 150,
+    	"servings": 140,
+    	"feedbacks": ["very nice!", "amazing"],			
+    	"customer-rating": 2,				
+    	"instruction": "bake it, slice it and forget it",
+    	"ingredients": [
+    	    {
+    	    "id": 298736,
+    	    "name": "tomato",
+    	    "amount": 150,
+    	    "unit": "gram",
+    	    "origin": "spain",
+    	    "transport": "air",
+    	    "production": "greenhouse",
+    	    "processing": "sliced",
+    	    "conservation": "fresh",
+    	    "packaging": "bottle",  
+    	    "storage": 3,
+    	    "price": 1.20
+    	    },
+    	    {
+    	    "id": 298736,
+    	    "name": "onion",
+    	    "amount": 150,
+    	    "unit": "gram",
+    	    "origin": "france",
+    	    "transport": "ground",
+    	    "production": "organic",
+    	    "processing": "",
+    	    "conservation": "",
+    	    "packaging": "",  
+    	    "storage": 0,
+    	    "price": 0.65
+    	    }
+        ]
+    }
+}
+< 201
+{   "recipe": {
+        "uri": "kitchens/45674/recipes/9872673",
+        "co2-value": 765,
+        "info-text": "Two ingredient origins have been estimated.",
+        "eaternity-award": "false"
+    }   
+}
+
+Returns a list of resource references to all recipes that are contained in this kitchen
+GET /kitchens/{kitchen_id}/recipes
+< 200
+{
+    "recipes": [
+        "/kitchens/45674/recipes/298374", 
+        "/kitchens/45674/recipes/298345",
+        "/kitchens/45674/recipes/298454",
+        "/kitchens/45674/recipes/298345",
+        "/kitchens/45674/recipes/298456",
+        "/kitchens/45674/recipes/294564"
+    ]
+}
+
+
+Get just the up-to-date CO2-Value of this recipe for the current date
+GET /kitchens/{kitchen_id}/recipes/{recipe_id}?full-resource=false
+< 200
+{
+    "recipe": {
+        "uri": "kitchens/45674/recipes/9872673",
+        "co2-value": 765,
+        "info-text": "Two ingredient origins have been estimated.",
+        "eaternity-award": "false"
+    }   
+}
+
+Update or create a certain recipe with this id. The whole recipe resource with all ingredients must be provided again. (PUT overrides the existing resource).
+PUT /kitchens/{kitchen-id}/recipes/{recipe_id}
+{   "recipe": {
+        "title": "Oven baked potatos with chicken",
+        "author": "Hans Muster",
+    	"date": "2013-10-14",	
+    	"location": "zurich, switzerland",
+    	"planned": 200,			
+    	"prepared": 150,
+    	"servings": 140,
+    	"feedbacks": ["very nice!", "amazing"],			
+    	"customer-rating": 2,				
+    	"instruction": "bake it, slice it and forget it",
+    	"ingredients": [
+    	    {
+    	    "id": 298736,
+    	    "name": "tomato",
+    	    "amount": 150,
+    	    "unit": "gram",
+    	    "origin": "spain",
+    	    "transport": "air",
+    	    "production": "greenhouse",
+    	    "processing": "sliced",
+    	    "conservation": "dried",
+    	    "packaging": "bottle",  
+    	    "storage": 3,
+    	    "price": 1.20
+    	    },
+    	    {
+    	    "id": 298736,
+    	    "name": "onion",
+    	    "amount": 150,
+    	    "unit": "gram",
+    	    "origin": "france",
+    	    "transport": "ground",
+    	    "production": "organic",
+    	    "processing": "",
+    	    "conservation": "",
+    	    "packaging": "",  
+    	    "storage": 0,
+    	    "price": 0.65
+    	    }
+        ]
+    }
+}
+< 200
+{
+    "recipe": {
+        "uri": "kitchens/45674/recipes/9872673",
+        "co2-value": 765,
+        "info-text": "Two ingredient origins have been estimated.",
+        "eaternity-award": "false"
+    }   
+}
+
+
+Deletes this recipe  from the server
+DELETE /kitchens/{kitchen_id}/recipes/{recipe_id}
+< 204
+
+
+-- 
+Kitchen Resources 
+A kitchen is a place with cooking, food processing and storage devices where food is prepared, processed and stored. It has its own supply and purchase management and a well defined location. 
+
+##Kitchen Properties
+| Property | Type  | Description      | Required |
+|:----------|:--------|:------------------|:----------|
+|name |string |official name of the kitchen or factory |yes|
+|location |string |place where the kitchen is located. Address or country (arbitrary format) |yes|
+|database|string| a differentiator for the ingredient database used in this kitchen if a client has different databases in different kitchens |no| 
+
+--
+
+
+Creates a new kitchen
+POST /kitchens/
+{   "kitchen": {
+        "name": "police canteen",
+        "location": "zurich, switzerland",
+        "database": 192847
+    }
+}
+< 201
+{   "kitchen": {
+        "uri": "kitchens/198764",
+        "name": "police canteen",
+        "location": "zurich, switzerland",
+        "database": 192847
+    }
+}
+
+
+Get all kitchens of this client (API key)
+GET /kitchens
+< 200
+{ "kitchens": [
+    "uri": "/kitchens/45674",
+    "uri": "/kitchens/42344",
+    "uri": "/kitchens/42233",
+    "uri": "/kitchens/48855",
+    ]
+}
+
+
+Get the whole kitchen resource.
+GET /kitchens/{kitchen_id}
+< 200
+{   "kitchen": {
+        "uri": "kitchens/198764",
+        "name": "police canteen",
+        "location": "zurich, switzerland",
+        "database": 192847
+    }
+}
+
+
+Update or create the kitchen with the specific id
+PUT /kitchens{kitchen-id}
+{   "kitchen": {
+        "name": "police canteen",
+        "location": "zurich, switzerland",
+        "database": 192847,
+    }
+}
+< 200
+{   "kitchen": {
+        "uri": "kitchens/198764",
+        "name": "police canteen",
+        "location": "zurich, switzerland",
+        "database": 192847,
+    }
+}
+
+    
+Deletes this kitchen from the server 
+DELETE /kitchens/{kitchen_id}
+< 204
+
+
+--
+Supply Resources
+Supplies are ordered from and delivered by a specific supplier in the supply chain.
+
+The CO₂-Values are given in **kg CO₂e** for the supply resource. 
+
+
+## Supply Properties
+
+| Property | Type  | Description      | Required |
+|:----------|:--------|:------------------|:----------|
+|supplier|string|specific supplier in the supply chain|no|
+|location|string| location of the supplier. Address or country (arbitrary format) |no|
+|supply-date|yyyy-mm-dd|the delivery date of the supply|yes|
+|ingredients|list|a list of all ingredient resources in this supply|yes|
+|co2-value|float|the total CO₂-Value of this supply in **kg CO₂e**|response|
+
+
+--
+
+Post a new supply or multiple supplies at once.
+POST /kitchens/{kitchen-id}/supplies
+{ "supplies": [
+	{
+		"supplier": "Howeg",
+		"location": "Dietlikon",
+		"supply-date": "2013-06-01",
+		"ingredients": [
+            {
+        	    "id": 298736,
+        	    "name": "tomato",
+        	    "amount": 150,
+        	    "unit": "gram",
+        	    "origin": "spain",
+        	    "transport": "air",
+        	    "production": "greenhouse",
+        	    "processing": "sliced",
+        	    "conservation": "fresh",
+        	    "packaging": "bottle",  
+        	    "storage": 3,
+        	    "price": 1.60
+    	    },
+    	    {...}
+		]
+    },
+    {
+		"supplier": "Braschler",
+		"location": "Zurich",
+		"supply-date": "2013-06-06",
+		"ingredients": [
+            {
+        	    "id": 298736,
+        	    "name": "onion",
+        	    "amount": 150,
+        	    "unit": "gram",
+        	    "origin": "spain",
+        	    "transport": "air",
+        	    "production": "greenhouse",
+        	    "processing": "sliced",
+        	    "conservation": "fresh",
+        	    "packaging": "bottle",  
+        	    "storage": 3,
+        	    "price": 2.40
+    	    },
+    	    {
+        	    "id": 23456,
+        	    "name": "bacon",
+        	    "amount": 150,
+        	    "unit": "gram",
+        	    "origin": "spain",
+        	    "transport": "ground",
+        	    "production": "standard",
+        	    "processing": "sliced",
+        	    "conservation": "fresh",
+        	    "storage": 3,
+        	    "price": 22.00
+    	    }
+		]
+    },
+}
+< 201
+{ "supplies": [
+    "uri": "/kitchens/45674/supplies/293857",
+    "uri": "/kitchens/45674/supplies/234563"
+    ]
+}
+
+
+Get all supplies in this kitchen
+GET /kitchens/{kitchen-id}/supplies
+< 200
+{ "supplies": [
+    "uri": "/kitchens/45674/supplies/293857",
+    "uri": "/kitchens/45674/supplies/234563",
+    "uri": "/kitchens/45674/supplies/234345",
+    "uri": "/kitchens/45674/supplies/234223",
+    "uri": "/kitchens/45674/supplies/293453",
+    "uri": "/kitchens/45674/supplies/234456"
+    ]
+}
+
+
+Get a specific supply resource
+GET /kitchens/{kitchen-id}/supplies/{supply-id}
+< 200
+{   "supply": {
+        "uri": "kitchens/45674/supplies/394875,
+        "co2-value": 77.3,
+    	"supplier": "Howeg",
+    	"location": "Dietlikon",
+    	"supply-date": "2013-06-01",
+    	"ingredients": [
+            {
+        	    "id": 298736,
+        	    "name": "tomato",
+        	    "amount": 150,
+        	    "unit": "gram",
+        	    "origin": "spain",
+        	    "transport": "air",
+        	    "production": "greenhouse",
+        	    "processing": "sliced",
+        	    "conservation": "fresh",
+        	    "packaging": "bottle",  
+        	    "storage": 3,
+        	    "price": 1.60,
+        	    "rating": "B",
+        	    "bar-chart": 80.00
+    	    }
+    	]
+}
+
+
+Update or create this supply with the specific id.
+PUT /kitchens/{kitchen-id}/supplies/{supply-id}
+{ "supply": {
+	"supplier": "Howeg",
+	"location": "Dietlikon",
+	"supply-date": "2013-06-01",
+	"ingredients": [
+        {
+    	    "id": 298736,
+    	    "name": "tomato",
+    	    "amount": 150,
+    	    "unit": "gram",
+    	    "origin": "spain",
+    	    "transport": "air",
+    	    "production": "greenhouse",
+    	    "processing": "sliced",
+    	    "conservation": "fresh",
+    	    "packaging": "bottle",  
+    	    "storage": 3,
+    	    "price": 1.60
+	    }
+	    ]
+    }
+}
+< 200
+{ "supply": {
+    "uri": "kitchens/45674/supplies/394875,
+    "co2-value": 77.3,
+	"supplier": "Howeg",
+	"location": "Dietlikon",
+	"supply-date": "2013-06-01",
+	"ingredients": [
+        {
+    	    "id": 298736,
+    	    "name": "tomato",
+    	    "amount": 150,
+    	    "unit": "gram",
+    	    "origin": "spain",
+    	    "transport": "air",
+    	    "production": "greenhouse",
+    	    "processing": "sliced",
+    	    "conservation": "fresh",
+    	    "packaging": "bottle",  
+    	    "storage": 3,
+    	    "price": 1.60
+	    }
+	    ]
+    }
+}
+
+
+Delete a supply
+DELETE /kitchens/{kitchen-id}/supplies/{supply-id}
+< 204
+
+
+-- 
+Report Resources 
+There are three different type of reports:
+
+### Menu Reports
+Menu reports give detailed insight in the characteristics of multiple recipes. 
+
+The report includes an overview of the CO2-Values of all menus, a benchmark evaluation of all menus, a seasonality table, a CO2-Value per product category. Under development are optimization tipps, nutrient and cost profiles.
+
+The data source of the menu reports are the existing recipe resources. 
+
+### Restaurant Reports
+Restaurant reports contain sophisticated CO2 analysis and statistics of the complete CO2-footprint of a restaurant over a certain period of time. 
+
+The report includes: the overall CO2 footprint, the CO2-footprint broken down into product categories, an evaluation of factors such as production method, transportation, conservation, storage and processing, percentage of seasonal ingredients, highlighting best and worst daily values. Under development are cost analysis etc.
+
+The data source of the restaurant reports are the supply resources of one restaurant.
+
+### Customer Reports
+Customer reports contain sophisticated CO2 analysis and statistics of the whole CO2-footprint of a company which has or serves multiple restaurants over a certain period of time.
+
+The report includes: the overall CO2 footprint, the CO2-footprint broken down into product categories, an evaluation of factors such as production method, transportation, conservation, storage and processing, percentage of seasonal ingredients, highlighting best and worst daily values. Under development are cost analysis etc.
+
+The data source of the customer reports are the supply resources of multiple restaurants.
+
+***
+
+The response contains a link to the generated pdf.
+
+The date format is according to the ISO 8601 standard: YYYY-MM-DD
+
+--
+
+Request the menu report for the given timespan (startdate - enddate).
+GET /kitchens/{kitchen_id}/reports/menu?startdate=2013-12-07&enddate=2013-12-14
+< 200
+{
+    "uri": "/reports/948273/report-menu_kid-45674_2013-12-07_2013-12-14.pdf"
+    "last-input": "2012-12-30T14:23",
+    "recipes": [
+        "/kitchens/45674/recipes/298374", 
+        "/kitchens/45674/recipes/298345",
+        "/kitchens/45674/recipes/298454",
+        "/kitchens/45674/recipes/298345",
+        "/kitchens/45674/recipes/298456",
+        "/kitchens/45674/recipes/294564"
+    ],
+    "kitchens": [
+        "/kitchens/45674"
+    ]
+}
+
+Request the menu report for the given recipe uri's.
+POST /kitchens/{kitchen_id}/reports/menu
+{
+    "recipes": [
+        "/kitchens/45674/recipes/298374", 
+        "/kitchens/45674/recipes/298345",
+        "/kitchens/45674/recipes/298454",
+        "/kitchens/45674/recipes/298345",
+        "/kitchens/45674/recipes/298456",
+        "/kitchens/45674/recipes/294564"
+    ]
+}
+< 200
+{
+    "uri": "/reports/948273/report_menu_kid-45674.pdf",
+    "last-input": "2012-12-30T14:23",
+    "recipes": [
+        "/kitchens/45674/recipes/298374", 
+        "/kitchens/45674/recipes/298345",
+        "/kitchens/45674/recipes/298454",
+        "/kitchens/45674/recipes/298345",
+        "/kitchens/45674/recipes/298456",
+        "/kitchens/45674/recipes/294564"
+    ]
+    "kitchens": [
+        "/kitchens/45674"
+    ]
+}
+
+
+Request the restaurant report for the given timespan (startdate - enddate). 
+
+To select specific suppliers included in the report, you can add `?supplier=scana,howeg` as parameters in the url.
+GET /kitchens/{kitchen_id}/reports/restaurant?startdate=2013-12-07&enddate=2013-12-14
+< 201
+{
+    "uri": "/reports/948273/report_restaurant_kid-45674_2013-12-07_2013-12-14.pdf",
+    "last-input": "2012-12-30T14:23",
+    "supplies": [
+        "uri": "/kitchens/45674/supplies/293857",
+        "uri": "/kitchens/45674/supplies/234563",
+        "uri": "/kitchens/45674/supplies/234345",
+        "uri": "/kitchens/45674/supplies/232344",
+        "uri": "/kitchens/45674/supplies/234556"
+    ]
+    "kitchens": [
+        "/kitchens/45674"
+    ]
+}
+
+
+Request the customer report for the given timespan (startdate - enddate). 
+GET /reports/customer?startdate=2013-12-07&enddate=2013-12-14
+< 201
+{
+    "uri": "/reports/948273/report_customer_kid-948273_2013-12-07_2013-12-14.pdf"
+    "last-input": "2012-12-30T14:23",
+    "supplies": [
+        "uri": "/kitchens/45674/supplies/293857",
+        "uri": "/kitchens/45674/supplies/234563",
+        "uri": "/kitchens/85764/supplies/234345",
+        "uri": "/kitchens/85764/supplies/232344",
+        "uri": "/kitchens/85764/supplies/234556"
+    ]   
+    "kitchens": [
+        "/kitchens/45674",
+        "/kitchens/85764"
+    ]
+}
+
+Request the customer report for the given timespan (startdate - enddate) and for specific kitchens. 
+POST /reports/customer?startdate=2013-12-07&enddate=2013-12-14
+{
+    "kitchens": [
+        "/kitchens/45674",
+        "/kitchens/29344",
+        "/kitchens/85764"
+    ]
+}
+< 201
+{
+    "uri": "/reports/948273/report_customer_2013-12-07_2013-12-14.pdf",
+    "last-input": "2012-12-30T14:23",
+    "supplies": [
+        "uri": "/kitchens/45674/supplies/293857",
+        "uri": "/kitchens/45674/supplies/234563",
+        "uri": "/kitchens/85764/supplies/234345",
+        "uri": "/kitchens/85764/supplies/232344",
+        "uri": "/kitchens/29344/supplies/234556"
+    ]   
+    "kitchens": [
+        "/kitchens/45674",
+        "/kitchens/29344",
+        "/kitchens/85764"
+    ]
+}
