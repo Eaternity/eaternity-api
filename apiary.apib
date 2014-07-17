@@ -12,7 +12,7 @@ predictable URLs for accessing resources, and uses built-in HTTP features to rec
 ## Authentication 
 Each client gets his own unique API key, which he needs to provide to be able to talk to the Eaternity API.
 
-To authenticate a request, clients should use the widely supported HTTPS Basic Authentication and pass the API key as the username, and an empty password. Note that the API only accepts secure connections via **HTTPS**. Most HTTP request utilities and libraries that allow to specify a username and password will handle proper encoding of the header for you.
+To authenticate a request, clients should use the widely supported HTTPS Basic Authentication and pass the API key as the username, and an empty password. Note that the API only accepts secure connections via **HTTPS** with SNI (Server Name Indication). Servername is `co2.eaternity.ch`. Most HTTP request utilities and libraries that allow to specify a username and password will handle proper encoding of the header for you.
 
 API Key Example: FmZ23.M4mTKmDA4ssFCkEnYi
 
