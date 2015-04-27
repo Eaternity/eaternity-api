@@ -76,8 +76,7 @@ Information on the estimations taken (and other comments) are given in the `info
 
 | Property | Type  | Description      | Required |
 |:----------|:--------|:------------------|----------|
-|title| string| title of the recipe in the standard language (currently german)    |no|
-|title-fr| string| title of the recipe in french    |no|
+|title| string| title of the recipe     |no|
 |author|string|original author of the recipe|no|
 |date|yyyy-mm-dd|the date the recipe is served. If **no date** is provided, **only a rating** of the recipe is returned.|best practice|
 |location|string|location where the recipe is cooked. Address or country (arbitrary format) |yes if recipe is not provided in a kitchen|
@@ -100,8 +99,7 @@ Information on the estimations taken (and other comments) are given in the `info
 | Property | Type  | Description    | Required |
 |:----------|:--------|:------------------|:----------|
 |id|string| id of the ingredient used by the client|yes|
-|name|string|full name of ingredient in the standard language (currently german)|yes|
-|name-fr|string|full name of ingredient in french|yes|
+|name|string|full name of ingredient|yes|
 |amount|float|amount of the ingredient in the specified unit|yes|
 |unit|string|unit of the given amount of the ingredient, currently only *gram* and *liter* (defaults to *gram*)|no|
 |origin|string|origin of the ingredient: address or country |best practice|
