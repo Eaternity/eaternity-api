@@ -130,6 +130,7 @@ Information on the estimations taken (and other comments) are given in the `info
 |packaging| string| how the product is packaged. Values:  *none*, *plastic*, *paper*, *pet*, *tin*, *alu*, *glas*, *cardboard*, *tetra* |no|
 |storage| int| duration of storage in days | no|
 |price|float|price of the purchased product in CHF|no|
+|gtin|integer|global trade item number: www.gtin.info|no|
 |**Response**| | | |
 |rating|string|the CO₂-ingredient rating [A,B,C,D,E]. A is best, E is worst.||
 |bar-chart|float|to generate a bar chart for all ingredients of a recipe. How much this ingredient contributes to the total CO₂-value of the recipe in percent (0.00% - 100.00%)|.|
@@ -196,7 +197,8 @@ Create a recipe resource and receive the CO₂-Value and Eaternity Award. Exampl
                     "conservation": "fresh",
                     "packaging": "plastic",  
                     "storage": 3,
-                    "price": 1.20
+                    "price": 1.20,
+                    "gtin": 00012345678905
                     },
                     {
                     "id": "100100894",
@@ -218,7 +220,8 @@ Create a recipe resource and receive the CO₂-Value and Eaternity Award. Exampl
                     "conservation": "dried",
                     "packaging": "",  
                     "storage": 0,
-                    "price": 0.65
+                    "price": 0.65,
+                    "gtin": 00012345678906
                     }
                 ]
             }
@@ -1180,4 +1183,3 @@ The request-id differs from the supply id and has just the lifetime of a single 
             "supply-id": "d1ed2267"
         }
         ]
-
