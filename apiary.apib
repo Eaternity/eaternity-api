@@ -62,7 +62,7 @@ The id can be an alphanumeric value following this regular expression: [-a-zA-Z0
 The API accepts JSON in requests. It returns JSON in all of its responses, including errors. Only the UTF-8 character encoding is supported for both requests and responses.
 
 ## Server Responses
-A successful request will be prompted with either `200 - success`, `201 - created` or `204 - No Content`. 
+A successful request will be prompted with either `200 - success` or `204 - No Content`. 
 
 Sadly, sometimes requests to the API are not successful. Failures can occur for a wide range of reasons. In all cases, the API should return an HTTP Status Code that indicates the nature of the failure (below), with a response body in JSON format containing additional information.
 
@@ -227,7 +227,7 @@ Create a recipe resource and receive the CO₂-Value and Eaternity Award. Exampl
             }
         }
 
-+ Response 201 (application/json)
++ Response 200 (application/json)
 
     + Headers
     
@@ -501,7 +501,7 @@ Create a recipe resource in a specific kitchen and receive the CO₂-Value and E
             }
         }
 
-+ Response 201 (application/json)
++ Response 200 (application/json)
 
     + Headers
 
@@ -683,7 +683,7 @@ Update or create a certain recipe with this id. The whole recipe resource with a
             }
         }
 
-+ Response 201 (application/json)
++ Response 200 (application/json)
 
     + Headers
     
@@ -777,7 +777,7 @@ The request-id differs from the recipe id and has just the lifetime of a single 
 
         [ 
         {
-            "statuscode": 201,
+            "statuscode": 200,
             "message": "",
             "request-id": 1,
             "recipe": {
@@ -854,8 +854,7 @@ A kitchen is a place with cooking, food processing and storage devices where foo
 
         {   "kitchen": {
                 "name": "police canteen",
-                "location": "zurich, switzerland",
-                "database": "192847"
+                "location": "zurich, switzerland"
             }
         }
 
@@ -870,8 +869,7 @@ A kitchen is a place with cooking, food processing and storage devices where foo
             {   "kitchen": {
                     "id": "198764",
                     "name": "police canteen",
-                    "location": "zurich, switzerland",
-                    "database": "192847"
+                    "location": "zurich, switzerland"
                 }
             }
 
@@ -905,8 +903,7 @@ Update or create the kitchen with the specific id
 
         {   "kitchen": {
                 "name": "police canteen",
-                "location": "zurich, switzerland",
-                "database": "192847",
+                "location": "zurich, switzerland"
             }
         }
 
@@ -921,8 +918,7 @@ Update or create the kitchen with the specific id
             {   "kitchen": {
                     "id": "198764",
                     "name": "police canteen",
-                    "location": "zurich, switzerland",
-                    "database": "192847",
+                    "location": "zurich, switzerland"
                 }
             }
             
@@ -983,7 +979,7 @@ The `POST` and `PUT` method don't have a body because the purpose of this resour
             }
         }
 
-+ Response 201
++ Response 200
     + Headers
 
             Location: https://co2.eaternity.ch/api/kitchens/1987647/supplies/d1ed2263
@@ -1065,7 +1061,7 @@ Update or create this supply with the specific id. The supply always needs to ha
             }
         }
 
-+ Response 201
++ Response 200
     + Headers
 
             Location: https://co2.eaternity.ch/api/kitchens/1987647/supplies/d1ed2263
@@ -1148,7 +1144,7 @@ The request-id differs from the supply id and has just the lifetime of a single 
 
         [ 
         {
-            "statuscode": 201,
+            "statuscode": 200,
             "message": "",
             "request-id": 1,
             "supply-id": "d1ed2263"
