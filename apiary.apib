@@ -120,7 +120,7 @@ Information on the estimations taken (and other comments) are given in the `info
 |id|string| id of the ingredient used by the client|yes|
 |names|list of language object|full name of ingredient in different languages (array of language objects). Name in at least one language required.|yes|
 |amount|float|amount of the ingredient in the specified unit|yes|
-|unit|string|unit of the given amount of the ingredient: *gram* or *liter*.|no|
+|unit|string|unit of the given amount of the ingredient: *gram* or *liter*, default: *gram*|no|
 |origin|string|origin of the ingredient: address or country |best practice|
 |transport|string|means of transport from ”origin” to ”location” of recipe or kitchen. Values: *air* or *ground* or *sea* or *train* |best practice|
 |production|string|production of the base material. Values: *standard*, *greenhouse*, *organic*, *fair-trade*, *farm* (fishes and game animals only), *wild-caught* (fishes and game animals only), *sustainable-fish*. |best practice|
@@ -726,7 +726,12 @@ The request-id differs from the recipe id and has just the lifetime of a single 
             "request-id": 1,
             "transient": false,
             "recipe": {
-                "titles": "Tofu-Ragout delicious",               
+                "titles": [
+                    {
+                        "language": "de",
+                        "value": "Kürbisrisotto"
+                    }
+                ]
                 "instructions": [
                         {
                             "language": "de",
@@ -742,7 +747,12 @@ The request-id differs from the recipe id and has just the lifetime of a single 
             "request-id": 2,
             "transient": true,
             "recipe": {
-                "titles": "Tofu-Ragout delicious",               
+                "titles": [
+                    {
+                        "language": "de",
+                        "value": "Kürbisrisotto"
+                    }
+                ]             
                 "instructions": [
                         {
                             "language": "de",
@@ -759,7 +769,12 @@ The request-id differs from the recipe id and has just the lifetime of a single 
             "transient": false,
             "recipe": {
                 "id": "d1ed2263-b1b2-4f50-9e9d-ba62cae81f29",
-                "titles": "Tofu-Ragout delicious",               
+                "titles": [
+                    {
+                        "language": "de",
+                        "value": "Kürbisrisotto"
+                    }
+                ]              
                 "instructions": [
                         {
                             "language": "de",
