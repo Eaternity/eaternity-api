@@ -120,8 +120,8 @@ Information on the estimations taken (and other comments) are given in the `info
 |names|list of language object|full name of ingredient in different languages (array of language objects). Name in at least one language required.|yes|
 |amount|float|amount of the ingredient in the specified unit|yes|
 |unit|string|unit of the given amount of the ingredient: *gram* or *liter*, default: *gram*|no|
-|origin|string|origin of the ingredient: address or country |best practice|
-|transport|string|means of transport from ”origin” to ”location” of recipe or kitchen. Values: *air* or *ground* or *sea* or *train* |best practice|
+|origin|string|origin of the ingredient: postal address or country |best practice|
+|transport|string|means of transport from ”origin” to ”location” of recipe or kitchen. Values: *air* or *ground*|best practice|
 |production|string|production of the base material. Values: *standard*, *greenhouse*, *organic*, *fair-trade*, *farm* (fishes and game animals only), *wild-caught* (fishes and game animals only), *sustainable-fish*. |best practice|
 |producer|string|the producer of the product. Especially important for combined products (products with multiple ingredients)|best practice|
 |processing| string| processing and convenience. Values: *raw*. Meat and Fisch: *unboned* or *boned*. Fisch: *skinned*, *beheaded*, *fillet*. Vegetables and Fruits: *cut*, *boiled*, *peeled*. |no|
@@ -1098,7 +1098,7 @@ The request-id differs from the supply id and has just the lifetime of a single 
         { 
             "request-id": 1,
             "supply": {
-                "id": "d1ed2263"
+                "id": "d1ed2263",
                 "supplier": "Howeg",
                 "location": "Dietlikon, Schweiz",
                 "supply-date": "2013-06-01",
