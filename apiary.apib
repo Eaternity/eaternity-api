@@ -98,11 +98,7 @@ Information on the estimations taken (and other comments) are given in the `info
 |author|string|original author of the recipe|no|
 |date|yyyy-mm-dd|the date the recipe is served. If **no date** is provided, **only a rating** of the recipe is returned.|best practice|
 |location|string|location where the recipe is cooked. Address or country (arbitrary format) |yes if recipe is not provided in a kitchen|
-|planned|int|number of servings planned|no|
-|prepared|int|number of servings prepared to serve|no|
 |servings|int|for how many servings the ingredients are given. Required for the evaluation of the Eaternity Award.|yes for the Eaternity Award|
-|feedbacks|list of strings|qualitativ customer feedbacks on the menu|no|
-|customer-rating|float|quantitative customer rating from 1 (worst) to 5 (best)|no|
 |instructions|list of language objects|cooking instructions for the recipe in different languages (array of language objects)|   no|
 |ingredients|list of ingredients|a list of all ingredient resources in this recipe |yes|
 |**Response**||||
@@ -161,11 +157,7 @@ Create a recipe resource and receive the CO₂-Value and Eaternity Award. Exampl
                 "author": "Eckart Witzigmann",
                 "date": "2013-10-14",   
                 "location": "Zürich Schweiz",
-                "planned": 200,         
-                "prepared": 150,
                 "servings": 140,
-                "feedbacks": ["very nice!", "amazing"],                 
-                "customer-rating": 5,                           
                 "instructions": [
                         {
                             "language": "de",
@@ -272,11 +264,7 @@ Get the up-to-date CO2-Value for this recipe for the current date
                 "author": "Eckart Witzigmann",
                 "date": "2013-10-14",   
                 "location": "Zürich Schweiz",
-                "planned": 200,         
-                "prepared": 150,
                 "servings": 140,
-                "feedbacks": ["very nice!", "amazing"],                 
-                "customer-rating": 5,                           
                 "instructions": [
                     {
                         "language": "de",
@@ -354,11 +342,7 @@ Update or create a certain recipe with this id. The whole recipe resource with a
                 "author": "Eckart Witzigmann",
                 "date": "2013-10-14",   
                 "location": "Zürich Schweiz",
-                "planned": 200,         
-                "prepared": 150,
                 "servings": 140,
-                "feedbacks": ["very nice!", "amazing"],                 
-                "customer-rating": 5,                           
                 "instructions": [
                         {
                             "language": "de",
@@ -445,11 +429,7 @@ Create a recipe resource in a specific kitchen and receive the CO₂-Value and E
                 "author": "Eckart Witzigmann",
                 "date": "2013-10-14",   
                 "location": "Zürich Schweiz",
-                "planned": 200,         
-                "prepared": 150,
                 "servings": 140,
-                "feedbacks": ["very nice!", "amazing"],                 
-                "customer-rating": 5,                           
                 "instructions": [
                         {
                             "language": "de",
@@ -552,11 +532,7 @@ Get the up-to-date CO2-Value for this recipe for the current date
                 "author": "Eckart Witzigmann",
                 "date": "2013-10-14",   
                 "location": "Zürich Schweiz",
-                "planned": 200,         
-                "prepared": 150,
                 "servings": 140,
-                "feedbacks": ["very nice!", "amazing"],                 
-                "customer-rating": 5,                           
                 "instructions": [
                         {
                             "language": "de",
@@ -627,11 +603,7 @@ Update or create a certain recipe with this id. The whole recipe resource with a
                 "author": "Eckart Witzigmann",
                 "date": "2013-10-14",   
                 "location": "Zürich Schweiz",
-                "planned": 200,         
-                "prepared": 150,
                 "servings": 140,
-                "feedbacks": ["very nice!", "amazing"],                 
-                "customer-rating": 5,                           
                 "instructions": [
                         {
                             "language": "de",
@@ -730,7 +702,7 @@ The request-id differs from the recipe id and has just the lifetime of a single 
                         "language": "de",
                         "value": "Kürbisrisotto"
                     }
-                ]
+                ],
                 "instructions": [
                         {
                             "language": "de",
@@ -751,7 +723,7 @@ The request-id differs from the recipe id and has just the lifetime of a single 
                         "language": "de",
                         "value": "Kürbisrisotto"
                     }
-                ]             
+                ],             
                 "instructions": [
                         {
                             "language": "de",
@@ -773,7 +745,7 @@ The request-id differs from the recipe id and has just the lifetime of a single 
                         "language": "de",
                         "value": "Kürbisrisotto"
                     }
-                ]              
+                ],              
                 "instructions": [
                         {
                             "language": "de",
