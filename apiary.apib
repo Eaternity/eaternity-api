@@ -119,12 +119,10 @@ Information on the estimations taken (and other comments) are given in the `info
 |origin|string|origin of the ingredient: postal address or country |best practice|
 |transport|string|means of transport from ”origin” to ”location” of recipe or kitchen. Values: *air* or *ground*|best practice|
 |production|string|production of the base material. Values: *standard*, *greenhouse*, *organic*, *fair-trade*, *farm* (fishes and game animals only), *wild-caught* (fishes and game animals only), *sustainable-fish*. |best practice|
-|producer|string|the producer of the product. Especially important for combined products (products with multiple ingredients)|best practice|
+|producer|string|the producer or brand of the product. Especially important for combined products (products with multiple ingredients)|best practice|
 |processing| string| processing and convenience. Values: *raw*. Meat and Fisch: *unboned* or *boned*. Fisch: *skinned*, *beheaded*, *fillet*. Vegetables and Fruits: *cut*, *boiled*, *peeled*. |no|
 |conservation| string| conservation for longer storage life. Values: *fresh* or *frozen* or *dried* or *conserved* or *canned* or *boiled-down* |best practice|
 |packaging| string| how the product is packaged. Values:  *none*, *plastic*, *paper*, *pet*, *tin*, *alu*, *glas*, *cardboard*, *tetra* |no|
-|storage| int| duration of storage in days | no|
-|price|float|price of the purchased product in CHF|no|
 |gtin|integer|global trade item number: [www.gtin.info](http://www.gtin.info/)|no|
 |**Response**| | | |
 |rating|string|the CO₂-ingredient rating [A,B,C,D,E]. A is best, E is worst.||
@@ -187,8 +185,6 @@ Create a recipe resource and receive the CO₂-Value and Eaternity Award. Exampl
                     "processing": "raw",
                     "conservation": "fresh",
                     "packaging": "plastic",  
-                    "storage": 3,
-                    "price": 1.20,
                     "gtin": 00012345678905
                     },
                     {
@@ -210,8 +206,6 @@ Create a recipe resource and receive the CO₂-Value and Eaternity Award. Exampl
                     "processing": "",
                     "conservation": "dried",
                     "packaging": "",  
-                    "storage": 0,
-                    "price": 0.65,
                     "gtin": 00012345678906
                     }
                 ]
@@ -294,8 +288,6 @@ Get the up-to-date CO2-Value for this recipe for the current date
                     "processing": "raw",
                     "conservation": "fresh",
                     "packaging": "plastic",  
-                    "storage": 3,
-                    "price": 1.20,
                     "rating": "B",
                     "bar-chart": 31.00
                     },
@@ -318,8 +310,6 @@ Get the up-to-date CO2-Value for this recipe for the current date
                     "processing": "",
                     "conservation": "dried",
                     "packaging": "",  
-                    "storage": 0,
-                    "price": 0.65,
                     "rating": "C",
                     "bar-chart": 69.00
                     }
@@ -367,9 +357,7 @@ Update or create a certain recipe with this id. The whole recipe resource with a
                     "production": "greenhouse",
                     "processing": "raw",
                     "conservation": "fresh",
-                    "packaging": "plastic",  
-                    "storage": 3,
-                    "price": 1.20
+                    "packaging": "plastic"  
                     },
                     {
                     "id": "100100894",
@@ -385,9 +373,7 @@ Update or create a certain recipe with this id. The whole recipe resource with a
                     "production": "organic",
                     "processing": "",
                     "conservation": "dried",
-                    "packaging": "",  
-                    "storage": 0,
-                    "price": 0.65
+                    "packaging": ""
                     }
                 ]
             }
@@ -454,9 +440,7 @@ Create a recipe resource in a specific kitchen and receive the CO₂-Value and E
                     "production": "greenhouse",
                     "processing": "raw",
                     "conservation": "fresh",
-                    "packaging": "plastic",  
-                    "storage": 3,
-                    "price": 1.20
+                    "packaging": "plastic"
                     },
                     {
                     "id": "100100894",
@@ -472,9 +456,7 @@ Create a recipe resource in a specific kitchen and receive the CO₂-Value and E
                     "production": "organic",
                     "processing": "",
                     "conservation": "dried",
-                    "packaging": "",  
-                    "storage": 0,
-                    "price": 0.65
+                    "packaging": ""
                     }
                 ]
             }
@@ -557,9 +539,7 @@ Get the up-to-date CO2-Value for this recipe for the current date
                     "production": "greenhouse",
                     "processing": "raw",
                     "conservation": "fresh",
-                    "packaging": "plastic",  
-                    "storage": 3,
-                    "price": 1.20,
+                    "packaging": "plastic"
                     "rating": "B",
                     "bar-chart": 27.56
                     },
@@ -577,9 +557,7 @@ Get the up-to-date CO2-Value for this recipe for the current date
                     "production": "organic",
                     "processing": "",
                     "conservation": "dried",
-                    "packaging": "",  
-                    "storage": 0,
-                    "price": 0.64,
+                    "packaging": "",
                     "rating": "C",
                     "bar-chart": 75.56
                     }
@@ -628,9 +606,7 @@ Update or create a certain recipe with this id. The whole recipe resource with a
                     "production": "greenhouse",
                     "processing": "raw",
                     "conservation": "fresh",
-                    "packaging": "plastic",  
-                    "storage": 3,
-                    "price": 1.20
+                    "packaging": "plastic"
                     },
                     {
                     "id": "100100894",
@@ -646,9 +622,7 @@ Update or create a certain recipe with this id. The whole recipe resource with a
                     "production": "organic",
                     "processing": "",
                     "conservation": "dried",
-                    "packaging": "",  
-                    "storage": 0,
-                    "price": 0.65
+                    "packaging": ""
                     }
                 ]
             }
@@ -966,9 +940,7 @@ The `POST` and `PUT` method don't have a body because the purpose of this resour
                     "production": "greenhouse",
                     "processing": "raw",
                     "conservation": "fresh",
-                    "packaging": "plastic",  
-                    "storage": 3,
-                    "price": 1.20
+                    "packaging": "plastic"
                 }
                 ]
             }
@@ -1016,9 +988,7 @@ Get all supplies contained in this kitchen. A list of supply ids is returned.
                     "production": "greenhouse",
                     "processing": "raw",
                     "conservation": "fresh",
-                    "packaging": "plastic",  
-                    "storage": 3,
-                    "price": 1.20
+                    "packaging": "plastic"
                 }
                 ]
         }
@@ -1046,9 +1016,7 @@ Update or create this supply with the specific id. The supply always needs to ha
                     "production": "greenhouse",
                     "processing": "raw",
                     "conservation": "fresh",
-                    "packaging": "plastic",  
-                    "storage": 3,
-                    "price": 1.20
+                    "packaging": "plastic"
                 }
                 ]
             }
@@ -1095,9 +1063,7 @@ The request-id differs from the supply id and has just the lifetime of a single 
                     "production": "greenhouse",
                     "processing": "raw",
                     "conservation": "fresh",
-                    "packaging": "plastic",  
-                    "storage": 3,
-                    "price": 1.20
+                    "packaging": "plastic"
                 }
                 ]
             }
@@ -1122,9 +1088,7 @@ The request-id differs from the supply id and has just the lifetime of a single 
                     "production": "greenhouse",
                     "processing": "raw",
                     "conservation": "fresh",
-                    "packaging": "plastic",  
-                    "storage": 3,
-                    "price": 1.20
+                    "packaging": "plastic"
                 }
                 ]
             }
