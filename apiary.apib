@@ -680,7 +680,7 @@ Deletes this recipe  from the server
 
 + Response 204
 
-## Batch operations on Recipe Resource [/kitchens/{kitchen_id}/recipes/batch]
+## Batch Operations on Recipe Resources [/recipes/batch]
 
 The `full-resource` url parameter is supported here as well. But just for the whole request itself and not on single recipes. The transient parameter can be set selectively on single recipes inside the batch.
 
@@ -688,6 +688,8 @@ The message in the response tells details about the failure.
 
 ### Create or update a batch of recipes [POST]
 Create or update a batch of recipes at once. If a recipe id is provided, the recipe is either created with this id or the existing recipe is overwritten. The status code tells the difference.
+
+The `kitchen-id` may be used to store the recipe into a specific kitchen.
 
 The additional integer `request-id` field enables you to track back the recipes you sent in case you don't want to use your own id's. Either a request id or a recipe id is required.
 The request-id differs from the recipe id and has just the lifetime of a single request (not stored on Eaternity's end).
@@ -698,6 +700,7 @@ The request-id differs from the recipe id and has just the lifetime of a single 
         { 
             "request-id": 1,
             "transient": false,
+            "kitchen-id: "198764",
             "recipe": {
                 "titles": [
                     {
@@ -719,6 +722,7 @@ The request-id differs from the recipe id and has just the lifetime of a single 
         { 
             "request-id": 2,
             "transient": true,
+            "kitchen-id: "198764",
             "recipe": {
                 "titles": [
                     {
@@ -740,6 +744,7 @@ The request-id differs from the recipe id and has just the lifetime of a single 
         { 
             "request-id": 3,
             "transient": false,
+            "kitchen-id: "112233",
             "recipe": {
                 "id": "d1ed2263-b1b2-4f50-9e9d-ba62cae81f29",
                 "titles": [
