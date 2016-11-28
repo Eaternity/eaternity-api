@@ -68,10 +68,10 @@ The API accepts JSON in requests. It returns JSON in all of its responses, inclu
 |test|string|Only for testing purposes. Values: *random* or empty. If test=random is set, all ingredients will be randomly matched, no `601` error will occur and all the calculation results may be incorrect |
 
 ## SSL
-All requests need to be encrypted through SSL. Please Request the latest SSL certificate from Eaternity.
+All requests need to be encrypted through SSL. Please make sure to whitelist the latest SSL certificate from Eaternity.
 
 #### Use Server Name Indication (SNI)
-Since Eaternity uses distributed google servers, the IP-address of the servers changes and are shared betweend different applications.
+Since Eaternity uses distributed Google servers, the IP-address of the service changes and are shared between different applications.
 
 To make SSL work for the Earnity API, the desired hostname (co2.eaternity.ch) needs to be specified with every request according to the SNI-Speficiation.
 
