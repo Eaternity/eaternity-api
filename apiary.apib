@@ -113,6 +113,7 @@ Information on the estimations taken (and other comments) are given in the `info
 | Property | Type  | Description    | Required |
 |:----------|:--------|:------------------|:----------|
 |id|string| your id of the ingredient. If no id is provided, the automatic product matching kicks in.|no|
+|type|string|either *ingredients* or *recipes*. *ingredients* specifies a normal ingredient, *recipes* references to an already existing recipe. Default: *ingredients*|no|
 |names|list of language object|full name of ingredient in different languages (array of language objects). Name in at least one language required.|yes|
 |amount|float|amount of the ingredient in the specified unit|yes|
 |unit|string|unit of the given amount of the ingredient: *gram* or *liter*, default: *gram*|no|
@@ -168,6 +169,7 @@ Create a recipe resource and receive the CO₂-Value and Eaternity Award. Exampl
                 "ingredients": [
                     {
                     "id": "100100191",
+                    "type": "ingredients",
                     "names":  [
                         {
                             "language": "de",
@@ -189,6 +191,7 @@ Create a recipe resource and receive the CO₂-Value and Eaternity Award. Exampl
                     },
                     {
                     "id": "100100894",
+                    "type": "ingredients",
                     "names":  [
                         {
                             "language": "de",
@@ -271,6 +274,7 @@ Get the up-to-date CO2-Value for this recipe for the current date
                 "ingredients": [
                     {
                     "id": "100100191",
+                    "type": "ingredients",
                      "names":  [
                         {
                             "language": "de",
@@ -293,6 +297,7 @@ Get the up-to-date CO2-Value for this recipe for the current date
                     },
                     {
                     "id": "100100894",
+                    "type": "ingredients",
                     "names":  [
                         {
                             "language": "de",
@@ -345,7 +350,8 @@ Update or create a certain recipe with this id. The whole recipe resource with a
                 "ingredients": [
                     {
                     "id": "100100191",
-                     "names":  [
+                    "type": "ingredients",
+                    "names":  [
                         {
                             "language": "de",
                             "value": "Tomaten"
@@ -361,6 +367,7 @@ Update or create a certain recipe with this id. The whole recipe resource with a
                     },
                     {
                     "id": "100100894",
+                    "type": "ingredients",
                     "names":  [
                         {
                             "language": "de",
@@ -400,7 +407,7 @@ Deletes this recipe from the server
 ## Kitchen Recipe Collection [/kitchens/{kitchen_id}/recipes]
 No recipe location needs to be provided.
 
-### Post a recipe [POST]
+### Create a recipe [POST]
 Create a recipe resource in a specific kitchen and receive the CO₂-Value and Eaternity Award 
 
 + Request (application/json)
@@ -428,7 +435,8 @@ Create a recipe resource in a specific kitchen and receive the CO₂-Value and E
                 "ingredients": [
                     {
                     "id": "100100191",
-                     "names":  [
+                    "type": "ingredients",
+                    "names":  [
                         {
                             "language": "de",
                             "value": "Tomaten"
@@ -444,6 +452,7 @@ Create a recipe resource in a specific kitchen and receive the CO₂-Value and E
                     },
                     {
                     "id": "100100894",
+                    "type": "ingredients",
                     "names":  [
                         {
                             "language": "de",
@@ -527,7 +536,8 @@ Get the up-to-date CO2-Value for this recipe for the current date
                 "ingredients": [
                     {
                     "id": "100100191",
-                     "names":  [
+                    "type": "ingredients",
+                    "names":  [
                         {
                             "language": "de",
                             "value": "Tomaten"
@@ -545,6 +555,7 @@ Get the up-to-date CO2-Value for this recipe for the current date
                     },
                     {
                     "id": "100100894",
+                    "type": "ingredients",
                     "names":  [
                         {
                             "language": "de",
@@ -594,7 +605,8 @@ Update or create a certain recipe with this id. The whole recipe resource with a
                 "ingredients": [
                     {
                     "id": "100100191",
-                     "names":  [
+                    "type": "ingredients",
+                    "names":  [
                         {
                             "language": "de",
                             "value": "Tomaten"
@@ -610,6 +622,7 @@ Update or create a certain recipe with this id. The whole recipe resource with a
                     },
                     {
                     "id": "100100894",
+                    "type": "ingredients",
                     "names":  [
                         {
                             "language": "de",
@@ -928,7 +941,8 @@ The `POST` and `PUT` method don't have a body because the purpose of this resour
                 "ingredients": [
                 {
                     "id": "100100191",
-                     "names":  [
+                    "type": "ingredients",
+                    "names":  [
                         {
                             "language": "de",
                             "value": "Tomaten"
@@ -976,7 +990,8 @@ Get all supplies contained in this kitchen. A list of supply ids is returned.
                 "ingredients": [
                 {
                     "id": "100100191",
-                     "names":  [
+                    "type": "ingredients",
+                    "names":  [
                         {
                             "language": "de",
                             "value": "Tomaten"
@@ -1004,7 +1019,8 @@ Update or create this supply with the specific id. The supply always needs to ha
                 "ingredients": [
                 {
                     "id": "100100191",
-                     "names":  [
+                    "type": "ingredients",
+                    "names":  [
                         {
                             "language": "de",
                             "value": "Tomaten"
@@ -1051,7 +1067,8 @@ The request-id differs from the supply id and has just the lifetime of a single 
                 "ingredients": [
                 {
                     "id": "100100191",
-                     "names":  [
+                    "type": "ingredients",
+                    "names":  [
                         {
                             "language": "de",
                             "value": "Tomaten"
@@ -1076,7 +1093,8 @@ The request-id differs from the supply id and has just the lifetime of a single 
                 "ingredients": [
                 {
                     "id": "100100191",
-                     "names":  [
+                    "type": "ingredients",
+                    "names":  [
                         {
                             "language": "de",
                             "value": "Tomaten"
