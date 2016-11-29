@@ -129,7 +129,7 @@ Information on any made estimations (as well as other comments) are given in the
 | Property | Type  | Description    | Required |
 |:----------|:--------|:------------------|:----------|
 |id|string| your id of the ingredient. If no id is provided, the automatic product matching kicks in.|no|
-|type|string|either *ingredients* or *recipes*. *ingredients* specifies a normal ingredient, *recipes* references to an already existing recipe. Default: *ingredients*|no|
+|type|string|either *conceptual-ingredients* or *recipes*. *conceptual-ingredients* specifies a normal ingredient, *recipes* references to an already existing recipe. Default: *conceptual-ingredients*|no|
 |names|list of language object|full name of ingredient in different languages (array of language objects). Name in at least one language required.|yes|
 |amount|float|amount of the ingredient in the specified unit|yes|
 |unit|string|unit of the given amount of the ingredient: *gram* or *liter*, default: *gram*|no|
@@ -185,7 +185,7 @@ Create a recipe resource and receive the CO₂-Value and Eaternity Award. Exampl
                 "ingredients": [
                     {
                     "id": "100100191",
-                    "type": "ingredients",
+                    "type": "conceptual-ingredients",
                     "names":  [
                         {
                             "language": "de",
@@ -207,7 +207,7 @@ Create a recipe resource and receive the CO₂-Value and Eaternity Award. Exampl
                     },
                     {
                     "id": "100100894",
-                    "type": "ingredients",
+                    "type": "conceptual-ingredients",
                     "names":  [
                         {
                             "language": "de",
@@ -290,7 +290,7 @@ Get the up-to-date CO₂-Value for this recipe for the current date
                 "ingredients": [
                     {
                     "id": "100100191",
-                    "type": "ingredients",
+                    "type": "conceptual-ingredients",
                      "names":  [
                         {
                             "language": "de",
@@ -313,7 +313,7 @@ Get the up-to-date CO₂-Value for this recipe for the current date
                     },
                     {
                     "id": "100100894",
-                    "type": "ingredients",
+                    "type": "conceptual-ingredients",
                     "names":  [
                         {
                             "language": "de",
@@ -366,7 +366,7 @@ Update or create a certain recipe with this id. The whole recipe resource with a
                 "ingredients": [
                     {
                     "id": "100100191",
-                    "type": "ingredients",
+                    "type": "conceptual-ingredients",
                     "names":  [
                         {
                             "language": "de",
@@ -383,7 +383,7 @@ Update or create a certain recipe with this id. The whole recipe resource with a
                     },
                     {
                     "id": "100100894",
-                    "type": "ingredients",
+                    "type": "conceptual-ingredients",
                     "names":  [
                         {
                             "language": "de",
@@ -451,7 +451,7 @@ Create a recipe resource in a specific kitchen and receive the CO₂-Value and E
                 "ingredients": [
                     {
                     "id": "100100191",
-                    "type": "ingredients",
+                    "type": "conceptual-ingredients",
                     "names":  [
                         {
                             "language": "de",
@@ -468,7 +468,7 @@ Create a recipe resource in a specific kitchen and receive the CO₂-Value and E
                     },
                     {
                     "id": "100100894",
-                    "type": "ingredients",
+                    "type": "conceptual-ingredients",
                     "names":  [
                         {
                             "language": "de",
@@ -552,7 +552,7 @@ Get the up-to-date CO₂-Value for this recipe for the current date
                 "ingredients": [
                     {
                     "id": "100100191",
-                    "type": "ingredients",
+                    "type": "conceptual-ingredients",
                     "names":  [
                         {
                             "language": "de",
@@ -571,7 +571,7 @@ Get the up-to-date CO₂-Value for this recipe for the current date
                     },
                     {
                     "id": "100100894",
-                    "type": "ingredients",
+                    "type": "conceptual-ingredients",
                     "names":  [
                         {
                             "language": "de",
@@ -620,7 +620,7 @@ Update or create a certain recipe with this id. The whole recipe resource with a
                 "ingredients": [
                     {
                     "id": "100100191",
-                    "type": "ingredients",
+                    "type": "conceptual-ingredients",
                     "names":  [
                         {
                             "language": "de",
@@ -637,7 +637,7 @@ Update or create a certain recipe with this id. The whole recipe resource with a
                     },
                     {
                     "id": "100100894",
-                    "type": "ingredients",
+                    "type": "conceptual-ingredients",
                     "names":  [
                         {
                             "language": "de",
@@ -700,7 +700,7 @@ The request-id differs from the recipe id and has just the lifetime of a single 
         { 
             "request-id": 1,
             "transient": false,
-            "kitchen-id: "198764",
+            "kitchen-id": "198764",
             "recipe": {
                 "titles": [
                     {
@@ -722,7 +722,7 @@ The request-id differs from the recipe id and has just the lifetime of a single 
         { 
             "request-id": 2,
             "transient": true,
-            "kitchen-id: "198764",
+            "kitchen-id": "198764",
             "recipe": {
                 "titles": [
                     {
@@ -744,7 +744,7 @@ The request-id differs from the recipe id and has just the lifetime of a single 
         { 
             "request-id": 3,
             "transient": false,
-            "kitchen-id: "112233",
+            "kitchen-id": "112233",
             "recipe": {
                 "id": "d1ed2263-b1b2-4f50-9e9d-ba62cae81f29",
                 "titles": [
@@ -961,7 +961,7 @@ The `POST` and `PUT` method don't have a body because the purpose of this resour
                 "ingredients": [
                 {
                     "id": "100100191",
-                    "type": "ingredients",
+                    "type": "conceptual-ingredients",
                     "names":  [
                         {
                             "language": "de",
@@ -1010,7 +1010,7 @@ Get all supplies contained in this kitchen. A list of supply ids is returned.
                 "ingredients": [
                 {
                     "id": "100100191",
-                    "type": "ingredients",
+                    "type": "conceptual-ingredients",
                     "names":  [
                         {
                             "language": "de",
@@ -1039,7 +1039,7 @@ Update or create this supply with the specific id. The supply always needs to ha
                 "ingredients": [
                 {
                     "id": "100100191",
-                    "type": "ingredients",
+                    "type": "conceptual-ingredients",
                     "names":  [
                         {
                             "language": "de",
@@ -1087,7 +1087,7 @@ The request-id differs from the supply id and has just the lifetime of a single 
                 "ingredients": [
                 {
                     "id": "100100191",
-                    "type": "ingredients",
+                    "type": "conceptual-ingredients",
                     "names":  [
                         {
                             "language": "de",
@@ -1113,7 +1113,7 @@ The request-id differs from the supply id and has just the lifetime of a single 
                 "ingredients": [
                 {
                     "id": "100100191",
-                    "type": "ingredients",
+                    "type": "conceptual-ingredients",
                     "names":  [
                         {
                             "language": "de",
