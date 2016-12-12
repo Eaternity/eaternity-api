@@ -958,7 +958,7 @@ The `POST` and `PUT` method don't have a body because the purpose of this resour
 + Request (application/json)
 
         {   "supply": {
-                "supplier": "Howeg",
+                "supplier": "Supplier",
                 "supply-date": "2013-06-01",
                 "ingredients": [
                 {
@@ -1007,7 +1007,7 @@ Get all supplies contained in this kitchen. A list of supply ids is returned.
                 "kitchen-id": "293833",
                 "co2-value": 77.3,
                 "info-text": "Two ingredient origins have been estimated.",
-                "supplier": "Howeg",
+                "supplier": "Supplier",
                 "supply-date": "2013-06-01",
                 "ingredients": [
                 {
@@ -1036,7 +1036,7 @@ Update or create this supply with the specific id. The supply always needs to ha
 + Request (application/json)
 
         { "supply": {
-                "supplier": "Howeg",
+                "supplier": "Supplier",
                 "supply-date": "2013-06-01",
                 "ingredients": [
                 {
@@ -1069,7 +1069,7 @@ Update or create this supply with the specific id. The supply always needs to ha
 
 + Response 204
 
-## Batch operations on supply resources [/kitchens/{kitchen_id}/supplies/batch]
+## Batch operations on supply resources [/supplies/batch]
 
 ### Create a batch of supplies [POST]
 Creat or update a batch of supplies at once. If a supply id is provided, the supply is either created with this id or the existing supply is overwritten. The status code tells the difference.
@@ -1084,7 +1084,8 @@ The request-id differs from the supply id and has just the lifetime of a single 
             "request-id": 1,
             "supply": {
                 "id": "d1ed2263",
-                "supplier": "Howeg",
+                "kitchen-id": "293833",
+                "supplier": "Supplier",
                 "supply-date": "2013-06-01",
                 "ingredients": [
                 {
@@ -1110,6 +1111,7 @@ The request-id differs from the supply id and has just the lifetime of a single 
         { 
             "request-id": 2,
             "supply": {
+                lca"kitchen-id": "11122233",
                 "supplier": "Braschler",
                 "supply-date": "2013-06-06",
                 "ingredients": [
