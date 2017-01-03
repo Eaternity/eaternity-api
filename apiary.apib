@@ -310,7 +310,7 @@ Get the up-to-date CO₂-Value for this recipe for the current date
                     "processing": "raw",
                     "conservation": "fresh",
                     "packaging": "plastic",  
-                    "rating": "B",
+                    "rating": "b",
                     "bar-chart": 31.00
                     },
                     {
@@ -333,7 +333,7 @@ Get the up-to-date CO₂-Value for this recipe for the current date
                     "processing": "",
                     "conservation": "dried",
                     "packaging": "",  
-                    "rating": "C",
+                    "rating": "c",
                     "bar-chart": 69.00
                     }
                 ]
@@ -490,13 +490,13 @@ Create a recipe resource in a specific kitchen and receive the CO₂-Value and E
         }
 
 + Response 200 (application/json)
-
+ed
     + Headers
 
             Location: https://co2.eaternity.ch/api/kitchens/45674/recipes/d1ed2263-b1b2-4f50-9e9d-ba62cae81f29
 
     + Body
-
+        
             {
                 "recipe": {
                     "id": "d1ed2263-b1b2-4f50-9e9d-ba62cae81f29",
@@ -568,7 +568,7 @@ Get the up-to-date CO₂-Value for this recipe for the current date
                     "processing": "raw",
                     "conservation": "fresh",
                     "packaging": "plastic"
-                    "rating": "B",
+                    "rating": "b",
                     "bar-chart": 27.56
                     },
                     {
@@ -587,7 +587,7 @@ Get the up-to-date CO₂-Value for this recipe for the current date
                     "processing": "",
                     "conservation": "dried",
                     "packaging": "",
-                    "rating": "C",
+                    "rating": "c",
                     "bar-chart": 75.56
                     }
                 ]
@@ -958,7 +958,7 @@ The `POST` and `PUT` method don't have a body because the purpose of this resour
 + Request (application/json)
 
         {   "supply": {
-                "supplier": "Supplier",
+                "supplier": "Vegetable Supplies Ltd.",
                 "supply-date": "2013-06-01",
                 "ingredients": [
                 {
@@ -1005,9 +1005,9 @@ Get all supplies contained in this kitchen. A list of supply ids is returned.
         {   "supply": {
                 "id": "d1ed2263",
                 "kitchen-id": "293833",
-                "co2-value": 77.3,
+                "co2-value": 77,
                 "info-text": "Two ingredient origins have been estimated.",
-                "supplier": "Supplier",
+                "supplier": "Vegetable Supplies Ltd.",
                 "supply-date": "2013-06-01",
                 "ingredients": [
                 {
@@ -1025,7 +1025,9 @@ Get all supplies contained in this kitchen. A list of supply ids is returned.
                     "production": "greenhouse",
                     "processing": "raw",
                     "conservation": "fresh",
-                    "packaging": "plastic"
+                    "packaging": "plastic",
+                    "rating": "c",
+                    "bar-chart": 69.00
                 }
                 ]
         }
@@ -1036,7 +1038,7 @@ Update or create this supply with the specific id. The supply always needs to ha
 + Request (application/json)
 
         { "supply": {
-                "supplier": "Supplier",
+                "supplier": "Vegetable Supplies Ltd.",
                 "supply-date": "2013-06-01",
                 "ingredients": [
                 {
@@ -1085,7 +1087,7 @@ The request-id differs from the supply id and has just the lifetime of a single 
             "supply": {
                 "id": "d1ed2263",
                 "kitchen-id": "293833",
-                "supplier": "Supplier",
+                "supplier": "Vegetable Supplies Ltd.",
                 "supply-date": "2013-06-01",
                 "ingredients": [
                 {
@@ -1111,8 +1113,8 @@ The request-id differs from the supply id and has just the lifetime of a single 
         { 
             "request-id": 2,
             "supply": {
-                lca"kitchen-id": "11122233",
-                "supplier": "Braschler",
+                "kitchen-id": "11122233",
+                "supplier": "Vegetable Supplies Ltd.",
                 "supply-date": "2013-06-06",
                 "ingredients": [
                 {
