@@ -25,6 +25,7 @@ The CO₂-Values are given in the following unit for the different resources.
 - Ingredients: 
     - Rating [A,B,C,D,E]. A is best, E is worst.
     - Bar Chart [0% - 100%]. How much this ingredient contributes to the total CO₂-Value of the recipe or the supply in percent.
+    - Absolute value [g CO₂e(quivalent) / serving]
 
 ## Language
 The API is designed such that one request may contain information about an object (e.g. a recipe or a supply) in multiple languages.
@@ -146,6 +147,7 @@ Information on any made estimations (as well as other comments) are given in the
 |**Response**| | | |
 |rating|string|the CO₂-ingredient rating [A,B,C,D,E]. A is best, E is worst.||
 |bar-chart|float|to generate a bar chart for all ingredients of a recipe. How much this ingredient contributes to the total CO₂-value of the recipe in percent (0.00% - 100.00%)|.|
+|co2-value|int|the absolute value of CO₂e emissions for the ingredient in [g] for the specified amount of ingredient|.|
 
 The parameters of the properties origin, transport, production, processing, conservation and packaging can be set to multiple values, provide them in a comma seperated list.
 `"production": "organic, fair-trade, Max Havelaar"`
@@ -311,7 +313,8 @@ Get the up-to-date CO₂-Value for this recipe for the current date
                     "conservation": "fresh",
                     "packaging": "plastic",  
                     "rating": "b",
-                    "bar-chart": 31.00
+                    "bar-chart": 31.00,
+                    "co2-value": 73
                     },
                     {
                     "id": "100100894",
@@ -334,7 +337,8 @@ Get the up-to-date CO₂-Value for this recipe for the current date
                     "conservation": "dried",
                     "packaging": "",  
                     "rating": "c",
-                    "bar-chart": 69.00
+                    "bar-chart": 69.00,
+                    "co2-value": 75
                     }
                 ]
             }
@@ -569,7 +573,8 @@ Get the up-to-date CO₂-Value for this recipe for the current date
                     "conservation": "fresh",
                     "packaging": "plastic"
                     "rating": "b",
-                    "bar-chart": 27.56
+                    "bar-chart": 27.56,
+                    "co2-value": 74
                     },
                     {
                     "id": "100100894",
@@ -588,7 +593,8 @@ Get the up-to-date CO₂-Value for this recipe for the current date
                     "conservation": "dried",
                     "packaging": "",
                     "rating": "c",
-                    "bar-chart": 75.56
+                    "bar-chart": 75.56,
+                    "co2-value": 79
                     }
                 ]
             }
@@ -1027,7 +1033,8 @@ Get all supplies contained in this kitchen. A list of supply ids is returned.
                     "conservation": "fresh",
                     "packaging": "plastic",
                     "rating": "c",
-                    "bar-chart": 69.00
+                    "bar-chart": 69.00,
+                    "co2-value": 79
                 }
                 ]
         }
