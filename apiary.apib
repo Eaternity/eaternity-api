@@ -127,6 +127,9 @@ Information on any made estimations (as well as other comments) are given in the
 |info-text| string | notes on the calculated recipe CO₂-value, e.g. remarks when properties like origin or transport are estimated||
 |eaternity-award|boolean|true if the CO₂-Value of the recipe is climate friendly, false otherwise | |
 |rating|string|the CO₂-recipe rating [A,B,C,D,E]. A is best, E is worst.| .|
+|water-scarcity|float|the total scarce water amount for the menu in Liters|.|
+|blue-water-use|float|the total blue  water amount for the menu in Liters|.|
+|water-scarcity-rating|int|the water-scarcity rating of the menu from 1-5 |.|
 
 ##Ingredient Properties
 | Property | Type  | Description    | Required |
@@ -258,7 +261,7 @@ Create a recipe resource and receive the CO₂-Value and Eaternity Award. Exampl
             
             
 ### Get Recipe [GET]
-Get the up-to-date CO₂-Value for this recipe for the current date
+Get the up-to-date CO₂-Value (and other indicators) for this recipe for the current date
 
 + Response 200 (application/json)
 
@@ -269,6 +272,9 @@ Get the up-to-date CO₂-Value for this recipe for the current date
                 "info-text": "Two ingredient origins have been estimated.",
                 "eaternity-award": false,
                 "rating": "B",
+                "water-scarcity": 32.7,
+                "blue-water-use": 534.6,
+                "water-scarcity-rating": 3,
                 "titles": [
                     {
                         "language": "de",
