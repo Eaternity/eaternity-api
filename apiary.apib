@@ -2,14 +2,14 @@ FORMAT: X-1A
 
 HOST: https://co2.eaternity.ch/api/
 
-# Eaternity API
-The Eaternity API is a Web Service that calculates the CO₂-footprint of recipes and restaurants dynamically and provides a CO₂-indicator for ingredients. It includes daily changing information on origin,
-seasonality and other factors in the calculation. It further delivers CO₂-reports with sophisticated and easy to understand statistics, graphs and analysis.
+# Eaternity Database API
+The Eaternity Database API is a Web Service that calculates the Climate Score (CO₂eq), the Vita Score and other environmental indicators of recipes, restaurants and ingredients dynamically. It includes daily changing information on origin,
+seasonality and other factors in the calculation ([More Informations on the indicators](http://www.eaternity.org/foodprint/)). It further delivers reports with sophisticated and easy to understand statistics, graphs and analysis ([More Informations on the reports](http://www.eaternity.org/app/report)).
 
-The Eaternity API is a [RESTful](http://en.wikipedia.org/wiki/Representational_State_Transfer) interface, providing programmatic access to Eaternity’s calculation algorithms, indicator systems and data collections. It provides predictable URLs for accessing resources, and uses built-in HTTP features to receive commands (GET, POST, PUT, DELETE) and return responses.
+The Eaternity Database API is a [RESTful](http://en.wikipedia.org/wiki/Representational_State_Transfer) interface, providing programmatic access to Eaternity’s calculation algorithms, indicator systems and data collections. It provides predictable URLs for accessing resources, and uses built-in HTTP features to receive commands (GET, POST, PUT, DELETE) and return responses.
 
 ## Authentication
-Each client gets his own unique API key, which he needs to provide to be able to talk to the Eaternity API.
+Each client gets his own unique API key, which he needs to provide to be able to talk to the Eaternity Database API.
 
 To authenticate a request, clients should use the widely supported HTTPS Basic Authentication and pass the API key as the username, and an empty password. Note that the API only accepts secure connections via **HTTPS** with SNI (Server Name Indication). The servername is `co2.eaternity.ch`. Most HTTP request utilities and libraries that allow to specify a username and password will handle proper encoding of the header for you.
 
@@ -17,8 +17,8 @@ You can give it a try connecting to our API with this Testing API-Key: FmZ23.M4m
 
 We recommend using the [Postman Chrome Extension](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwjI5dSy28fVAhVmGsAKHYhIB28QFggmMAA&url=https%3A%2F%2Fchrome.google.com%2Fwebstore%2Fdetail%2Fpostman%2Ffhbjgbiflinjbdggehcddcbncdddomop&usg=AFQjCNEKwgqPDcgrMAsS6iZ8PUYhTzB58A) for testing. Or check out the examples below.
 
-## CO₂-Values
-The CO₂-Values are given in the following unit for the different resources.
+## Carbon Score
+The CO₂eq values are given in the following unit for the different resources.
 
 - Recipes:
     - With a date: [g CO₂e(quivalent) / serving]
@@ -27,56 +27,6 @@ The CO₂-Values are given in the following unit for the different resources.
     - Rating [A,B,C,D,E]. A is best, E is worst.
     - Bar Chart [0% - 100%]. How much this ingredient contributes to the total CO₂-Value of the recipe or the supply in percent.
     - Absolute value [g CO₂e(quivalent)] for the specified amount of ingredient.
-    
-## Additional Indicators
-If requested, a collection of additional indicators will be added to the return JSON for Recipes, Ingredients, and Supplies. The additional indicators are as follows:
-
-###Complex indicators
-
-| Category | Property  | Type    | Description | Recipes Only |
-|:----------|:----------|:------------------|:----------|:----------|
-|health|vita-score|int|the total score for the menu in points.|yes|
-|health|vita-rating|string|Health rating of the menu: [A,B,C,D,E]. A is best, E is worst.|yes|
-|nutrition|nutrition-energy-value|int|the total nutritional energy for the item in kilocalories.|no|
-|nutrition|nutritional-balance-award|boolean|whether the menu is nutritionally balanced|yes|
-|water-use|water-scarcity|int|the total scarce water amount for the item in Liters|no|
-|water-use|blue-water-use|int|the total blue  water amount for the item in Liters|no|
-|water-use|water-scarcity-rating|string|Water use rating of the menu: [A,B,C,D,E]. A is best, E is worst.|no|
-
-###Simple indictators
-
-| Property  | Type    | Description | Recipes Only |
-|:----------|:------------------|:----------|:----------|
-|animal-welfare|boolean|whether the item conforms with animal welfare standards.|no|
-|deforestation|boolean|whether the item meets the standard of avoiding deforestation|no|
-|local|boolean|whether the item is produced locally|no|
-|seasonal|boolean|whether the item is used in season|no|
-|eaternity-award-plus|boolean|whether the item meets the criteria for the extended eaternity award|yes|
-
-
-They appear as a sub-dictionary as follows:
-
-`"indicators": {
-                    "health": {
-                        "vita-score": 346,
-                        "vita-rating": "B",
-                    },
-                    "nutrition": {
-                        "nutrition-energy-value": 457,
-                        "nutritional-balance-award": true
-                    },
-                    "water-use": {
-                        "water-scarcity": 6,
-                        "blue-water-use": 46,
-                        "water-scarcity-rating": 3
-                    },
-                    "animal-welfare": true,
-                    "deforestation": false,
-                    "local": false,
-                    "seasonal": false,
-                    "eaternity-award-plus": true
-                }`
-
 
 ## Language
 The API is designed such that one request may contain information about an object (e.g. a recipe or a supply) in multiple languages.
@@ -117,7 +67,6 @@ The API accepts JSON in requests. It returns JSON in all of its responses, inclu
 |:----------|:--------|:------------------|
 |transient|boolean|Resources with the transient=true flag will not be saved. This is important as we do not want to include all of your recipes in our monthly summary. For example if you submit a sub-recipe, to check its co2-value, it should not be included in the statistics.|
 |full-resource|boolean|Specifies wether the JSON answer will contain all fields or a short answer. Default: false. Works only for recipes. This helps to save bandwidth for slow connections.|
-|indicators|boolean|Specifies wether the JSON answer will contain the additional indicator fields. Default: false. Works for recipes, ingredients, and supplies. This helps to save bandwidth for slow connections.|
 |test|string|Only for testing purposes. Values: *random* or empty. If test=random is set, all ingredients will be randomly matched, no `601` error will occur and all the calculation results are incorrect. We provide this functionality, as without we need to put in manual labor to make it give back correct values. Every ingredient has to be linked to a corresponding data field in our database, for the co2-value to be calculated. |
 
 ## SSL
@@ -125,12 +74,12 @@ All requests need to be encrypted through SSL. Please make sure to whitelist the
 
 You can find the latest certificates [here](https://drive.google.com/drive/folders/0B0PtIxbyLjvFRWFaSDFNcXRXeHM?usp=sharing).
 
-We recommend to whitelist the cloudflare root certificate "cloudflare_origin_rsa.pem", as follows all our domains and any renewal will be secured (test.eaternity.ch and co2.eaternity.ch). Be advised that if you prefer whitelisting our individual domain names (e.g.: "cloudflare-eaternity.ch-2017.crt"), you will have to renew it each year in time, to not interupt your service.
+We recommend to whitelist the cloudflare root certificate "cloudflare_origin_rsa.pem", as follows all our domains and any renewal will be secured (test.eaternity.ch and co2.eaternity.ch). Be advised that if you prefer whitelisting our individual domain names (e.g.: "cloudflare-eaternity.ch-2017.crt"), you will have to renew it each year in time, to not interrupt your service.
 
 #### Use Server Name Indication (SNI)
 Since Eaternity uses distributed Google servers, the IP-address of the service changes and are shared between different applications.
 
-To make SSL work for the Eaternity API, the desired hostname (co2.eaternity.ch) needs to be specified with every request according to the SNI-Speficiation. An example request to our service including SNI, using the "-servername" argument is as follows:
+To make SSL work for the Eaternity Database API, the desired hostname (co2.eaternity.ch) needs to be specified with every request according to the SNI-Speficiation. An example request to our service including SNI, using the "-servername" argument is as follows:
 
 openssl s_client -connect co2.eaternity.ch:443 -servername eaternity.ch
 
@@ -183,7 +132,9 @@ Information on any made estimations (as well as other comments) are given in the
 |info-text| string | notes on the calculated recipe CO₂-value, e.g. remarks when properties like origin or transport are estimated||
 |eaternity-award|boolean|true if the CO₂-Value of the recipe is climate friendly, false otherwise | |
 |rating|string|the CO₂-recipe rating [A,B,C,D,E]. A is best, E is worst.| .|
-|indicators|dictionary|The dictionary of indicator values as described above.| |
+|water-scarcity|float|the total scarce water amount for the menu in Liters|.|
+|blue-water-use|float|the total blue  water amount for the menu in Liters|.|
+|water-scarcity-rating|int|the water-scarcity rating of the menu from 1-5 |.|
 
 ##Ingredient Properties
 | Property | Type  | Description    | Required |
@@ -205,8 +156,6 @@ Information on any made estimations (as well as other comments) are given in the
 |rating|string|the CO₂-ingredient rating [A,B,C,D,E]. A is best, E is worst.||
 |bar-chart|float|to generate a bar chart for all ingredients of a recipe. How much this ingredient contributes to the total CO₂-value of the recipe in percent (0.00% - 100.00%)|.|
 |co2-value|int|the absolute value of CO₂e emissions for the ingredient in [g] for the specified amount of ingredient|.|
-|indicators|dictionary|The dictionary of indicator values as described above.| |
-
 
 The parameters of the properties origin, transport, production, processing, conservation and packaging can be set to multiple values, provide them in a comma seperated list.
 `"production": "organic, fair-trade, Max Havelaar"`
@@ -221,7 +170,7 @@ Create a recipe resource and receive the CO₂-Value and Eaternity Award. Exampl
 
 + Request (application/json)
 
-        {   
+        {
             "recipe": {
                 "titles": [
                     {
@@ -233,7 +182,7 @@ Create a recipe resource and receive the CO₂-Value and Eaternity Award. Exampl
                         "value": "Pumpkin Risotto"
                     }],
                 "author": "Eckart Witzigmann",
-                "date": "2013-10-14",   
+                "date": "2013-10-14",
                 "location": "Zürich Schweiz",
                 "servings": 140,
                 "instructions": [
@@ -265,7 +214,7 @@ Create a recipe resource and receive the CO₂-Value and Eaternity Award. Exampl
                     "production": "greenhouse",
                     "processing": "raw",
                     "conservation": "fresh",
-                    "packaging": "plastic",  
+                    "packaging": "plastic",
                     "gtin": 00012345678905
                     },
                     {
@@ -287,7 +236,7 @@ Create a recipe resource and receive the CO₂-Value and Eaternity Award. Exampl
                     "production": "organic",
                     "processing": "",
                     "conservation": "dried",
-                    "packaging": "",  
+                    "packaging": "",
                     "gtin": 00012345678906
                     }
                 ]
@@ -309,11 +258,11 @@ Create a recipe resource and receive the CO₂-Value and Eaternity Award. Exampl
                     "info-text": "Two ingredient origins have been estimated.",
                     "eaternity-award": false,
                     "rating": "B"
-                }   
+                }
             }
 
 
-## Recipe [/recipes/{id}?indicators=true]
+## Recipe [/recipes/{id}]
 
 
 ### Get Recipe [GET]
@@ -321,33 +270,16 @@ Get the up-to-date CO₂-Value (and other indicators) for this recipe for the cu
 
 + Response 200 (application/json)
 
-        {   
+        {
             "recipe": {
                 "id": "d1ed2263-b1b2-4f50-9e9d-ba62cae81f29",
                 "co2-value": 765,
                 "info-text": "Two ingredient origins have been estimated.",
                 "eaternity-award": false,
                 "rating": "B",
-                "indicators": {
-                    "health": {
-                        "vita-score": 346,
-                        "vita-rating": "B",
-                    },
-                    "nutrition": {
-                        "nutrition-energy-value": 457,
-                        "nutritional-balance-award": true
-                    },
-                    "water-use": {
-                        "water-scarcity": 6,
-                        "blue-water-use": 46,
-                        "water-scarcity-rating": 3
-                    },
-                    "animal-welfare": true,
-                    "deforestation": false,
-                    "local": false,
-                    "seasonal": false,
-                    "eaternity-award-plus": true
-                }
+                "water-scarcity": 32.7,
+                "blue-water-use": 534.6,
+                "water-scarcity-rating": 3,
                 "titles": [
                     {
                         "language": "de",
@@ -358,7 +290,7 @@ Get the up-to-date CO₂-Value (and other indicators) for this recipe for the cu
                         "value": "Pumpkin Risotto"
                     }],
                 "author": "Eckart Witzigmann",
-                "date": "2013-10-14",   
+                "date": "2013-10-14",
                 "location": "Zürich Schweiz",
                 "servings": 140,
                 "instructions": [
@@ -390,23 +322,10 @@ Get the up-to-date CO₂-Value (and other indicators) for this recipe for the cu
                     "production": "greenhouse",
                     "processing": "raw",
                     "conservation": "fresh",
-                    "packaging": "plastic",  
+                    "packaging": "plastic",
                     "rating": "b",
                     "bar-chart": 31.00,
                     "co2-value": 73
-                    "indicators": {
-                            "nutrition": {
-                                "nutrition-energy-value": 407
-                            },
-                        "water-use": {
-                            "water-scarcity": 2,
-                            "blue-water-use": 20
-                        },
-                        "animal-welfare": true,
-                        "deforestation": false,
-                        "local": false,
-                        "seasonal": false
-                        }
                     },
                     {
                     "id": "100100894",
@@ -427,7 +346,7 @@ Get the up-to-date CO₂-Value (and other indicators) for this recipe for the cu
                     "production": "organic",
                     "processing": "",
                     "conservation": "dried",
-                    "packaging": "",  
+                    "packaging": "",
                     "rating": "c",
                     "bar-chart": 69.00,
                     "co2-value": 75
@@ -441,7 +360,7 @@ Update or create a certain recipe with this id. The whole recipe resource with a
 
 + Request (application/json)
 
-        {   
+        {
             "recipe": {
                 "titles": [
                     {
@@ -449,7 +368,7 @@ Update or create a certain recipe with this id. The whole recipe resource with a
                         "value": "Kürbisrisotto"
                     }],
                 "author": "Eckart Witzigmann",
-                "date": "2013-10-14",   
+                "date": "2013-10-14",
                 "location": "Zürich Schweiz",
                 "servings": 140,
                 "instructions": [
@@ -477,7 +396,7 @@ Update or create a certain recipe with this id. The whole recipe resource with a
                     "production": "greenhouse",
                     "processing": "raw",
                     "conservation": "fresh",
-                    "packaging": "plastic"  
+                    "packaging": "plastic"
                     },
                     {
                     "id": "100100894",
@@ -509,7 +428,7 @@ Update or create a certain recipe with this id. The whole recipe resource with a
                     "info-text": "Two ingredient origins have been estimated.",
                     "eaternity-award": false,
                     "rating": "B"
-                }   
+                }
             }
 
 
@@ -526,7 +445,7 @@ Create a recipe resource in a specific kitchen and receive the CO₂-Value and E
 
 + Request (application/json)
 
-        {   
+        {
             "recipe": {
                 "titles": [
                     {
@@ -534,7 +453,7 @@ Create a recipe resource in a specific kitchen and receive the CO₂-Value and E
                         "value": "Kürbisrisotto"
                     }],
                 "author": "Eckart Witzigmann",
-                "date": "2013-10-14",   
+                "date": "2013-10-14",
                 "location": "Zürich Schweiz",
                 "servings": 140,
                 "instructions": [
@@ -601,7 +520,7 @@ ed
                     "info-text": "Two ingredient origins have been estimated.",
                     "eaternity-award": false,
                     "rating": "B"
-                }   
+                }
             }
 
 
@@ -621,7 +540,7 @@ Get the up-to-date CO₂-Value for this recipe for the current date
 
 + Response 200 (application/json)
 
-        {   
+        {
             "recipe": {
                 "id": "d1ed2263-b1b2-4f50-9e9d-ba62cae81f29",
                 "kitchen-id": "45674",
@@ -635,7 +554,7 @@ Get the up-to-date CO₂-Value for this recipe for the current date
                         "value": "Kürbisrisotto"
                     }],
                 "author": "Eckart Witzigmann",
-                "date": "2013-10-14",   
+                "date": "2013-10-14",
                 "location": "Zürich Schweiz",
                 "servings": 140,
                 "instructions": [
@@ -698,7 +617,7 @@ Update or create a certain recipe with this id. The whole recipe resource with a
 
 + Request (application/json)
 
-        {   
+        {
             "recipe": {
                "titles": [
                     {
@@ -706,7 +625,7 @@ Update or create a certain recipe with this id. The whole recipe resource with a
                         "value": "Kürbisrisotto"
                     }],
                 "author": "Eckart Witzigmann",
-                "date": "2013-10-14",   
+                "date": "2013-10-14",
                 "servings": 140,
                 "instructions": [
                         {
@@ -772,7 +691,7 @@ Update or create a certain recipe with this id. The whole recipe resource with a
                     "info-text": "Two ingredient origins have been estimated.",
                     "eaternity-award": false,
                     "rating": "B"
-                }   
+                }
             }
 
 ### Delete recipe [DELETE]
@@ -829,7 +748,7 @@ The request-id differs from the recipe id and has just the lifetime of a single 
                         "language": "de",
                         "value": "Kürbisrisotto"
                     }
-                ],             
+                ],
                 "instructions": [
                         {
                             "language": "de",
@@ -852,7 +771,7 @@ The request-id differs from the recipe id and has just the lifetime of a single 
                         "language": "de",
                         "value": "Kürbisrisotto"
                     }
-                ],              
+                ],
                 "instructions": [
                         {
                             "language": "de",
@@ -879,7 +798,7 @@ The request-id differs from the recipe id and has just the lifetime of a single 
                 "co2-value": 765,
                 "eaternity-award": false,
                 "rating": "B"
-            }   
+            }
         },
         {
             "statuscode": 200,
@@ -890,7 +809,7 @@ The request-id differs from the recipe id and has just the lifetime of a single 
                 "co2-value": 765,
                 "eaternity-award": false,
                 "rating": "B"
-            }   
+            }
         },
         {
             "statuscode": 601,
@@ -1048,7 +967,6 @@ The `POST` and `PUT` method don't have a body because the purpose of this resour
 |**Response**| | | |
 |kitchen-id|string|the id of the kitchen the supply belongs to.||
 |co2-value|float|the total CO₂-Value of the supply in [g CO₂e].||
-|indicators|dictionary|The dictionary of indicator values as described above.| |
 
 ## Supply Collection [/kitchens/{kitchen_id}/supplies/]
 ### Create a supply [POST]
