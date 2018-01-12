@@ -28,6 +28,55 @@ The CO₂eq values are given in the following unit for the different resources.
     - Bar Chart [0% - 100%]. How much this ingredient contributes to the total CO₂-Value of the recipe or the supply in percent.
     - Absolute value [g CO₂e(quivalent)] for the specified amount of ingredient.
 
+## Additional Indicators
+If requested, a collection of additional indicators will be added to the return JSON for Recipes, Ingredients, and Supplies, including an overall Eaternity menu award for Recipes. The additional indicators are as follows:
+
+###Vita indicators
+
+| Property  | Type    | Description | Recipes Only |
+|:----------|:------------------|:----------|:----------|
+|vita-score|int|the total score for the menu in points.|yes|
+|vita-rating|string|Health rating of the menu: [A,B,C,D,E]. A is best, E is worst|yes|
+|energy-kcals|int|the total nutritional energy for the item in kilocalories|no|
+|nutritional-balance-award|boolean|whether the menu is nutritionally balanced|yes|
+
+###Environmental footprint
+
+| Property  | Type    | Description | Recipes Only |
+|:----------|:------------------|:----------|:----------|
+|animal-welfare|boolean|whether the item conforms with animal welfare standards|no|
+|deforestation|boolean|whether the item meets the standard of avoiding deforestation|no|
+|local|boolean|whether the item is produced locally|no|
+|seasonal|boolean|whether the item is used in season|no|
+|scarce-water-liters|int|the total scarce water amount for the item in Liters|no|
+|blue-water-liters|int|the total blue  water amount for the item in Liters|no|
+|water-footprint-rating|string|Water use rating of the menu: [A,B,C,D,E]. A is best, E is worst|yes|
+
+They appear as a sub-dictionary as follows:
+
+`"indicators": {
+                    "vita": {
+                        "vita-score": 346,
+                        "vita-rating": "B",
+                        "energy-kcals": 457,
+                        "nutritional-balance-award": true
+                    },
+                    "environment": {
+                        "animal-welfare": true,
+                        "deforestation": false,
+                        "local": true,
+                        "seasonal": true,
+                        "scarce-water-liters": 6,
+                        "blue-water-liters": 46,
+                        "water-footprint-rating": 3
+                    },
+                    "eaternity-menu-award": true
+                }`
+
+
+
+
+
 ## Language
 The API is designed such that one request may contain information about an object (e.g. a recipe or a supply) in multiple languages.
 Every JSON field which is subject to localization has a language array as value. One language object looks like this:
@@ -67,6 +116,7 @@ The API accepts JSON in requests. It returns JSON in all of its responses, inclu
 |:----------|:--------|:------------------|
 |transient|boolean|Resources with the transient=true flag will not be saved. This is important as we do not want to include all of your recipes in our monthly summary. For example if you submit a sub-recipe, to check its co2-value, it should not be included in the statistics.|
 |full-resource|boolean|Specifies wether the JSON answer will contain all fields or a short answer. Default: false. Works only for recipes. This helps to save bandwidth for slow connections.|
+|indicators|boolean|Specifies wether the JSON answer will contain the additional indicator fields. Default: false. Works for recipes, ingredients, and supplies. This helps to save bandwidth for slow connections.|
 |test|string|Only for testing purposes. Values: *random* or empty. If test=random is set, all ingredients will be randomly matched, no `601` error will occur and all the calculation results are incorrect. We provide this functionality, as without we need to put in manual labor to make it give back correct values. Every ingredient has to be linked to a corresponding data field in our database, for the co2-value to be calculated. |
 
 ## SSL
