@@ -329,7 +329,7 @@ Create a recipe resource and receive the CO₂-Value and Eaternity Award. Exampl
             }
 
 
-## Recipe [/recipes/{id}]
+## Recipe [/recipes/{id}?indicators=true]
 
 
 ### Get Recipe [GET]
@@ -495,6 +495,24 @@ Update or create a certain recipe with this id. The whole recipe resource with a
                     "info-text": "Two ingredient origins have been estimated.",
                     "eaternity-award": false,
                     "rating": "B"
+                },
+                "indicators": {
+                    "vita": {
+                        "vita-score": 346,
+                        "vita-rating": "B",
+                        "energy-kcals": 457,
+                        "nutritional-balance-award": true
+                    },
+                    "environment": {
+                        "animal-welfare": true,
+                        "deforestation": false,
+                        "local": true,
+                        "seasonal": true,
+                        "scarce-water-liters": 6,
+                        "blue-water-liters": 46,
+                        "water-footprint-rating": "C"
+                    },
+                    "eaternity-menu-award": true
                 }
             }
 
@@ -586,7 +604,25 @@ ed
                     "co2-value": 765,
                     "info-text": "Two ingredient origins have been estimated.",
                     "eaternity-award": false,
-                    "rating": "B"
+                    "rating": "B",
+                    "indicators": {
+                        "vita": {
+                            "vita-score": 346,
+                            "vita-rating": "B",
+                            "energy-kcals": 457,
+                            "nutritional-balance-award": true
+                        },
+                        "environment": {
+                            "animal-welfare": true,
+                            "deforestation": false,
+                            "local": true,
+                            "seasonal": true,
+                            "scarce-water-liters": 6,
+                            "blue-water-liters": 46,
+                            "water-footprint-rating": "C"
+                        },
+                        "eaternity-menu-award": true
+                    }
                 }
             }
 
@@ -633,6 +669,24 @@ Get the up-to-date CO₂-Value for this recipe for the current date
                         "language": "en",
                         "value": "Bake the carrot cake in the oven and enjoy as still hot."
                     }],
+                    "indicators": {
+                        "vita": {
+                            "vita-score": 346,
+                            "vita-rating": "B",
+                            "energy-kcals": 457,
+                            "nutritional-balance-award": true
+                        },
+                        "environment": {
+                            "animal-welfare": true,
+                            "deforestation": false,
+                            "local": true,
+                            "seasonal": true,
+                            "scarce-water-liters": 6,
+                            "blue-water-liters": 46,
+                            "water-footprint-rating": "C"
+                        },
+                        "eaternity-menu-award": true
+                    },
                 "ingredients": [
                     {
                     "id": "100100191",
@@ -652,7 +706,20 @@ Get the up-to-date CO₂-Value for this recipe for the current date
                     "packaging": "plastic"
                     "rating": "b",
                     "bar-chart": 27.56,
-                    "co2-value": 74
+                    "co2-value": 74,
+                    "indicators": {
+                        "vita": {
+                            "energy-kcals": 400
+                            },
+                        "environment": {
+                            "animal-welfare": false,
+                            "deforestation": false,
+                            "local": true,
+                            "seasonal": false,
+                            "scarce-water-liters": 4,
+                            "blue-water-liters": 20
+                            }
+                        }
                     },
                     {
                     "id": "100100894",
@@ -672,7 +739,20 @@ Get the up-to-date CO₂-Value for this recipe for the current date
                     "packaging": "",
                     "rating": "c",
                     "bar-chart": 75.56,
-                    "co2-value": 79
+                    "co2-value": 79,
+                    "indicators": {
+                        "vita": {
+                            "energy-kcals": 57
+                            },
+                        "environment": {
+                            "animal-welfare": true,
+                            "deforestation": false,
+                            "local": false,
+                            "seasonal": true,
+                            "scarce-water-liters": 2,
+                            "blue-water-liters": 26
+                            }
+                        }
                     }
                 ]
             }
@@ -1113,7 +1193,20 @@ Get all supplies contained in this kitchen. A list of supply ids is returned.
                     "packaging": "plastic",
                     "rating": "c",
                     "bar-chart": 69.00,
-                    "co2-value": 79
+                    "co2-value": 79,
+                    "indicators": {
+                        "vita": {
+                            "energy-kcals": 57
+                            },
+                        "environment": {
+                            "animal-welfare": true,
+                            "deforestation": false,
+                            "local": false,
+                            "seasonal": true,
+                            "scarce-water-liters": 2,
+                            "blue-water-liters": 26
+                            }
+                        }
                 }
                 ]
         }
