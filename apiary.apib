@@ -68,7 +68,7 @@ They appear as a sub-dictionary as follows:
                         "seasonal": true,
                         "scarce-water-liters": 6,
                         "blue-water-liters": 46,
-                        "water-footprint-rating": 3
+                        "water-footprint-rating": "C"
                     },
                     "eaternity-menu-award": true
                 }`
@@ -182,9 +182,7 @@ Information on any made estimations (as well as other comments) are given in the
 |info-text| string | notes on the calculated recipe CO₂-value, e.g. remarks when properties like origin or transport are estimated||
 |eaternity-award|boolean|true if the CO₂-Value of the recipe is climate friendly, false otherwise | |
 |rating|string|the CO₂-recipe rating [A,B,C,D,E]. A is best, E is worst.| .|
-|water-scarcity|float|the total scarce water amount for the menu in Liters|.|
-|blue-water-use|float|the total blue  water amount for the menu in Liters|.|
-|water-scarcity-rating|int|the water-scarcity rating of the menu from 1-5 |.|
+|indicators|dictionary|the vita and nutritional indicators described above|.|
 
 ##Ingredient Properties
 | Property | Type  | Description    | Required |
@@ -206,6 +204,7 @@ Information on any made estimations (as well as other comments) are given in the
 |rating|string|the CO₂-ingredient rating [A,B,C,D,E]. A is best, E is worst.||
 |bar-chart|float|to generate a bar chart for all ingredients of a recipe. How much this ingredient contributes to the total CO₂-value of the recipe in percent (0.00% - 100.00%)|.|
 |co2-value|int|the absolute value of CO₂e emissions for the ingredient in [g] for the specified amount of ingredient|.|
+|indicators|dictionary|the vita and nutritional indicators described above|.|
 
 The parameters of the properties origin, transport, production, processing, conservation and packaging can be set to multiple values, provide them in a comma seperated list.
 `"production": "organic, fair-trade, Max Havelaar"`
@@ -1017,6 +1016,7 @@ The `POST` and `PUT` method don't have a body because the purpose of this resour
 |**Response**| | | |
 |kitchen-id|string|the id of the kitchen the supply belongs to.||
 |co2-value|float|the total CO₂-Value of the supply in [g CO₂e].||
+|indicators|dictionary|the vita and nutritional indicators described above|.|
 
 ## Supply Collection [/kitchens/{kitchen_id}/supplies/]
 ### Create a supply [POST]
