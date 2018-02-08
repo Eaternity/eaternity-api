@@ -3,8 +3,8 @@ FORMAT: X-1A
 HOST: https://co2.eaternity.ch/api/
 
 # Eaternity Database API
-The Eaternity Database API is a Web Service that calculates the Climate Score (CO₂eq), the Vita Score and other environmental indicators of recipes, restaurants and ingredients dynamically. It includes daily changing information on origin,
-seasonality and other factors in the calculation ([More Informations on the indicators](http://www.eaternity.org/foodprint/)). It further delivers reports with sophisticated and easy to understand statistics, graphs and analysis ([More Informations on the reports](http://www.eaternity.org/app/report)).
+The Eaternity Database API is a Web Service that calculates the Climate Score (CO₂eq), the Vita Score and other environmental footprints of recipes, restaurants and ingredients dynamically. It includes daily changing information on origin,
+seasonality and other factors in the calculation ([more Informations on the indicators](http://www.eaternity.org/foodprint/)). It further delivers reports with sophisticated and easy to understand statistics, graphs and analysis ([more Informations on the reports](http://www.eaternity.org/app/report)).
 
 The Eaternity Database API is a [RESTful](http://en.wikipedia.org/wiki/Representational_State_Transfer) interface, providing programmatic access to Eaternity’s calculation algorithms, indicator systems and data collections. It provides predictable URLs for accessing resources, and uses built-in HTTP features to receive commands (GET, POST, PUT, DELETE) and return responses.
 
@@ -17,7 +17,8 @@ You can give it a try connecting to our API with this Testing API-Key: FmZ23.M4m
 
 We recommend using the [Postman Chrome Extension](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwjI5dSy28fVAhVmGsAKHYhIB28QFggmMAA&url=https%3A%2F%2Fchrome.google.com%2Fwebstore%2Fdetail%2Fpostman%2Ffhbjgbiflinjbdggehcddcbncdddomop&usg=AFQjCNEKwgqPDcgrMAsS6iZ8PUYhTzB58A) for testing. Or check out the examples below.
 
-## Carbon Score
+
+## Climate Score
 The CO₂eq values are given in the following unit for the different resources.
 
 - Recipes:
@@ -31,46 +32,57 @@ The CO₂eq values are given in the following unit for the different resources.
 ## Additional Indicators
 If requested, a collection of additional indicators will be added to the return JSON for Recipes, Ingredients, and Supplies, including an overall Eaternity menu award for Recipes. The additional indicators are as follows:
 
-###Vita indicators
+###Vita Score
+
+([Documentation of the Vita Score](http://www.eaternity.org/foodprint/vita-score))
+
 
 | Property  | Type    | Description | Recipes Only |
 |:----------|:------------------|:----------|:----------|
-|vita-score|int|the total score for the menu in points.|yes|
-|vita-rating|string|Health rating of the menu: [A,B,C,D,E]. A is best, E is worst|yes|
+|vita-score-points|int|The total score for the menu in points.|yes|
+|vita-score-rating|string|Rating of Vita Score for the menu: [A,B,C,D,E]. A is best, E is worst|yes|
+|vita-score-award|boolean|If the menus receives the Vita Score Award.|yes|
 |energy-kcals|int|the total nutritional energy for the item in kilocalories|no|
-|nutritional-balance-award|boolean|whether the menu is nutritionally balanced|yes|
+|nutrition-label|boolean|whether the menu is nutritionally balanced|yes|
 
-###Environmental footprint
+###Environmental Footprints
+
+([Documentation of the Environmental Footprints](http://www.eaternity.org/foodprint/environmental-footprints))
 
 | Property  | Type    | Description | Recipes Only |
 |:----------|:------------------|:----------|:----------|
-|animal-welfare|boolean|whether the item conforms with animal welfare standards|no|
-|deforestation|boolean|whether the item meets the standard of avoiding deforestation|no|
-|local|boolean|whether the item is produced locally|no|
-|seasonal|boolean|whether the item is used in season|no|
+|animal-treatment-label|boolean|whether the item conforms with animal welfare standards|no|
+|rainforest-label|boolean|whether the item meets the standard of avoiding deforestation|no|
+|local-label|boolean|whether the item is produced locally|no|
+|season-label|boolean|whether the item is used in season|no|
 |scarce-water-liters|int|the total scarce water amount for the item in Liters|no|
 |blue-water-liters|int|the total blue  water amount for the item in Liters|no|
 |water-footprint-rating|string|Water use rating of the menu: [A,B,C,D,E]. A is best, E is worst|yes|
+|water-footprint-award|boolean|If the menus receives the Water Footprint Award.|yes|
 
 They appear as a sub-dictionary as follows:
 
 `"indicators": {
-                    "vita": {
-                        "vita-score": 346,
-                        "vita-rating": "B",
+                    "vita-score": {
+                        "vita-score-points": 346,
+                        "vita-score-rating": "B",
+                        "vita-score-award": true,
                         "energy-kcals": 457,
-                        "nutritional-balance-award": true
+                        "nutrition-label": true
                     },
                     "environment": {
-                        "animal-welfare": true,
-                        "deforestation": false,
-                        "local": true,
-                        "seasonal": true,
+                        "animal-treatment-label": true,
+                        "rainforest-label": false,
+                        "local-label": true,
+                        "season-label": true,
                         "scarce-water-liters": 6,
                         "blue-water-liters": 46,
-                        "water-footprint-rating": "C"
+                        "water-footprint-rating": "C",
+                        "water-footprint-award": false
                     },
-                    "eaternity-menu-award": true
+                    "eaternity-menu-award": true,
+                    "eaternity-menu-rating": "D"
+                    "eaternity-menu-score": 21
                 }`
 
 
@@ -308,23 +320,27 @@ Create a recipe resource and receive the CO₂-Value and Eaternity Award. Exampl
                     "eaternity-award": false,
                     "rating": "B",
                     "indicators": {
-                        "vita": {
-                            "vita-score": 346,
-                            "vita-rating": "B",
+                        "vita-score": {
+                            "vita-score-points": 346,
+                            "vita-score-rating": "B",
+                            "vita-score-award": true,
                             "energy-kcals": 457,
-                            "nutritional-balance-award": true
+                            "nutrition-label": true
                         },
                         "environment": {
-                            "animal-welfare": true,
-                            "deforestation": false,
-                            "local": true,
-                            "seasonal": true,
+                            "animal-treatment-label": true,
+                            "rainforest-label": false,
+                            "local-label": true,
+                            "season-label": true,
                             "scarce-water-liters": 6,
                             "blue-water-liters": 46,
-                            "water-footprint-rating": "C"
+                            "water-footprint-rating": "C",
+                            "water-footprint-award": true
                         },
-                        "eaternity-menu-award": true
-                    }
+                        "eaternity-menu-award": true,
+                        "eaternity-menu-rating": "B",
+                        "eaternity-menu-points": 21
+                    },
                 }
             }
 
@@ -344,9 +360,28 @@ Get the up-to-date CO₂-Value (and other indicators) for this recipe for the cu
                 "info-text": "Two ingredient origins have been estimated.",
                 "eaternity-award": false,
                 "rating": "B",
-                "water-scarcity": 32.7,
-                "blue-water-use": 534.6,
-                "water-scarcity-rating": 3,
+                "indicators": {
+                    "vita-score": {
+                        "vita-score-points": 346,
+                        "vita-score-rating": "B",
+                        "vita-score-award": true,
+                        "energy-kcals": 457,
+                        "nutrition-label": true
+                    },
+                    "environment": {
+                        "animal-treatment-label": true,
+                        "rainforest-label": false,
+                        "local-label": true,
+                        "season-label": true,
+                        "scarce-water-liters": 6,
+                        "blue-water-liters": 46,
+                        "water-footprint-rating": "C",
+                        "water-footprint-award": true
+                    },
+                    "eaternity-menu-award": true,
+                    "eaternity-menu-rating": "B",
+                    "eaternity-menu-points": 21
+                },
                 "titles": [
                     {
                         "language": "de",
@@ -606,22 +641,26 @@ ed
                     "eaternity-award": false,
                     "rating": "B",
                     "indicators": {
-                        "vita": {
-                            "vita-score": 346,
-                            "vita-rating": "B",
+                        "vita-score": {
+                            "vita-score-points": 346,
+                            "vita-score-rating": "B",
+                            "vita-score-award": true,
                             "energy-kcals": 457,
-                            "nutritional-balance-award": true
+                            "nutrition-label": true
                         },
                         "environment": {
-                            "animal-welfare": true,
-                            "deforestation": false,
-                            "local": true,
-                            "seasonal": true,
+                            "animal-treatment-label": true,
+                            "rainforest-label": false,
+                            "local-label": true,
+                            "season-label": true,
                             "scarce-water-liters": 6,
                             "blue-water-liters": 46,
-                            "water-footprint-rating": "C"
+                            "water-footprint-rating": "C",
+                            "water-footprint-award": true
                         },
-                        "eaternity-menu-award": true
+                        "eaternity-menu-award": true,
+                        "eaternity-menu-rating": "B",
+                        "eaternity-menu-points": 21
                     }
                 }
             }
@@ -670,22 +709,26 @@ Get the up-to-date CO₂-Value for this recipe for the current date
                         "value": "Bake the carrot cake in the oven and enjoy as still hot."
                     }],
                     "indicators": {
-                        "vita": {
-                            "vita-score": 346,
-                            "vita-rating": "B",
+                        "vita-score": {
+                            "vita-score-points": 346,
+                            "vita-score-rating": "B",
+                            "vita-score-award": true,
                             "energy-kcals": 457,
-                            "nutritional-balance-award": true
+                            "nutrition-label": true
                         },
                         "environment": {
-                            "animal-welfare": true,
-                            "deforestation": false,
-                            "local": true,
-                            "seasonal": true,
+                            "animal-treatment-label": true,
+                            "rainforest-label": false,
+                            "local-label": true,
+                            "season-label": true,
                             "scarce-water-liters": 6,
                             "blue-water-liters": 46,
-                            "water-footprint-rating": "C"
+                            "water-footprint-rating": "C",
+                            "water-footprint-award": true
                         },
-                        "eaternity-menu-award": true
+                        "eaternity-menu-award": true,
+                        "eaternity-menu-rating": "B",
+                        "eaternity-menu-points": 21
                     },
                 "ingredients": [
                     {
@@ -708,17 +751,16 @@ Get the up-to-date CO₂-Value for this recipe for the current date
                     "bar-chart": 27.56,
                     "co2-value": 74,
                     "indicators": {
-                        "vita": {
-                            "energy-kcals": 400
-                            },
+                        "vita-score": {
+                            "energy-kcals": 457
+                        },
                         "environment": {
-                            "animal-welfare": false,
-                            "deforestation": false,
-                            "local": true,
-                            "seasonal": false,
-                            "scarce-water-liters": 4,
-                            "blue-water-liters": 20
-                            }
+                            "animal-treatment-label": true,
+                            "rainforest-label": false,
+                            "local-label": true,
+                            "season-label": true,
+                            "scarce-water-liters": 6,
+                            "blue-water-liters": 46
                         }
                     },
                     {
@@ -741,17 +783,16 @@ Get the up-to-date CO₂-Value for this recipe for the current date
                     "bar-chart": 75.56,
                     "co2-value": 79,
                     "indicators": {
-                        "vita": {
-                            "energy-kcals": 57
-                            },
+                        "vita-score": {
+                            "energy-kcals": 457
+                        },
                         "environment": {
-                            "animal-welfare": true,
-                            "deforestation": false,
-                            "local": false,
-                            "seasonal": true,
-                            "scarce-water-liters": 2,
-                            "blue-water-liters": 26
-                            }
+                            "animal-treatment-label": true,
+                            "rainforest-label": false,
+                            "local-label": true,
+                            "season-label": true,
+                            "scarce-water-liters": 6,
+                            "blue-water-liters": 46
                         }
                     }
                 ]
@@ -1195,18 +1236,18 @@ Get all supplies contained in this kitchen. A list of supply ids is returned.
                     "bar-chart": 69.00,
                     "co2-value": 79,
                     "indicators": {
-                        "vita": {
-                            "energy-kcals": 57
-                            },
+                        "vita-score": {
+                            "energy-kcals": 457
+                        },
                         "environment": {
-                            "animal-welfare": true,
-                            "deforestation": false,
-                            "local": false,
-                            "seasonal": true,
-                            "scarce-water-liters": 2,
-                            "blue-water-liters": 26
-                            }
+                            "animal-treatment-label": true,
+                            "rainforest-label": false,
+                            "local-label": true,
+                            "season-label": true,
+                            "scarce-water-liters": 6,
+                            "blue-water-liters": 46
                         }
+                    }
                 }
                 ]
         }
