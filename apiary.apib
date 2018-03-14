@@ -58,7 +58,7 @@ The API accepts JSON in requests. It returns JSON in all of its responses, inclu
 | Parameters | Type  | Description      |
 |:----------|:--------|:------------------|
 |transient|boolean|Resources with the transient=true flag will not be saved. This is important as we do not want to include all of your recipes in our monthly summary. For example if you submit a sub-recipe, to check its co2-value, it should not be included in the statistics.|
-|full-resource|boolean|Specifies wether the JSON answer will contain all fields or a short answer. Default: false. Works only for recipes. This helps to save bandwidth for slow connections.|
+|full-resource|boolean|Specifies whether the JSON answer will contain all fields or a short answer. Default: false. Works only for recipes. This helps to save bandwidth for slow connections.|
 |indicators|boolean|Specifies wether the JSON answer will contain the additional indicator fields. Default: false. Works for recipes, ingredients, and supplies. This helps to save bandwidth for slow connections.|
 |test|string|Only for testing purposes. Values: *random* or empty. If test=random is set, all ingredients will be randomly matched, no `601` error will occur and all the calculation results are incorrect. We provide this functionality, as without we need to put in manual labor to make it give back correct values. Every ingredient has to be linked to a corresponding data field in our database, for the co2-value to be calculated. |
 
@@ -177,6 +177,8 @@ They appear as a sub-dictionary as follows:
 |names|list of language object|full name of ingredient in different languages (array of language objects). Name in at least one language required.|yes|
 |amount|float|amount of the ingredient in the specified unit|yes|
 |unit|string|unit of the given amount of the ingredient: *gram* or *liter*, default: *gram*|no|
+|price|float|cost of the ingredient in the specified currency|no|
+|currency|string|currency of price (in ISO 4217 three-letter code)|no|
 |origin|string|origin of the ingredient: postal address or country |best practice|
 |transport|string|means of transport from ”origin” to ”location” of recipe or kitchen. Values: *air* or *ground*|best practice|
 |production|string|production of the base material. Values: *standard*, *greenhouse*, *organic*, *fair-trade*, *farm* (fishes and game animals only), *wild-caught* (fishes and game animals only), *sustainable-fish*. |best practice|
@@ -366,7 +368,7 @@ Create a recipe resource and receive the CO₂-Value and Eaternity Award. Exampl
                         },
                         {
                             "language": "en",
-                            "value": "Bake the carrot cake in the oven and enjoy as still hot."
+                            "value": "Bake the carrot cake in the oven and enjoy while still hot."
                         }],
                 "ingredients": [
                     {
@@ -515,7 +517,7 @@ Get the up-to-date CO₂-Value (and other indicators) for this recipe for the cu
                     },
                     {
                         "language": "en",
-                        "value": "Bake the carrot cake in the oven and enjoy as still hot."
+                        "value": "Bake the carrot cake in the oven and enjoy while still hot."
                     }],
                 "ingredients": [
                     {
@@ -593,7 +595,7 @@ Update or create a certain recipe with this id. The whole recipe resource with a
                         },
                         {
                             "language": "en",
-                            "value": "Bake the carrot cake in the oven and enjoy as still hot."
+                            "value": "Bake the carrot cake in the oven and enjoy while still hot."
                         }],
                 "ingredients": [
                     {
@@ -696,7 +698,7 @@ Create a recipe resource in a specific kitchen and receive the CO₂-Value and E
                     },
                     {
                         "language": "en",
-                        "value": "Bake the carrot cake in the oven and enjoy as still hot."
+                        "value": "Bake the carrot cake in the oven and enjoy while still hot."
                     }],
                 "ingredients": [
                     {
@@ -819,7 +821,7 @@ Get the up-to-date CO₂-Value for this recipe for the current date
                     },
                     {
                         "language": "en",
-                        "value": "Bake the carrot cake in the oven and enjoy as still hot."
+                        "value": "Bake the carrot cake in the oven and enjoy while still hot."
                     }],
                     "indicators": {
                         "vita-score": {
@@ -935,7 +937,7 @@ Update or create a certain recipe with this id. The whole recipe resource with a
                         },
                         {
                             "language": "en",
-                            "value": "Bake the carrot cake in the oven and enjoy as still hot."
+                            "value": "Bake the carrot cake in the oven and enjoy while still hot."
                         }],
                 "ingredients": [
                     {
@@ -1154,6 +1156,7 @@ The request-id differs from the recipe id and has just the lifetime of a single 
 | Property | Type  | Description      | Required |
 |:----------|:--------|:------------------|:----------|
 |supplier|string|specific supplier in the supply chain|no|
+|order-date|yyyy-mm-dd|the date the supply was ordered|yes|
 |supply-date|yyyy-mm-dd|the delivery date of the supply|yes|
 |ingredients|list of ingredients|a list of all ingredient resources in this supply|yes|
 |id|string|the id of the supply. Either generated by Eaternity or supplied by the client through a PUT|no|
@@ -1276,6 +1279,8 @@ Update or create this supply with the specific id. The supply always needs to ha
                         }],
                     "amount": 150,
                     "unit": "gram",
+                    "price": 0.5,
+                    "currency": "CHF",
                     "origin": "spain",
                     "transport": "air",
                     "production": "greenhouse",
