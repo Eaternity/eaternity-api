@@ -60,7 +60,7 @@ The API accepts JSON in requests. It returns JSON in all of its responses, inclu
 |transient|boolean|Resources with the transient=true flag will not be saved. This is important as we do not want to include all of your recipes in our monthly summary. For example if you submit a sub-recipe, to check its co2-value, it should not be included in the statistics.|
 |full-resource|boolean|Specifies whether our JSON answer will contain all fields (except the additional indicators) or a short answer. Default: false. Works only for recipes. This helps to save bandwidth for slow connections.|
 |indicators|boolean|Specifies wether the JSON answer will contain the additional indicator fields. Default: false. Works for recipes, ingredients, and supplies. This helps to save bandwidth for slow connections and the response is generally faster.|
-|test|string|Only for testing purposes. Values: *random* or empty. If test=random is set, all ingredients will be randomly linked to life cycle assessments (the results will be wrong!), no `601` error will occur and all the calculation results are incorrect. We provide this functionality, as a default we need to put in manual labor to have it give back correct values. Every ingredient has to be linked to a corresponding data field in our database, for any environmental value to be calculated. |
+|test|string|Only for testing purposes. Values: *random* or empty. If test=random is set, all ingredients will be randomly linked to life cycle assessments (the results will be wrong!), no `601` error will occur and all the calculation results are incorrect. We provide this functionality so that api clients can test receiving a complete response. By default we need to put in manual labor to have it give back correct values, which takes time. Every ingredient has to be linked to a corresponding data field in our database, for any environmental values to be calculated. |
 
 ### SSL
 All requests need to be encrypted through SSL. Please make sure to whitelist the latest SSL certificate from Eaternity.
@@ -87,7 +87,7 @@ Sadly, sometimes requests to the API are not successful. Failures can occur for 
 
 * 400   `Bad request` - This occurs when the request was not sent according to the documentation. Can be either the JSON format or the content. Check the documentation and the syntax of your request and try again.
 * 401   `No authorization` - A valid API key was not provided with the request, so the API could not associate a client with the request.
-* 403   `Forbidden` - The Kitchen is not authorized for calculating environmental values of recipes. Only user that pay for the "Eaternity License" are allowed to do so. Please contact Eaternity to get an up-to-date pricing.
+* 403   `Forbidden` - The Kitchen is not authorized to calculate environmental values of recipes. Only users that pay for the "Eaternity License" are allowed to do so. Please contact Eaternity to get an up-to-date pricing.
 * 404   `Not found` - Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.
 * 405   `Method not allowed` - When the resource exists but the HTTP method verb is not allowed on this resource.
 
@@ -170,7 +170,7 @@ They appear as a sub-dictionary as follows:
 
 
 ##Ingredient Properties
-Each request for Recipes or Supplies, contains a list of Ingredients. Each Ingredient requires at least a `name` and an `amount` but may contain additional specifications.
+Each request for Recipes or Supplies contains a list of Ingredients. Each Ingredient requires at least a `name` and an `amount` but may contain additional specifications.
 
 
 | Property | Type  | Description    | Required |
@@ -196,7 +196,7 @@ Each request for Recipes or Supplies, contains a list of Ingredients. Each Ingre
 |co2-value|int|the absolute value of CO₂e emissions for the ingredient in [g] for the specified amount of ingredient||
 |indicators|dictionary|the vita and nutritional indicators described above||
 
-The parameters of the properties origin, transport, production, processing, conservation and packaging can be set to multiple values, they need to be provided  in a comma separated list.
+The parameters of the properties origin, transport, production, processing, conservation and packaging can be set to multiple values. They need to be provided  in a comma separated list.
 `"production": "organic, fair-trade, Max Havelaar"`
 
 The more properties are provided the more accurate are the values. More options will be added over time. Estimations are made for missing properties.
