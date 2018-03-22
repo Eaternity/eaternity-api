@@ -1153,7 +1153,9 @@ Supplies are ordered from and delivered by a specific supplier in the supply cha
 
 | Property | Type  | Description      | Required |
 |:----------|:--------|:------------------|:----------|
-|supplier|string|specific supplier in the supply chain|no|
+|supplier|string|name of the specific supplier in the supply chain|no|
+|supplier-id|string|user-specified id of the supplier in the supply chain|no|
+|invoice-id|string|user-specified invoice number (if different from the id of the supply order)|no|
 |order-date|yyyy-mm-dd|the date the supply was ordered|yes|
 |supply-date|yyyy-mm-dd|the delivery date of the supply|yes|
 |ingredients|list of ingredients|a list of all ingredient resources in this supply|yes|
@@ -1171,6 +1173,8 @@ Create a supply without specifying an id. If the request is sent with `full-reso
 
         {   "supply": {
                 "supplier": "Vegetable Supplies Ltd.",
+                "supplier-id": "el3i5y-2in5y-2hbllll01",
+                "invoice-id": "778888800000001",
                 "supply-date": "2013-06-01",
                 "ingredients": [
                 {
@@ -1230,6 +1234,7 @@ Get all supplies contained in this kitchen. A list of supply ids is returned.
                 "co2-value": 77,
                 "info-text": "Two ingredient origins have been estimated.",
                 "supplier": "Vegetable Supplies Ltd.",
+                "supplier-id": "el3i5y-2in5y-2hbllll01",
                 "supply-date": "2013-06-01",
                 "ingredients": [
                 {
@@ -1275,6 +1280,7 @@ Update or create this supply with the specific id. The supply always needs to ha
 
         { "supply": {
                 "supplier": "Vegetable Supplies Ltd.",
+                "supplier-id": "el3i5y-2in5y-2hbllll01",
                 "supply-date": "2013-06-01",
                 "ingredients": [
                 {
@@ -1334,6 +1340,7 @@ The request-id differs from the supply id and has just the lifetime of a single 
                 "id": "d1ed2263",
                 "kitchen-id": "293833",
                 "supplier": "Vegetable Supplies Ltd.",
+                "supplier-id": "el3i5y-2in5y-2hbllll01",
                 "supply-date": "2013-06-01",
                 "ingredients": [
                 {
@@ -1361,6 +1368,7 @@ The request-id differs from the supply id and has just the lifetime of a single 
             "supply": {
                 "kitchen-id": "11122233",
                 "supplier": "Vegetable Supplies Ltd.",
+                "supplier-id": "el3i5y-2in5y-2hbllll01",
                 "supply-date": "2013-06-06",
                 "ingredients": [
                 {
