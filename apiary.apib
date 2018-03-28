@@ -8,6 +8,9 @@ seasonality and other factors in the calculation ([more Informations on the indi
 
 The Eaternity Database API is a [RESTful](http://en.wikipedia.org/wiki/Representational_State_Transfer) interface, providing programmatic access to Eaternity’s calculation algorithms, indicator systems and data collections. It provides predictable URLs for accessing resources, and uses built-in HTTP features to receive commands (GET, POST, PUT, DELETE) and return responses.
 
+### Terms & Conditions
+By accessing the APIs, you accept the Eaternity's [Terms & Conditions](http://www.eaternity.org/legal). If You are using the APIs on behalf of an entity, you represent and warrant that you have authority to bind that entity to the Terms & Conditions and by accepting the Terms, You are doing so on behalf of that entity.
+
 ## Technical Specifications
 
 ### Authentication
@@ -98,7 +101,7 @@ Sadly, sometimes requests to the API are not successful. Failures can occur for 
 * 610   `Missing required property` - A required resource property was not given in the request. Please provide the required field.
 * 611   `Wrong property value` - A resource property was not provided according to the documentation. Either the given format is wrong or the value doesn't match to the given options. Usually not dependent on the implementation but on the user input.
 
-## Environmental Specifications
+## Environmental Impacts
 
 If requested, a collection of environmental indicators will be added to the return JSON for Recipes, Ingredients, and Supplies, including an overall Eaternity Menu Award for Recipes. The additional indicators are as follows:
 
