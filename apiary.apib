@@ -58,7 +58,7 @@ The API accepts JSON in requests. It returns JSON in all of its responses, inclu
 | Parameters | Type  | Description      |
 |:----------|:--------|:------------------|
 |transient|boolean|Resources with the transient=true flag will not be saved. This is important as we do not want to include all of your recipes in our monthly summary. For example if you submit a sub-recipe, to check its co2-value, it should not be included in the statistics.|
-|full-resource|boolean|Specifies whether our JSON answer will contain all fields (except the additional indicators) or a short answer. Default: false. Works only for recipes. This helps to save bandwidth for slow connections.|
+|full-resource|boolean|Specifies whether our JSON answer will contain all fields (except the additional indicators) or a short answer. Default: false. Works recipes and supplies. This helps to save bandwidth for slow connections.|
 |indicators|boolean|Specifies wether the JSON answer will contain the additional indicator fields. Default: false. Works for recipes, ingredients, and supplies. This helps to save bandwidth for slow connections and the response is generally faster.|
 |test|string|Only for testing purposes. Values: *random* or empty. If test=random is set, all ingredients will be randomly linked to life cycle assessments (the results will be wrong!), no `601` error will occur and all the calculation results are incorrect. We provide this functionality so that api clients can test receiving a complete response. By default we need to put in manual labor to have it give back correct values, which takes time. Every ingredient has to be linked to a corresponding data field in our database, for any environmental values to be calculated. |
 
@@ -1000,7 +1000,7 @@ Deletes this recipe  from the server
 
 ## Batch Operations on Recipe Resources [/recipes/batch]
 
-The `full-resource` url parameter is supported here as well. But just for the whole request itself and not on single recipes. The transient parameter can be set selectively on single recipes inside the batch.
+The `full-resource` url parameter is supported here as well, but just for the whole request itself and not on single recipes. The transient parameter can be set selectively on single recipes inside the batch.
 
 The message in the response tells details about the failure.
 
@@ -1153,7 +1153,9 @@ Supplies are ordered from and delivered by a specific supplier in the supply cha
 
 | Property | Type  | Description      | Required |
 |:----------|:--------|:------------------|:----------|
-|supplier|string|specific supplier in the supply chain|no|
+|supplier|string|name of the specific supplier in the supply chain|no|
+|supplier-id|string|user-specified id of the supplier in the supply chain|no|
+|invoice-id|string|user-specified invoice number (if different from the id of the supply order)|no|
 |order-date|yyyy-mm-dd|the date the supply was ordered|yes|
 |supply-date|yyyy-mm-dd|the delivery date of the supply|yes|
 |ingredients|list of ingredients|a list of all ingredient resources in this supply|yes|
@@ -1165,12 +1167,14 @@ Supplies are ordered from and delivered by a specific supplier in the supply cha
 
 ## Supply Collection [/kitchens/{kitchen_id}/supplies/]
 ### Create a supply [POST]
-
+Create a supply without specifying an id. If the request is sent with `full-resource=true`, then a complete response will be given, the same as the response to the GET command below. The parameter `indicators=true` is also supported when `full-resource=true` is specified.
 
 + Request (application/json)
 
         {   "supply": {
                 "supplier": "Vegetable Supplies Ltd.",
+                "supplier-id": "el3i5y-2in5y-2hbllll01",
+                "invoice-id": "778888800000001",
                 "supply-date": "2013-06-01",
                 "ingredients": [
                 {
@@ -1194,10 +1198,20 @@ Supplies are ordered from and delivered by a specific supplier in the supply cha
             }
         }
 
-+ Response 200
++ Response 200 (application/json)
+
     + Headers
 
-            Location: https://co2.eaternity.ch/api/kitchens/1987647/supplies/d1ed2263
+        Location: https://co2.eaternity.ch/api/kitchens/1987647/supplies/d1ed2263
+
+    + Body
+
+    {
+        "statuscode": 200,
+        "message": "",
+        "request-id": 0,
+        "supply-id": "d1ed2263"
+    }
 
 ### Get all supplies in this kitchen [GET]
 Get all supplies contained in this kitchen. A list of supply ids is returned.
@@ -1220,6 +1234,7 @@ Get all supplies contained in this kitchen. A list of supply ids is returned.
                 "co2-value": 77,
                 "info-text": "Two ingredient origins have been estimated.",
                 "supplier": "Vegetable Supplies Ltd.",
+                "supplier-id": "el3i5y-2in5y-2hbllll01",
                 "supply-date": "2013-06-01",
                 "ingredients": [
                 {
@@ -1259,12 +1274,13 @@ Get all supplies contained in this kitchen. A list of supply ids is returned.
         }
 
 ### Update or create a supply [PUT]
-Update or create this supply with the specific id. The supply always needs to have an id, either a new one or an already existing one.
+Update or create this supply with the specific id. The supply always needs to have an id, either a new one or an already existing one. If the request is sent with `full-resource=true`, then a complete response will be given, the same as the response to the GET command above. The parameter `indicators=true` is also supported when `full-resource=true` is specified.
 
 + Request (application/json)
 
         { "supply": {
                 "supplier": "Vegetable Supplies Ltd.",
+                "supplier-id": "el3i5y-2in5y-2hbllll01",
                 "supply-date": "2013-06-01",
                 "ingredients": [
                 {
@@ -1290,10 +1306,18 @@ Update or create this supply with the specific id. The supply always needs to ha
             }
         }
 
-+ Response 200
++ Response 200 (application/json)
     + Headers
 
-            Location: https://co2.eaternity.ch/api/kitchens/1987647/supplies/d1ed2263
+        Location: https://co2.eaternity.ch/api/kitchens/1987647/supplies/d1ed2263
+    + Body
+
+    {
+      "statuscode": 200,
+      "message": "",
+      "request-id": 0,
+      "supply-id": "d1ed2263"
+    }
 
 ### Delete a supply [DELETE]
 
@@ -1302,7 +1326,7 @@ Update or create this supply with the specific id. The supply always needs to ha
 ## Batch operations on supply resources [/supplies/batch]
 
 ### Create a batch of supplies [POST]
-Creat or update a batch of supplies at once. If a supply id is provided, the supply is either created with this id or the existing supply is overwritten. The status code tells the difference.
+Creat or update a batch of supplies at once. If a supply id is provided, the supply is either created with this id or the existing supply is overwritten. The status code tells the difference. The `full-resource` and `indicators` parameters are supported.
 
 The additional `request-id` field enables you to track back the supply you sent in case you don't want to use your own id. Either a request id or a recipe id is required.
 The request-id differs from the supply id and has just the lifetime of a single request (not stored on Eaternity's end).
@@ -1316,6 +1340,7 @@ The request-id differs from the supply id and has just the lifetime of a single 
                 "id": "d1ed2263",
                 "kitchen-id": "293833",
                 "supplier": "Vegetable Supplies Ltd.",
+                "supplier-id": "el3i5y-2in5y-2hbllll01",
                 "supply-date": "2013-06-01",
                 "ingredients": [
                 {
@@ -1343,6 +1368,7 @@ The request-id differs from the supply id and has just the lifetime of a single 
             "supply": {
                 "kitchen-id": "11122233",
                 "supplier": "Vegetable Supplies Ltd.",
+                "supplier-id": "el3i5y-2in5y-2hbllll01",
                 "supply-date": "2013-06-06",
                 "ingredients": [
                 {
