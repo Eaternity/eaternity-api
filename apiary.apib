@@ -9,7 +9,7 @@ seasonality and other factors in the calculation ([more Informations on the indi
 The Eaternity Database API is a [RESTful](http://en.wikipedia.org/wiki/Representational_State_Transfer) interface, providing programmatic access to Eaternity’s calculation algorithms, indicator systems and data collections. It provides predictable URLs for accessing resources, and uses built-in HTTP features to receive commands (GET, POST, PUT, DELETE) and return responses.
 
 ### Terms & Conditions
-By accessing the APIs, you accept the Eaternity's [Terms & Conditions](http://www.eaternity.org/legal). If You are using the APIs on behalf of an entity, you represent and warrant that you have authority to bind that entity to the Terms & Conditions and by accepting the Terms, You are doing so on behalf of that entity.
+By accessing the APIs, you accept the Eaternity's [Terms & Conditions](http://www.eaternity.org/legal). If You are using the APIs on behalf of an entity, you represent and warrant that you have authority to bind that entity to the Terms & Conditions and by accepting the Terms, you are doing so on behalf of that entity.
 
 ## Technical Specifications
 
@@ -18,11 +18,11 @@ Each client gets his own unique API key, which he needs to provide to be able to
 
 To authenticate a request, clients should use the HTTPS Basic Authentication and pass the API key as the username, and an empty password. Note that the API only accepts secure connections via **HTTPS** with SNI (Server Name Indication). The servername is `co2.eaternity.ch`. Most HTTP request utilities and libraries that allow to specify a username and password will handle proper encoding of the header for you.
 
-You can give it a try connecting to our API with this Testing API-Key on our Test-Server (test.eaternity.ch): aDRjSzR0SDBOT2c3NUhqZkszMzlLbE9scGEzOWZKenhYdw==
+You can give it a try connecting to our API with this Testing API-Key on our Test-Server (test.eaternity.ch): `aDRjSzR0SDBOT2c3NUhqZkszMzlLbE9scGEzOWZKenhYdw==`
 
 Try downloading the file [avocado.json](https://eaternity.ch/assets/avocado.json) file and request our service with curl:
 
-curl -i -X POST --data-binary @avocado.json --header 'authorization: Basic aDRjSzR0SDBOT2c3NUhqZkszMzlLbE9scGEzOWZKenhYdw==' --header 'Content-Type: application/json' 'https://test.eaternity.ch/api/recipes?transient=true&full-resource=true'
+`curl -i -X POST --data-binary @avocado.json --header 'authorization: Basic aDRjSzR0SDBOT2c3NUhqZkszMzlLbE9scGEzOWZKenhYdw==' --header 'Content-Type: application/json' 'https://test.eaternity.ch/api/recipes?transient=true&full-resource=true&test=random'`
 
 We can recommend using [Postman](https://www.getpostman.com) for testing.
 
@@ -93,7 +93,7 @@ A successful request will be prompted with either `200 - Success` or `204 - No C
 Sadly, sometimes requests to the API are not successful. Failures can occur for a wide range of reasons. In all cases, the API returns an HTTP Status Code that indicates the nature of the failure (below), with a response body in JSON format containing additional information.
 
 * 200   `Success` - If a resource was requested, it will be available at the top level of the response body.
-* 201   `Created` -  The request was successful and a resource was created.
+* 201   `Created` -  The request was successful and a resource was created. The Location Header field indicates the URI the resource can be found.
 * 204   `No Content` - The request was successful and the body intentionally contains no data.
 
 * 400   `Bad request` - This occurs when the request was not sent according to the documentation. Can be either the JSON format or the content. Check the documentation and the syntax of your request and try again.
@@ -240,6 +240,10 @@ A kitchen is a place with cooking, food processing and storage devices where foo
 
 + Response 201 (application/json)
 
+    + Headers
+
+            Location: https://co2.eaternity.ch/api/kitchens/198764
+
     + Body
 
             {   "kitchen": {
@@ -289,6 +293,10 @@ Update or create the kitchen with the specific id
         }
 
 + Response 201 (application/json)
+
+    + Headers
+
+            Location: https://co2.eaternity.ch/api/kitchens/198764
 
     + Body
 
@@ -419,6 +427,10 @@ Create a recipe resource and receive the CO₂-Value and Eaternity Award. Exampl
         }
 
 + Response 200 (application/json)
+
+    + Headers
+
+            Location: https://co2.eaternity.ch/api/recipes/d1ed2263-b1b2-4f50-9e9d-ba62cae81f29
 
     + Body
 
@@ -735,6 +747,10 @@ Create a recipe resource in a specific kitchen and receive the CO₂-Value and E
         }
 
 + Response 200 (application/json)
+ed
+    + Headers
+
+            Location: https://co2.eaternity.ch/api/kitchens/45674/recipes/d1ed2263-b1b2-4f50-9e9d-ba62cae81f29
 
     + Body
 
@@ -971,6 +987,10 @@ Update or create a certain recipe with this id. The whole recipe resource with a
 
 + Response 200 (application/json)
 
+    + Headers
+
+            Location: https://co2.eaternity.ch/api/kitchens/45674/recipes/d1ed2263-b1b2-4f50-9e9d-ba62cae81f29
+
     + Body
 
             {
@@ -1191,6 +1211,10 @@ Create a supply without specifying an id. If the request is sent with `full-reso
 
 + Response 200 (application/json)
 
+    + Headers
+
+        Location: https://co2.eaternity.ch/api/kitchens/1987647/supplies/d1ed2263
+
     + Body
 
     {
@@ -1294,7 +1318,9 @@ Update or create this supply with the specific id. The supply always needs to ha
         }
 
 + Response 200 (application/json)
+    + Headers
 
+        Location: https://co2.eaternity.ch/api/kitchens/1987647/supplies/d1ed2263
     + Body
 
     {
