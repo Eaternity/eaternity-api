@@ -14,13 +14,21 @@ By accessing the APIs, you accept the Eaternity's [Terms & Conditions](http://ww
 ## Technical Specifications
 
 ### Authentication
-Each client gets his own unique API key, which he needs to provide to be able to talk to the Eaternity Database API.
+Each client gets his own unique API key, which he needs to provide to be able to talk to the Eaternity Database API. This API key is only given to clients after we have signed a contract.
 
-To authenticate a request, clients should use the widely supported HTTPS Basic Authentication and pass the API key as the username, and an empty password. Note that the API only accepts secure connections via **HTTPS** with SNI (Server Name Indication). The servername is `co2.eaternity.ch`. Most HTTP request utilities and libraries that allow to specify a username and password will handle proper encoding of the header for you.
+To authenticate a request, clients should use the HTTPS Basic Authentication and pass the API key as the username, and an empty password. Note that the API only accepts secure connections via **HTTPS** with SNI (Server Name Indication). The servername is `co2.eaternity.ch`. Most HTTP request utilities and libraries that allow to specify a username and password will handle proper encoding of the header for you.
 
-You can give it a try connecting to our API with this Testing API-Key: FmZ23.M4mTKmDA4ssFCkEnYi
+You can give it a try connecting to our API with this Testing API-Key on our Test-Server (test.eaternity.ch): aDRjSzR0SDBOT2c3NUhqZkszMzlLbE9scGEzOWZKenhYdw==
 
-We recommend using the [Postman Chrome Extension](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwjI5dSy28fVAhVmGsAKHYhIB28QFggmMAA&url=https%3A%2F%2Fchrome.google.com%2Fwebstore%2Fdetail%2Fpostman%2Ffhbjgbiflinjbdggehcddcbncdddomop&usg=AFQjCNEKwgqPDcgrMAsS6iZ8PUYhTzB58A) for testing. Or check out the examples below.
+Try downloading the file [avocado.json](https://eaternity.ch/assets/avocado.json) file and request our service with curl:
+
+curl -i -X POST --data-binary @avocado.json --header 'authorization: Basic aDRjSzR0SDBOT2c3NUhqZkszMzlLbE9scGEzOWZKenhYdw==' --header 'Content-Type: application/json' 'https://test.eaternity.ch/api/recipes?transient=true&full-resource=true'
+
+We can recommend using [Postman](https://www.getpostman.com) for testing.
+
+For this purpose we provide some sample request in a public Postman Collection, that you find here: [https://app.getpostman.com/run-collection/51358cb9f878e2d2260d](https://app.getpostman.com/run-collection/51358cb9f878e2d2260d)
+
+Or you can check out the examples below.
 
 
 ### Language
