@@ -161,21 +161,23 @@ They appear as a sub-dictionary as follows:
                         "vita-score-rating": "B",
                         "vita-score-award": true,
                         "energy-kcals": 457,
-                        "nutrition-label": true
+                        "nutrition-label": true,
+                        "nutrition-rating": "A"
                     },
                     "environment": {
                         "animal-treatment-label": true,
+                        "animal-treatment-rating": "A",
                         "rainforest-label": false,
+                        "rainforest-rating": "E",
                         "local-label": true,
+                        "local-rating": "A",
                         "season-label": true,
-                        "scarce-water-liters": 6,
-                        "blue-water-liters": 46,
+                        "season-rating": "A",
+                        "scarce-water-liters": 6.0,
                         "water-footprint-rating": "C",
                         "water-footprint-award": false
                     },
-                    "eaternity-menu-award": true,
-                    "eaternity-menu-rating": "D"
-                    "eaternity-menu-score": 21
+                    "foodUnit": 14.1
                 }`
 
 
@@ -451,17 +453,18 @@ Create a recipe resource and receive the CO₂-Value and Eaternity Award. Exampl
                         },
                         "environment": {
                             "animal-treatment-label": true,
+                            "animal-treatment-rating": "A",
                             "rainforest-label": false,
+                            "rainforest-rating": "E",
                             "local-label": true,
+                            "local-rating": "A",
                             "season-label": true,
+                            "season-rating": "A",
                             "scarce-water-liters": 6,
-                            "blue-water-liters": 46,
                             "water-footprint-rating": "C",
                             "water-footprint-award": true
                         },
-                        "eaternity-menu-award": true,
-                        "eaternity-menu-rating": "B",
-                        "eaternity-menu-points": 21
+                        "foodUnit": 41.0
                     },
                 }
             }
@@ -492,17 +495,18 @@ Get the up-to-date CO₂-Value (and other indicators) for this recipe for the cu
                     },
                     "environment": {
                         "animal-treatment-label": true,
+                        "animal-treatment-rating": "A",
                         "rainforest-label": false,
+                        "rainforest-rating": "E",
                         "local-label": true,
+                        "local-rating": "A",
                         "season-label": true,
+                        "season-rating": "A",
                         "scarce-water-liters": 6,
-                        "blue-water-liters": 46,
                         "water-footprint-rating": "C",
                         "water-footprint-award": true
                     },
-                    "eaternity-menu-award": true,
-                    "eaternity-menu-rating": "B",
-                    "eaternity-menu-points": 21
+                    "foodUnit": 41.0
                 },
                 "titles": [
                     {
@@ -654,22 +658,27 @@ Update or create a certain recipe with this id. The whole recipe resource with a
                     "rating": "B"
                 },
                 "indicators": {
-                    "vita": {
-                        "vita-score": 346,
-                        "vita-rating": "B",
-                        "energy-kcals": 457,
-                        "nutritional-balance-award": true
+                    "vita-score": {
+                        "vita-score-points": 346,
+                        "vita-score-rating": "B",
+                        "vita-score-award": true,
+                        "energy-kcals": 457.0,
+                        "nutrition-label": true
                     },
                     "environment": {
-                        "animal-welfare": true,
-                        "deforestation": false,
-                        "local": true,
-                        "seasonal": true,
-                        "scarce-water-liters": 6,
-                        "blue-water-liters": 46,
-                        "water-footprint-rating": "C"
+                        "animal-treatment-label": true,
+                        "animal-treatment-rating": "A",
+                        "rainforest-label": false,
+                        "rainforest-rating": "E",
+                        "local-label": true,
+                        "local-rating": "A",
+                        "season-label": true,
+                        "season-rating": "A",
+                        "scarce-water-liters": 6.0,
+                        "water-footprint-rating": "C",
+                        "water-footprint-award": true
                     },
-                    "eaternity-menu-award": true
+                    "foodUnit": 41.0
                 }
             }
 
@@ -772,17 +781,18 @@ ed
                         },
                         "environment": {
                             "animal-treatment-label": true,
+                            "animal-treatment-rating": "A",
                             "rainforest-label": false,
+                            "rainforest-rating": "E",
                             "local-label": true,
+                            "local-rating": "A",
                             "season-label": true,
+                            "season-rating": "A",
                             "scarce-water-liters": 6,
-                            "blue-water-liters": 46,
                             "water-footprint-rating": "C",
                             "water-footprint-award": true
                         },
-                        "eaternity-menu-award": true,
-                        "eaternity-menu-rating": "B",
-                        "eaternity-menu-points": 21
+                        "foodUnit": 41.0
                     }
                 }
             }
@@ -835,22 +845,23 @@ Get the up-to-date CO₂-Value for this recipe for the current date
                             "vita-score-points": 346,
                             "vita-score-rating": "B",
                             "vita-score-award": true,
-                            "energy-kcals": 457,
+                            "energy-kcals": 457.0,
                             "nutrition-label": true
                         },
                         "environment": {
                             "animal-treatment-label": true,
+                            "animal-treatment-rating": "A",
                             "rainforest-label": false,
+                            "rainforest-rating": "E",
                             "local-label": true,
+                            "local-rating": "A",
                             "season-label": true,
-                            "scarce-water-liters": 6,
-                            "blue-water-liters": 46,
+                            "season-rating": "A",
+                            "scarce-water-liters": 6.0,
                             "water-footprint-rating": "C",
                             "water-footprint-award": true
                         },
-                        "eaternity-menu-award": true,
-                        "eaternity-menu-rating": "B",
-                        "eaternity-menu-points": 21
+                        "foodUnit": 41.0
                     },
                 "ingredients": [
                     {
@@ -874,16 +885,26 @@ Get the up-to-date CO₂-Value for this recipe for the current date
                     "co2-value": 74,
                     "indicators": {
                         "vita-score": {
-                            "energy-kcals": 457
+                            "vita-score-points": 346,
+                            "vita-score-rating": "B",
+                            "vita-score-award": true,
+                            "energy-kcals": 457.0,
+                            "nutrition-label": true
                         },
                         "environment": {
                             "animal-treatment-label": true,
+                            "animal-treatment-rating": "A",
                             "rainforest-label": false,
+                            "rainforest-rating": "E",
                             "local-label": true,
+                            "local-rating": "A",
                             "season-label": true,
-                            "scarce-water-liters": 6,
-                            "blue-water-liters": 46
-                        }
+                            "season-rating": "A",
+                            "scarce-water-liters": 6.0,
+                            "water-footprint-rating": "C",
+                            "water-footprint-award": true
+                        },
+                        "foodUnit": 41.0
                     },
                     {
                     "id": "100100894",
@@ -906,16 +927,26 @@ Get the up-to-date CO₂-Value for this recipe for the current date
                     "co2-value": 79,
                     "indicators": {
                         "vita-score": {
-                            "energy-kcals": 457
+                            "vita-score-points": 346,
+                            "vita-score-rating": "B",
+                            "vita-score-award": true,
+                            "energy-kcals": 457.0,
+                            "nutrition-label": true
                         },
                         "environment": {
                             "animal-treatment-label": true,
+                            "animal-treatment-rating": "A",
                             "rainforest-label": false,
+                            "rainforest-rating": "E",
                             "local-label": true,
+                            "local-rating": "A",
                             "season-label": true,
-                            "scarce-water-liters": 6,
-                            "blue-water-liters": 46
-                        }
+                            "season-rating": "A",
+                            "scarce-water-liters": 6.0,
+                            "water-footprint-rating": "C",
+                            "water-footprint-award": true
+                        },
+                        "foodUnit": 41.0
                     }
                 ]
             }
@@ -1256,7 +1287,7 @@ Get all supplies contained in this kitchen. A list of supply ids is returned.
                             "language": "de",
                             "value": "Tomaten"
                         }],
-                    "amount": 150,
+                    "amount": 150.0,
                     "unit": "gram",
                     "origin": "spain",
                     "transport": "air",
@@ -1264,20 +1295,30 @@ Get all supplies contained in this kitchen. A list of supply ids is returned.
                     "processing": "raw",
                     "conservation": "fresh",
                     "packaging": "plastic",
+                    "gtin":"",
                     "rating": "c",
-                    "bar-chart": 69.00,
+                    "bar-chart": 69,
                     "co2-value": 79,
                     "indicators": {
                         "vita-score": {
-                            "energy-kcals": 457
+                            "vita-score-points": "TBI",
+                            "vita-score-rating": "TBI",
+                            "energy-kcals": 457.0,
+                            "nutrition-label": false,
+                            "nutrition-rating": "TBI"
                         },
                         "environment": {
                             "animal-treatment-label": true,
+                            "animal-treatment-rating": "A",
                             "rainforest-label": false,
+                            "rainforest-rating": "E",
                             "local-label": true,
+                            "local-rating": "TBI",
                             "season-label": true,
-                            "scarce-water-liters": 6,
-                            "blue-water-liters": 46
+                            "season-rating": "TBI",
+                            "scarce-water-liters": 6.0,
+                            "water-footprint-rating": "B",
+                            "water-footprint-award": true
                         }
                     }
                 }
