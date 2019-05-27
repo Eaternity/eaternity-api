@@ -114,12 +114,14 @@ Sadly, sometimes requests to the API are not successful. Failures can occur for 
 If requested, a collection of indicators will be added to the return JSON for Recipes, Ingredients, and Supplies. The  indicators appear as follows:
 
 
-+ Response 
-        {  "co2-value": 765,
-"eaternity-award": false,
-"rating": "B",
-"bar-chart": 99,
-"indicators": {
++ Response 201 (application/json)
+
+        {   
+            "co2-value": 765,
+            "eaternity-award": false,
+            "rating": "B",
+            "bar-chart": 99,
+            "indicators": {
                     "vita-score": {
                         "vita-score-points": 346,
                         "vita-score-rating": "B",
