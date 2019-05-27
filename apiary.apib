@@ -144,13 +144,16 @@ The CO₂eq values are given in the following unit for the different resources.
 
 | Property  | Type    | Description | Recipes Only |
 |:----------|:------------------|:----------|:----------|
-|animal-treatment-label|boolean|whether the item conforms with animal welfare standards|no|
-|rainforest-label|boolean|whether the item meets the standard of avoiding deforestation|no|
+|animal-treatment-label|boolean|whether the item conforms with animal welfare standards ( has an "A" rating )|no|
+|animal-treatment-rating|string|Animal-treatment rating: [A,B,C,D,E]. A is best, E is worst|no|
+|rainforest-label|boolean|whether the item meets the standard of avoiding deforestation ( has an "A" rating )|no|
+|rainforest-rating|string|Rainforest rating: [A,B,C,D,E]. A is best, E is worst|no|
 |local-label|boolean|whether the item is produced locally|no|
+|local-rating|string|Local rating: [A,B,C,D,E]. A is best, E is worst|no|
 |season-label|boolean|whether the item is used in season|no|
+|season-rating|boolean|Season rating: [A,B,C,D,E]. A is best, E is worst|no|
 |scarce-water-liters|int|the total scarce water amount for the item in Liters|no|
-|blue-water-liters|int|the total blue  water amount for the item in Liters|no|
-|water-footprint-rating|string|Water use rating of the menu: [A,B,C,D,E]. A is best, E is worst|yes|
+|water-footprint-rating|string|Water-use rating of the menu: [A,B,C,D,E]. A is best, E is worst|yes|
 |water-footprint-award|boolean|If the menus receives the Water Footprint Award.|yes|
 
 They appear as a sub-dictionary as follows:
