@@ -116,45 +116,46 @@ If requested, a collection of environmental indicators will be added to the retu
 ### Climate Score
 
 The CO₂eq values are given in the following unit for the different resources.
+    
+    
+| Property  | Type    | Description | 
+|:----------|:------------------|:----------|
+|co2-value|int|Absolute value [g CO₂e(quivalent) / serving (given or normalized)] or for the specified amount of ingredient|
+|rating|string|Rating [A,B,C,D,E]. A is best, E is worst.|
+|eaternity-award|boolean|If the item receives the Climate Award.|
+|bar-chart|int|How much this ingredient contributes to the total CO₂-Value of the recipe or the supply in percent [0% - 100%]|
 
-- Recipes:
-    - With a date: [g CO₂e(quivalent) / serving]
-    - Without a date: Rating [A,B,C,D,E]. A is best, E is worst.
-- Ingredients:
-    - Rating [A,B,C,D,E]. A is best, E is worst.
-    - Bar Chart [0% - 100%]. How much this ingredient contributes to the total CO₂-Value of the recipe or the supply in percent.
-    - Absolute value [g CO₂e(quivalent)] for the specified amount of ingredient.
 
 ### Vita Score
 
 ([Documentation of the Vita Score](http://www.eaternity.org/foodprint/vita-score))
 
 
-| Property  | Type    | Description | Recipes Only |
-|:----------|:------------------|:----------|:----------|
-|vita-score-points|int|The total score for the menu in points.|yes|
-|vita-score-rating|string|Rating of Vita Score for the menu: [A,B,C,D,E]. A is best, E is worst|yes|
-|vita-score-award|boolean|If the menus receives the Vita Score Award.|yes|
-|energy-kcals|int|the total nutritional energy for the item in kilocalories|no|
-|nutrition-label|boolean|whether the menu is nutritionally balanced|yes|
+| Property  | Type    | Description | 
+|:----------|:------------------|:----------|
+|vita-score-points|int|The total score in points.|
+|vita-score-rating|string|Rating of Vita Score: [A,B,C,D,E]. A is best, E is worst|
+|vita-score-award|boolean|If the item receives the Vita Score Award.|
+|energy-kcals|int|the total nutritional energy for the item in kilocalories|
+|nutrition-label|boolean|whether a menu is nutritionally balanced|
 
 ### Environmental Footprints
 
 ([Documentation of the Environmental Footprints](http://www.eaternity.org/foodprint/environmental-footprints))
 
-| Property  | Type    | Description | Recipes Only |
-|:----------|:------------------|:----------|:----------|
-|animal-treatment-label|boolean|whether the item conforms with animal welfare standards ( has an "A" rating )|no|
-|animal-treatment-rating|string|Animal-treatment rating: [A,B,C,D,E]. A is best, E is worst|no|
-|rainforest-label|boolean|whether the item meets the standard of avoiding deforestation ( has an "A" rating )|no|
-|rainforest-rating|string|Rainforest rating: [A,B,C,D,E]. A is best, E is worst|no|
-|local-label|boolean|whether the item is produced locally|no|
-|local-rating|string|Local rating: [A,B,C,D,E]. A is best, E is worst|no|
-|season-label|boolean|whether the item is used in season|no|
-|season-rating|boolean|Season rating: [A,B,C,D,E]. A is best, E is worst|no|
-|scarce-water-liters|int|the total scarce water amount for the item in Liters|no|
-|water-footprint-rating|string|Water-use rating of the menu: [A,B,C,D,E]. A is best, E is worst|yes|
-|water-footprint-award|boolean|If the menus receives the Water Footprint Award.|yes|
+| Property  | Type    | Description | 
+|:----------|:------------------|:----------|
+|animal-treatment-label|boolean|whether the item conforms with animal welfare standards ( has an "A" rating )|
+|animal-treatment-rating|string|Animal-treatment rating: [A,B,C,D,E]. A is best, E is worst|
+|rainforest-label|boolean|whether the item meets the standard of avoiding deforestation ( has an "A" rating )|
+|rainforest-rating|string|Rainforest rating: [A,B,C,D,E]. A is best, E is worst|
+|local-label|boolean|whether the item is produced locally|
+|local-rating|string|Local rating: [A,B,C,D,E]. A is best, E is worst|
+|season-label|boolean|whether the item is used in season|
+|season-rating|boolean|Season rating: [A,B,C,D,E]. A is best, E is worst|
+|scarce-water-liters|int|the total scarce water amount for the item in Liters|
+|water-footprint-rating|string|Water-use rating: [A,B,C,D,E]. A is best, E is worst|
+|water-footprint-award|boolean|If the item receives the Water Footprint Award.|
 
 They appear as a sub-dictionary as follows:
 
