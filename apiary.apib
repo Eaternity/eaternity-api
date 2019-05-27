@@ -111,7 +111,42 @@ Sadly, sometimes requests to the API are not successful. Failures can occur for 
 
 ## Indicators Results
 
-If requested, a collection of indicators will be added to the return JSON for Recipes, Ingredients, and Supplies. The  indicators are as follows:
+If requested, a collection of indicators will be added to the return JSON for Recipes, Ingredients, and Supplies. The  indicators appear as follows:
+
+
+`
+"co2-value": 765,
+"eaternity-award": false,
+"rating": "B",
+"bar-chart": 99,
+"indicators": {
+                    "vita-score": {
+                        "vita-score-points": 346,
+                        "vita-score-rating": "B",
+                        "vita-score-award": true,
+                        "energy-kcals": 457,
+                        "nutrition-label": true,
+                        "nutrition-rating": "A"
+                    },
+                    "environment": {
+                        "animal-treatment-label": true,
+                        "animal-treatment-rating": "A",
+                        "rainforest-label": false,
+                        "rainforest-rating": "E",
+                        "local-label": true,
+                        "local-rating": "A",
+                        "season-label": true,
+                        "season-rating": "A",
+                        "scarce-water-liters": 6.0,
+                        "water-footprint-rating": "C",
+                        "water-footprint-award": false
+                    },
+                    "foodUnit": 14.1
+                }
+                
+`
+
+
 
 ### Climate Score
 
@@ -157,36 +192,9 @@ The CO₂eq values are given in the following unit for the different resources.
 |water-footprint-rating|string|Water-use rating: [A,B,C,D,E]. A is best, E is worst|
 |water-footprint-award|boolean|If the item receives the Water Footprint Award.|
 
-They appear as a sub-dictionary as follows:
-
-`"indicators": {
-                    "vita-score": {
-                        "vita-score-points": 346,
-                        "vita-score-rating": "B",
-                        "vita-score-award": true,
-                        "energy-kcals": 457,
-                        "nutrition-label": true,
-                        "nutrition-rating": "A"
-                    },
-                    "environment": {
-                        "animal-treatment-label": true,
-                        "animal-treatment-rating": "A",
-                        "rainforest-label": false,
-                        "rainforest-rating": "E",
-                        "local-label": true,
-                        "local-rating": "A",
-                        "season-label": true,
-                        "season-rating": "A",
-                        "scarce-water-liters": 6.0,
-                        "water-footprint-rating": "C",
-                        "water-footprint-award": false
-                    },
-                    "foodUnit": 14.1
-                }`
-
-
 
 ##Ingredient Properties
+
 Each request for Recipes or Supplies contains a list of Ingredients. Each Ingredient requires at least a `name` and an `amount` but may contain additional specifications.
 
 
