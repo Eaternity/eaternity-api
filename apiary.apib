@@ -114,7 +114,7 @@ Sadly, sometimes requests to the API are not successful. Failures can occur for 
 If requested, a collection of indicators will be added to the return JSON for Recipes, Ingredients, and Supplies. The  indicators appear as follows:
 
 
-
++ Response 201 (application/json)
 
         {   
             "co2-value": 765,
@@ -217,7 +217,7 @@ Each request for Recipes or Supplies contains a list of Ingredients. Each Ingred
 |conservation| string| conservation for longer storage life. Values: *fresh* or *frozen* or *dried* or *conserved* or *canned* or *boiled-down* |best practice|
 |packaging| string| how the product is packaged. Values:  *none*, *plastic*, *paper*, *pet*, *tin*, *alu*, *glas*, *cardboard*, *tetra* |no|
 |gtin|integer|global trade item number: [www.gtin.info](http://www.gtin.info/)|no|
-|**Response**| | | |
+|**201 (application/json)**| | | |
 |rating|string|the CO₂-ingredient rating [A,B,C,D,E]. A is best, E is worst.||
 |bar-chart|float|to generate a bar chart for all ingredients of a recipe. How much this ingredient contributes to the total CO₂-value of the recipe in percent (0.00% - 100.00%)||
 |co2-value|int|the absolute value of CO₂e emissions for the ingredient in [g] for the specified amount of ingredient||
