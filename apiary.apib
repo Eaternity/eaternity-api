@@ -259,7 +259,7 @@ Each request for a Ingredient may contains a list of Nutrients. Each Nutrient re
 |vitamine-d-microgram        |float    | Vitamin D (μg)  | Der Vitamin D-Gehalt (Calciol) in Mikrogramm pro 100g    |no|
 |vitamine-e-microgram        |float    | Vitamin E (μg)  | Der Vitamin E-Gehalt (Tocopherol) in Mikrogramm pro 100g    |no|
 |vitamine-h-microgram        |float    | Vitamin H (μg)  | Der Vitamin H-Gehalt (Biotin) in Mikrogramm pro 100g    |no|
-|vitk-microgram        |float    | Vitamin K (μg)  | Der Vitamin K-Gehalt in Mikrogramm pro 100g    |no|
+|vitamine-k-microgram        |float    | Vitamin K (μg)  | Der Vitamin K-Gehalt in Mikrogramm pro 100g    |no|
 |beta-carotene-milligram  |float    | BetaCarotin (mg)  | Der Beta-Carotin-Gehalt in Milligramm pro 100g    |no|
 |niacin-milligram       |float    | Niacin (mg)  | Der Vitamin B3-Gehalt (Niacinäquivalent) in Milligramm pro 100g    |no|
 |pantohen-milligram     |float    | Pantothen-säure (mg)  | Der Pantothensäure-Gehalt (Vitamin B5) in Milligramm pro 100g    |no|
@@ -1301,7 +1301,14 @@ Create a supply without specifying an id. If the request is sent with `full-reso
                     "production": "greenhouse",
                     "processing": "raw",
                     "conservation": "fresh",
-                    "packaging": "plastic"
+                    "packaging": "plastic",
+                    "ingredients-declaration": "Hähnchenbrustfilet (53 %), Panade (28%) (Weizenmehl, Wasser, modifizierte Weizen-stärke, Weizenstärke, Speisesalz, Gewürze, Hefe), Wasser, Putenformfleisch-schinken aus Putenfleischteilen zusammengefügt (7 %) (Putenkeulenfleisch, Nitritpökelsalz (Kochsalz, Konservierungsstoff: E 250), Maltodextrin, Dextrose, Gewürzextrakte, Stabilisator: E450), Käse (7 %), Kartoffelstärke, Stabilisator: modifizierte Stärke, Salz), Speisesalz, Stärke, Maltodextrin, Milcheiweiß, Pflanzeneiweiß, Dextrose, Zucker, Gewürzextrakte, Geschmacksverstärker: E 620",
+                    "nutrient-values": {
+                      "energy-kcal": 234.0,
+                      "fat-gram": 32.3,
+                      ...
+
+                    }
                 }
                 ]
             }
