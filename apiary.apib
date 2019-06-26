@@ -116,7 +116,7 @@ If requested, a collection of indicators will be added to the return JSON for Re
 
 + Response 201 (application/json)
 
-        {   
+        {
             "co2-value": 765,
             "eaternity-award": false,
             "rating": "B",
@@ -144,7 +144,7 @@ If requested, a collection of indicators will be added to the return JSON for Re
                         "water-footprint-award": false
                     },
                     "foodUnit": 14.1
-                }             
+                }
         }
 
 
@@ -153,9 +153,9 @@ If requested, a collection of indicators will be added to the return JSON for Re
 ### Climate Score
 
 The CO₂eq values are given in the following unit for the different resources.
-    
-    
-| Property  | Type    | Description | 
+
+
+| Property  | Type    | Description |
 |:----------|:------------------|:----------|
 |co2-value|int|Absolute value [g CO₂e(quivalent) / serving (given or normalized)] or for the specified amount of ingredient|
 |rating|string|Rating [A,B,C,D,E]. A is best, E is worst.|
@@ -168,7 +168,7 @@ The CO₂eq values are given in the following unit for the different resources.
 ([Documentation of the Vita Score](http://www.eaternity.org/foodprint/vita-score))
 
 
-| Property  | Type    | Description | 
+| Property  | Type    | Description |
 |:----------|:------------------|:----------|
 |vita-score-points|int|The total score in points.|
 |vita-score-rating|string|Rating of Vita Score: [A,B,C,D,E]. A is best, E is worst|
@@ -180,7 +180,7 @@ The CO₂eq values are given in the following unit for the different resources.
 
 ([Documentation of the Environmental Footprints](http://www.eaternity.org/foodprint/environmental-footprints))
 
-| Property  | Type    | Description | 
+| Property  | Type    | Description |
 |:----------|:------------------|:----------|
 |animal-treatment-label|boolean|whether the item conforms with animal welfare standards ( has an "A" rating )|
 |animal-treatment-rating|string|Animal-treatment rating: [A,B,C,D,E]. A is best, E is worst|
@@ -216,6 +216,8 @@ Each request for Recipes or Supplies contains a list of Ingredients. Each Ingred
 |processing| string| processing and convenience. Values: *raw*. Meat and Fisch: *unboned* or *boned*. Fisch: *skinned*, *beheaded*, *fillet*. Vegetables and Fruits: *cut*, *boiled*, *peeled*. |no|
 |conservation| string| conservation for longer storage life. Values: *fresh* or *frozen* or *dried* or *conserved* or *canned* or *boiled-down* |best practice|
 |packaging| string| how the product is packaged. Values:  *none*, *plastic*, *paper*, *pet*, *tin*, *alu*, *glas*, *cardboard*, *tetra* |no|
+|ingredients-declaration|string|List of ingredients as declared for packaged foods. E.g.: "Hähnchenbrustfilet (53 %), Panade (28%) (Weizenmehl, Wasser, modifizierte Weizen-stärke, Weizenstärke, Speisesalz, Gewürze, Hefe), Wasser, Putenformfleisch-schinken aus Putenfleischteilen zusammengefügt (7 %) (Putenkeulenfleisch, Nitritpökelsalz (Kochsalz, Konservierungsstoff: E 250), Maltodextrin, Dextrose, Gewürzextrakte, Stabilisator: E450), Käse (7 %), Kartoffelstärke, Stabilisator: modifizierte Stärke, Salz), Speisesalz, Stärke, Maltodextrin, Milcheiweiß, Pflanzeneiweiß, Dextrose, Zucker, Gewürzextrakte, Geschmacksverstärker: E 620"|no|
+|nutrient-values|list of nutrient values |Structured list of the nutrients values per defined nutrient as defined below.|no|
 |gtin|integer|global trade item number: [www.gtin.info](http://www.gtin.info/)|no|
 |**201 (application/json)**| | | |
 |rating|string|the CO₂-ingredient rating [A,B,C,D,E]. A is best, E is worst.||
@@ -227,6 +229,57 @@ The parameters of the properties origin, transport, production, processing, cons
 `"production": "organic, fair-trade, Max Havelaar"`
 
 The more properties are provided the more accurate are the values. More options will be added over time. Estimations are made for missing properties.
+
+##Nutrient Values
+
+Each request for a Ingredient may contains a list of Nutrients. Each Nutrient requires at least an `amount`.
+
+
+| Property              | Type    | Unit    | Description                                       | Required |
+|:----------------------|:--------|:--------|:----------                                        |:---------|
+|energy-kcal            |float    | Kcal    | Der Brennwert (Energie) in Kilo-Kalorien pro 100g |no|
+|energy-kjoule          |float    | KJoule  | Der Brennwert (Energie) in Kilo-Joule pro 100g    |no|
+|fat-gram               |float    | Fett(g) | Der Gesamtfettgehalt in Gramm pro 100g            |no|
+|saturated-fat-gram     |float    | gesättigte Fettsäure (g)  | Der Gehalt an gesättigten Fettsäuren in Gramm pro 100g    |no|
+|carbohydrates-gram     |float    | Kohlehydrate (g)  | Der Gehalt an Kohlenhydraten in Gramm pro 100g    |no|
+|sucrose-gram           |float    | Zucker (g)  | Der Gesamtzucker-Gehalt in Gramm pro 100g (alle Mono- und Disaccaride, ausgenommen mehrwertige Alkohole)    |no|
+|protein-gram           |float    | Eiweiß (g)  | Der Eiweißgehalt in Gramm pro 100g    |no|
+|sodium-chloride-gram   |float    | Salz (g)  |Der Salzgehalt in Gramm pro 100g (lt. LMIV Anhang I "Salz" = berechneter Gehalt an Salzäquivalent: Salz = Natrium x 2,5)    |no|
+|monounsaturated-fat-milligram |float    | einfach ungesättigte Fettsäure (mg)  | Der Gehalt an einfach ungesättigten Fettsäuren in Milligramm pro 100g    |no|
+|polyunsaturated-fat-milligram |float    | mehrfach ungesättigte Fettsäure (mg)  | Der Gehalt an mehrfach ungesättigten Fettsäuren in Milligramm pro 100g    |no|
+|cholesterol-milligram  |float    | Cholesterin (mg)  | Der Cholesteringehalt in Milligramm pro 100g    |no|
+|fibers-gram            |float    | Ballaststoffe (g)  | Der Ballaststoffgehalt in Gramm pro 100g   |no|
+|water-gram             |float    | Wasser (g)  | Der Wassergehalt in Gramm pro 100g   |no|
+|vitamine-a1-microgram       |float    | Vitamin A (μg)  | Der Vitamin A-Gehalt (Retinoläquivalent) in Mikrogramm pro 100g    |no|
+|vitamine-b1-microgram       |float    | Vitamin B1 (μg)  | Der Vitamin B1-Gehalt (Thiamin) in Mikrogramm pro 100g    |no|
+|vitamine-b2-microgram       |float    | Vitamin B2 (μg)  | Der Vitamin B2-Gehalt (Riboflavin) in Mikrogramm pro 100g    |no|
+|vitamine-b6-microgram       |float    | Vitamin B6 (μg)  | Der Vitamin B6-Gehalt (Pyridoxin) in Mikrogramm pro 100g   |no|
+|vitamine-b12-microgram      |float    | Vitamin B12 (μg)  | Der Vitamin B12-Gehalt (Cobalamin) in Mikrogramm pro 100g    |no|
+|vitamine-c-milligram        |float    | Vitamin C (mg)  | Der Vitamin C-Gehalt (Ascorbinsäure) in Milligramm pro 100g    |no|
+|vitamine-d-microgram        |float    | Vitamin D (μg)  | Der Vitamin D-Gehalt (Calciol) in Mikrogramm pro 100g    |no|
+|vitamine-e-microgram        |float    | Vitamin E (μg)  | Der Vitamin E-Gehalt (Tocopherol) in Mikrogramm pro 100g    |no|
+|vitamine-h-microgram        |float    | Vitamin H (μg)  | Der Vitamin H-Gehalt (Biotin) in Mikrogramm pro 100g    |no|
+|vitk-microgram        |float    | Vitamin K (μg)  | Der Vitamin K-Gehalt in Mikrogramm pro 100g    |no|
+|beta-carotene-milligram  |float    | BetaCarotin (mg)  | Der Beta-Carotin-Gehalt in Milligramm pro 100g    |no|
+|niacin-milligram       |float    | Niacin (mg)  | Der Vitamin B3-Gehalt (Niacinäquivalent) in Milligramm pro 100g    |no|
+|pantohen-milligram     |float    | Pantothen-säure (mg)  | Der Pantothensäure-Gehalt (Vitamin B5) in Milligramm pro 100g    |no|
+|folic-acid-microgram   |float    | Folsäure (μg)  | Der Folsäure-Gehalt in Mikrogramm pro 100g    |no|
+|sodium-milligram       |float    | Natrium (mg)  | Der Natriumgehalt in Milligramm pro 100g    |no|
+|potassium-milligram    |float    | Kalium (mg)  | Der Kaliumgehalt in Milligramm pro 100g    |no|
+|chlorine-milligram     |float    | Chlor (mg)  | Der Chlorgehalt in Milligramm pro 100g    |no|
+|calcium-milligram      |float    | Calcium (mg)  | Der Calciumgehalt in Milligramm pro 100g    |no|
+|magnesium-milligram    |float    | Magnesium (mg)  | Der Magnesiumgehalt in Milligramm pro 100g    |no|
+|phosphorus-milligram   |float    | Phosphor (mg)  | Der Phosphorgehalt in Milligramm pro 100g    |no|
+|iron-milligram         |float    | Eisen (mg)  | Der Eisengehalt in Milligramm pro 100g    |no|
+|zinc-microgram         |float    | Zink (μg)  | Der Zinkgehalt in Mikrogramm pro 100g    |no|
+|copper-microgram       |float    | Kupfer (μg)  | Der Kupfergehalt in Mikrogramm pro 100g    |no|
+|manganese-microgram    |float    | Mangan (μg)  | Der Mangangehalt in Mikrogramm pro 100g    |no|
+|flouride-microgram     |float    | Fluoride (μg)  | Der Fluoridgehalt in Mikrogramm pro 100g    |no|
+|iodine-microgram       |float    | Jod (μg)  | Der Jodgehalt in Mikrogramm pro 100g    |no|
+|purine-milligram       |float    | Purine (mg)  | Der Puringehalt in Milligramm pro 100g    |no|
+|uric-acid-milligram     |float    | Harnsäure (mg)  | Der Harnsäuregehalt in Milligramm pro 100g    |no|
+|alcohol-volume-percent       |float    | Alkoholgehalt (% vol)  | Laut LMIV Art. 9 (1k) muss der Alkoholgehalt in Volumenprozent (% vol) angegeben werden, sobald er 1,2 %vol überschreitet.    |no|
+
 
 
 # Group Kitchen Resources
