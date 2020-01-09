@@ -216,7 +216,7 @@ Each request for Recipes or Supplies contains a list of Ingredients. Each Ingred
 |processing| string| processing and convenience. Values: *raw*. Meat and Fisch: *unboned* or *boned*. Fisch: *skinned*, *beheaded*, *fillet*. Vegetables and Fruits: *cut*, *boiled*, *peeled*. |no|
 |conservation| string| conservation for longer storage life. Values: *fresh* or *frozen* or *dried* or *conserved* or *canned* or *boiled-down* |best practice|
 |packaging| string| how the product is packaged. Values:  *none*, *plastic*, *paper*, *pet*, *tin*, *alu*, *glas*, *cardboard*, *tetra* |no|
-|ingredients-declaration|string|List of ingredients as declared for packaged foods. E.g.: "Hähnchenbrustfilet (53 %), Panade (28%) (Weizenmehl, Wasser, modifizierte Weizen-stärke, Weizenstärke, Speisesalz, Gewürze, Hefe), Wasser, Putenformfleisch-schinken aus Putenfleischteilen zusammengefügt (7 %) (Putenkeulenfleisch, Nitritpökelsalz (Kochsalz, Konservierungsstoff: E 250), Maltodextrin, Dextrose, Gewürzextrakte, Stabilisator: E450), Käse (7 %), Kartoffelstärke, Stabilisator: modifizierte Stärke, Salz), Speisesalz, Stärke, Maltodextrin, Milcheiweiß, Pflanzeneiweiß, Dextrose, Zucker, Gewürzextrakte, Geschmacksverstärker: E 620"|no|
+|ingredients-declaration|string|List of ingredients as declared for packaged foods. E.g.: "Hähnchenbrustfilet (53 %), Panade (28%) (Weizenmehl, Wasser, modifizierte Weizen-stärke, Weizenstärke, Speisesalz, Gewürze, Hefe), Wasser, Putenformfleisch-schinken aus Putenfleischteilen zusammengefügt (7 %) (Putenkeulenfleisch, Nitritpökelsalz (Kochsalz, Konservierungsstoff: E 250), Maltodextrin, Dextrose, Gewürzextrakte, Stabilisator: E450), Käse (7 %), Kartoffelstärke, Stabilisator: modifizierte Stärke, Salz), Speisesalz, Stärke, Maltodextrin, Milcheiweiß, Pflanzeneiweiß, Dextrose, Zucker, Gewürzextrakte, Geschmacksverstärker: E 620"|no|
 |nutrient-values|list of nutrient values |Structured list of the nutrients values per defined nutrient as defined below.|no|
 |gtin|integer|global trade item number: [www.gtin.info](http://www.gtin.info/)|no|
 |**201 (application/json)**| | | |
@@ -240,30 +240,30 @@ Each request for a Ingredient may contains a list of Nutrients. Each Nutrient re
 |energy-kcal            |float    | Kcal    | Der Brennwert (Energie) in Kilo-Kalorien pro 100g |no|
 |energy-kjoule          |float    | KJoule  | Der Brennwert (Energie) in Kilo-Joule pro 100g    |no|
 |fat-gram               |float    | Fett (g) | Der Gesamtfettgehalt in Gramm pro 100g            |no|
-|saturated-fat-gram     |float    | gesättigte Fettsäure (g)  | Der Gehalt an gesättigten Fettsäuren in Gramm pro 100g    |no|
+|saturated-fat-gram     |float    | gesättigte Fettsäure (g)  | Der Gehalt an gesättigten Fettsäuren in Gramm pro 100g    |no|
 |carbohydrates-gram     |float    | Kohlehydrate (g)  | Der Gehalt an Kohlenhydraten in Gramm pro 100g    |no|
 |sucrose-gram           |float    | Zucker (g)  | Der Gesamtzucker-Gehalt in Gramm pro 100g (alle Mono- und Disaccaride, ausgenommen mehrwertige Alkohole)    |no|
 |protein-gram           |float    | Eiweiß (g)  | Der Eiweißgehalt in Gramm pro 100g    |no|
-|sodium-chloride-gram   |float    | Salz (g)  |Der Salzgehalt in Gramm pro 100g (lt. LMIV Anhang I "Salz" = berechneter Gehalt an Salzäquivalent: Salz = Natrium x 2,5)    |no|
-|monounsaturated-fat-milligram |float    | einfach ungesättigte Fettsäure (mg)  | Der Gehalt an einfach ungesättigten Fettsäuren in Milligramm pro 100g    |no|
-|polyunsaturated-fat-milligram |float    | mehrfach ungesättigte Fettsäure (mg)  | Der Gehalt an mehrfach ungesättigten Fettsäuren in Milligramm pro 100g    |no|
+|sodium-chloride-gram   |float    | Salz (g)  |Der Salzgehalt in Gramm pro 100g (lt. LMIV Anhang I "Salz" = berechneter Gehalt an Salzäquivalent: Salz = Natrium x 2,5)    |no|
+|monounsaturated-fat-milligram |float    | einfach ungesättigte Fettsäure (mg)  | Der Gehalt an einfach ungesättigten Fettsäuren in Milligramm pro 100g    |no|
+|polyunsaturated-fat-milligram |float    | mehrfach ungesättigte Fettsäure (mg)  | Der Gehalt an mehrfach ungesättigten Fettsäuren in Milligramm pro 100g    |no|
 |cholesterol-milligram  |float    | Cholesterin (mg)  | Der Cholesteringehalt in Milligramm pro 100g    |no|
 |fibers-gram            |float    | Ballaststoffe (g)  | Der Ballaststoffgehalt in Gramm pro 100g   |no|
 |water-gram             |float    | Wasser (g)  | Der Wassergehalt in Gramm pro 100g   |no|
-|vitamine-a1-microgram       |float    | Vitamin A (μg)  | Der Vitamin A-Gehalt (Retinoläquivalent) in Mikrogramm pro 100g    |no|
+|vitamine-a1-microgram       |float    | Vitamin A (μg)  | Der Vitamin A-Gehalt (Retinoläquivalent) in Mikrogramm pro 100g    |no|
 |vitamine-b1-microgram       |float    | Vitamin B1 (μg)  | Der Vitamin B1-Gehalt (Thiamin) in Mikrogramm pro 100g    |no|
 |vitamine-b2-microgram       |float    | Vitamin B2 (μg)  | Der Vitamin B2-Gehalt (Riboflavin) in Mikrogramm pro 100g    |no|
 |vitamine-b6-microgram       |float    | Vitamin B6 (μg)  | Der Vitamin B6-Gehalt (Pyridoxin) in Mikrogramm pro 100g   |no|
 |vitamine-b12-microgram      |float    | Vitamin B12 (μg)  | Der Vitamin B12-Gehalt (Cobalamin) in Mikrogramm pro 100g    |no|
-|vitamine-c-milligram        |float    | Vitamin C (mg)  | Der Vitamin C-Gehalt (Ascorbinsäure) in Milligramm pro 100g    |no|
+|vitamine-c-milligram        |float    | Vitamin C (mg)  | Der Vitamin C-Gehalt (Ascorbinsäure) in Milligramm pro 100g    |no|
 |vitamine-d-microgram        |float    | Vitamin D (μg)  | Der Vitamin D-Gehalt (Calciol) in Mikrogramm pro 100g    |no|
 |vitamine-e-microgram        |float    | Vitamin E (μg)  | Der Vitamin E-Gehalt (Tocopherol) in Mikrogramm pro 100g    |no|
 |vitamine-h-microgram        |float    | Vitamin H (μg)  | Der Vitamin H-Gehalt (Biotin) in Mikrogramm pro 100g    |no|
 |vitamine-k-microgram        |float    | Vitamin K (μg)  | Der Vitamin K-Gehalt in Mikrogramm pro 100g    |no|
 |beta-carotene-milligram  |float    | BetaCarotin (mg)  | Der Beta-Carotin-Gehalt in Milligramm pro 100g    |no|
-|niacin-milligram       |float    | Niacin (mg)  | Der Vitamin B3-Gehalt (Niacinäquivalent) in Milligramm pro 100g    |no|
-|pantohen-milligram     |float    | Pantothen-säure (mg)  | Der Pantothensäure-Gehalt (Vitamin B5) in Milligramm pro 100g    |no|
-|folic-acid-microgram   |float    | Folsäure (μg)  | Der Folsäure-Gehalt in Mikrogramm pro 100g    |no|
+|niacin-milligram       |float    | Niacin (mg)  | Der Vitamin B3-Gehalt (Niacinäquivalent) in Milligramm pro 100g    |no|
+|pantohen-milligram     |float    | Pantothen-säure (mg)  | Der Pantothensäure-Gehalt (Vitamin B5) in Milligramm pro 100g    |no|
+|folic-acid-microgram   |float    | Folsäure (μg)  | Der Folsäure-Gehalt in Mikrogramm pro 100g    |no|
 |sodium-milligram       |float    | Natrium (mg)  | Der Natriumgehalt in Milligramm pro 100g    |no|
 |potassium-milligram    |float    | Kalium (mg)  | Der Kaliumgehalt in Milligramm pro 100g    |no|
 |chlorine-milligram     |float    | Chlor (mg)  | Der Chlorgehalt in Milligramm pro 100g    |no|
@@ -277,8 +277,8 @@ Each request for a Ingredient may contains a list of Nutrients. Each Nutrient re
 |flouride-microgram     |float    | Fluoride (μg)  | Der Fluoridgehalt in Mikrogramm pro 100g    |no|
 |iodine-microgram       |float    | Jod (μg)  | Der Jodgehalt in Mikrogramm pro 100g    |no|
 |purine-milligram       |float    | Purine (mg)  | Der Puringehalt in Milligramm pro 100g    |no|
-|uric-acid-milligram     |float    | Harnsäure (mg)  | Der Harnsäuregehalt in Milligramm pro 100g    |no|
-|alcohol-volume-percent       |float    | Alkoholgehalt (% vol)  | Laut LMIV Art. 9 (1k) muss der Alkoholgehalt in Volumenprozent (% vol) angegeben werden, sobald er 1,2 %vol überschreitet.    |no|
+|uric-acid-milligram     |float    | Harnsäure (mg)  | Der Harnsäuregehalt in Milligramm pro 100g    |no|
+|alcohol-volume-percent       |float    | Alkoholgehalt (% vol)  | Laut LMIV Art. 9 (1k) muss der Alkoholgehalt in Volumenprozent (% vol) angegeben werden, sobald er 1,2 %vol überschreitet.    |no|
 
 
 
@@ -404,7 +404,9 @@ Information on any made estimations (as well as other comments) are given in the
 |author|string|original author of the recipe|no|
 |date|yyyy-mm-dd|the date the recipe is served. If **no date** is provided, **only a rating** of the recipe is returned.|best practice|
 |location|string|location where the recipe is cooked. Address or country (arbitrary format) |yes if recipe is not provided in a kitchen|
-|servings|int|for how many servings the ingredients are given. Required for the evaluation of the Eaternity Award and the rating.|yes for the Eaternity Award|
+|~servings~(deprecated)|int|for how many servings the ingredients are given. Required for the evaluation of the Eaternity Award and the rating.|yes for the Eaternity Award|
+|recipe-portions|int|for how many portions the ingredients are given. Required for the evaluation of the Eaternity Award and the rating. Replaces `servings`.|yes for the Eaternity Award|
+|planned-portions|int|how many portions of the recipe are prepared. Makes it possible to evaluate the restaurant.|   no|
 |instructions|list of language objects|cooking instructions for the recipe in different languages (array of language objects)|   no|
 |ingredients|list of ingredients|a list of all ingredient resources in this recipe |yes|
 |**Response**||||
@@ -1302,7 +1304,7 @@ Create a supply without specifying an id. If the request is sent with `full-reso
                     "processing": "raw",
                     "conservation": "fresh",
                     "packaging": "plastic",
-                    "ingredients-declaration": "Hähnchenbrustfilet (53 %), Panade (28%) (Weizenmehl, Wasser, modifizierte Weizen-stärke, Weizenstärke, Speisesalz, Gewürze, Hefe), Wasser, Putenformfleisch-schinken aus Putenfleischteilen zusammengefügt (7 %) (Putenkeulenfleisch, Nitritpökelsalz (Kochsalz, Konservierungsstoff: E 250), Maltodextrin, Dextrose, Gewürzextrakte, Stabilisator: E450), Käse (7 %), Kartoffelstärke, Stabilisator: modifizierte Stärke, Salz), Speisesalz, Stärke, Maltodextrin, Milcheiweiß, Pflanzeneiweiß, Dextrose, Zucker, Gewürzextrakte, Geschmacksverstärker: E 620",
+                    "ingredients-declaration": "Hähnchenbrustfilet (53 %), Panade (28%) (Weizenmehl, Wasser, modifizierte Weizen-stärke, Weizenstärke, Speisesalz, Gewürze, Hefe), Wasser, Putenformfleisch-schinken aus Putenfleischteilen zusammengefügt (7 %) (Putenkeulenfleisch, Nitritpökelsalz (Kochsalz, Konservierungsstoff: E 250), Maltodextrin, Dextrose, Gewürzextrakte, Stabilisator: E450), Käse (7 %), Kartoffelstärke, Stabilisator: modifizierte Stärke, Salz), Speisesalz, Stärke, Maltodextrin, Milcheiweiß, Pflanzeneiweiß, Dextrose, Zucker, Gewürzextrakte, Geschmacksverstärker: E 620",
                     "nutrient-values": {
                        "energy-kjoule":500,
                        "fat-gram":9001,
