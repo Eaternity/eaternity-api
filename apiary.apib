@@ -404,7 +404,7 @@ Information on any made estimations (as well as other comments) are given in the
 |author|string|original author of the recipe|no|
 |date|yyyy-mm-dd|the date the recipe is served. If **no date** is provided, **only a rating** of the recipe is returned.|best practice|
 |location|string|location where the recipe is cooked. Address or country (arbitrary format) |yes if recipe is not provided in a kitchen|
-|servings (deprecated)|int|for how many servings the ingredients are given. Required for the evaluation of the Eaternity Award and the rating.|yes for the Eaternity Award|
+|servings (deprecated)|int|for how many servings the ingredients are given. Required for the evaluation of the Eaternity Award and the rating.|no. use `recipe-portions`.|
 |recipe-portions|int|for how many portions the ingredients are given. Required for the evaluation of the Eaternity Award and the rating. Replaces `servings`.|yes for the Eaternity Award|
 |planned-portions|int|how many portions of the recipe are prepared. Makes it possible to evaluate the restaurant.|   no|
 |instructions|list of language objects|cooking instructions for the recipe in different languages (array of language objects)|   no|
