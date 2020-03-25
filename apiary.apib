@@ -1624,71 +1624,58 @@ When you all /products/<id> before the processing has been completed:
 After the product has been processed:
 
 + Response 202
-        {
-            "statuscode": 200,
-            "message": "Karotten, Tomaten",
-            "request-id": 0,
-            "recipe-id": "180320201",
-            "recipe": {
-                "id": "180320201",
-                "co2-value": 32,
-                "info-text": "No cooking date was provided.",
-                "eaternity-award": true,
-                "rating": "A",
-                "titles": [
-                    "names": [
-                        {
-                            "language": "de",
-                            "value": "Karottenpuree Mix"
-                        },
-                        {
-                            "language": "de",
-                            "value": "Puree des carottes, mix"
-                        }
-                    ]
-                ],
-                "location": "Zürich, Schweiz",
-                "servings": 1,
-                "recipe-portions": 1,
-                "weight": 0.0,
-                "ingredients": [
+    {
+        "names": [
+            {
+                "language": "de",
+                "value": "Karottenpureerezeptli2"
+            }
+        ],
+        "id": "180320201",
+        "co2-value": 32,
+        "foodUnit": 0.3,
+        "amount": 20,
+        "unit": "gram",
+        "info-text": "No cooking date was provided.",
+        "eaternity-award": true,
+        "rating": "A",
+        "ingredients-declaration": "Karotten, Tomaten",
+        "ingredients": [
+            {
+                "id": "FoodServiceb7a7f176-690b-11ea-9516-ae471177f174",
+                "names": [
                     {
-                        "id": "FoodServiceb7a7f176-690b-11ea-9516-ae471177f174",
-                        "names": [
-                            {
-                                "language": "de",
-                                "value": "Karotten"
-                            }
-                        ],
-                        "amount": 100.0,
-                        "unit": "gram",
-                        "origin": "",
-                        "transport": "",
-                        "gtin": "",
-                        "rating": "A",
-                        "bar-chart": 100,
-                        "co2-value": 32,
-                        "foodUnit": 0.10978478484848483
-                    },
-                    {
-                        "id": "FoodServiceb7a8081e-690b-11ea-9516-ae471177f174",
-                        "names": [
-                            {
-                                "language": "de",
-                                "value": "Tomaten"
-                            }
-                        ],
-                        "amount": 6.938894E-22,
-                        "unit": "gram",
-                        "origin": "",
-                        "transport": "",
-                        "gtin": "",
-                        "rating": "B",
-                        "bar-chart": 0,
-                        "co2-value": 0,
-                        "foodUnit": 5.48973752311336E-25
+                        "language": "de",
+                        "value": "Karotten"
                     }
                 ],
-                "food-unit": 0.10978478484848483
+                "amount": 100.0,
+                "unit": "gram",
+                "origin": "",
+                "transport": "",
+                "gtin": "",
+                "rating": "A",
+                "bar-chart": 100,
+                "co2-value": 32,
+                "foodUnit": 0.10978478484848483
+            },
+            {
+                "id": "FoodServiceb7a8081e-690b-11ea-9516-ae471177f174",
+                "names": [
+                    {
+                        "language": "de",
+                        "value": "Tomaten"
+                    }
+                ],
+                "amount": 6.938894E-22,
+                "unit": "gram",
+                "origin": "",
+                "transport": "",
+                "gtin": "",
+                "rating": "B",
+                "bar-chart": 0,
+                "co2-value": 0,
+                "foodUnit": 5.48973752311336E-25
             }
-        }
+        ]
+    }
