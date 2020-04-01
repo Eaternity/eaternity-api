@@ -207,8 +207,6 @@ Each request for Recipes or Supplies contains a list of Ingredients. Each Ingred
 |names|list of language object|full name of ingredient in different languages (array of language objects). Name in at least one language required.|yes|
 |amount|float|amount of the ingredient in the specified unit|yes|
 |unit|string|unit of the given amount of the ingredient: *gram* or *liter*, default: *gram*|no|
-|price|float|cost of the ingredient in the specified currency|no|
-|currency|string|currency of price (in [ISO 4217](https://www.currency-iso.org/) three-letter code)|no|
 |origin|string|origin of the ingredient: postal address or country |best practice|
 |transport|string|means of transport from ”origin” to ”location” of recipe or kitchen. Values: *air* or *ground*|best practice|
 |production|string|production of the base material. Values: *standard*, *greenhouse*, *organic*, *fair-trade*, *farm* (fishes and game animals only), *wild-caught* (fishes and game animals only), *sustainable-fish*. |best practice|
@@ -218,7 +216,7 @@ Each request for Recipes or Supplies contains a list of Ingredients. Each Ingred
 |packaging| string| how the product is packaged. Values:  *none*, *plastic*, *paper*, *pet*, *tin*, *alu*, *glas*, *cardboard*, *tetra* |no|
 |ingredients-declaration|string|List of ingredients as declared for packaged foods. E.g.: "Hähnchenbrustfilet (53 %), Panade (28%) (Weizenmehl, Wasser, modifizierte Weizen-stärke, Weizenstärke, Speisesalz, Gewürze, Hefe), Wasser, Putenformfleisch-schinken aus Putenfleischteilen zusammengefügt (7 %) (Putenkeulenfleisch, Nitritpökelsalz (Kochsalz, Konservierungsstoff: E 250), Maltodextrin, Dextrose, Gewürzextrakte, Stabilisator: E450), Käse (7 %), Kartoffelstärke, Stabilisator: modifizierte Stärke, Salz), Speisesalz, Stärke, Maltodextrin, Milcheiweiß, Pflanzeneiweiß, Dextrose, Zucker, Gewürzextrakte, Geschmacksverstärker: E 620"|no|
 |nutrient-values|list of nutrient values |Structured list of the nutrients values per defined nutrient as defined below.|no|
-|gtin|integer|global trade item number: [www.gtin.info](http://www.gtin.info/)|no|
+|gtin|string|global trade item number: [www.gtin.info](http://www.gtin.info/)|no|
 |**201 (application/json)**| | | |
 |rating|string|the CO₂-ingredient rating [A,B,C,D,E]. A is best, E is worst.||
 |bar-chart|float|to generate a bar chart for all ingredients of a recipe. How much this ingredient contributes to the total CO₂-value of the recipe in percent (0.00% - 100.00%)||
@@ -491,7 +489,7 @@ Create a recipe resource and receive the CO₂-Value and Eaternity Award. Exampl
                     "processing": "",
                     "conservation": "dried",
                     "packaging": "",
-                    "gtin": 00012345678906
+                    "gtin": "00012345678906"
                     }
                 ]
             }
@@ -1564,3 +1562,126 @@ The request-id differs from the supply id and has just the lifetime of a single 
             "supply-id": "d1ed2267"
         }
         ]
+
+# Group Product Resources
+In this context, products correspond to goods that are sold in retail. They are usually provided with ingredient declaration and nutrition information. Clients can upload the information to our service. We process it and build a recipe-like structure so we can serve the usual indicators.
+
+## Product Properties
+
+| Property | Type  | Description    | Required |
+|:----------|:--------|:------------------|:----------|
+|id|string|Specify your id of the product.|yes|
+|gtin|string|global trade item number: [www.gtin.info](http://www.gtin.info/)|no|
+|names|list of language object|full name of product in different languages (array of language objects). Name in at least one language required.|yes|
+|amount|float|the coefficient of the packaging size|yes|
+|unit|string|unit of the packaging sizw: *gram* or *liter*, default: *gram*|no|
+|producer|string|the producer or brand of the product.|best practice|
+|ingredients-declaration|string|List of ingredients in German as declared for packaged foods. E.g.: "Hähnchenbrustfilet (53 %), Panade (28%) (Weizenmehl, Wasser, modifizierte Weizen-stärke, Weizenstärke, Speisesalz, Gewürze, Hefe), Wasser, Putenformfleisch-schinken aus Putenfleischteilen zusammengefügt (7 %) (Putenkeulenfleisch, Nitritpökelsalz (Kochsalz, Konservierungsstoff: E 250), Maltodextrin, Dextrose, Gewürzextrakte, Stabilisator: E450), Käse (7 %), Kartoffelstärke, Stabilisator: modifizierte Stärke, Salz), Speisesalz, Stärke, Maltodextrin, Milcheiweiß, Pflanzeneiweiß, Dextrose, Zucker, Gewürzextrakte, Geschmacksverstärker: E 620"|no|
+|nutrient-values|list of nutrient values |Structured list of the nutrients values per defined nutrient as defined below.|no|
+|origin|string|production location: postal address or country |best practice|
+|transport|string|means of transport from ”origin” to ”location” of recipe or kitchen. Values: *air* or *ground*|best practice|
+|production|string|Values: *standard*, *greenhouse*, *organic*, *fair-trade*, *farm* (fishes and game animals only), *wild-caught* (fishes and game animals only), *sustainable-fish*. |best practice|
+|processing| string|Values: *raw*. Meat and Fisch: *unboned* or *boned*. Fisch: *skinned*, *beheaded*, *fillet*. Vegetables and Fruits: *cut*, *boiled*, *peeled*. |no|
+|conservation| string| conservation for longer storage life. Values: *fresh* or *frozen* or *dried* or *conserved* or *canned* or *boiled-down* |best practice|
+|packaging| string| how the product is packaged. Values:  *none*, *plastic*, *paper*, *pet*, *tin*, *alu*, *glas*, *cardboard*, *tetra* |no|
+|**201 (application/json)**| | | |
+|rating|string|the CO₂-ingredient rating [A,B,C,D,E]. A is best, E is worst.||
+|bar-chart|float|to generate a bar chart for all ingredients of a recipe. How much this ingredient contributes to the total CO₂-value of the recipe in percent (0.00% - 100.00%)||
+|co2-value|int|the absolute value of CO₂e emissions for the ingredient in [g] for the specified amount of ingredient||
+|indicators|dictionary|the vita and nutritional indicators described above||
+
+## Product Collection [/products/<id>]
+
+### Create a product [PUT]
+Create or update a product.
+
++ Request (application/json)
+
+{
+    "id": "180320201",
+    "gtin":"00123456789023",
+    "names": [
+        {
+            "language": "de",
+            "value": "Karottenpuree"
+        }
+    ],
+    "amount": 20,
+    "unit": "gram",
+    "producer": "hipp",
+    "ingredients-declaration": "Karotten, Tomaten",
+    "nutrient-values": {"energy-kcal": 200},
+    "origin": "paris, frankreich",
+    "transport": "ground",
+    "production": "standard",
+    "processing": "raw",
+    "conservation": "fresh",
+    "packaging":"none"
+}
+  
++ Response 202
+
+### Receive a product [GET]
+When you all /products/<id> before the processing has been completed:
+
++ Response 601
+"This product has not yet been processed."
+
+After the product has been processed:
+
++ Response 202
+    {
+        "names": [
+            {
+                "language": "de",
+                "value": "Karottenpuree"
+            }
+        ],
+        "id": "180320201",
+        "co2-value": 32,
+        "foodUnit": 0.3,
+        "amount": 20,
+        "unit": "gram",
+        "info-text": "No cooking date was provided.",
+        "eaternity-award": true,
+        "rating": "A",
+        "ingredients-declaration": "Karotten, Tomaten",
+        "ingredients": [
+            {
+                "id": "FoodServiceb7a7f176-690b-11ea-9516-ae471177f174",
+                "names": [
+                    {
+                        "language": "de",
+                        "value": "Karotten"
+                    }
+                ],
+                "amount": 100.0,
+                "unit": "gram",
+                "origin": "",
+                "transport": "",
+                "gtin": "",
+                "rating": "A",
+                "bar-chart": 100,
+                "co2-value": 32,
+                "foodUnit": 0.10978478484848483
+            },
+            {
+                "id": "FoodServiceb7a8081e-690b-11ea-9516-ae471177f174",
+                "names": [
+                    {
+                        "language": "de",
+                        "value": "Tomaten"
+                    }
+                ],
+                "amount": 6.938894E-22,
+                "unit": "gram",
+                "origin": "",
+                "transport": "",
+                "gtin": "",
+                "rating": "B",
+                "bar-chart": 0,
+                "co2-value": 0,
+                "foodUnit": 5.48973752311336E-25
+            }
+        ]
+    }
