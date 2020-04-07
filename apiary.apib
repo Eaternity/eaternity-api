@@ -199,6 +199,7 @@ The CO₂eq values are given in the following unit for the different resources.
 
 Each request for Recipes or Supplies contains a list of Ingredients. Each Ingredient requires at least an `id`, `name` and an `amount` but may contain additional specifications.
 Ingredients with the same id are shared between all of your Recipes as well as Supplies.
+There is no hard limit on the number of ingredients, but requests may time out and fail in the range of more than 25 ingredients, especially in combination with batch requests.
 
 | Property | Type  | Description    | Required |
 |:----------|:--------|:------------------|:----------|
@@ -1113,7 +1114,8 @@ Deletes this recipe  from the server
 
 The `full-resource` url parameter is supported here as well, but just for the whole request itself and not on single recipes. The transient parameter can be set selectively on single recipes inside the batch.
 
-The message in the response tells details about the failure.
+The message in the response provides more details about the failure of individual recipes.
+Batch operations do not support an unlimited number of recipes. If a request fails repeatedly, please consider reducing the number of recipes submitted.
 
 ### Create or update a batch of recipes [POST]
 Create or update a batch of recipes at once. If a recipe id is provided, the recipe is either created with this id or the existing recipe is overwritten. The status code tells the difference.
