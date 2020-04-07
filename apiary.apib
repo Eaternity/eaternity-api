@@ -1621,13 +1621,10 @@ Create or update a product.
   
 + Response 202
 
-### Receive a product *before* the processing has been completed: [GET]
-
+### Receive a product [GET]
+Depending on whether the product has been processed, the response can be either of the following:
 + Response 601
 "This product has not yet been processed."
-
-### Receive a product *after* the processing has been completed: [GET] 
-After the product has been processed:
 
 + Response 202
     {
