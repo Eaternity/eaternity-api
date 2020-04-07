@@ -197,12 +197,12 @@ The CO₂eq values are given in the following unit for the different resources.
 
 ##Ingredient Properties
 
-Each request for Recipes or Supplies contains a list of Ingredients. Each Ingredient requires at least a `name` and an `amount` but may contain additional specifications.
-
+Each request for Recipes or Supplies contains a list of Ingredients. Each Ingredient requires at least an `id`, `name` and an `amount` but may contain additional specifications.
+Ingredients with the same id are shared between all of your Recipes as well as Supplies.
 
 | Property | Type  | Description    | Required |
 |:----------|:--------|:------------------|:----------|
-|id|string| your unique id of the ingredient. If the product doesn't exist yet, a new product will be created.|yes|
+|id|string| your unique id of the ingredient|yes|
 |type|string|either *conceptual-ingredients* or *recipes*. *conceptual-ingredients* specifies a normal ingredient, *recipes* references to an already existing recipe. Default: *conceptual-ingredients*|no|
 |names|list of language object|full name of ingredient in different languages (array of language objects). Name in at least one language required.|yes|
 |amount|float|amount of the ingredient in the specified unit|yes|
