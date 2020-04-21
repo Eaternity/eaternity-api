@@ -1575,13 +1575,13 @@ In this context, products correspond to goods that are sold in retail. They are 
 | Property | Type  | Description    | Required |
 |:----------|:--------|:------------------|:----------|
 |id|string|Specify your id of the product.|yes|
-|gtin|string|global trade item number: [www.gtin.info](http://www.gtin.info/)|no|
+|gtin|string|global trade item number: [www.gtin.info](http://www.gtin.info/)|best practice|
 |names|list of language object|full name of product in different languages (array of language objects). Name in at least one language required.|yes|
-|amount|float|the coefficient of the packaging size|yes|
+|amount|float|the coefficient of the packaging size|best practice|
 |unit|string|unit of the packaging sizw: *gram* or *liter*, default: *gram*|no|
 |producer|string|the producer or brand of the product.|best practice|
-|ingredients-declaration|string|List of ingredients in German as declared for packaged foods. E.g.: "Hähnchenbrustfilet (53 %), Panade (28%) (Weizenmehl, Wasser, modifizierte Weizen-stärke, Weizenstärke, Speisesalz, Gewürze, Hefe), Wasser, Putenformfleisch-schinken aus Putenfleischteilen zusammengefügt (7 %) (Putenkeulenfleisch, Nitritpökelsalz (Kochsalz, Konservierungsstoff: E 250), Maltodextrin, Dextrose, Gewürzextrakte, Stabilisator: E450), Käse (7 %), Kartoffelstärke, Stabilisator: modifizierte Stärke, Salz), Speisesalz, Stärke, Maltodextrin, Milcheiweiß, Pflanzeneiweiß, Dextrose, Zucker, Gewürzextrakte, Geschmacksverstärker: E 620"|no|
-|nutrient-values|list of nutrient values |Structured list of the nutrients values per defined nutrient as defined below.|no|
+|ingredients-declaration|string|List of ingredients in German as declared for packaged foods. E.g.: "Hähnchenbrustfilet (53 %), Panade (28%) (Weizenmehl, Wasser, modifizierte Weizen-stärke, Weizenstärke, Speisesalz, Gewürze, Hefe), Wasser, Putenformfleisch-schinken aus Putenfleischteilen zusammengefügt (7 %) (Putenkeulenfleisch, Nitritpökelsalz (Kochsalz, Konservierungsstoff: E 250), Maltodextrin, Dextrose, Gewürzextrakte, Stabilisator: E450), Käse (7 %), Kartoffelstärke, Stabilisator: modifizierte Stärke, Salz), Speisesalz, Stärke, Maltodextrin, Milcheiweiß, Pflanzeneiweiß, Dextrose, Zucker, Gewürzextrakte, Geschmacksverstärker: E 620"|yes|
+|nutrient-values|list of nutrient values |Structured list of the nutrients values per defined nutrient as defined below.|yes|
 |origin|string|production location: postal address or country |best practice|
 |transport|string|means of transport from ”origin” to ”location” of recipe or kitchen. Values: *air* or *ground*|best practice|
 |production|string|Values: *standard*, *greenhouse*, *organic*, *fair-trade*, *farm* (fishes and game animals only), *wild-caught* (fishes and game animals only), *sustainable-fish*. |best practice|
@@ -1630,7 +1630,7 @@ Create or update a product.
     "conservation": "fresh",
     "packaging":"none"
 }
-  
+
 + Response 202
 
 ### Receive a product [GET]
