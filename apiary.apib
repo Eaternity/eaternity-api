@@ -1592,6 +1592,9 @@ In this context, products correspond to goods that are sold in retail. They are 
 |rating|string|the CO₂-ingredient rating [A,B,C,D,E]. A is best, E is worst.||
 |bar-chart|float|to generate a bar chart for all ingredients of a recipe. How much this ingredient contributes to the total CO₂-value of the recipe in percent (0.00% - 100.00%)||
 |co2-value|int|the absolute value of CO₂e emissions for the ingredient in [g] for the specified amount of ingredient||
+|co2-value-improvement-percentage|float|comparison of this product's co2 footprint per food unit to the average||
+|co2-value-reduction-value|float|the amount of co2 saved by serving this product instead of serving the amount of an average product that provides the same nutritional value||
+|foodUnit|float|the nutrional value of this product for the given amount||
 |indicators|dictionary|the vita and nutritional indicators described above||
 
 ## Product Collection [/products/<id>]
