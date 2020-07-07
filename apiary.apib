@@ -1329,16 +1329,16 @@ Create a supply without specifying an id. If the request is sent with `full-reso
 
     + Headers
 
-        Location: https://co2.eaternity.ch/api/kitchens/1987647/supplies/d1ed2263
+            Location: https://co2.eaternity.ch/api/kitchens/1987647/supplies/d1ed2263
 
     + Body
 
-    {
-        "statuscode": 200,
-        "message": "",
-        "request-id": 0,
-        "supply-id": "d1ed2263"
-    }
+            {
+                "statuscode": 200,
+                "message": "",
+                "request-id": 0,
+                "supply-id": "d1ed2263"
+            }
 
 ### Get all supplies in this kitchen [GET]
 Get all supplies contained in this kitchen. A list of supply ids is returned.
@@ -1444,17 +1444,19 @@ Update or create this supply with the specific id. The supply always needs to ha
         }
 
 + Response 200 (application/json)
+
     + Headers
 
-        Location: https://co2.eaternity.ch/api/kitchens/1987647/supplies/d1ed2263
+            Location: https://co2.eaternity.ch/api/kitchens/1987647/supplies/d1ed2263
+
     + Body
 
-    {
-      "statuscode": 200,
-      "message": "",
-      "request-id": 0,
-      "supply-id": "d1ed2263"
-    }
+            {
+                "statuscode": 200,
+                "message": "",
+                "request-id": 0,
+                "supply-id": "d1ed2263"
+            }
 
 ### Delete a supply [DELETE]
 
@@ -1600,42 +1602,42 @@ In this context, products correspond to goods that are sold in retail. They are 
 |foodUnit|float|the nutrional value of this product for the given amount||
 |indicators|dictionary|the vita and nutritional indicators described above||
 
-## Product Collection [/products/<id>]
+## Product Collection [/products/{id}]
 
 ### Create a product [PUT]
 Create or update a product.
 
 + Request (application/json)
 
-{
-    "id": "180320201",
-    "gtin":"00123456789023",
-    "names": [
         {
+        "id": "180320201",
+        "gtin":"00123456789023",
+        "names": [
+            {
             "language": "de",
             "value": "Karottenpuree"
+            }
+        ],
+        "amount": 20,
+        "unit": "gram",
+        "producer": "hipp",
+        "ingredients-declaration": "Karotten, Tomaten",
+        "nutrient-values": {
+          "energy-kcal": 200,
+          "fat-gram":12.3,
+          "saturated-fat-gram":2.5,
+          "carbohydrates-gram":8.4,
+          "sucrose-gram":3.2,
+          "protein-gram":2.2,
+          "sodium-chloride-gram":0.3
+        },
+        "origin": "paris, frankreich",
+        "transport": "ground",
+        "production": "standard",
+        "processing": "raw",
+        "conservation": "fresh",
+        "packaging":"none"
         }
-    ],
-    "amount": 20,
-    "unit": "gram",
-    "producer": "hipp",
-    "ingredients-declaration": "Karotten, Tomaten",
-    "nutrient-values": {
-      "energy-kcal": 200,
-      "fat-gram":12.3,
-      "saturated-fat-gram":2.5,
-      "carbohydrates-gram":8.4,
-      "sucrose-gram":3.2,
-      "protein-gram":2.2,
-      "sodium-chloride-gram":0.3
-    },
-    "origin": "paris, frankreich",
-    "transport": "ground",
-    "production": "standard",
-    "processing": "raw",
-    "conservation": "fresh",
-    "packaging":"none"
-}
 
 + Response 202
 
@@ -1643,64 +1645,66 @@ Create or update a product.
 Depending on whether the product has been processed, the response can be either of the following: A 601 Response with the message "This product has not yet been processes" or a 202 Response with the details about the processed information.
 
 + Response 601
-"This product has not yet been processed."
+
+        "This product has not yet been processed."
 
 + Response 202
-    {
-        "names": [
-            {
-                "language": "de",
-                "value": "Karottenpuree"
-            }
-        ],
-        "id": "180320201",
-        "co2-value": 478,
-        "co2-value-improvement-percentage": -41.0,
-        "co2-value-reduction-value": -140.0,
-        "foodUnit": 0.3,
-        "amount": 20,
-        "gtin": "00123456789023",
-        "unit": "gram",
-        "info-text": "No cooking date was provided.",
-        "eaternity-award": true,
-        "rating": "A",
-        "ingredients-declaration": "Karotten, Tomaten",
-        "ingredients": [
-            {
-                "id": "FoodServiceb7a7f176-690b-11ea-9516-ae471177f174",
-                "names": [
-                    {
-                        "language": "de",
-                        "value": "Karotten"
-                    }
-                ],
-                "amount": 100.0,
-                "unit": "gram",
-                "origin": "",
-                "transport": "",
-                "gtin": "",
-                "rating": "A",
-                "bar-chart": 100,
-                "co2-value": 32,
-                "foodUnit": 0.10978478484848483
-            },
-            {
-                "id": "FoodServiceb7a8081e-690b-11ea-9516-ae471177f174",
-                "names": [
-                    {
-                        "language": "de",
-                        "value": "Tomaten"
-                    }
-                ],
-                "amount": 6.938894E-22,
-                "unit": "gram",
-                "origin": "",
-                "transport": "",
-                "gtin": "",
-                "rating": "B",
-                "bar-chart": 0,
-                "co2-value": 0,
-                "foodUnit": 5.48973752311336E-25
-            }
-        ]
-    }
+
+        {
+            "names": [
+                {
+                    "language": "de",
+                    "value": "Karottenpuree"
+                }
+            ],
+            "id": "180320201",
+            "co2-value": 478,
+            "co2-value-improvement-percentage": -41.0,
+            "co2-value-reduction-value": -140.0,
+            "foodUnit": 0.3,
+            "amount": 20,
+            "gtin": "00123456789023",
+            "unit": "gram",
+            "info-text": "No cooking date was provided.",
+            "eaternity-award": true,
+            "rating": "A",
+            "ingredients-declaration": "Karotten, Tomaten",
+            "ingredients": [
+                {
+                    "id": "FoodServiceb7a7f176-690b-11ea-9516-ae471177f174",
+                    "names": [
+                        {
+                            "language": "de",
+                            "value": "Karotten"
+                        }
+                    ],
+                    "amount": 100.0,
+                    "unit": "gram",
+                    "origin": "",
+                    "transport": "",
+                    "gtin": "",
+                    "rating": "A",
+                    "bar-chart": 100,
+                    "co2-value": 32,
+                    "foodUnit": 0.10978478484848483
+                },
+                {
+                    "id": "FoodServiceb7a8081e-690b-11ea-9516-ae471177f174",
+                    "names": [
+                        {
+                            "language": "de",
+                            "value": "Tomaten"
+                        }
+                    ],
+                    "amount": 6.938894E-22,
+                    "unit": "gram",
+                    "origin": "",
+                    "transport": "",
+                    "gtin": "",
+                    "rating": "B",
+                    "bar-chart": 0,
+                    "co2-value": 0,
+                    "foodUnit": 5.48973752311336E-25
+                }
+            ]
+        }
