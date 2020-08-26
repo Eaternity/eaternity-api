@@ -1590,6 +1590,7 @@ In this context, products correspond to goods that are sold in retail. They are 
 |origin|string|production location: postal address or country |best practice|
 |transport|string|means of transport from ”origin” to ”location” of recipe or kitchen. Values: *air* or *ground*|best practice|
 |production|string|Values: *standard*, *greenhouse*, *organic*, *fair-trade*, *farm* (fishes and game animals only), *wild-caught* (fishes and game animals only), *sustainable-fish*. |best practice|
+|date| string|Specify the production date so seasonal differences can be calculated for the ingredients|no|
 |processing| string|Values: *raw*. Meat and Fisch: *unboned* or *boned*. Fisch: *skinned*, *beheaded*, *fillet*. Vegetables and Fruits: *cut*, *boiled*, *peeled*. |no|
 |conservation| string| conservation for longer storage life. Values: *fresh* or *frozen* or *dried* or *conserved* or *canned* or *boiled-down* |best practice|
 |packaging| string| how the product is packaged. Values:  *none*, *plastic*, *paper*, *pet*, *tin*, *alu*, *glas*, *cardboard*, *tetra* |no|
@@ -1609,8 +1610,9 @@ Create or update a product.
 
 + Request (application/json)
 
-        {
+      {
         "id": "180320201",
+        "date": "2020-02-02",
         "gtin":"00123456789023",
         "names": [
             {
