@@ -403,8 +403,8 @@ Information on any made estimations (as well as other comments) are given in the
 |author|string|original author of the recipe|no|
 |date|yyyy-mm-dd|the date the recipe is served. If **no date** is provided, **only a rating** of the recipe is returned.|best practice|
 |location|string|location where the recipe is cooked. Address or country (arbitrary format) |yes if recipe is not provided in a kitchen|
-|servings (deprecated)|int|for how many servings the ingredients are given.|no. use 'recipe-portions'.|
-|recipe-portions|int|for how many portions the ingredients are specified. Replaces 'servings'.|no|
+|servings (deprecated)|int|for how many servings the ingredients are given. |no. use 'recipe-portions'.|
+|recipe-portions|int|for how many portions the ingredients are specified.  Replaces 'servings'.|no|
 |planned-portions|int|how many portions of the recipe are produced (will be called production-portions in future). Makes it possible to evaluate the restaurant based on its actual performance.|   no|
 |instructions|list of language objects|cooking instructions for the recipe in different languages (array of language objects)|   no|
 |ingredients|list of ingredients|a list of all ingredient resources in this recipe |yes|
@@ -1580,28 +1580,28 @@ In this context, products correspond to goods that are sold in retail. They are 
 | Property | Type  | Description    | Required |
 |:----------|:--------|:------------------|:----------|
 |id|string|Specify your id of the product.|yes|
-|gtin|string|global trade item number: [www.gtin.info](http://www.gtin.info/)|best practice|
-|names|list of language object|full name of product in different languages (array of language objects). Name in at least one language required.|yes|
-|amount|float|the coefficient of the packaging size|best practice|
-|unit|string|unit of the packaging sizw: *gram* or *liter*, default: *gram*|no|
-|producer|string|the producer or brand of the product.|best practice|
+|gtin|string|Global trade item number: [www.gtin.info](http://www.gtin.info/)|best practice|
+|names|List of language object|full name of product in different languages (array of language objects). Name in at least one language required.|yes|
+|amount|float|Amount of the product in the specified unit, default: *100*|best practice|
+|unit|string|Unit of the given amount of the ingredient: *gram* or *liter*, default: *gram*|no|
+|producer|string|The producer or brand of the product.|best practice|
+|date| string|Specify the production date so seasonal differences can be calculated for ingredients where this matters. Format: "YYYY-MM-DD" |no|
 |ingredients-declaration|string|List of ingredients in German as declared for packaged foods. E.g.: "Hähnchenbrustfilet (53 %), Panade (28%) (Weizenmehl, Wasser, modifizierte Weizen-stärke, Weizenstärke, Speisesalz, Gewürze, Hefe), Wasser, Putenformfleisch-schinken aus Putenfleischteilen zusammengefügt (7 %) (Putenkeulenfleisch, Nitritpökelsalz (Kochsalz, Konservierungsstoff: E 250), Maltodextrin, Dextrose, Gewürzextrakte, Stabilisator: E450), Käse (7 %), Kartoffelstärke, Stabilisator: modifizierte Stärke, Salz), Speisesalz, Stärke, Maltodextrin, Milcheiweiß, Pflanzeneiweiß, Dextrose, Zucker, Gewürzextrakte, Geschmacksverstärker: E 620"|yes|
 |nutrient-values|list of nutrient values |Structured list of the nutrients values per defined nutrient as defined below.|yes|
-|origin|string|production location: postal address or country |best practice|
-|transport|string|means of transport from ”origin” to ”location” of recipe or kitchen. Values: *air* or *ground*|best practice|
+|origin|string|Production location: postal address or country |best practice|
+|transport|string|Means of transport from ”origin” to ”location” of recipe or kitchen. Values: *air* or *ground*|best practice|
 |production|string|Values: *standard*, *greenhouse*, *organic*, *fair-trade*, *farm* (fishes and game animals only), *wild-caught* (fishes and game animals only), *sustainable-fish*. |best practice|
-|date| string|Specify the production date so seasonal differences can be calculated for the ingredients|no|
 |processing| string|Values: *raw*. Meat and Fisch: *unboned* or *boned*. Fisch: *skinned*, *beheaded*, *fillet*. Vegetables and Fruits: *cut*, *boiled*, *peeled*. |no|
-|conservation| string| conservation for longer storage life. Values: *fresh* or *frozen* or *dried* or *conserved* or *canned* or *boiled-down* |best practice|
-|packaging| string| how the product is packaged. Values:  *none*, *plastic*, *paper*, *pet*, *tin*, *alu*, *glas*, *cardboard*, *tetra* |no|
+|conservation| string| Conservation for longer storage life. Values: *fresh* or *frozen* or *dried* or *conserved* or *canned* or *boiled-down* |best practice|
+|packaging| string| How the product is packaged. Values:  *none*, *plastic*, *paper*, *pet*, *tin*, *alu*, *glas*, *cardboard*, *tetra* |no|
 |**201 (application/json)**| | | |
-|rating|string|the CO₂-ingredient rating [A,B,C,D,E]. A is best, E is worst.||
-|bar-chart|float|to generate a bar chart for all ingredients of a recipe. How much this ingredient contributes to the total CO₂-value of the recipe in percent (0.00% - 100.00%)||
-|co2-value|int|the absolute value of CO₂e emissions for the ingredient in [g] for the specified amount of ingredient||
-|co2-value-improvement-percentage|float|comparison of this product's co2 footprint per food unit to the average||
-|co2-value-reduction-value|float|the amount of co2 saved by serving this product instead of serving the amount of an average product that provides the same nutritional value||
-|foodUnit|float|the nutrional value of this product for the given amount||
-|indicators|dictionary|the vita and nutritional indicators described above||
+|rating|string|The CO₂-ingredient rating [A,B,C,D,E]. A is best, E is worst.||
+|bar-chart|float|To generate a bar chart for all ingredients of a recipe. How much this ingredient contributes to the total CO₂-value of the recipe in percent (0.00% - 100.00%)||
+|co2-value|int|The absolute value of CO₂e emissions for the ingredient in [g] for the specified amount of ingredient||
+|co2-value-improvement-percentage|float|Comparison of this product's co2 footprint per food unit to the average||
+|co2-value-reduction-value|float|The amount of co2 saved by serving this product instead of serving the amount of an average product that provides the same nutritional value||
+|foodUnit|float|The nutrional value of this product for the given amount||
+|indicators|dictionary|The vita and nutritional indicators described above||
 
 ## Product Collection [/products/{id}]
 
@@ -1610,7 +1610,7 @@ Create or update a product.
 
 + Request (application/json)
 
-      {
+        {
         "id": "180320201",
         "date": "2020-02-02",
         "gtin":"00123456789023",
@@ -1670,6 +1670,7 @@ Depending on whether the product has been processed, the response can be either 
             "info-text": "No cooking date was provided.",
             "eaternity-award": true,
             "rating": "A",
+            "date": "2020-02-02",
             "ingredients-declaration": "Karotten, Tomaten",
             "ingredients": [
                 {
