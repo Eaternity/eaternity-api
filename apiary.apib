@@ -19,7 +19,7 @@ To authenticate a request, clients should use the HTTPS Basic Authentication and
 
 You can give it a try connecting to our API with this Testing API-Key (base64 encoded) on our Test-Server (test.eaternity.ch): `aDRjSzR0SDBOT2c3NUhqZkszMzlLbE9scGEzOWZKenhYdw==`
 
-Try downloading the file [avocado.json]([avocado.json](https://www.eaternity.org/assets/avocado.json) file and request our service with curl:
+Try downloading the file [avocado.json](https://www.eaternity.org/assets/avocado.json) file and request our service with curl:
 
 `curl -i -X POST --data-binary @avocado.json --header 'authorization: Basic aDRjSzR0SDBOT2c3NUhqZkszMzlLbE9scGEzOWZKenhYdw==' --header 'Content-Type: application/json' 'https://test.eaternity.ch/api/recipes?transient=true&full-resource=true&test=random'`
 
@@ -28,6 +28,8 @@ We can recommend using [Postman](https://www.getpostman.com) for testing.
 For this purpose we provide some sample request in a public Postman Collection, that you find here: [https://app.getpostman.com/run-collection/51358cb9f878e2d2260d](https://app.getpostman.com/run-collection/51358cb9f878e2d2260d)
 
 Or you can check out the examples below.
+
+Join us on Slack [here](https://eaternity-edb-api-slack-invite.herokuapp.com) to get in touch with our developers.
 
 
 ### Language
@@ -404,7 +406,7 @@ Information on any made estimations (as well as other comments) are given in the
 |location|string|location where the recipe is cooked. Address or country (arbitrary format) |yes if recipe is not provided in a kitchen|
 |servings (deprecated)|int|for how many servings the ingredients are given. |no. use 'recipe-portions'.|
 |recipe-portions|int|for how many portions the ingredients are specified.  Replaces 'servings'.|no|
-|planned-portions|int|how many portions of the recipe are produced (will be called production-portions in future). Makes it possible to evaluate the restaurant based on its actual performance.|   no|
+|planned-portions|int|how many portions of the recipe are planned to be produced.|   no|
 |sold-portions|int|how many portions of the recipe were really sold (i.e. consumed). This is used by the prognosis endpoint to predict the sales.|no|
 |instructions|list of language objects|cooking instructions for the recipe in different languages (array of language objects)|   no|
 |ingredients|list of ingredients|a list of all ingredient resources in this recipe |yes|
@@ -1714,8 +1716,15 @@ Depending on whether the product has been processed, the response can be either 
             ]
         }
 
-# Group Prognosis !Draft!
+# Group Prognosis .alpha
 A prognosis of sold portions is generated based on all planned recipes. It takes into account the previously supplied sales of the corresponding kitchen.
+
+Do not use the co2.eaternity.ch, as the prognosis is currently running on another domain. Use:
+ https://api.eaternity.ch/api/
+
+Here is an example call:
+
+`curl -i -X POST "https://api.eaternity.ch/api/kitchens/YOURKITCHENID/prognosis" --header "authorization: Basic YOURKEY" --header "accept: */*" --header "Content-Type: application/json" -d "{\"date-start\":\"2019-03-04\",\"date-end\":\"2019-03-08\"}"`
 
 ## Prognosis [/kitchens/{kitchen_id}/prognosis/]
 ### Create a prognosis [POST]
@@ -1740,7 +1749,7 @@ A prognosis of sold portions is generated based on all planned recipes. It takes
 
     + Headers
 
-            Location: https://co2.eaternity.ch/api/kitchens/{kitchen_id}/prognosis/{prognosis_id}
+            Location: https://api.eaternity.ch/api/kitchens/{kitchen_id}/prognosis/{prognosis_id}
     
     + Attributes (PrognosisResult)
     
