@@ -19,7 +19,7 @@ To authenticate a request, clients should use the HTTPS Basic Authentication and
 
 You can give it a try connecting to our API with this Testing API-Key (base64 encoded) on our Test-Server (test.eaternity.ch): `aDRjSzR0SDBOT2c3NUhqZkszMzlLbE9scGEzOWZKenhYdw==`
 
-Try downloading the file [avocado.json](https://www.eaternity.org/assets/avocado.json) file and request our service with curl:
+Try saving this file [here](https://www.eaternity.org/assets/avocado.json) as "avocado.json", then request our service with curl:
 
 `curl -i -X POST --data-binary @avocado.json --header 'authorization: Basic aDRjSzR0SDBOT2c3NUhqZkszMzlLbE9scGEzOWZKenhYdw==' --header 'Content-Type: application/json' 'https://test.eaternity.ch/api/recipes?transient=true&full-resource=true&test=random'`
 
