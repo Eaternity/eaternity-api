@@ -77,7 +77,7 @@ The API accepts JSON in requests. It returns JSON in all of its responses, inclu
 ### SSL
 All requests need to be encrypted through SSL. Please make sure to whitelist the latest SSL certificate from Eaternity.
 
-You can find the latest certificates [here](https://drive.google.com/drive/folders/0B0PtIxbyLjvFRWFaSDFNcXRXeHM?usp=sharing).
+You can find the latest certificates by accessing the specific domain.
 
 We recommend to whitelist the cloudflare root certificate "cloudflare_origin_rsa.pem", as follows all our domains and any renewal will be secured (test.eaternity.ch and co2.eaternity.ch). Be advised that if you prefer whitelisting our individual domain names (e.g.: "cloudflare-eaternity.ch-2017.crt"), you will have to renew it each year in time, to not interrupt your service.
 
@@ -390,7 +390,7 @@ Deletes this kitchen from the server
 
 The CO₂-values are given in **g CO₂e** for the recipe resource.
 
-Provide the parameter `transient=true` in the URL if the recipe should not be considered for later statistics and reports. The resource will not be permanently stored on our servers, no id is returned (Defaults to false).
+Provide the parameter `transient=true` in the URL if the recipe should not be considered for later statistics and reports. The resource will only be temporarily stored on our servers, no id is returned (Defaults to false).
 
 Information on any made estimations (as well as other comments) are given in the `info-text` property of the recipe. Please display this information next to the CO₂-value in your interface.
 
