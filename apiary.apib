@@ -1716,18 +1716,22 @@ Depending on whether the product has been processed, the response can be either 
             ]
         }
 
-# Group Prognosis .alpha
-A prognosis of sold portions is generated based on all planned recipes. It takes into account the previously supplied sales of the corresponding kitchen.
 
-Do not use the co2.eaternity.ch, as the prognosis is currently running on another domain. Use:
- https://api.eaternity.ch/api/
+# Group Forecast Resources
 
-Here is an example call:
+A forecast of sold menu portions can be generated based on all planned recipes of a kitchen.
+The forecast calculation takes into account the previously supplied sales of the corresponding kitchen.
 
-`curl -i -X POST "https://api.eaternity.ch/api/kitchens/YOURKITCHENID/prognosis" --header "authorization: Basic YOURKEY" --header "accept: */*" --header "Content-Type: application/json" -d "{\"date-start\":\"2019-03-04\",\"date-end\":\"2019-03-08\"}"`
+An example API call to create a prognosis:
 
-## Prognosis [/kitchens/{kitchen_id}/prognosis/]
-### Create a prognosis [POST]
+`curl -i -X POST "https://co2.eaternity.ch/api/prognosis/YOURKITCHENID/forecast" --header "authorization: Basic YOURKEY" --header "accept: */*" --header "Content-Type: application/json" -d "{\"date-start\":\"2019-03-04\",\"date-end\":\"2019-03-08\",\"async\":true}"`
+
+## Create a new forecast [/prognosis/{kitchen_id}/forecast]
+### Create a forecast [POST]
+
+This post request will create a new forecast calculation for the kitchen.
+The request is kept open until the calculation is finished. 
+Alternatively, if `async: true` is provided, the request returns directly a new forecast resource locator without waiting for the calculation to be finished.
 
 + Parameters
     + kitchen_id (string) - the id of the kitchen, for which the prognosis is calculated
@@ -1737,61 +1741,117 @@ Here is an example call:
     + Attributes (object)
         + `date-start` (string) - Specify the start date of the prognosis. Format: "YYYY-MM-DD".
         + `date-end` (string) - Specify the end date of the prognosis. Format: "YYYY-MM-DD".
-    
+        + `async` (boolean) - If true, the request returns directly a prediction_id without waiting for the calculation to finish. Default: false.
+
     + Body
     
             {
                 "date-start": "2021-02-08",
-                "date-end": "2021-02-09"
+                "date-end": "2021-02-09",
+                "async": false
             }
 
 + Response 201 (application/json)
 
     + Headers
 
-            Location: https://api.eaternity.ch/api/kitchens/{kitchen_id}/prognosis/{prognosis_id}
+            Location: https://co2.eaternity.ch/api/prognosis/{kitchen_id}/forecast/{prediction_id}
     
-    + Attributes (PrognosisResult)
+    + Attributes (Prognosis)
     
     + Body
             
             {
-                "id": "ab2k2z-7km3u-8ffzzck37",
-                "kitchen-id": "11122233",
-                "date-start": "2021-02-08",
-                "date-end": "2021-02-09",
-                "results": [{
-                        "date": "2021-02-08",
-                        "total-sales": {
-                            "portions": 1200,
-                            "ci-low": 1123,
-                            "ci-high": 1265
-                        },
-                        "recipes": [{
-                                "recipe-id": 11111,
-                                "portions": 500,
-                                "ci-low": 416,
-                                "ci-high": 526
+                "kitchen_id": "11122233",
+                "prediction_id": "3f8e11ca-5234-47da-8602-c255a290e5f2",
+                "status": "done",
+                "info": [],
+                "predicted_sales": {
+                    "date-start": "2021-02-08",
+                    "date-end": "2021-02-09",
+                    "results": [{
+                            "date": "2021-02-08",
+                            "total-sales": {
+                                "portions": 1203,
+                                "low": 1123,
+                                "high": 1265
                             },
-                            ...
-                        ]
-                    },
-                    ...
-                ]
+                            "recipes": [{
+                                    "recipe-id": 11111,
+                                    "portions": 489,
+                                    "low": 416,
+                                    "high": 526
+                                },
+                                ...
+                            ]
+                        },
+                        ...
+                    ]
+                }
             }
+
+
+
+## Forecast Results [/prognosis/{kitchen_id}/forecast/{prediction_id}]
+### Get a forecast [GET]
+This request retrieves the status (and if done the resulting predicted sales numbers) of a previously created forecast calculation.
+
++ Response 201 (application/json)
+
+    + Attributes (Prognosis)
+    
+    + Body
+            
+            {
+                "kitchen_id": "11122233",
+                "prediction_id": "3f8e11ca-5234-47da-8602-c255a290e5f2",
+                "status": "done",
+                "info": [],
+                "predicted_sales": {
+                    "date-start": "2021-02-08",
+                    "date-end": "2021-02-09",
+                    "results": [{
+                            "date": "2021-02-08",
+                            "total-sales": {
+                                "portions": 1203,
+                                "low": 1123,
+                                "high": 1265
+                            },
+                            "recipes": [{
+                                    "recipe-id": 11111,
+                                    "portions": 489,
+                                    "low": 416,
+                                    "high": 526
+                                },
+                                ...
+                            ]
+                        },
+                        ...
+                    ]
+                }
+            }
+
+
 
 
 ## Data Structures
 
-### PrognosisResult (object)
-+ `id`: `ab2k2z-7km3u-8ffzzck37` (string) - The id of the prognosis (generated by Eaternity).
-+ `kitchen-id`: 11122233 (string) - The id of the kitchen, for which the prognosis is calculated.
+### Prognosis (object)
++ `kitchen_id`: 11122233 (string) - The id of the kitchen, for which the prognosis is calculated.
++ `prediction_id`: `ab2k2z-7km3u-8ffzzck37` (string) - The id of the prognosis (generated by Eaternity).
++ `status` (string) - The status of the prognosis (processing/done/error).
++ `error` (string) - An error message if the forecast calculation was not possible.
++ `info` (array) - Showing potential warnings (i.e. unmatched ingredients).
+    + (string)
++ `predicted_sales` (PredictedSales) - The resulting sales forecast.
+
+### PredictedSales (object)
 + `date-start` (string) - The start date of the prognosis. Format: "YYYY-MM-DD".
 + `date-end` (string) - The end date of the prognosis. Format: "YYYY-MM-DD".
-+ `results` (array) - Structured list of the resulting prognosis grouped by day.
-    + (PrognosisDayResult)
++ `results` (array) - Structured list of the resulting forecast grouped by day.
+    + (ForecastDay)
 
-### PrognosisDayResult (object)
+### ForecastDay (object)
 + `date` (string) - The date of this result set. Format: "YYYY-MM-DD".
 + `total-sales` (PrognosisTotalSalesResult) - The prediction of total sales of the kitchen of this date.
 + `recipes` (array)
@@ -1799,11 +1859,11 @@ Here is an example call:
 
 ### PrognosisTotalSalesResult (object)
 + `portions`: 1214 (number) - The predicted number of customers on this day.
-+ `ci-low`: 1123 (number) - The lower bound of the 90% confidence interval of the prediction.
-+ `ci-high`: 1265 (number) - The upper bound of the 90% confidence interval of the prediction.
++ `low`: 1123 (number) - The lower bound of the 90% confidence interval of the prediction.
++ `high`: 1265 (number) - The upper bound of the 90% confidence interval of the prediction.
 
 ### PrognosisRecipeResult (object)
 + `recipe-id`: `111112` (string) - The id of the recipe.
 + `portions`: 486 (number) - The predicted number of portions to be sold of this recipe.
-+ `ci-low`: 416 (number) - The lower bound of the 90% confidence interval of the prediction.
-+ `ci-high`: 526 (number) - The upper bound of the 90% confidence interval of the prediction.
++ `low`: 416 (number) - The lower bound of the 90% confidence interval of the prediction.
++ `high`: 526 (number) - The upper bound of the 90% confidence interval of the prediction.
