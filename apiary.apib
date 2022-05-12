@@ -1833,6 +1833,54 @@ This request retrieves the status (and if done the resulting predicted sales num
 
 
 
+## Update portions [/prognosis/{kitchen_id}/portions]
+### Update portions [POST]
+
+This post request updates the production-portions and sold-portions of multiple recipes.
+
++ Parameters
+    + kitchen_id (string) - the id of the kitchen to which the recipes belong
+
++ Request (application/json)
+
+    + Attributes (object)
+        + `recipes` (array) - The list of recipes to update.
+            + (RecipePortions)
+            
+    + Body
+    
+            {
+                "recipes": [
+                    {
+                        "recipe-id": "11111",
+                        "sold-portions": 444,
+                        "production-portions": 500
+                    },
+                    {
+                        "recipe-id": "22222",
+                        "sold-portions": 555,
+                        "production-portions": 600
+                    }
+                ]
+            }
+
++ Response 200 (application/json)
+
+    + Body
+            
+            {
+                "recipes": [
+                    {
+                        "recipe-id": "11111",
+                        "status": "UPDATED"
+                    },
+                    {
+                        "recipe-id": "22222",
+                        "status": "NOT_FOUND"
+                    }
+                ]
+            }
+
 
 ## Data Structures
 
@@ -1867,3 +1915,9 @@ This request retrieves the status (and if done the resulting predicted sales num
 + `portions`: 486 (number) - The predicted number of portions to be sold of this recipe.
 + `low`: 416 (number) - The lower bound of the 90% confidence interval of the prediction.
 + `high`: 526 (number) - The upper bound of the 90% confidence interval of the prediction.
+
+
+### RecipePortions (object)
++ `recipe-id` (string) - the id of the recipe to update
++ `sold-portions` (number) - the id of the recipe to update
++ `production-portions` (number) - the id of the recipe to update
