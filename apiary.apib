@@ -1576,8 +1576,8 @@ The request-id differs from the supply id and has just the lifetime of a single 
         }
         ]
 
-# Group Product Resources
-In this context, products correspond to goods that are sold in retail. They are usually provided with ingredient declaration and nutrition information. Clients can upload the information to our service. We process it and build a recipe-like structure so we can serve the usual indicators.
+# Group Product Resources (For Retail)
+The Product resourcres are directed towards users that have limited information about a single retail food product's composition and want to calculate indicators based on the mandatory ingredient and nutrients declaration on its packaging. We only recommend using the Product Resources in tight coordination with the team at Eaternity as the calculations require additional supervision from our team. We process it and build a recipe-like structure so we can serve the usual indicators.
 
 ## Product Properties
 
@@ -1585,13 +1585,13 @@ In this context, products correspond to goods that are sold in retail. They are 
 |:----------|:--------|:------------------|:----------|
 |id|string|Specify your id of the product.|yes|
 |gtin|string|Global trade item number: [www.gtin.info](http://www.gtin.info/)|best practice|
-|names|List of language object|full name of product in different languages (array of language objects). Name in at least one language required.|yes (best practice for gastro)|
+|names|List of language object|full name of product in different languages (array of language objects). Name in at least one language required.|yes|
 |amount|float|Amount of the product in the specified unit, default: *100*|best practice|
 |unit|string|Unit of the given amount of the ingredient: *gram* or *liter*, default: *gram*|no|
 |producer|string|The producer or brand of the product.|best practice|
 |date| string|Specify the production date so seasonal differences can be calculated for ingredients where this matters. Format: "YYYY-MM-DD" |no|
-|ingredients-declaration|string|List of ingredients in German as declared for packaged foods. E.g.: "Hähnchenbrustfilet (53 %), Panade (28%) (Weizenmehl, Wasser, modifizierte Weizen-stärke, Weizenstärke, Speisesalz, Gewürze, Hefe), Wasser, Putenformfleisch-schinken aus Putenfleischteilen zusammengefügt (7 %) (Putenkeulenfleisch, Nitritpökelsalz (Kochsalz, Konservierungsstoff: E 250), Maltodextrin, Dextrose, Gewürzextrakte, Stabilisator: E450), Käse (7 %), Kartoffelstärke, Stabilisator: modifizierte Stärke, Salz), Speisesalz, Stärke, Maltodextrin, Milcheiweiß, Pflanzeneiweiß, Dextrose, Zucker, Gewürzextrakte, Geschmacksverstärker: E 620"|yes (best practice for gastro)|
-|nutrient-values|list of nutrient values |Structured list of the nutrients values per defined nutrient as defined below.|yes (best practice for gastro)|
+|ingredients-declaration|string|List of ingredients in German as declared for packaged foods. E.g.: "Hähnchenbrustfilet (53 %), Panade (28%) (Weizenmehl, Wasser, modifizierte Weizen-stärke, Weizenstärke, Speisesalz, Gewürze, Hefe), Wasser, Putenformfleisch-schinken aus Putenfleischteilen zusammengefügt (7 %) (Putenkeulenfleisch, Nitritpökelsalz (Kochsalz, Konservierungsstoff: E 250), Maltodextrin, Dextrose, Gewürzextrakte, Stabilisator: E450), Käse (7 %), Kartoffelstärke, Stabilisator: modifizierte Stärke, Salz), Speisesalz, Stärke, Maltodextrin, Milcheiweiß, Pflanzeneiweiß, Dextrose, Zucker, Gewürzextrakte, Geschmacksverstärker: E 620"|yes|
+|nutrient-values|list of nutrient values |Structured list of the nutrients values per defined nutrient as defined below.|yes|
 |origin|string|Production location: postal address or country |best practice|
 |transport|string|Means of transport from ”origin” to ”location” of recipe or kitchen. Values: *air* or *ground*|best practice|
 |production|string|Values: *standard*, *greenhouse*, *organic*, *fair-trade*, *farm* (fishes and game animals only), *wild-caught* (fishes and game animals only), *sustainable-fish*. |best practice|
