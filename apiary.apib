@@ -225,10 +225,9 @@ There is no hard limit on the number of ingredients, but requests may time out a
 |co2-value|int|the absolute value of CO₂e emissions for the ingredient in [g] for the specified amount of ingredient||
 |indicators|dictionary|the vita and nutritional indicators described above||
 
-The parameters of the properties origin, transport, production, processing, conservation and packaging can be set to multiple values. They need to be provided  in a comma separated list.
-`"production": "organic, fair-trade, Max Havelaar"`
+The parameters of the properties origin, transport, production, processing, conservation and packaging cannot be set to multiple values.
 
-The more properties are provided the more accurate are the values. More options will be added over time. Estimations are made for missing properties.
+Providing more properties will result in more accurate values. More options will be added over time. Estimations are made for missing properties.
 
 ##Nutrient Values
 
@@ -1576,7 +1575,7 @@ The request-id differs from the supply id and has just the lifetime of a single 
         }
         ]
 
-# Group Product Resources (For Retail)
+# Group Product Resources for Retail
 The Product resourcres are directed towards users that have limited information about a single retail food product's composition and want to calculate indicators based on the mandatory ingredient and nutrients declaration on its packaging. We only recommend using the Product Resources in tight coordination with the team at Eaternity as the calculations require additional supervision from our team. We process it and build a recipe-like structure so we can serve the usual indicators.
 
 ## Product Properties
