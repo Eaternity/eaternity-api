@@ -217,7 +217,7 @@ There is no hard limit on the number of ingredients, but requests may time out a
 |conservation| string| conservation for longer storage life. Values: *fresh* or *frozen* or *dried* or *conserved* or *canned* or *boiled-down* |best practice|
 |packaging| string| how the product is packaged. Values:  *none*, *plastic*, *paper*, *pet*, *tin*, *alu*, *glas*, *cardboard*, *tetra* |no|
 |ingredients-declaration|string|List of ingredients as declared for packaged foods. E.g.: "Hähnchenbrustfilet (53 %), Panade (28%) (Weizenmehl, Wasser, modifizierte Weizen-stärke, Weizenstärke, Speisesalz, Gewürze, Hefe), Wasser, Putenformfleisch-schinken aus Putenfleischteilen zusammengefügt (7 %) (Putenkeulenfleisch, Nitritpökelsalz (Kochsalz, Konservierungsstoff: E 250), Maltodextrin, Dextrose, Gewürzextrakte, Stabilisator: E450), Käse (7 %), Kartoffelstärke, Stabilisator: modifizierte Stärke, Salz), Speisesalz, Stärke, Maltodextrin, Milcheiweiß, Pflanzeneiweiß, Dextrose, Zucker, Gewürzextrakte, Geschmacksverstärker: E 620"|no|
-|nutrient-values|list of nutrient values |Structured list of the nutrients values per defined nutrient as defined below.|no|
+|nutrient-values|object|Object of the nutrients values per defined nutrient as defined below.|no|
 |gtin|string|global trade item number: [www.gtin.info](http://www.gtin.info/)|no|
 |**201 (application/json)**| | | |
 |rating|string|the CO₂-ingredient rating [A,B,C,D,E]. A is best, E is worst.||
@@ -1590,7 +1590,7 @@ The Product resourcres are directed towards users that have limited information 
 |producer|string|The producer or brand of the product.|best practice|
 |date| string|Specify the production date so seasonal differences can be calculated for ingredients where this matters. Format: "YYYY-MM-DD" |no|
 |ingredients-declaration|string|List of ingredients in German as declared for packaged foods. E.g.: "Hähnchenbrustfilet (53 %), Panade (28%) (Weizenmehl, Wasser, modifizierte Weizen-stärke, Weizenstärke, Speisesalz, Gewürze, Hefe), Wasser, Putenformfleisch-schinken aus Putenfleischteilen zusammengefügt (7 %) (Putenkeulenfleisch, Nitritpökelsalz (Kochsalz, Konservierungsstoff: E 250), Maltodextrin, Dextrose, Gewürzextrakte, Stabilisator: E450), Käse (7 %), Kartoffelstärke, Stabilisator: modifizierte Stärke, Salz), Speisesalz, Stärke, Maltodextrin, Milcheiweiß, Pflanzeneiweiß, Dextrose, Zucker, Gewürzextrakte, Geschmacksverstärker: E 620"|yes|
-|nutrient-values|list of nutrient values |Structured list of the nutrients values per defined nutrient as defined below.|yes|
+|nutrient-values|object|Object of the nutrients values per defined nutrient as defined below.|yes|
 |origin|string|Production location: postal address or country |best practice|
 |transport|string|Means of transport from ”origin” to ”location” of recipe or kitchen. Values: *air* or *ground*|best practice|
 |production|string|Values: *standard*, *greenhouse*, *organic*, *fair-trade*, *farm* (fishes and game animals only), *wild-caught* (fishes and game animals only), *sustainable-fish*. |best practice|
