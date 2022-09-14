@@ -145,7 +145,9 @@ If requested, a collection of indicators will be added to the return JSON for Re
                         "water-footprint-award": false
                     },
                     "foodUnit": 14.1
-                }
+                },
+            "co2-value-improvement-percentage": 34.4
+            "co2-value-reduction-value": 253.0
         }
 
 
@@ -162,6 +164,8 @@ The CO₂eq values are given in the following unit for the different resources.
 |rating|string|Rating [A,B,C,D,E]. A is best, E is worst.|
 |eaternity-award|boolean|If the item receives the Climate Award.|
 |bar-chart|int|How much this ingredient contributes to the total CO₂-Value of the recipe or the supply in percent [0% - 100%]|
+|co2-value-improvement-percentage|float|Comparison of this recipes's co2 footprint per food unit to the average|
+|co2-value-reduction-value|float|The amount of gramm CO₂ saved by serving this recipe instead of serving the amount of an average product that provides the same nutritional value (g)|
 
 
 ### Vita Score
@@ -223,6 +227,8 @@ There is no hard limit on the number of ingredients, but requests may time out a
 |rating|string|the CO₂-ingredient rating [A,B,C,D,E]. A is best, E is worst.||
 |bar-chart|float|to generate a bar chart for all ingredients of a recipe. How much this ingredient contributes to the total CO₂-value of the recipe in percent (0.00% - 100.00%)||
 |co2-value|int|the absolute value of CO₂e emissions for the ingredient in [g] for the specified amount of ingredient||
+|co2-value-improvement-percentage|float|Comparison of this recipes's co2 footprint per food unit to the average||
+|co2-value-reduction-value|float|The amount of gramm CO₂ saved by serving this recipe instead of serving the amount of an average product that provides the same nutritional value (g)||
 |indicators|dictionary|the vita and nutritional indicators described above||
 
 The parameters of the properties origin, transport, production, processing, conservation and packaging cannot be set to multiple values.
