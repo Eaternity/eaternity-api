@@ -125,29 +125,48 @@ If requested, a collection of indicators will be added to the return JSON for Re
             "co2-value-improvement-percentage": 34.4,
             "co2-value-reduction-value": 253.0,
             "indicators": {
-                    "vita-score": {
-                        "vita-score-points": 346,
-                        "vita-score-rating": "B",
-                        "vita-score-award": true,
-                        "energy-kcals": 457,
-                        "nutrition-label": true,
-                        "nutrition-rating": "A"
-                    },
-                    "environment": {
-                        "animal-treatment-label": true,
-                        "animal-treatment-rating": "A",
-                        "rainforest-label": false,
-                        "rainforest-rating": "E",
-                        "local-label": true,
-                        "local-rating": "A",
-                        "season-label": true,
-                        "season-rating": "A",
-                        "scarce-water-liters": 6.0,
-                        "water-footprint-rating": "C",
-                        "water-footprint-award": false
-                    },
-                    "foodUnit": 14.1
-                }
+                "vita-score": {
+                    "vita-score-points": 346,
+                    "vita-score-rating": "B",
+                    "vita-score-improvement-percentage": -2.93,
+                    "vita-score-award": true,
+                    "energy-kcals": 457,
+                    "nutrition-label": true,
+                    "nutrition-rating": "A",
+                    "fruit-risk-factor-amount-gram": 0.00,
+                    "fruit-risk-factor-points": 124.19,
+                    "vegetable-risk-factor-amount-gram": 0.00,
+                    "vegetable-risk-factor-points": 88.25,
+                    "wholegrain-risk-factor-amount-gram": 0.00,
+                    "wholegrain-risk-factor-points": 122.34,
+                    "nuts-seeds-risk-factor-amount-gram": 0.00,
+                    "nuts-seeds-risk-factor-points": 65.63,
+                    "milk-risk-factor-amount-gram": 0.00,
+                    "milk-risk-factor-points": 7.91,
+                    "processed-meat-risk-factor-amount-gram": 0.00,
+                    "processed-meat-risk-factor-points": 0.00,
+                    "red-meat-risk-factor-amount-gram": 0.00,
+                    "red-meat-risk-factor-points": 0.00,
+                    "salt-risk-factor-amount-gram": 1.73,
+                    "salt-risk-factor-points": 4.29
+                },
+                "environment": {
+                    "animal-treatment-label": true,
+                    "animal-treatment-rating": "A",
+                    "rainforest-label": false,
+                    "rainforest-rating": "E",
+                    "local-label": true,
+                    "local-rating": "A",
+                    "season-label": true,
+                    "season-rating": "A",
+                    "scarce-water-liters": 6.0,
+                    "water-footprint-rating": "C",
+                    "water-footprint-award": false,
+                    "water-footprint-improvement-percentage": -30.34,
+                    "water-footprint-reduction-value": -70.07
+                },
+                "foodUnit": 14.1
+            }
         }
 
 
@@ -160,26 +179,43 @@ The CO₂eq values are given in the following unit for the different resources.
 
 | Property  | Type    | Description |
 |:----------|:------------------|:----------|
-|co2-value|int|Absolute value [g CO₂e(quivalent) / serving (given or normalized)] or for the specified amount of ingredient|
+|co2-value|int|Absolute value [g CO₂e(quivalent) / serving (given or normalized)] or for the specified amount of ingredient.|
 |rating|string|Rating [A,B,C,D,E]. A is best, E is worst.|
 |eaternity-award|boolean|If the item receives the Climate Award.|
-|bar-chart|int|How much this ingredient contributes to the total CO₂-Value of the recipe or the supply in percent [0% - 100%]|
-|co2-value-improvement-percentage|float|Comparison of this recipes's co2 footprint per food unit to the average|
-|co2-value-reduction-value|float|The amount of gramm CO₂ saved by serving this recipe instead of serving the amount of an average product that provides the same nutritional value (g)|
+|bar-chart|int|How much this ingredient contributes to the total CO₂-Value of the recipe or the supply in percent [0% - 100%].|
+|co2-value-improvement-percentage|float|Comparison of this recipes's co2 footprint per food unit to the average.|
+|co2-value-reduction-value|float|The amount of gramm CO₂ saved by serving this recipe instead of serving the amount of an average product that provides the same nutritional value (g).|
 
 
 ### Vita Score
 
-([Documentation of the Vita Score](http://www.eaternity.org/foodprint/vita-score))
+([Documentation of the Health Score](http://www.eaternity.org/foodprint/vita-score))
 
 
 | Property  | Type    | Description |
 |:----------|:------------------|:----------|
 |vita-score-points|int|The total score in points.|
-|vita-score-rating|string|Rating of Vita Score: [A,B,C,D,E]. A is best, E is worst|
-|vita-score-award|boolean|If the item receives the Vita Score Award.|
+|vita-score-rating|string|Rating of Health Score: [A,B,C,D,E]. A is best, E is worst|
+|vita-score-improvement-percentage| float| Comparison of this recipes's Health Score to the average|
+|vita-score-award|boolean|If the item receives the Health Score Award.|
 |energy-kcals|int|the total nutritional energy for the item in kilocalories|
 |nutrition-label|boolean|whether a menu is nutritionally balanced|
+|fruit-risk-factor-amount-gram|float| Amount of fruits in the recipe that count against the theoretical minimum risk exposure level (TMREL) |
+|fruit-risk-factor-points|float| Translation of the amount into the disability-adjusted life years (DALY) lost per 100'000 people, as a point score |
+|vegetable-risk-factor-amount-gram|float|Amount of fruits in the recipe that count against the theoretical minimum risk exposure level (TMREL) |
+|vegetable-risk-factor-points|float|Translation of the amount into the disability-adjusted life years (DALY) lost per 100'000 people, as a point score |
+|wholegrain-risk-factor-amount-gram|float|Amount of wholegrain in the recipe that count against the theoretical minimum risk exposure level (TMREL) |
+|wholegrain-risk-factor-points|float|Translation of the amount into the disability-adjusted life years (DALY) lost per 100'000 people, as a point score |
+|nuts-seeds-risk-factor-amount-gram|float|Amount of nuts and seeds in the recipe that count against the theoretical minimum risk exposure level (TMREL) |
+|nuts-seeds-risk-factor-points|float|Translation of the amount into the disability-adjusted life years (DALY) lost per 100'000 people, as a point score |
+|milk-risk-factor-amount-gram|float|Amount of milk in the recipe that count against the theoretical minimum risk exposure level (TMREL) |
+|milk-risk-factor-points|float|Translation of the amount into the disability-adjusted life years (DALY) lost per 100'000 people, as a point score |
+|processed-meat-risk-factor-amount-gram|float|Amount of processed meat in the recipe that count against the theoretical minimum risk exposure level (TMREL) |
+|processed-meat-risk-factor-points|float|Translation of the amount into the disability-adjusted life years (DALY) lost per 100'000 people, as a point score |
+|red-meat-risk-factor-amount-gram|float|Amount of red meat in the recipe that count against the theoretical minimum risk exposure level (TMREL) |
+|red-meat-risk-factor-points|float|Translation of the amount into the disability-adjusted life years (DALY) lost per 100'000 people, as a point score |
+|salt-risk-factor-amount-gram|float|Amount of salt in the recipe that count against the theoretical minimum risk exposure level (TMREL) |
+|salt-risk-factor-points|float|Translation of the amount into the disability-adjusted life years (DALY) lost per 100'000 people, as a point score |
 
 ### Environmental Footprints
 
@@ -198,6 +234,9 @@ The CO₂eq values are given in the following unit for the different resources.
 |scarce-water-liters|int|the total scarce water amount for the item in Liters|
 |water-footprint-rating|string|Water-use rating: [A,B,C,D,E]. A is best, E is worst|
 |water-footprint-award|boolean|If the item receives the Water Footprint Award.|
+|water-footprint-improvement-percentage|float|Comparison of this recipes's water footprint per food unit to the average.|
+|water-footprint-reduction-value|float|The amount of liters saved by serving this recipe instead of serving the amount of an average product that provides the same nutritional value (l).|
+
 
 
 ##Ingredient Properties
