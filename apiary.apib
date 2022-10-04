@@ -15,7 +15,7 @@ By accessing the APIs, you accept the Eaternity's [Terms & Conditions](http://ww
 ### Authentication
 Each client gets his own unique API key, which he needs to provide to be able to talk to the Eaternity Database API. This API key is only given to clients after we have signed a contract.
 
-To authenticate a request, clients should use the HTTPS Basic Authentication and pass the API key as the username, and an empty password. Note that the API only accepts secure connections via **HTTPS** with SNI (Server Name Indication). The servername is `co2.eaternity.ch`. Most HTTP request utilities and libraries that allow to specify a username and password will handle proper encoding of the header for you.
+To authenticate a request, clients should use the HTTPS Basic Authentication and pass the API key as the username, and an empty password. Note that the API only accepts secure connections via **HTTPS** with SNI (Server Name Indication). The servername is `co2.eaternity.ch`. Most HTTP request utilities and libraries that allow to specify a username and password will handle proper encoding of the header for you. However, if you receive a 401 Unauthorized, you may wish to try again with the key **base64 encoded**.
 
 You can give it a try connecting to our API with this Testing API-Key (base64 encoded) on our Test-Server (test.eaternity.ch): `aDRjSzR0SDBOT2c3NUhqZkszMzlLbE9scGEzOWZKenhYdw==`
 
