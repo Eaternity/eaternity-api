@@ -15,7 +15,7 @@ By accessing the APIs, you accept the Eaternity's [Terms & Conditions](http://ww
 ### Authentication
 Each client gets his own unique API key, which he needs to provide to be able to talk to the Eaternity Database API. This API key is only given to clients after we have signed a contract.
 
-To authenticate a request, clients should use the HTTPS Basic Authentication and pass the API key as the username, and an empty password. Note that the API only accepts secure connections via **HTTPS** with SNI (Server Name Indication). The servername is `co2.eaternity.ch`. Most HTTP request utilities and libraries that allow to specify a username and password will handle proper encoding of the header for you. However, if you receive a 401 Unauthorized response, you may wish to try again with the key **base64 encoded**.
+To authenticate a request, clients should use the HTTPS Basic Authentication and pass the API key as the username, and an empty password. Note that the API only accepts secure connections via **HTTPS** with SNI (Server Name Indication). The servername is `co2.eaternity.ch`. Most HTTP request utilities and libraries that allow to specify a username and password will handle proper encoding of the header for you.
 
 You can give it a try connecting to our API with this Testing API-Key (base64 encoded) on our Test-Server (test.eaternity.ch): `aDRjSzR0SDBOT2c3NUhqZkszMzlLbE9scGEzOWZKenhYdw==`
 
@@ -98,7 +98,7 @@ Sadly, sometimes requests to the API are not successful. Failures can occur for 
 * 204   `No Content` - The request was successful and the body intentionally contains no data.
 
 * 400   `Bad request` - This occurs when the request was not sent according to the documentation. Can be either the JSON format or the content. Check the documentation and the syntax of your request and try again.
-* 401   `No authorization` - A valid API key was not provided with the request, so the API could not associate a client with the request.
+* 401   `No authorization` - A valid API key was not provided with the request, so the API could not associate a client with the request. You might wish to try again and check if the key is **base64 encoded**.
 * 403   `Forbidden` - The Kitchen is not authorized to calculate environmental values of recipes. Only users that pay for the "Eaternity License" are allowed to do so. Please contact Eaternity to get an up-to-date pricing.
 * 404   `Not found` - Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.
 * 405   `Method not allowed` - When the resource exists but the HTTP method verb is not allowed on this resource.
