@@ -98,7 +98,7 @@ Sadly, sometimes requests to the API are not successful. Failures can occur for 
 * 204   `No Content` - The request was successful and the body intentionally contains no data.
 
 * 400   `Bad request` - This occurs when the request was not sent according to the documentation. Can be either the JSON format or the content. Check the documentation and the syntax of your request and try again.
-* 401   `No authorization` - A valid API key was not provided with the request, so the API could not associate a client with the request.
+* 401   `No authorization` - A valid API key was not provided with the request, so the API could not associate a client with the request. You might wish to try again and check if the key is **base64 encoded**.
 * 403   `Forbidden` - The Kitchen is not authorized to calculate environmental values of recipes. Only users that pay for the "Eaternity License" are allowed to do so. Please contact Eaternity to get an up-to-date pricing.
 * 404   `Not found` - Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.
 * 405   `Method not allowed` - When the resource exists but the HTTP method verb is not allowed on this resource.
