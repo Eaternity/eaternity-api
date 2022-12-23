@@ -452,8 +452,8 @@ Information on any made estimations (as well as other comments) are given in the
 |author|string|original author of the recipe|no|
 |date|yyyy-mm-dd|the date the recipe is served. If **no date** is provided, **only a rating** of the recipe is returned.|best practice|
 |location|string|location where the recipe is cooked. Address or country (arbitrary format) |yes if recipe is not provided in a kitchen|
-|servings (deprecated)|int|for how many servings the ingredients are given. |no. use 'recipe-portions'.|
-|recipe-portions|int|for how many portions the ingredients are specified.  Replaces 'servings'.|no|
+|servings (deprecated)|int|for how many servings the ingredients are given. This value is not allowed to be "0". |no. use 'recipe-portions'.|
+|recipe-portions|int|for how many portions the ingredients are specified.  Replaces 'servings'. This value is not allowed to be "0". |no|
 |production-portions|int|how many portions of the recipe are planned to be produced.|   no|
 |sold-portions|int|how many portions of the recipe were really sold (i.e. consumed). This is used by the prognosis endpoint to predict the sales.|no|
 |ingredients|list of ingredients|a list of all ingredient resources in this recipe |yes|
