@@ -1134,18 +1134,19 @@ The request-id differs from the recipe id and has just the lifetime of a single 
 
 + Request (application/json)
 
-        [{
+        [
+        {
         	"request-id": 1, 
         	"transient": false,
         	"recipe": {
         		"id": "0002076208", // your unique ID!
         		"menu-line-id": 19092,
         		"menu-line-name": "Hit Menu Lunch",
-        	"recipe-portions": 1, // as your recipe is defined
-        "sold-portions": 202,
+                "recipe-portions": 1, // as your recipe is defined
+                "sold-portions": 202,
         		"production-portions": 212,
         		"date": "2023-10-14",
-            	"kitchen-id": "C142",// your unique ID!
+            	"kitchen-id": "AC432", // your unique ID!
             	"ingredients": [
         		{
                     	"id": "467", // your unique ID!
@@ -1162,9 +1163,9 @@ The request-id differs from the recipe id and has just the lifetime of a single 
                     	"production": "",
                     	"processing": "",
                     	"conservation": "",
-              "gtin": "00012345678905" // please specify as available
+                        "gtin": "00012345678905" // please specify as available
                 	},
-        	{
+        	        {
                     	"id": "0002076209",
                     	"amount": "0.0233",
                     	"unit": "gram",
@@ -1179,9 +1180,9 @@ The request-id differs from the recipe id and has just the lifetime of a single 
         // It needs to be part of the same POST request
         "request-id": 2, 
         	"transient": true,
-        "recipe": {
+            "recipe": {
         		"id": "0002076209",
-        	"recipe-portions": 1,
+        	    "recipe-portions": 1,
         		"date": "2023-10-14",
             	"kitchen-id": "recipe-components", // a separate kitchen to collect recipes that were not part of the menu plan
             	"ingredients": [
