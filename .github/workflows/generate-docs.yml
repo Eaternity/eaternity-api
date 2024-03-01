@@ -3,7 +3,7 @@ name: Generate and Deploy Docs
 on:
   push:
     branches:
-      - main  # Change to your main branch name
+      - master  # Change to your main branch name
 
 jobs:
   build:
