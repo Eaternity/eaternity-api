@@ -18,7 +18,7 @@ jobs:
         npm install -g aglio
 
     - name: Generate HTML Documentation
-      run: aglio -i your-blueprint.apib -o index.html
+      run: aglio -i apiary.apib -o index.html
 
     - name: Commit Documentation Changes
       run: |
