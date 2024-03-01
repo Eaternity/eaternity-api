@@ -1,0 +1,34 @@
+name: Generate and Deploy Docs
+
+on:
+  push:
+    branches:
+      - main  # Change to your main branch name
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install aglio
+      run: |
+        npm install -g aglio
+
+    - name: Generate HTML Documentation
+      run: aglio -i your-blueprint.apib -o index.html
+
+    - name: Commit Documentation Changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add index.html
+        git commit -m "Generate API documentation"
+      
+    - name: Push Changes to GitHub Pages
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: main  # Change to your GitHub Pages branch
