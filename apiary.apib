@@ -242,7 +242,7 @@ The CO₂eq values are given in the following unit for the different resources.
 
 
 
-##Ingredient Properties
+## Ingredient Properties
 
 Each request for Recipes or Supplies contains a list of Ingredients. Each Ingredient requires at least an `id`, `name` and an `amount` but may contain additional specifications.
 Ingredients with the same id are shared between all of your Recipes as well as Supplies.
@@ -277,7 +277,7 @@ The parameters of the properties origin, transport, production, processing, cons
 
 Providing more properties will result in more accurate values. More options will be added over time. Estimations are made for missing properties.
 
-##Nutrient Values
+## Nutrient Values
 
 Each request for a Ingredient may contains a list of Nutrients. Each Nutrient requires at least an `amount`.
 
@@ -332,7 +332,7 @@ Each request for a Ingredient may contains a list of Nutrients. Each Nutrient re
 # Group Kitchen Resources
 A kitchen is a place with cooking, food processing and storage devices where food is prepared, processed and stored. It has its own supply and purchase management and a well defined location.
 
-##Kitchen Properties
+## Kitchen Properties
 | Property | Type  | Description      | Required |
 |:----------|:--------|:------------------|:----------|
 |name |string |official name of the kitchen or factory |yes|
@@ -443,7 +443,7 @@ Provide the parameter `transient=true` in the URL if the recipe should not be co
 Information on any made estimations (as well as other comments) are given in the `info-text` property of the recipe. Please display this information next to the CO₂-value in your interface.
 
 
-##Recipe Properties
+## Recipe Properties
 
 | Property | Type  | Description      | Required |
 |:----------|:--------|:------------------|----------|
@@ -1134,42 +1134,74 @@ The request-id differs from the recipe id and has just the lifetime of a single 
 
 + Request (application/json)
 
-        [
-        {
-            "request-id": 1,
-            "transient": false,
-            "recipe": {
-                "kitchen-id": "198764",
-                "titles": [
-                    {
-                        "language": "de",
-                        "value": "Kürbisrisotto"
-                    }
-                ],
-                "instruction": "Den Karottenkuchen im Ofen backen und noch warm geniessen.",
-                "servings": 10,
-                "ingredients": [
-                    {  ...  }
-                ]
-          }
+        [{
+        	"request-id": 1, 
+        	"transient": false,
+        	"recipe": {
+        		"id": "0002076208", // your unique ID!
+        		"menu-line-id": 19092,
+        		"menu-line-name": "Hit Menu Lunch",
+        	"recipe-portions": 1, // as your recipe is defined
+        "sold-portions": 202,
+        		"production-portions": 212,
+        		"date": "2023-10-14",
+            	"kitchen-id": "C142",// your unique ID!
+            	"ingredients": [
+        		{
+                    	"id": "467", // your unique ID!
+                    	"names": [
+                        	{
+                            	"language": "DE",
+                            	"value": "Quality Pfeffer weiss gemahlen 900g"
+                        	}
+                    	],
+                    	"amount": "0.0233",
+                    	"unit": "gram", // "EA" is not possible
+                    	"origin": "", // please specify as available
+                    	"transport": "", // set to "ground" for parameter no airplane
+                    	"production": "",
+                    	"processing": "",
+                    	"conservation": "",
+              "gtin": "00012345678905" // please specify as available
+                	},
+        	{
+                    	"id": "0002076209",
+                    	"amount": "0.0233",
+                    	"unit": "gram",
+                    	"type": "recipes" // necessary !!
+        
+                	}
+        ]
+        }
         },
         {
-            "request-id": 2,
-            "transient": true,
-            "recipe": {
-                "kitchen-id": "198764",
-                "titles": [
-                    {
-                        "language": "de",
-                        "value": "Kürbisrisotto"
-                    }
-                ],
-                "instruction": "Den Karottenkuchen im Ofen backen und noch warm geniessen.",
-                "servings": 10,
-                "ingredients": [
-                    {  ...  }
-                ]
-          }
+        // This request represents a subrecipe of the previous.
+        // It needs to be part of the same POST request
+        "request-id": 2, 
+        	"transient": true,
+        "recipe": {
+        		"id": "0002076209",
+        	"recipe-portions": 1,
+        		"date": "2023-10-14",
+            	"kitchen-id": "recipe-components", // a separate kitchen to collect recipes that were not part of the menu plan
+            	"ingredients": [
+        		{
+                    	"id": "467",
+                    	"names": [
+                        	{
+                            	"language": "DE",
+                            	"value": "Quality Pfeffer weiss gemahlen 900g"
+                        	}
+                    	],
+                    	"amount": "0.0233",
+                    	"unit": "gram",
+                    	"origin": "",
+                    	"transport": "",
+                    	"production": "",
+                    	"processing": "",
+                    	"conservation": ""
+                	}
+        ]
         },
         {
             "request-id": 3,
@@ -1200,8 +1232,8 @@ The request-id differs from the recipe id and has just the lifetime of a single 
             "message": "",
             "request-id": 1,
             "recipe": {
-                "id": "d1ed2263-b1b2-4f50-9e9d-1324529",
-                "kitchen-id": "198764",
+                "id": "0002076208",
+                "kitchen-id": "C142",
                 "co2-value": 765,
                 "eaternity-award": false,
                 "rating": "B"
@@ -1212,6 +1244,7 @@ The request-id differs from the recipe id and has just the lifetime of a single 
             "message": "",
             "request-id": 2,
             "recipe": {
+                "id": "0002076209",
                 "kitchen-id": "198764",
                 "co2-value": 765,
                 "eaternity-award": false,
