@@ -1692,18 +1692,19 @@ There is no hard limit on the number of ingredients, but requests may time out a
 </div></div><hr class="split"><div class="middle"><div id="recipe-resources-batch-operations-on-recipe-resources" class="resource"><h3 class="resource-heading">Batch Operations on Recipe Resources <a href="#recipe-resources-batch-operations-on-recipe-resources" class="permalink">&para;</a></h3><p>The <code>full-resource</code> url parameter is supported here as well, but just for the whole request itself and not on single recipes. The transient parameter can be set selectively on single recipes inside the batch.</p>
 <p>The message in the response provides more details about the failure of individual recipes.
 Batch operations do not support an unlimited number of recipes. If a request fails repeatedly, please consider reducing the number of recipes submitted.</p>
-</div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://co2.eaternity.ch/api/</span>/recipes/batch</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[{
+</div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://co2.eaternity.ch/api/</span>/recipes/batch</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+{
     <span class="hljs-string">"request-id"</span>: <span class="hljs-number">1</span>, 
     <span class="hljs-string">"transient"</span>: <span class="hljs-literal">false</span>,
     <span class="hljs-string">"recipe"</span>: {
         <span class="hljs-string">"id"</span>: <span class="hljs-string">"0002076208"</span>, <span class="hljs-comment">// your unique ID!</span>
         <span class="hljs-string">"menu-line-id"</span>: <span class="hljs-number">19092</span>,
         <span class="hljs-string">"menu-line-name"</span>: <span class="hljs-string">"Hit Menu Lunch"</span>,
-    <span class="hljs-string">"recipe-portions"</span>: <span class="hljs-number">1</span>, <span class="hljs-comment">// as your recipe is defined</span>
-<span class="hljs-string">"sold-portions"</span>: <span class="hljs-number">202</span>,
+        <span class="hljs-string">"recipe-portions"</span>: <span class="hljs-number">1</span>, <span class="hljs-comment">// as your recipe is defined</span>
+        <span class="hljs-string">"sold-portions"</span>: <span class="hljs-number">202</span>,
         <span class="hljs-string">"production-portions"</span>: <span class="hljs-number">212</span>,
         <span class="hljs-string">"date"</span>: <span class="hljs-string">"2023-10-14"</span>,
-        <span class="hljs-string">"kitchen-id"</span>: <span class="hljs-string">"C142"</span>,<span class="hljs-comment">// your unique ID!</span>
+        <span class="hljs-string">"kitchen-id"</span>: <span class="hljs-string">"AC432"</span>, <span class="hljs-comment">// your unique ID!</span>
         <span class="hljs-string">"ingredients"</span>: [
         {
                 <span class="hljs-string">"id"</span>: <span class="hljs-string">"467"</span>, <span class="hljs-comment">// your unique ID!</span>
@@ -1720,9 +1721,9 @@ Batch operations do not support an unlimited number of recipes. If a request fai
                 <span class="hljs-string">"production"</span>: <span class="hljs-string">""</span>,
                 <span class="hljs-string">"processing"</span>: <span class="hljs-string">""</span>,
                 <span class="hljs-string">"conservation"</span>: <span class="hljs-string">""</span>,
-      <span class="hljs-string">"gtin"</span>: <span class="hljs-string">"00012345678905"</span> <span class="hljs-comment">// please specify as available</span>
+                <span class="hljs-string">"gtin"</span>: <span class="hljs-string">"00012345678905"</span> <span class="hljs-comment">// please specify as available</span>
             },
-    {
+            {
                 <span class="hljs-string">"id"</span>: <span class="hljs-string">"0002076209"</span>,
                 <span class="hljs-string">"amount"</span>: <span class="hljs-string">"0.0233"</span>,
                 <span class="hljs-string">"unit"</span>: <span class="hljs-string">"gram"</span>,
@@ -1737,9 +1738,9 @@ Batch operations do not support an unlimited number of recipes. If a request fai
 <span class="hljs-comment">// It needs to be part of the same POST request</span>
 <span class="hljs-string">"request-id"</span>: <span class="hljs-number">2</span>, 
     <span class="hljs-string">"transient"</span>: <span class="hljs-literal">true</span>,
-<span class="hljs-string">"recipe"</span>: {
+    <span class="hljs-string">"recipe"</span>: {
         <span class="hljs-string">"id"</span>: <span class="hljs-string">"0002076209"</span>,
-    <span class="hljs-string">"recipe-portions"</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-string">"recipe-portions"</span>: <span class="hljs-number">1</span>,
         <span class="hljs-string">"date"</span>: <span class="hljs-string">"2023-10-14"</span>,
         <span class="hljs-string">"kitchen-id"</span>: <span class="hljs-string">"recipe-components"</span>, <span class="hljs-comment">// a separate kitchen to collect recipes that were not part of the menu plan</span>
         <span class="hljs-string">"ingredients"</span>: [
