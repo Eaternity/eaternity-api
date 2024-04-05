@@ -252,7 +252,7 @@ There is no hard limit on the number of ingredients, but requests may time out a
 |:----------|:--------|:------------------|:----------|
 |id|string| your unique id of the ingredient|yes|
 |type|string|either *conceptual-ingredients* or *recipes*. *conceptual-ingredients* specifies a normal ingredient, *recipes* references to an already existing recipe. Default: *conceptual-ingredients*|no|
-|names|list of language object|full name of ingredient in different languages (array of language objects). Name in at least one language required.|yes|
+|names|list of language object|full name of ingredient in different languages (array of language objects). Name in at least one language for ingredients required. Only optional for recipes. |yes/no|
 |amount|float|amount of the ingredient in the specified unit|yes|
 |unit|string|unit of the given amount of the ingredient: *kg*, *gram* or *liter*, default: *gram*|no|
 |origin|string|origin of the ingredient: postal address or country |best practice|
