@@ -382,6 +382,10 @@ A list of kitchen ids of this client (one API Key) is returned.
         }
 
 ## Kitchen [/kitchens/{kitchen_id}]
+
++ Parameters
+    + kitchen_id (string, required) - the id of the kitchen.
+
 ### Get a kitchen [GET]
 Get the whole kitchen resource.
 
@@ -588,6 +592,8 @@ Create a recipe resource and receive the CO₂-Value and Eaternity Award. Exampl
 
 ## Recipe [/recipes/{id}?indicators=true]
 
++ Parameters
+    + id (string, required) - the id of the recipe.
 
 ### Get Recipe [GET]
 Get the up-to-date CO₂-Value (and other indicators) for this recipe for the current date
@@ -790,7 +796,11 @@ Deletes this recipe from the server
 + Response 204
 
 ## Kitchen Recipe Collection [/kitchens/{kitchen_id}/recipes]
+
 No recipe location needs to be provided.
+
++ Parameters
+    + kitchen_id (string, required) - the id of the kitchen.
 
 ### Create a recipe [POST]
 Create a recipe resource in a specific kitchen and receive the CO₂-Value and Eaternity Award
@@ -901,6 +911,10 @@ A list of recipe ids is returned.
         }
 
 ## Kitchen Recipe [/kitchens/{kitchen_id}/recipes/{recipe_id}]
+
++ Parameters
+    + kitchen_id (string, required) - the id of the kitchen.
+    + recipe_id (string, required) - the id of the recipe.
 
 ### Get Recipe [GET]
 Get the up-to-date CO₂-Value for this recipe for the current date
@@ -1308,6 +1322,10 @@ Supplies are ordered from and delivered by a specific supplier in the supply cha
 |indicators|dictionary|the vita and nutritional indicators described above|.|
 
 ## Supply Collection [/kitchens/{kitchen_id}/supplies/]
+
++ Parameters
+    + kitchen_id (string, required) - the id of the kitchen.
+
 ### Create a supply [POST]
 Create a supply without specifying an id. If the request is sent with `full-resource=true`, then a complete response will be given, the same as the response to the GET command below. The parameter `indicators=true` is also supported when `full-resource=true` is specified.
 
@@ -1377,6 +1395,11 @@ Get all supplies contained in this kitchen. A list of supply ids is returned.
 
 
 ## Supply [/kitchens/{kitchen_id}/supplies/{supply_id}?indicators=true]
+
++ Parameters
+    + kitchen_id (string, required) - the id of the kitchen.
+    + supply_id (string, required) - the id of the supply.
+
 ### Get a supply [GET]
 
 + Response 200 (application/json)
@@ -1631,6 +1654,9 @@ The Product resourcres are directed towards users that have limited information 
 
 ## Product Collection [/products/{id}]
 
++ Parameters
+    + id (string, required) - the id of the product.
+
 ### Create a product [PUT]
 Create or update a product.
 
@@ -1749,6 +1775,10 @@ An example API call to create a prognosis:
 `curl -i -X POST "https://co2.eaternity.ch/api/prognosis/YOURKITCHENID/forecast" --header "authorization: Basic YOURKEY" --header "accept: */*" --header "Content-Type: application/json" -d "{\"date-start\":\"2019-03-04\",\"date-end\":\"2019-03-08\",\"async\":true}"`
 
 ## Create a new forecast [/prognosis/{kitchen_id}/forecast]
+
++ Parameters
+    + kitchen_id (string, required) - the id of the kitchen.
+
 ### Create a forecast [POST]
 
 This post request will create a new forecast calculation for the kitchen.
@@ -1815,6 +1845,11 @@ Alternatively, if `async: true` is provided, the request returns directly a new 
 
 
 ## Forecast Results [/prognosis/{kitchen_id}/forecast/{prediction_id}]
+
++ Parameters
+    + kitchen_id (string, required) - the id of the kitchen.
+    + prediction_id (string, required) - the id of the prediction.
+
 ### Get a forecast [GET]
 This request retrieves the status (and if done the resulting predicted sales numbers) of a previously created forecast calculation.
 
@@ -1856,6 +1891,10 @@ This request retrieves the status (and if done the resulting predicted sales num
 
 
 ## Update portions [/prognosis/{kitchen_id}/portions]
+
++ Parameters
+    + kitchen_id (string, required) - the id of the kitchen.
+
 ### Update portions [POST]
 
 This post request updates the production-portions and sold-portions of multiple recipes.
