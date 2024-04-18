@@ -1511,134 +1511,136 @@ There is no hard limit on the number of ingredients, but requests may time out a
 </span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="recipe-resources-kitchen-recipe-collection-get" class="action get"><h4 class="action-heading"><div class="name">Get all recipes contained in this kitchen</div><a href="#recipe-resources-kitchen-recipe-collection-get" class="method get">GET</a><code class="uri">/kitchens/{kitchen_id}/recipes</code></h4><p>A list of recipe ids is returned.</p>
 <div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>kitchen_id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>the id of the kitchen.</p>
 </dd></dl></div></div></div><hr class="split"><div class="middle"><div id="recipe-resources-kitchen-recipe" class="resource"><h3 class="resource-heading">Kitchen Recipe <a href="#recipe-resources-kitchen-recipe" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://co2.eaternity.ch/api/</span>/kitchens/<span class="hljs-attribute" title="kitchen_id">kitchen_id</span>/recipes/<span class="hljs-attribute" title="recipe_id">recipe_id</span></span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-    <span class="hljs-string">"recipe"</span>: {
-        <span class="hljs-string">"id"</span>: <span class="hljs-string">"d1ed2263-b1b2-4f50-9e9d-ba62cae81f29"</span>,
-        <span class="hljs-string">"kitchen-id"</span>: <span class="hljs-string">"45674"</span>,
-        <span class="hljs-string">"co2-value"</span>: <span class="hljs-number">765</span>,
-        <span class="hljs-string">"info-text"</span>: <span class="hljs-string">"Two ingredient origins have been estimated."</span>,
-        <span class="hljs-string">"eaternity-award"</span>: <span class="hljs-literal">false</span>,
-        <span class="hljs-string">"rating"</span>: <span class="hljs-string">"B"</span>,
-        <span class="hljs-string">"titles"</span>: [
+    "<span class="hljs-attribute">recipe</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"d1ed2263-b1b2-4f50-9e9d-ba62cae81f29"</span></span>,
+        "<span class="hljs-attribute">kitchen-id</span>": <span class="hljs-value"><span class="hljs-string">"45674"</span></span>,
+        "<span class="hljs-attribute">co2-value</span>": <span class="hljs-value"><span class="hljs-number">765</span></span>,
+        "<span class="hljs-attribute">info-text</span>": <span class="hljs-value"><span class="hljs-string">"Two ingredient origins have been estimated."</span></span>,
+        "<span class="hljs-attribute">eaternity-award</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+        "<span class="hljs-attribute">rating</span>": <span class="hljs-value"><span class="hljs-string">"B"</span></span>,
+        "<span class="hljs-attribute">titles</span>": <span class="hljs-value">[
             {
-                <span class="hljs-string">"language"</span>: <span class="hljs-string">"de"</span>,
-                <span class="hljs-string">"value"</span>: <span class="hljs-string">"Kürbisrisotto"</span>
-            }],
-        <span class="hljs-string">"author"</span>: <span class="hljs-string">"Eckart Witzigmann"</span>,
-        <span class="hljs-string">"date"</span>: <span class="hljs-string">"2013-10-14"</span>,
-        <span class="hljs-string">"location"</span>: <span class="hljs-string">"Zürich Schweiz"</span>,
-        <span class="hljs-string">"servings"</span>: <span class="hljs-number">140</span>,
-        <span class="hljs-string">"instruction"</span>:<span class="hljs-string">"Bake the carrot cake in the oven and enjoy while still hot."</span>,
-            <span class="hljs-string">"indicators"</span>: {
-                <span class="hljs-string">"vita-score"</span>: {
-                    <span class="hljs-string">"vita-score-points"</span>: <span class="hljs-number">346</span>,
-                    <span class="hljs-string">"vita-score-rating"</span>: <span class="hljs-string">"B"</span>,
-                    <span class="hljs-string">"vita-score-award"</span>: <span class="hljs-literal">true</span>,
-                    <span class="hljs-string">"energy-kcals"</span>: <span class="hljs-number">457.0</span>,
-                    <span class="hljs-string">"nutrition-label"</span>: <span class="hljs-literal">true</span>
-                },
-                <span class="hljs-string">"environment"</span>: {
-                    <span class="hljs-string">"animal-treatment-label"</span>: <span class="hljs-literal">true</span>,
-                    <span class="hljs-string">"animal-treatment-rating"</span>: <span class="hljs-string">"A"</span>,
-                    <span class="hljs-string">"rainforest-label"</span>: <span class="hljs-literal">false</span>,
-                    <span class="hljs-string">"rainforest-rating"</span>: <span class="hljs-string">"E"</span>,
-                    <span class="hljs-string">"local-label"</span>: <span class="hljs-literal">true</span>,
-                    <span class="hljs-string">"local-rating"</span>: <span class="hljs-string">"A"</span>,
-                    <span class="hljs-string">"season-label"</span>: <span class="hljs-literal">true</span>,
-                    <span class="hljs-string">"season-rating"</span>: <span class="hljs-string">"A"</span>,
-                    <span class="hljs-string">"scarce-water-liters"</span>: <span class="hljs-number">6.0</span>,
-                    <span class="hljs-string">"water-footprint-rating"</span>: <span class="hljs-string">"C"</span>,
-                    <span class="hljs-string">"water-footprint-award"</span>: <span class="hljs-literal">true</span>
-                },
-                <span class="hljs-string">"foodUnit"</span>: <span class="hljs-number">41.0</span>
-            },
-        <span class="hljs-string">"ingredients"</span>: [
+                "<span class="hljs-attribute">language</span>": <span class="hljs-value"><span class="hljs-string">"de"</span></span>,
+                "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-string">"Kürbisrisotto"</span>
+            </span>}]</span>,
+        "<span class="hljs-attribute">author</span>": <span class="hljs-value"><span class="hljs-string">"Eckart Witzigmann"</span></span>,
+        "<span class="hljs-attribute">date</span>": <span class="hljs-value"><span class="hljs-string">"2013-10-14"</span></span>,
+        "<span class="hljs-attribute">location</span>": <span class="hljs-value"><span class="hljs-string">"Zürich Schweiz"</span></span>,
+        "<span class="hljs-attribute">servings</span>": <span class="hljs-value"><span class="hljs-number">140</span></span>,
+        "<span class="hljs-attribute">instruction</span>":<span class="hljs-value"><span class="hljs-string">"Bake the carrot cake in the oven and enjoy while still hot."</span></span>,
+            "<span class="hljs-attribute">indicators</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">vita-score</span>": <span class="hljs-value">{
+                    "<span class="hljs-attribute">vita-score-points</span>": <span class="hljs-value"><span class="hljs-number">346</span></span>,
+                    "<span class="hljs-attribute">vita-score-rating</span>": <span class="hljs-value"><span class="hljs-string">"B"</span></span>,
+                    "<span class="hljs-attribute">vita-score-award</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+                    "<span class="hljs-attribute">energy-kcals</span>": <span class="hljs-value"><span class="hljs-number">457.0</span></span>,
+                    "<span class="hljs-attribute">nutrition-label</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>}</span>,
+                "<span class="hljs-attribute">environment</span>": <span class="hljs-value">{
+                    "<span class="hljs-attribute">animal-treatment-label</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+                    "<span class="hljs-attribute">animal-treatment-rating</span>": <span class="hljs-value"><span class="hljs-string">"A"</span></span>,
+                    "<span class="hljs-attribute">rainforest-label</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+                    "<span class="hljs-attribute">rainforest-rating</span>": <span class="hljs-value"><span class="hljs-string">"E"</span></span>,
+                    "<span class="hljs-attribute">local-label</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+                    "<span class="hljs-attribute">local-rating</span>": <span class="hljs-value"><span class="hljs-string">"A"</span></span>,
+                    "<span class="hljs-attribute">season-label</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+                    "<span class="hljs-attribute">season-rating</span>": <span class="hljs-value"><span class="hljs-string">"A"</span></span>,
+                    "<span class="hljs-attribute">scarce-water-liters</span>": <span class="hljs-value"><span class="hljs-number">6.0</span></span>,
+                    "<span class="hljs-attribute">water-footprint-rating</span>": <span class="hljs-value"><span class="hljs-string">"C"</span></span>,
+                    "<span class="hljs-attribute">water-footprint-award</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                </span>}</span>,
+                "<span class="hljs-attribute">foodUnit</span>": <span class="hljs-value"><span class="hljs-number">41.0</span>
+            </span>}</span>,
+        "<span class="hljs-attribute">ingredients</span>": <span class="hljs-value">[
             {
-            <span class="hljs-string">"id"</span>: <span class="hljs-string">"100100191"</span>,
-            <span class="hljs-string">"type"</span>: <span class="hljs-string">"conceptual-ingredients"</span>,
-            <span class="hljs-string">"names"</span>:  [
-                {
-                    <span class="hljs-string">"language"</span>: <span class="hljs-string">"de"</span>,
-                    <span class="hljs-string">"value"</span>: <span class="hljs-string">"Tomaten"</span>
-                }],
-            <span class="hljs-string">"amount"</span>: <span class="hljs-number">150</span>,
-            <span class="hljs-string">"unit"</span>: <span class="hljs-string">"gram"</span>,
-            <span class="hljs-string">"origin"</span>: <span class="hljs-string">"spain"</span>,
-            <span class="hljs-string">"transport"</span>: <span class="hljs-string">"air"</span>,
-            <span class="hljs-string">"production"</span>: <span class="hljs-string">"greenhouse"</span>,
-            <span class="hljs-string">"processing"</span>: <span class="hljs-string">"raw"</span>,
-            <span class="hljs-string">"conservation"</span>: <span class="hljs-string">"fresh"</span>,
-            <span class="hljs-string">"packaging"</span>: <span class="hljs-string">"plastic"</span>
-            <span class="hljs-string">"rating"</span>: <span class="hljs-string">"b"</span>,
-            <span class="hljs-string">"bar-chart"</span>: <span class="hljs-number">27.56</span>,
-            <span class="hljs-string">"co2-value"</span>: <span class="hljs-number">74</span>,
-            <span class="hljs-string">"indicators"</span>: {
-                <span class="hljs-string">"vita-score"</span>: {
-                    <span class="hljs-string">"vita-score-points"</span>: <span class="hljs-number">346</span>,
-                    <span class="hljs-string">"vita-score-rating"</span>: <span class="hljs-string">"B"</span>,
-                    <span class="hljs-string">"vita-score-award"</span>: <span class="hljs-literal">true</span>,
-                    <span class="hljs-string">"energy-kcals"</span>: <span class="hljs-number">457.0</span>,
-                    <span class="hljs-string">"nutrition-label"</span>: <span class="hljs-literal">true</span>
-                },
-                <span class="hljs-string">"environment"</span>: {
-                    <span class="hljs-string">"animal-treatment-label"</span>: <span class="hljs-literal">true</span>,
-                    <span class="hljs-string">"animal-treatment-rating"</span>: <span class="hljs-string">"A"</span>,
-                    <span class="hljs-string">"rainforest-label"</span>: <span class="hljs-literal">false</span>,
-                    <span class="hljs-string">"rainforest-rating"</span>: <span class="hljs-string">"E"</span>,
-                    <span class="hljs-string">"local-label"</span>: <span class="hljs-literal">true</span>,
-                    <span class="hljs-string">"local-rating"</span>: <span class="hljs-string">"A"</span>,
-                    <span class="hljs-string">"season-label"</span>: <span class="hljs-literal">true</span>,
-                    <span class="hljs-string">"season-rating"</span>: <span class="hljs-string">"A"</span>,
-                    <span class="hljs-string">"scarce-water-liters"</span>: <span class="hljs-number">6.0</span>,
-                    <span class="hljs-string">"water-footprint-rating"</span>: <span class="hljs-string">"C"</span>,
-                    <span class="hljs-string">"water-footprint-award"</span>: <span class="hljs-literal">true</span>
-                },
-                <span class="hljs-string">"foodUnit"</span>: <span class="hljs-number">41.0</span>
-            },
+                "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"100100191"</span></span>,
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"conceptual-ingredients"</span></span>,
+                "<span class="hljs-attribute">names</span>":  <span class="hljs-value">[
+                    {
+                        "<span class="hljs-attribute">language</span>": <span class="hljs-value"><span class="hljs-string">"de"</span></span>,
+                        "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-string">"Tomaten"</span>
+                    </span>}]</span>,
+                "<span class="hljs-attribute">amount</span>": <span class="hljs-value"><span class="hljs-number">150</span></span>,
+                "<span class="hljs-attribute">unit</span>": <span class="hljs-value"><span class="hljs-string">"gram"</span></span>,
+                "<span class="hljs-attribute">origin</span>": <span class="hljs-value"><span class="hljs-string">"spain"</span></span>,
+                "<span class="hljs-attribute">transport</span>": <span class="hljs-value"><span class="hljs-string">"air"</span></span>,
+                "<span class="hljs-attribute">production</span>": <span class="hljs-value"><span class="hljs-string">"greenhouse"</span></span>,
+                "<span class="hljs-attribute">processing</span>": <span class="hljs-value"><span class="hljs-string">"raw"</span></span>,
+                "<span class="hljs-attribute">conservation</span>": <span class="hljs-value"><span class="hljs-string">"fresh"</span></span>,
+                "<span class="hljs-attribute">packaging</span>": <span class="hljs-value"><span class="hljs-string">"plastic"</span>
+                <span class="hljs-string">"rating"</span>: <span class="hljs-string">"b"</span></span>,
+                "<span class="hljs-attribute">bar-chart</span>": <span class="hljs-value"><span class="hljs-number">27.56</span></span>,
+                "<span class="hljs-attribute">co2-value</span>": <span class="hljs-value"><span class="hljs-number">74</span></span>,
+                "<span class="hljs-attribute">indicators</span>": <span class="hljs-value">{
+                    "<span class="hljs-attribute">vita-score</span>": <span class="hljs-value">{
+                        "<span class="hljs-attribute">vita-score-points</span>": <span class="hljs-value"><span class="hljs-number">346</span></span>,
+                        "<span class="hljs-attribute">vita-score-rating</span>": <span class="hljs-value"><span class="hljs-string">"B"</span></span>,
+                        "<span class="hljs-attribute">vita-score-award</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+                        "<span class="hljs-attribute">energy-kcals</span>": <span class="hljs-value"><span class="hljs-number">457.0</span></span>,
+                        "<span class="hljs-attribute">nutrition-label</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                    </span>}</span>,
+                    "<span class="hljs-attribute">environment</span>": <span class="hljs-value">{
+                        "<span class="hljs-attribute">animal-treatment-label</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+                        "<span class="hljs-attribute">animal-treatment-rating</span>": <span class="hljs-value"><span class="hljs-string">"A"</span></span>,
+                        "<span class="hljs-attribute">rainforest-label</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+                        "<span class="hljs-attribute">rainforest-rating</span>": <span class="hljs-value"><span class="hljs-string">"E"</span></span>,
+                        "<span class="hljs-attribute">local-label</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+                        "<span class="hljs-attribute">local-rating</span>": <span class="hljs-value"><span class="hljs-string">"A"</span></span>,
+                        "<span class="hljs-attribute">season-label</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+                        "<span class="hljs-attribute">season-rating</span>": <span class="hljs-value"><span class="hljs-string">"A"</span></span>,
+                        "<span class="hljs-attribute">scarce-water-liters</span>": <span class="hljs-value"><span class="hljs-number">6.0</span></span>,
+                        "<span class="hljs-attribute">water-footprint-rating</span>": <span class="hljs-value"><span class="hljs-string">"C"</span></span>,
+                        "<span class="hljs-attribute">water-footprint-award</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                    </span>}</span>,
+                    "<span class="hljs-attribute">foodUnit</span>": <span class="hljs-value"><span class="hljs-number">41.0</span>
+                </span>}
+            </span>},
             {
-            <span class="hljs-string">"id"</span>: <span class="hljs-string">"100100894"</span>,
-            <span class="hljs-string">"type"</span>: <span class="hljs-string">"conceptual-ingredients"</span>,
-            <span class="hljs-string">"names"</span>:  [
-                {
-                    <span class="hljs-string">"language"</span>: <span class="hljs-string">"de"</span>,
-                    <span class="hljs-string">"value"</span>: <span class="hljs-string">"Zwiebeln"</span>
-                }],
-            <span class="hljs-string">"amount"</span>: <span class="hljs-number">78</span>,
-            <span class="hljs-string">"unit"</span>: <span class="hljs-string">"gram"</span>,
-            <span class="hljs-string">"origin"</span>: <span class="hljs-string">"france"</span>,
-            <span class="hljs-string">"transport"</span>: <span class="hljs-string">"ground"</span>,
-            <span class="hljs-string">"production"</span>: <span class="hljs-string">"organic"</span>,
-            <span class="hljs-string">"processing"</span>: <span class="hljs-string">""</span>,
-            <span class="hljs-string">"conservation"</span>: <span class="hljs-string">"dried"</span>,
-            <span class="hljs-string">"packaging"</span>: <span class="hljs-string">""</span>,
-            <span class="hljs-string">"rating"</span>: <span class="hljs-string">"c"</span>,
-            <span class="hljs-string">"bar-chart"</span>: <span class="hljs-number">75.56</span>,
-            <span class="hljs-string">"co2-value"</span>: <span class="hljs-number">79</span>,
-            <span class="hljs-string">"indicators"</span>: {
-                <span class="hljs-string">"vita-score"</span>: {
-                    <span class="hljs-string">"vita-score-points"</span>: <span class="hljs-number">346</span>,
-                    <span class="hljs-string">"vita-score-rating"</span>: <span class="hljs-string">"B"</span>,
-                    <span class="hljs-string">"vita-score-award"</span>: <span class="hljs-literal">true</span>,
-                    <span class="hljs-string">"energy-kcals"</span>: <span class="hljs-number">457.0</span>,
-                    <span class="hljs-string">"nutrition-label"</span>: <span class="hljs-literal">true</span>
-                },
-                <span class="hljs-string">"environment"</span>: {
-                    <span class="hljs-string">"animal-treatment-label"</span>: <span class="hljs-literal">true</span>,
-                    <span class="hljs-string">"animal-treatment-rating"</span>: <span class="hljs-string">"A"</span>,
-                    <span class="hljs-string">"rainforest-label"</span>: <span class="hljs-literal">false</span>,
-                    <span class="hljs-string">"rainforest-rating"</span>: <span class="hljs-string">"E"</span>,
-                    <span class="hljs-string">"local-label"</span>: <span class="hljs-literal">true</span>,
-                    <span class="hljs-string">"local-rating"</span>: <span class="hljs-string">"A"</span>,
-                    <span class="hljs-string">"season-label"</span>: <span class="hljs-literal">true</span>,
-                    <span class="hljs-string">"season-rating"</span>: <span class="hljs-string">"A"</span>,
-                    <span class="hljs-string">"scarce-water-liters"</span>: <span class="hljs-number">6.0</span>,
-                    <span class="hljs-string">"water-footprint-rating"</span>: <span class="hljs-string">"C"</span>,
-                    <span class="hljs-string">"water-footprint-award"</span>: <span class="hljs-literal">true</span>
-                },
-                <span class="hljs-string">"foodUnit"</span>: <span class="hljs-number">41.0</span>
-            }
+                "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"100100894"</span></span>,
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"conceptual-ingredients"</span></span>,
+                "<span class="hljs-attribute">names</span>":  <span class="hljs-value">[
+                    {
+                        "<span class="hljs-attribute">language</span>": <span class="hljs-value"><span class="hljs-string">"de"</span></span>,
+                        "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-string">"Zwiebeln"</span>
+                    </span>}]</span>,
+                "<span class="hljs-attribute">amount</span>": <span class="hljs-value"><span class="hljs-number">78</span></span>,
+                "<span class="hljs-attribute">unit</span>": <span class="hljs-value"><span class="hljs-string">"gram"</span></span>,
+                "<span class="hljs-attribute">origin</span>": <span class="hljs-value"><span class="hljs-string">"france"</span></span>,
+                "<span class="hljs-attribute">transport</span>": <span class="hljs-value"><span class="hljs-string">"ground"</span></span>,
+                "<span class="hljs-attribute">production</span>": <span class="hljs-value"><span class="hljs-string">"organic"</span></span>,
+                "<span class="hljs-attribute">processing</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
+                "<span class="hljs-attribute">conservation</span>": <span class="hljs-value"><span class="hljs-string">"dried"</span></span>,
+                "<span class="hljs-attribute">packaging</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
+                "<span class="hljs-attribute">rating</span>": <span class="hljs-value"><span class="hljs-string">"c"</span></span>,
+                "<span class="hljs-attribute">bar-chart</span>": <span class="hljs-value"><span class="hljs-number">75.56</span></span>,
+                "<span class="hljs-attribute">co2-value</span>": <span class="hljs-value"><span class="hljs-number">79</span></span>,
+                "<span class="hljs-attribute">indicators</span>": <span class="hljs-value">{
+                    "<span class="hljs-attribute">vita-score</span>": <span class="hljs-value">{
+                        "<span class="hljs-attribute">vita-score-points</span>": <span class="hljs-value"><span class="hljs-number">346</span></span>,
+                        "<span class="hljs-attribute">vita-score-rating</span>": <span class="hljs-value"><span class="hljs-string">"B"</span></span>,
+                        "<span class="hljs-attribute">vita-score-award</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+                        "<span class="hljs-attribute">energy-kcals</span>": <span class="hljs-value"><span class="hljs-number">457.0</span></span>,
+                        "<span class="hljs-attribute">nutrition-label</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                    </span>}</span>,
+                    "<span class="hljs-attribute">environment</span>": <span class="hljs-value">{
+                        "<span class="hljs-attribute">animal-treatment-label</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+                        "<span class="hljs-attribute">animal-treatment-rating</span>": <span class="hljs-value"><span class="hljs-string">"A"</span></span>,
+                        "<span class="hljs-attribute">rainforest-label</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+                        "<span class="hljs-attribute">rainforest-rating</span>": <span class="hljs-value"><span class="hljs-string">"E"</span></span>,
+                        "<span class="hljs-attribute">local-label</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+                        "<span class="hljs-attribute">local-rating</span>": <span class="hljs-value"><span class="hljs-string">"A"</span></span>,
+                        "<span class="hljs-attribute">season-label</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+                        "<span class="hljs-attribute">season-rating</span>": <span class="hljs-value"><span class="hljs-string">"A"</span></span>,
+                        "<span class="hljs-attribute">scarce-water-liters</span>": <span class="hljs-value"><span class="hljs-number">6.0</span></span>,
+                        "<span class="hljs-attribute">water-footprint-rating</span>": <span class="hljs-value"><span class="hljs-string">"C"</span></span>,
+                        "<span class="hljs-attribute">water-footprint-award</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+                    </span>}</span>,
+                    "<span class="hljs-attribute">foodUnit</span>": <span class="hljs-value"><span class="hljs-number">41.0</span>
+                </span>}
+            </span>}
         ]
-    }
-}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="recipe-resources-kitchen-recipe-get" class="action get"><h4 class="action-heading"><div class="name">Get Recipe</div><a href="#recipe-resources-kitchen-recipe-get" class="method get">GET</a><code class="uri">/kitchens/{kitchen_id}/recipes/{recipe_id}</code></h4><p>Get the up-to-date CO₂-Value for this recipe for the current date</p>
+    </span>}
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="recipe-resources-kitchen-recipe-get" class="action get"><h4 class="action-heading"><div class="name">Get Recipe</div><a href="#recipe-resources-kitchen-recipe-get" class="method get">GET</a><code class="uri">/kitchens/{kitchen_id}/recipes/{recipe_id}</code></h4><p>Get the up-to-date CO₂-Value for this recipe for the current date</p>
 <div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>kitchen_id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>the id of the kitchen.</p>
 </dd><dt>recipe_id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>the id of the recipe.</p>
 </dd></dl></div></div></div><hr class="split"><div class="right"><div class="definition"><span class="method put">PUT</span>&nbsp;<span class="uri"><span class="hostname">https://co2.eaternity.ch/api/</span>/kitchens/<span class="hljs-attribute" title="kitchen_id">kitchen_id</span>/recipes/<span class="hljs-attribute" title="recipe_id">recipe_id</span></span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
