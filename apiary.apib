@@ -413,6 +413,23 @@ Update or create the kitchen with the specific id
             }
         }
 
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: https://co2.eaternity.ch/api/kitchens/198764
+
+    + Body
+
+            {   "kitchen": {
+                    "id": "198764",
+                    "name": "police canteen",
+                    "location": "zurich, switzerland",
+                    "email": "test@example.com",
+                    "language": "en"
+                }
+            }
+
 + Response 201 (application/json)
 
     + Headers
