@@ -271,6 +271,7 @@ There is no hard limit on the number of ingredients, but requests may time out a
 |co2-value|int|the absolute value of CO₂e emissions for the ingredient in [g] for the specified amount of ingredient||
 |co2-value-improvement-percentage|float|Comparison of this recipes's co2 footprint per food unit to the average||
 |co2-value-reduction-value|float|The amount of gramm CO₂ saved by serving this recipe instead of serving the amount of an average product that provides the same nutritional value (g)||
+|foodUnit|float|The nutrional value of this product for the given amount||
 |indicators|dictionary|the vita and nutritional indicators described above||
 
 The parameters of the properties origin, transport, production, processing, conservation and packaging cannot be set to multiple values.
@@ -487,6 +488,7 @@ Information on any made estimations (as well as other comments) are given in the
 |co2-value-improvement-percentage|float|Comparison of this recipes's co2 footprint per food unit to the average||
 |co2-value-reduction-value|float|The amount of gramm CO₂ saved by serving this recipe instead of serving the amount of an average product that provides the same nutritional value (g)||
 |info-text| string | notes on the calculated recipe CO₂-value, e.g. remarks when properties like origin or transport are estimated||
+|food-unit| float | The food unit of the recipe. ||
 |eaternity-award|boolean|true if the CO₂-Value of the recipe is climate friendly, false otherwise | |
 |rating|string|the CO₂-recipe rating [A,B,C,D,E]. A is best, E is worst.| .|
 |indicators|dictionary|the vita and nutritional indicators described above|.|
@@ -812,12 +814,14 @@ Deletes this recipe from the server
 
 + Response 204
 
-## Kitchen Recipe Collection [/kitchens/{kitchen_id}/recipes]
+## Kitchen Recipe Collection [/kitchens/{kitchen_id}/recipes{?indicators}]
 
 No recipe location needs to be provided.
 
 + Parameters
     + kitchen_id (string, required) - the id of the kitchen.
+    + indicators (boolean, optional) - Specifies wether the JSON answer will contain the additional indicator field
+        + Default: false
 
 ### Create a recipe [POST]
 Create a recipe resource in a specific kitchen and receive the CO₂-Value and Eaternity Award
@@ -834,7 +838,7 @@ Create a recipe resource in a specific kitchen and receive the CO₂-Value and E
                 "author": "Eckart Witzigmann",
                 "date": "2013-10-14",
                 "location": "Zürich Schweiz",
-                "servings": 140,
+                "recipe-portions": 140,
                 "instruction":"Den Karottenkuchen im Ofen backen und noch warm geniessen.",
                 "ingredients": [
                     {
@@ -890,34 +894,23 @@ ed
                 "recipe-id": "d1ed2263-b1b2-4f50-9e9d-ba62cae81f29",
                 "recipe": {
                     "id": "d1ed2263-b1b2-4f50-9e9d-ba62cae81f29",
+                    "titles": [
+                        {
+                            "language": "de",
+                            "value": "Kürbisrisotto"
+                        }
+                    ],
+                    "author": "Eckart Witzigmann",
+                    "date": "2013-10-14",
                     "kitchen-id": "45674",
                     "co2-value": 765,
                     "info-text": "Two ingredient origins have been estimated.",
                     "eaternity-award": false,
                     "rating": "B",
-                    "indicators": {
-                        "vita-score": {
-                            "vita-score-points": 346,
-                            "vita-score-rating": "B",
-                            "vita-score-award": true,
-                            "energy-kcals": 457,
-                            "nutrition-label": true
-                        },
-                        "environment": {
-                            "animal-treatment-label": true,
-                            "animal-treatment-rating": "A",
-                            "rainforest-label": false,
-                            "rainforest-rating": "E",
-                            "local-label": true,
-                            "local-rating": "A",
-                            "season-label": true,
-                            "season-rating": "A",
-                            "scarce-water-liters": 6,
-                            "water-footprint-rating": "C",
-                            "water-footprint-award": true
-                        },
-                        "foodUnit": 41.0
-                    }
+                    "food-unit": 0.88,
+                    "servings": 140,
+                    "recipe-portions": 140,
+                    "instruction": "Den Karottenkuchen im Ofen backen und noch warm geniessen."
                 }
             }
 
