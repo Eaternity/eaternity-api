@@ -175,15 +175,14 @@ Make sure to that you are using the flag `transient=true` for the sub-recipes in
 
 | Parameters | Type  | Description      |
 |:----------|:--------|:------------------|
-|transient|boolean|Resources with the transient=true flag will not be saved. This is important as we do not want to include all of your recipes in our monthly summary. For example if you submit a sub-recipe, to check its co2-value, it should not be included in the statistics.|
+|transient|boolean|Recipes with this flag set to `true` will be excluded from reports and statistics. Make sure to use this flag properly to keep reports meaningful.|
 |full-resource|boolean|Specifies whether our JSON answer will contain all fields (except the additional indicators) or a short answer. Default: false. Works recipes and supplies. This helps to save bandwidth for slow connections.|
 |indicators|boolean|Specifies wether the JSON answer will contain the additional indicator fields. Default: false. Works for recipes, ingredients, and supplies. This helps to save bandwidth for slow connections and the response is generally faster.|
-|test|string|Only for testing purposes. Values: *random* or empty. If test=random is set, all ingredients will be randomly linked to life cycle assessments (the results will be wrong!), no `601` error will occur and all the calculation results are incorrect. We provide this functionality so that api clients can test receiving a complete response. By default we need to put in manual labor to have it give back correct values, which takes time. Every ingredient has to be linked to a corresponding data field in our database, for any environmental values to be calculated. |
 
 
 ## Batch Operations on Recipe Resources [/recipes/batch]
 
-Batch operations allow you to create, update or delete multiple recipes at once. They are the most efficient way to work with the Eaternity API. The batch operations can check consistency in between recieps that depend on each other. For example, if you have a recipe with a sub-recipe, the batch operation will check if the sub-recipe is already in the database and will return an error if it is not. This is not possible with single requests.
+Batch operations allow you to create, update or delete multiple recipes at once. They are the most efficient way to work with the Eaternity API. The batch operations can check consistency in between recipes that depend on each other. For example, if you have a recipe with a sub-recipe, the batch operation will check if the sub-recipe is already in the database and will return an error if it is not. This is not possible with single requests.
  Batch operations are limited by the computational resources required for the calculations. We recommend a maximum of 100 recipes per request but the limit is not fixed. The server will return an error if the request is too large. The batch operations are not atomic, meaning that if one recipe fails, the others may still be processed. The response will contain the status of each recipe in the batch.
 
 The `full-resource` url parameter is supported. The transient parameter can be set selectively per recipe inside the batch.
@@ -332,7 +331,15 @@ The request-id differs from the recipe id and has just the lifetime of a single 
         }
         ]
 
+
 ## Recipes [/recipes]
+
+### URL Parameters
+
+
+| Parameters | Type  | Description      |
+|:----------|:--------|:------------------|
+|transient|boolean|Resources with the transient=true flag will not be saved. This is important as we do not want to include all of your recipes in our monthly summary. For example if you submit a sub-recipe, to check its co2-value, it should not be included in the statistics.|
 ### Create a recipe [POST]
 Create a recipe resource and receive the CO₂-Value and Eaternity Award. Example of a full request with all fields used:
 
