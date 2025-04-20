@@ -164,8 +164,10 @@ Your business runs Kitchen A and Kitchen B. On the 1st of April, both kitchens o
 
 ### Sub-Recipes
 In the examples above, all individual recipes may contain the identical sub-recipe pumpkin risotto as an ingredient, having the same id each time.
-The sub-recipe pumpkin risotto will be stored only once in the database, using the flag `transient=true` in the batch request. The sub-recipe on its own will then not be included in the monthly summary.
+The sub-recipe pumpkin risotto will be stored only once in the database.
 The drawback of reusing the id is that you will not be able to change the composition idividually without impacting all usages of the sub-recipe. So consider using individual ids for sub-recipes as well.
+
+Make sure to that you are using the flag `transient=true` for the sub-recipes in any case. The sub-recipe on its own will then not be included in the monthly summary.
 
 
 ### URL Parameters
