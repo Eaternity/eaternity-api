@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: https://co2.eaternity.ch/api/
+HOST: https://co2.eaternity.ch/api
 
 # Eaternity Database (EDB) API
 The Eaternity Database API is a Web Service that calculates the Climate Score (CO₂eq), the Vita Score and other environmental footprints of recipes, restaurants and ingredients dynamically. It includes daily changing information on origin,
@@ -20,96 +20,6 @@ To access the API, use **Basic Authentication** with your API key as the usernam
     ```
 
 Join us on Slack [here](https://eaternity-edb-api-slack-invite.herokuapp.com) to get in touch with our developers.
-
-
-
-
-## Ingredient Properties
-
-Each request for Recipes or Supplies contains a list of Ingredients. Each Ingredient requires at least an `id`, `name` and an `amount` but may contain additional specifications.
-Ingredients with the same id are shared between all of your Recipes as well as Supplies.
-There is no hard limit on the number of ingredients, but requests may time out and fail in the range of more than 25 ingredients, especially in combination with batch requests.
-
-| Property | Type  | Description    | Required |
-|:----------|:--------|:------------------|:----------|
-|id|string| your unique id of the ingredient|yes|
-|type|string|either *conceptual-ingredients* or *recipes*. *conceptual-ingredients* specifies a normal ingredient, *recipes* references to an already existing recipe. Default: *conceptual-ingredients*|no|
-|names|list of language object|full name of ingredient in different languages (array of language objects). Name in at least one language for ingredients required. Only optional for recipes. |yes/no|
-|amount|float|amount of the ingredient in the specified unit|yes|
-|unit|string|unit of the given amount of the ingredient: *kg*, *gram* or *liter*, default: *gram*|no|
-|origin|string|origin of the ingredient: postal address or country |best practice|
-|transport|string|means of transport from ”origin” to ”location” of recipe or kitchen. Values: *air* or *ground*|best practice|
-|production|string|production of the base material. Values: *standard*, *greenhouse*, *organic*, *fair-trade*, *farm* (fishes and game animals only), *wild-caught* (fishes and game animals only), *sustainable-fish*. |best practice|
-|producer|string|the producer or brand of the product. Especially important for combined products (products with multiple ingredients)|best practice|
-|processing| string| processing and convenience. Values: *raw*. Meat and Fish: *unboned* or *boned*. Fish: *skinned*, *beheaded*, *fillet*. Vegetables and Fruits: *cut*, *boiled*, *peeled*. |no|
-|conservation| string| conservation for longer storage life. Values: *fresh* or *frozen* or *dried* or *conserved* or *canned* or *boiled-down* |best practice|
-|packaging| string| how the product is packaged. Values:  *none*, *plastic*, *paper*, *pet*, *tin*, *alu*, *glas*, *cardboard*, *tetra* |no|
-|ingredients-declaration|string|List of ingredients as declared for packaged foods. E.g.: "Hähnchenbrustfilet (53 %), Panade (28%) (Weizenmehl, Wasser, modifizierte Weizen-stärke, Weizenstärke, Speisesalz, Gewürze, Hefe), Wasser, Putenformfleisch-schinken aus Putenfleischteilen zusammengefügt (7 %) (Putenkeulenfleisch, Nitritpökelsalz (Kochsalz, Konservierungsstoff: E 250), Maltodextrin, Dextrose, Gewürzextrakte, Stabilisator: E450), Käse (7 %), Kartoffelstärke, Stabilisator: modifizierte Stärke, Salz), Speisesalz, Stärke, Maltodextrin, Milcheiweiß, Pflanzeneiweiß, Dextrose, Zucker, Gewürzextrakte, Geschmacksverstärker: E 620"|no|
-|nutrient-values|object|Object of the nutrients values per defined nutrient as defined below.|no|
-|gtin|string|global trade item number: [www.gtin.info](http://www.gtin.info/)|no|
-|**201 (application/json)**| | | |
-|rating|string|the CO₂-ingredient rating [A,B,C,D,E]. A is best, E is worst.||
-|bar-chart|float|to generate a bar chart for all ingredients of a recipe. How much this ingredient contributes to the total CO₂-value of the recipe in percent (0.00% - 100.00%)||
-|co2-value|int|the absolute value of CO₂e emissions for the ingredient in [g] for the specified amount of ingredient||
-|co2-value-improvement-percentage|float|Comparison of this recipes's co2 footprint per food unit to the average||
-|co2-value-reduction-value|float|The amount of gramm CO₂ saved by serving this recipe instead of serving the amount of an average product that provides the same nutritional value (g)||
-|indicators|dictionary|the vita and nutritional indicators described above||
-
-The parameters of the properties origin, transport, production, processing, conservation and packaging cannot be set to multiple values.
-
-Providing more properties will result in more accurate values. More options will be added over time. Estimations are made for missing properties.
-
-## Nutrient Values
-
-Each request for a Ingredient may contains a list of Nutrients. Each Nutrient requires at least an `amount`.
-
-
-| Property              | Type    | Unit    | Description                                       | Required |
-|:----------------------|:--------|:--------|:----------                                        |:---------|
-|energy-kcal            |float    | Kcal    | Der Brennwert (Energie) in Kilo-Kalorien pro 100g |no|
-|energy-kjoule          |float    | KJoule  | Der Brennwert (Energie) in Kilo-Joule pro 100g    |no|
-|fat-gram               |float    | Fett (g) | Der Gesamtfettgehalt in Gramm pro 100g            |no|
-|saturated-fat-gram     |float    | gesättigte Fettsäure (g)  | Der Gehalt an gesättigten Fettsäuren in Gramm pro 100g    |no|
-|carbohydrates-gram     |float    | Kohlehydrate (g)  | Der Gehalt an Kohlenhydraten in Gramm pro 100g    |no|
-|sucrose-gram           |float    | Zucker (g)  | Der Gesamtzucker-Gehalt in Gramm pro 100g (alle Mono- und Disaccaride, ausgenommen mehrwertige Alkohole)    |no|
-|protein-gram           |float    | Eiweiß (g)  | Der Eiweißgehalt in Gramm pro 100g    |no|
-|sodium-chloride-gram   |float    | Salz (g)  |Der Salzgehalt in Gramm pro 100g (lt. LMIV Anhang I "Salz" = berechneter Gehalt an Salzäquivalent: Salz = Natrium x 2,5)    |no|
-|monounsaturated-fat-milligram |float    | einfach ungesättigte Fettsäure (mg)  | Der Gehalt an einfach ungesättigten Fettsäuren in Milligramm pro 100g    |no|
-|polyunsaturated-fat-milligram |float    | mehrfach ungesättigte Fettsäure (mg)  | Der Gehalt an mehrfach ungesättigten Fettsäuren in Milligramm pro 100g    |no|
-|cholesterol-milligram  |float    | Cholesterin (mg)  | Der Cholesteringehalt in Milligramm pro 100g    |no|
-|fibers-gram            |float    | Ballaststoffe (g)  | Der Ballaststoffgehalt in Gramm pro 100g   |no|
-|water-gram             |float    | Wasser (g)  | Der Wassergehalt in Gramm pro 100g   |no|
-|vitamine-a1-microgram       |float    | Vitamin A (μg)  | Der Vitamin A-Gehalt (Retinoläquivalent) in Mikrogramm pro 100g    |no|
-|vitamine-b1-microgram       |float    | Vitamin B1 (μg)  | Der Vitamin B1-Gehalt (Thiamin) in Mikrogramm pro 100g    |no|
-|vitamine-b2-microgram       |float    | Vitamin B2 (μg)  | Der Vitamin B2-Gehalt (Riboflavin) in Mikrogramm pro 100g    |no|
-|vitamine-b6-microgram       |float    | Vitamin B6 (μg)  | Der Vitamin B6-Gehalt (Pyridoxin) in Mikrogramm pro 100g   |no|
-|vitamine-b12-microgram      |float    | Vitamin B12 (μg)  | Der Vitamin B12-Gehalt (Cobalamin) in Mikrogramm pro 100g    |no|
-|vitamine-c-milligram        |float    | Vitamin C (mg)  | Der Vitamin C-Gehalt (Ascorbinsäure) in Milligramm pro 100g    |no|
-|vitamine-d-microgram        |float    | Vitamin D (μg)  | Der Vitamin D-Gehalt (Calciol) in Mikrogramm pro 100g    |no|
-|vitamine-e-microgram        |float    | Vitamin E (μg)  | Der Vitamin E-Gehalt (Tocopherol) in Mikrogramm pro 100g    |no|
-|vitamine-h-microgram        |float    | Vitamin H (μg)  | Der Vitamin H-Gehalt (Biotin) in Mikrogramm pro 100g    |no|
-|vitamine-k-microgram        |float    | Vitamin K (μg)  | Der Vitamin K-Gehalt in Mikrogramm pro 100g    |no|
-|beta-carotene-milligram  |float    | BetaCarotin (mg)  | Der Beta-Carotin-Gehalt in Milligramm pro 100g    |no|
-|niacin-milligram       |float    | Niacin (mg)  | Der Vitamin B3-Gehalt (Niacinäquivalent) in Milligramm pro 100g    |no|
-|pantohen-milligram     |float    | Pantothen-säure (mg)  | Der Pantothensäure-Gehalt (Vitamin B5) in Milligramm pro 100g    |no|
-|folic-acid-microgram   |float    | Folsäure (μg)  | Der Folsäure-Gehalt in Mikrogramm pro 100g    |no|
-|sodium-milligram       |float    | Natrium (mg)  | Der Natriumgehalt in Milligramm pro 100g    |no|
-|potassium-milligram    |float    | Kalium (mg)  | Der Kaliumgehalt in Milligramm pro 100g    |no|
-|chlorine-milligram     |float    | Chlor (mg)  | Der Chlorgehalt in Milligramm pro 100g    |no|
-|calcium-milligram      |float    | Calcium (mg)  | Der Calciumgehalt in Milligramm pro 100g    |no|
-|magnesium-milligram    |float    | Magnesium (mg)  | Der Magnesiumgehalt in Milligramm pro 100g    |no|
-|phosphorus-milligram   |float    | Phosphor (mg)  | Der Phosphorgehalt in Milligramm pro 100g    |no|
-|iron-milligram         |float    | Eisen (mg)  | Der Eisengehalt in Milligramm pro 100g    |no|
-|zinc-microgram         |float    | Zink (μg)  | Der Zinkgehalt in Mikrogramm pro 100g    |no|
-|copper-microgram       |float    | Kupfer (μg)  | Der Kupfergehalt in Mikrogramm pro 100g    |no|
-|manganese-microgram    |float    | Mangan (μg)  | Der Mangangehalt in Mikrogramm pro 100g    |no|
-|flouride-microgram     |float    | Fluoride (μg)  | Der Fluoridgehalt in Mikrogramm pro 100g    |no|
-|iodine-microgram       |float    | Jod (μg)  | Der Jodgehalt in Mikrogramm pro 100g    |no|
-|purine-milligram       |float    | Purine (mg)  | Der Puringehalt in Milligramm pro 100g    |no|
-|uric-acid-milligram     |float    | Harnsäure (mg)  | Der Harnsäuregehalt in Milligramm pro 100g    |no|
-|alcohol-volume-percent       |float    | Alkoholgehalt (% vol)  | Laut LMIV Art. 9 (1k) muss der Alkoholgehalt in Volumenprozent (% vol) angegeben werden, sobald er 1,2 %vol überschreitet.    |no|
-
-
 
 # Group Kitchen Resources
 A kitchen is a place with cooking, food processing and storage devices where food is prepared, processed and stored. It has its own supply and purchase management and a well defined location.
@@ -239,11 +149,24 @@ Deletes this kitchen from the server
 
 # Group Recipe Resources
 
-The CO₂-values are given in **g CO₂e** for the recipe resource.
+A recipe is a collection of ingredients, instructions and other information that describes how a food item sold in a restaurant is composed. It is the basis for the calculation of the CO₂-value and other indicators. The recipe resource contains all information about the recipe, including the ingredients, instructions, and other metadata.
 
-Provide the parameter `transient=true` in the URL if the recipe should not be considered for later statistics and reports. The resource will only be temporarily stored on our servers, no id is returned (Defaults to false).
+### Uniqueness of Recipes
+Note that for every time, a recipe is offered in a kitchen, a new id has to be used.
 
-Information on any made estimations (as well as other comments) are given in the `info-text` property of the recipe. Please display this information next to the CO₂-value in your interface.
+_Example 1:_
+
+Your business runs Kitchen A and Kitchen B. On the 1st of April, both kitchens offer pumpkin risotto, using the same ingredients. You will have to create *two* different recipes with *two* different ids.
+
+_Example 2_:
+
+Your business runs Kitchen A and Kitchen B. On the 1st of April, both kitchens offer pumpkin risotto. On the 2nd of April, Kitchen A offers pumpkin risotto again. You will have to create *three* different recipes with *three* different ids.
+
+### Sub-Recipes
+In the examples above, all individual recipes may contain the identical sub-recipe pumpkin risotto as an ingredient, having the same id each time.
+The sub-recipe pumpkin risotto will be stored only once in the database, using the flag `transient=true` in the batch request. The sub-recipe on its own will then not be included in the monthly summary.
+The drawback of reusing the id is that you will not be able to change the composition idividually without impacting all usages of the sub-recipe. So consider using individual ids for sub-recipes as well.
+
 
 ### URL Parameters
 
@@ -255,48 +178,159 @@ Information on any made estimations (as well as other comments) are given in the
 |indicators|boolean|Specifies wether the JSON answer will contain the additional indicator fields. Default: false. Works for recipes, ingredients, and supplies. This helps to save bandwidth for slow connections and the response is generally faster.|
 |test|string|Only for testing purposes. Values: *random* or empty. If test=random is set, all ingredients will be randomly linked to life cycle assessments (the results will be wrong!), no `601` error will occur and all the calculation results are incorrect. We provide this functionality so that api clients can test receiving a complete response. By default we need to put in manual labor to have it give back correct values, which takes time. Every ingredient has to be linked to a corresponding data field in our database, for any environmental values to be calculated. |
 
-### URL Parameters
+
+## Batch Operations on Recipe Resources [/recipes/batch]
+
+Batch operations allow you to create, update or delete multiple recipes at once. They are the most efficient way to work with the Eaternity API. The batch operations can check consistency in between recieps that depend on each other. For example, if you have a recipe with a sub-recipe, the batch operation will check if the sub-recipe is already in the database and will return an error if it is not. This is not possible with single requests.
+ Batch operations are limited by the computational resources required for the calculations. We recommend a maximum of 100 recipes per request but the limit is not fixed. The server will return an error if the request is too large. The batch operations are not atomic, meaning that if one recipe fails, the others may still be processed. The response will contain the status of each recipe in the batch.
+
+The `full-resource` url parameter is supported. The transient parameter can be set selectively per recipe inside the batch.
+
+The message in the response provides more details about the failure of individual recipes.
+
+### Create or update a batch of recipes [POST]
+Create or update a batch of recipes at once. If a recipe id is provided, the recipe is either created with this id or the existing recipe is overwritten. The status code tells the difference.
+
+The `kitchen-id` may be used to store the recipe into a specific kitchen.
+
+The additional integer `request-id` field enables you to track back the recipes you sent in case you don't want to use your own id's. Either a request id or a recipe id is required.
+The request-id differs from the recipe id and has just the lifetime of a single request (not stored on Eaternity's end).
+
++ Request (application/json)
+
+        [
+        {
+            "request-id": 1,
+            "transient": false,
+            "recipe": {
+                "kitchen-id": "198764",
+                "titles": [
+                    {
+                        "language": "de",
+                        "value": "Kürbisrisotto"
+                    }
+                ],
+                "instructions": [
+                        {
+                            "language": "de",
+                            "value": "Den Karottenkuchen im Ofen backen und noch warm geniessen."
+                        }],
+                "servings": 10,
+                "ingredients": [
+                    {  ...  }
+                ]
+          }
+        },
+        {
+            "request-id": 2,
+            "transient": true,
+            "recipe": {
+                "kitchen-id": "198764",
+                "titles": [
+                    {
+                        "language": "de",
+                        "value": "Kürbisrisotto"
+                    }
+                ],
+                "instructions": [
+                        {
+                            "language": "de",
+                            "value": "Den Karottenkuchen im Ofen backen und noch warm geniessen."
+                        }],
+                "servings": 10,
+                "ingredients": [
+                    {  ...  }
+                ]
+          }
+        },
+        {
+            "request-id": 3,
+            "transient": false,
+            "recipe": {
+                "id": "d1ed2263-b1b2-4f50-9e9d-ba62cae81f29",
+                "kitchen-id": "112233",
+                "titles": [
+                    {
+                        "language": "de",
+                        "value": "Kürbisrisotto"
+                    }
+                ],
+                "instructions": [
+                        {
+                            "language": "de",
+                            "value": "Den Karottenkuchen im Ofen backen und noch warm geniessen."
+                        }],
+                "servings": 10,
+                "ingredients": [
+                    {  ...  }
+                ]
+          }
+        }
+        ]
+
++ Response 200 (application/json)
+
+        [
+        {
+            "statuscode": 200,
+            "message": "",
+            "request-id": 1,
+            "recipe": {
+                "id": "d1ed2263-b1b2-4f50-9e9d-1324529",
+                "kitchen-id": "198764",
+                "co2-value": 765,
+                "eaternity-award": false,
+                "rating": "B"
+            }
+        },
+        {
+            "statuscode": 200,
+            "message": "",
+            "request-id": 2,
+            "recipe": {
+                "kitchen-id": "198764",
+                "co2-value": 765,
+                "eaternity-award": false,
+                "rating": "B"
+            }
+        },
+        {
+            "statuscode": 601,
+            "message": "The ingredient 384767656 is not yet matched. Retry next day.",
+            "request-id": 3
+        }
+        ]
 
 
-| Parameters | Type  | Description      |
-|:----------|:--------|:------------------|
-|transient|boolean|Resources with the transient=true flag will not be saved. This is important as we do not want to include all of your recipes in our monthly summary. For example if you submit a sub-recipe, to check its co2-value, it should not be included in the statistics.|
-|full-resource|boolean|Specifies whether our JSON answer will contain all fields (except the additional indicators) or a short answer. Default: false. Works recipes and supplies. This helps to save bandwidth for slow connections.|
-|indicators|boolean|Specifies wether the JSON answer will contain the additional indicator fields. Default: false. Works for recipes, ingredients, and supplies. This helps to save bandwidth for slow connections and the response is generally faster.|
-|test|string|Only for testing purposes. Values: *random* or empty. If test=random is set, all ingredients will be randomly linked to life cycle assessments (the results will be wrong!), no `601` error will occur and all the calculation results are incorrect. We provide this functionality so that api clients can test receiving a complete response. By default we need to put in manual labor to have it give back correct values, which takes time. Every ingredient has to be linked to a corresponding data field in our database, for any environmental values to be calculated. |
+### Delete a batch of recipes [DELETE]
 
++ Request (application/json)
 
-### Recipe Properties
+        {
+            "recipes": [ "3948756","3948757","3948757" ]
+        }
 
++ Response 200 (application/json)
 
-| Property | Type  | Description      | Required |
-|:----------|:--------|:------------------|----------|
-|kitchen-id|string|the id of the kitchen the recipe belongs to.|yes for the /recipes/batch resource|
-|titles| list of language object| title of the recipe in different languages (array of language objects)|no|
-|author|string|original author of the recipe|no|
-|date|yyyy-mm-dd|the date the recipe is served. If **no date** is provided, **only a rating** of the recipe is returned.|best practice|
-|location|string|location where the recipe is cooked. Address or country (arbitrary format) |yes if recipe is not provided in a kitchen|
-|servings (deprecated)|int|for how many servings the ingredients are given. This value is not allowed to be "0". |no. use 'recipe-portions'.|
-|recipe-portions|int|for how many portions the ingredients are specified.  Replaces 'servings'. This value is not allowed to be "0". |no|
-|production-portions|int|how many portions of the recipe are planned to be produced.|   no|
-|sold-portions|int|how many portions of the recipe were really sold (i.e. consumed). This is used by the prognosis endpoint to predict the sales.|no|
-|ingredients|list of ingredients|a list of all ingredient resources in this recipe |yes|
-|menu-line-name|string|A descriptor for the menu line ("Menu 1", "Garden Menu", "Vegan Menu")|no|
-|menu-line-id|long|A number to identify the menu line|no|
-|instruction|string|An arbitrary text you can send and receive|no|
-|**Response**||||
-|id|string|the id of the recipe. Either generated by Eaternity or supplied by the client||
-|co2-value|int|the CO₂-Value of the whole recipe per serving in [g CO₂e / serving]. If no date is provided, no CO₂-Value but only the rating is returned. If no servings are given, we assume 1 serving.||
-|co2-value-improvement-percentage|float|Comparison of this recipes's co2 footprint per food unit to the average||
-|co2-value-reduction-value|float|The amount of gramm CO₂ saved by serving this recipe instead of serving the amount of an average product that provides the same nutritional value (g)||
-|info-text| string | notes on the calculated recipe CO₂-value, e.g. remarks when properties like origin or transport are estimated||
-|eaternity-award|boolean|true if the CO₂-Value of the recipe is climate friendly, false otherwise | |
-|rating|string|the CO₂-recipe rating [A,B,C,D,E]. A is best, E is worst.| .|
-|indicators|dictionary|the vita and nutritional indicators described above|.|
+        [
+        {
+            "statuscode": 200,
+            "message": "",
+            "recipe-id": "3948756"
+        },
+        {
+            "statuscode": 200,
+            "message": "",
+            "recipe-id": "3948757"
+        },
+        {
+            "statuscode": 500,
+            "message":  "Concurrency problem: You requested deleting this recipe several times in this batch.",
+            "recipe-id": "3948757"
+        }
+        ]
 
-
-## Recipe Collection [/recipes]
-
+## Recipes [/recipes]
 ### Create a recipe [POST]
 Create a recipe resource and receive the CO₂-Value and Eaternity Award. Example of a full request with all fields used:
 
@@ -405,7 +439,6 @@ Create a recipe resource and receive the CO₂-Value and Eaternity Award. Exampl
             }
 
 
-## Recipe [/recipes/{id}?indicators=true]
 
 + Parameters
     + id (string, required) - the id of the recipe.
@@ -926,176 +959,138 @@ Deletes this recipe  from the server
 
 + Response 204
 
-## Batch Operations on Recipe Resources [/recipes/batch]
 
-The `full-resource` url parameter is supported here as well, but just for the whole request itself and not on single recipes. The transient parameter can be set selectively on single recipes inside the batch.
+## Group Recipe Properties
 
-The message in the response provides more details about the failure of individual recipes.
-Batch operations do not support an unlimited number of recipes. If a request fails repeatedly, please consider reducing the number of recipes submitted.
+### Recipe Properties In Requests
 
-### Create or update a batch of recipes [POST]
-Create or update a batch of recipes at once. If a recipe id is provided, the recipe is either created with this id or the existing recipe is overwritten. The status code tells the difference.
+| Property | Type  | Description      | Required |
+|:----------|:--------|:------------------|----------|
+|kitchen-id|string|the id of the kitchen the recipe belongs to.|yes|
+|id|string|the id of the recipe. Either generated by Eaternity or supplied by the client|no|
+|titles| list of language object| title of the recipe in different languages (array of language objects)|no|
+|author|string|original author of the recipe|no|
+|date|yyyy-mm-dd|the date the recipe is served. If **no date** is provided, **only a rating** of the recipe is returned.|best practice|
+|location|string|location where the recipe is cooked. Address or country (arbitrary format) |no; kitchen location will be used|
+|servings (deprecated)|int|for how many servings the ingredients are given. |no; use 'recipe-portions'|
+|recipe-portions|int|for how many portions the ingredients are specified.  Replaces 'servings'. |no; fallback is 1|
+|production-portions|int|how many portions of the recipe are planned to be produced.|   no|
+|sold-portions|int|how many portions of the recipe were really sold (i.e. consumed). This is used by the prognosis endpoint to predict the sales.|no|
+|instructions|list of language objects|cooking instructions for the recipe in different languages (array of language objects)|   no|
+|ingredients|list of ingredients|a list of all ingredient resources in this recipe |yes|
+|menu-line-name|string|A descriptor for the menu line ("Menu 1", "Garden Menu", "Vegan Menu")|no|
+|menu-line-id|long|A number to identify the menu line|no|
 
-The `kitchen-id` may be used to store the recipe into a specific kitchen.
-
-The additional integer `request-id` field enables you to track back the recipes you sent in case you don't want to use your own id's. Either a request id or a recipe id is required.
-The request-id differs from the recipe id and has just the lifetime of a single request (not stored on Eaternity's end).
-
-+ Request (application/json)
-
-        [
-        {
-        	"request-id": 1, 
-        	"transient": false,
-        	"recipe": {
-        		"id": "0002076208", // your unique ID!
-        		"menu-line-id": 19092,
-        		"menu-line-name": "Hit Menu Lunch",
-                "recipe-portions": 1, // as your recipe is defined
-                "sold-portions": 202,
-        		"production-portions": 212,
-        		"date": "2023-10-14",
-            	"kitchen-id": "AC432", // your unique ID!
-            	"ingredients": [
-        		{
-                    	"id": "467", // your unique ID!
-                    	"names": [
-                        	{
-                            	"language": "DE",
-                            	"value": "Quality Pfeffer weiss gemahlen 900g"
-                        	}
-                    	],
-                    	"amount": "0.0233",
-                    	"unit": "gram", // "EA" is not possible
-                    	"origin": "", // please specify as available
-                    	"transport": "", // set to "ground" for parameter no airplane
-                    	"production": "",
-                    	"processing": "",
-                    	"conservation": "",
-                        "gtin": "00012345678905" // please specify as available
-                	},
-        	        {
-                    	"id": "0002076209",
-                    	"amount": "0.0233",
-                    	"unit": "gram",
-                    	"type": "recipes" // necessary !!
-        
-                	}
-        ]
-        }
-        },
-        {
-        // This request represents a subrecipe of the previous.
-        // It needs to be part of the same POST request
-        "request-id": 2, 
-        	"transient": true,
-            "recipe": {
-        		"id": "0002076209",
-        	    "recipe-portions": 1,
-        		"date": "2023-10-14",
-            	"kitchen-id": "recipe-components", // a separate kitchen to collect recipes that were not part of the menu plan
-            	"ingredients": [
-        		{
-                    	"id": "467",
-                    	"names": [
-                        	{
-                            	"language": "DE",
-                            	"value": "Quality Pfeffer weiss gemahlen 900g"
-                        	}
-                    	],
-                    	"amount": "0.0233",
-                    	"unit": "gram",
-                    	"origin": "",
-                    	"transport": "",
-                    	"production": "",
-                    	"processing": "",
-                    	"conservation": ""
-                	}
-        ]
-        },
-        {
-            "request-id": 3,
-            "transient": false,
-            "recipe": {
-                "id": "d1ed2263-b1b2-4f50-9e9d-ba62cae81f29",
-                "kitchen-id": "112233",
-                "titles": [
-                    {
-                        "language": "de",
-                        "value": "Kürbisrisotto"
-                    }
-                ],
-                "instruction": "Den Karottenkuchen im Ofen backen und noch warm geniessen.",
-                "servings": 10,
-                "ingredients": [
-                    {  ...  }
-                ]
-          }
-        }
-        ]
-
-+ Response 200 (application/json)
-
-        [
-        {
-            "statuscode": 200,
-            "message": "",
-            "request-id": 1,
-            "recipe": {
-                "id": "0002076208",
-                "kitchen-id": "C142",
-                "co2-value": 765,
-                "eaternity-award": false,
-                "rating": "B"
-            }
-        },
-        {
-            "statuscode": 200,
-            "message": "",
-            "request-id": 2,
-            "recipe": {
-                "id": "0002076209",
-                "kitchen-id": "198764",
-                "co2-value": 765,
-                "eaternity-award": false,
-                "rating": "B"
-            }
-        },
-        {
-            "statuscode": 601,
-            "message": "The ingredient 384767656 is not yet matched. Retry next day.",
-            "request-id": 3
-        }
-        ]
+### Recipe Properties In Responses only
+| Property | Type  | Description      | Required |
+|:----------|:--------|:------------------|----------|
+|co2-value|int|the CO₂-Value of the whole recipe per serving in [g CO₂e / serving]||
+|co2-value-improvement-percentage|float|Comparison of this recipes's co2 footprint per food unit to the average||
+|co2-value-reduction-value|float|The amount of gramm CO₂ saved by serving this recipe instead of serving the amount of an average product that provides the same nutritional value (g)||
+|info-text| string | notes on the calculated recipe CO₂-value, e.g. remarks when properties like origin or transport are estimated||
+|eaternity-award|boolean|true if the CO₂-Value of the recipe is climate friendly, false otherwise | |
+|rating|string|the CO₂-recipe rating [A,B,C,D,E]. A is best, E is worst.| .|
+|indicators|dictionary|the vita and nutritional indicators described above|.|
 
 
-### Delete a batch of recipes [DELETE]
 
-+ Request (application/json)
+# Group Ingredient Properties
 
-        {
-            "recipes": [ "3948756","3948757","3948757" ]
-        }
+Each request for Recipes or Supplies contains a list of Ingredients. Each Ingredient requires at least an `id`, `name` and an `amount` but may contain additional specifications.
+Ingredients with the same id are shared between all of your Recipes as well as Supplies.
+There is no hard limit on the number of ingredients, but requests may time out and fail in the range of more than 25 ingredients, especially in combination with batch requests.
 
-+ Response 200 (application/json)
+### Ingredient Properties In Requests
+| Property | Type  | Description    | Required |
+|:----------|:--------|:------------------|:----------|
+|id|string| your unique id of the ingredient|yes|
+|type|string|either *conceptual-ingredients* or *recipes*. *conceptual-ingredients* specifies a normal ingredient, *recipes* references to an already existing recipe. Default: *conceptual-ingredients*|no|
+|names|list of language object|full name of ingredient in different languages (array of language objects). Name in at least one language required.|yes|
+|amount|float|amount of the ingredient in the specified unit|yes|
+|unit|string|unit of the given amount of the ingredient: *gram* or *liter*, default: *gram*|no|
+|origin|string|origin of the ingredient: postal address or country |best practice|
+|transport|string|means of transport from ”origin” to ”location” of recipe or kitchen. Values: *air* or *ground*|best practice|
+|production|string|production of the base material. Values: *standard*, *greenhouse*, *organic*, *fair-trade*, *farm* (fishes and game animals only), *wild-caught* (fishes and game animals only), *sustainable-fish*. |best practice|
+|producer|string|the producer or brand of the product. Especially important for combined products (products with multiple ingredients)|best practice|
+|processing| string| processing and convenience. Values: *raw*. Meat and Fisch: *unboned* or *boned*. Fisch: *skinned*, *beheaded*, *fillet*. Vegetables and Fruits: *cut*, *boiled*, *peeled*. |no|
+|conservation| string| conservation for longer storage life. Values: *fresh* or *frozen* or *dried* or *conserved* or *canned* or *boiled-down* |best practice|
+|packaging| string| how the product is packaged. Values:  *none*, *plastic*, *paper*, *pet*, *tin*, *alu*, *glas*, *cardboard*, *tetra* |no|
+|ingredients-declaration|string|List of ingredients as declared for packaged foods. E.g.: "Hähnchenbrustfilet (53 %), Panade (28%) (Weizenmehl, Wasser, modifizierte Weizen-stärke, Weizenstärke, Speisesalz, Gewürze, Hefe), Wasser, Putenformfleisch-schinken aus Putenfleischteilen zusammengefügt (7 %) (Putenkeulenfleisch, Nitritpökelsalz (Kochsalz, Konservierungsstoff: E 250), Maltodextrin, Dextrose, Gewürzextrakte, Stabilisator: E450), Käse (7 %), Kartoffelstärke, Stabilisator: modifizierte Stärke, Salz), Speisesalz, Stärke, Maltodextrin, Milcheiweiß, Pflanzeneiweiß, Dextrose, Zucker, Gewürzextrakte, Geschmacksverstärker: E 620"|no|
+|nutrient-values|list of nutrient values |Structured list of the nutrients values per defined nutrient as defined below.|no|
+|gtin|string|global trade item number: [www.gtin.info](http://www.gtin.info/)|no|
 
-        [
-        {
-            "statuscode": 200,
-            "message": "",
-            "recipe-id": "3948756"
-        },
-        {
-            "statuscode": 200,
-            "message": "",
-            "recipe-id": "3948757"
-        },
-        {
-            "statuscode": 500,
-            "message":  "Concurrency problem: You requested deleting this recipe several times in this batch.",
-            "recipe-id": "3948757"
-        }
-        ]
+### Ingredient Properties In Responses only
+To receive informations on the ingredients, the URL parameter `full-resource` must be set to `true`. This works for all recipe endpoints like `/recipes/{id}` and `/recipes/batch`.
+
+| Property | Type  | Description    | Required |
+|:----------|:--------|:------------------|:----------|
+|rating|string|the CO₂-ingredient rating [A,B,C,D,E]. A is best, E is worst.||
+|bar-chart|float|to generate a bar chart for all ingredients of a recipe. How much this ingredient contributes to the total CO₂-value of the recipe in percent (0.00% - 100.00%)||
+|co2-value|int|the absolute value of CO₂e emissions for the ingredient in [g] for the specified amount of ingredient||
+|co2-value-improvement-percentage|float|Comparison of this recipes's co2 footprint per food unit to the average||
+|co2-value-reduction-value|float|The amount of gramm CO₂ saved by serving this recipe instead of serving the amount of an average product that provides the same nutritional value (g)||
+
+Just like for recipes, the URL parameter `indicators` must be set to `true` to receive the indicators for the ingredients.
+ Property | Type  | Description    | Required |
+|:----------|:--------|:------------------|:----------|
+|indicators|dictionary|the vita and nutritional indicators described in the respective section||
+
+The parameters of the properties origin, transport, production, processing, conservation and packaging can be set to multiple values. They need to be provided  in a comma separated list.
+`"production": "organic, fair-trade, Max Havelaar"`
+
+The more properties are provided the more accurate are the values. More options will be added over time. Estimations are made for missing properties.
+
+### Nutrient Values
+
+Each request for a Ingredient may contains a list of Nutrients. Each Nutrient requires at least an `amount`.
+
+
+| Property              | Type    | Unit    | Description                                       | Required |
+|:----------------------|:--------|:--------|:----------                                        |:---------|
+|energy-kcal            |float    | Kcal    | Der Brennwert (Energie) in Kilo-Kalorien pro 100g |no|
+|energy-kjoule          |float    | KJoule  | Der Brennwert (Energie) in Kilo-Joule pro 100g    |no|
+|fat-gram               |float    | Fett (g) | Der Gesamtfettgehalt in Gramm pro 100g            |no|
+|saturated-fat-gram     |float    | gesättigte Fettsäure (g)  | Der Gehalt an gesättigten Fettsäuren in Gramm pro 100g    |no|
+|carbohydrates-gram     |float    | Kohlehydrate (g)  | Der Gehalt an Kohlenhydraten in Gramm pro 100g    |no|
+|sucrose-gram           |float    | Zucker (g)  | Der Gesamtzucker-Gehalt in Gramm pro 100g (alle Mono- und Disaccaride, ausgenommen mehrwertige Alkohole)    |no|
+|protein-gram           |float    | Eiweiß (g)  | Der Eiweißgehalt in Gramm pro 100g    |no|
+|sodium-chloride-gram   |float    | Salz (g)  |Der Salzgehalt in Gramm pro 100g (lt. LMIV Anhang I "Salz" = berechneter Gehalt an Salzäquivalent: Salz = Natrium x 2,5)    |no|
+|monounsaturated-fat-milligram |float    | einfach ungesättigte Fettsäure (mg)  | Der Gehalt an einfach ungesättigten Fettsäuren in Milligramm pro 100g    |no|
+|polyunsaturated-fat-milligram |float    | mehrfach ungesättigte Fettsäure (mg)  | Der Gehalt an mehrfach ungesättigten Fettsäuren in Milligramm pro 100g    |no|
+|cholesterol-milligram  |float    | Cholesterin (mg)  | Der Cholesteringehalt in Milligramm pro 100g    |no|
+|fibers-gram            |float    | Ballaststoffe (g)  | Der Ballaststoffgehalt in Gramm pro 100g   |no|
+|water-gram             |float    | Wasser (g)  | Der Wassergehalt in Gramm pro 100g   |no|
+|vitamine-a1-microgram       |float    | Vitamin A (μg)  | Der Vitamin A-Gehalt (Retinoläquivalent) in Mikrogramm pro 100g    |no|
+|vitamine-b1-microgram       |float    | Vitamin B1 (μg)  | Der Vitamin B1-Gehalt (Thiamin) in Mikrogramm pro 100g    |no|
+|vitamine-b2-microgram       |float    | Vitamin B2 (μg)  | Der Vitamin B2-Gehalt (Riboflavin) in Mikrogramm pro 100g    |no|
+|vitamine-b6-microgram       |float    | Vitamin B6 (μg)  | Der Vitamin B6-Gehalt (Pyridoxin) in Mikrogramm pro 100g   |no|
+|vitamine-b12-microgram      |float    | Vitamin B12 (μg)  | Der Vitamin B12-Gehalt (Cobalamin) in Mikrogramm pro 100g    |no|
+|vitamine-c-milligram        |float    | Vitamin C (mg)  | Der Vitamin C-Gehalt (Ascorbinsäure) in Milligramm pro 100g    |no|
+|vitamine-d-microgram        |float    | Vitamin D (μg)  | Der Vitamin D-Gehalt (Calciol) in Mikrogramm pro 100g    |no|
+|vitamine-e-microgram        |float    | Vitamin E (μg)  | Der Vitamin E-Gehalt (Tocopherol) in Mikrogramm pro 100g    |no|
+|vitamine-h-microgram        |float    | Vitamin H (μg)  | Der Vitamin H-Gehalt (Biotin) in Mikrogramm pro 100g    |no|
+|vitamine-k-microgram        |float    | Vitamin K (μg)  | Der Vitamin K-Gehalt in Mikrogramm pro 100g    |no|
+|beta-carotene-milligram  |float    | BetaCarotin (mg)  | Der Beta-Carotin-Gehalt in Milligramm pro 100g    |no|
+|niacin-milligram       |float    | Niacin (mg)  | Der Vitamin B3-Gehalt (Niacinäquivalent) in Milligramm pro 100g    |no|
+|pantohen-milligram     |float    | Pantothen-säure (mg)  | Der Pantothensäure-Gehalt (Vitamin B5) in Milligramm pro 100g    |no|
+|folic-acid-microgram   |float    | Folsäure (μg)  | Der Folsäure-Gehalt in Mikrogramm pro 100g    |no|
+|sodium-milligram       |float    | Natrium (mg)  | Der Natriumgehalt in Milligramm pro 100g    |no|
+|potassium-milligram    |float    | Kalium (mg)  | Der Kaliumgehalt in Milligramm pro 100g    |no|
+|chlorine-milligram     |float    | Chlor (mg)  | Der Chlorgehalt in Milligramm pro 100g    |no|
+|calcium-milligram      |float    | Calcium (mg)  | Der Calciumgehalt in Milligramm pro 100g    |no|
+|magnesium-milligram    |float    | Magnesium (mg)  | Der Magnesiumgehalt in Milligramm pro 100g    |no|
+|phosphorus-milligram   |float    | Phosphor (mg)  | Der Phosphorgehalt in Milligramm pro 100g    |no|
+|iron-milligram         |float    | Eisen (mg)  | Der Eisengehalt in Milligramm pro 100g    |no|
+|zinc-microgram         |float    | Zink (μg)  | Der Zinkgehalt in Mikrogramm pro 100g    |no|
+|copper-microgram       |float    | Kupfer (μg)  | Der Kupfergehalt in Mikrogramm pro 100g    |no|
+|manganese-microgram    |float    | Mangan (μg)  | Der Mangangehalt in Mikrogramm pro 100g    |no|
+|flouride-microgram     |float    | Fluoride (μg)  | Der Fluoridgehalt in Mikrogramm pro 100g    |no|
+|iodine-microgram       |float    | Jod (μg)  | Der Jodgehalt in Mikrogramm pro 100g    |no|
+|purine-milligram       |float    | Purine (mg)  | Der Puringehalt in Milligramm pro 100g    |no|
+|uric-acid-milligram     |float    | Harnsäure (mg)  | Der Harnsäuregehalt in Milligramm pro 100g    |no|
+|alcohol-volume-percent       |float    | Alkoholgehalt (% vol)  | Laut LMIV Art. 9 (1k) muss der Alkoholgehalt in Volumenprozent (% vol) angegeben werden, sobald er 1,2 %vol überschreitet.    |no|
+
+
 
 # Group Supply Resources
 Supplies are ordered from and delivered by a specific supplier in the supply chain. They can serve as the data pool for all the Eaternity Reports, as well as we can provide feedback on single purchases.
