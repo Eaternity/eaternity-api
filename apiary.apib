@@ -1028,6 +1028,8 @@ There is no hard limit on the number of ingredients, but requests may time out a
 |nutrient-values|list of nutrient values |Structured list of the nutrients values per defined nutrient as defined below.|no|
 |gtin|string|global trade item number: [www.gtin.info](http://www.gtin.info/)|no|
 
+There is a generic recommendation for the properties to be filled out, to handle the complexity of the data collection, which is to specify for ingredients if the product is air-freighted or not air-freighted, fresh, deep-frozen, dried, preserved, baked, canned, boiled, organic, Fairtrade certified, or fish from aquaculture.
+
 ### Ingredient Properties In Responses only
 To receive informations on the ingredients, the URL parameter `full-resource` must be set to `true`. This works for all recipe endpoints like `/recipes/{id}` and `/recipes/batch`.
 
@@ -1846,13 +1848,16 @@ Sadly, sometimes requests to the API are not successful. Failures can occur for 
 * 403   `Forbidden` - The Kitchen is not authorized to calculate environmental values of recipes. Only users that pay for the "Eaternity License" are allowed to do so. Please contact Eaternity to get an up-to-date pricing.
 * 404   `Not found` - Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.
 * 405   `Method not allowed` - When the resource exists but the HTTP method verb is not allowed on this resource.
+* 422   `Request Validation Error` - When the request is not valid against the schema we ask. For example you send an integer where a string was expected.
 
 * 500   `Server error` - Just try again.
 
 * 601   `Manual matching missing` - An ingredient was requested, whose id is not yet manually matched into the Eaternity Database. Retry once a day.
 * 602   `No automatic match found` - At least one ingredient name could not get automatically matched into the Eaternity Database. Retry once a day or try with a different ingredient name.
 * 610   `Missing required property` - A required resource property was not given in the request. Please provide the required field.
-* 611   `Wrong property value` - A resource property was not provided according to the documentation. Either the given format is wrong or the value doesn't match to the given options. Usually not dependent on the implementation but on the user input.
+* 611   `Wrong property value` - A resource property was not provided according to the documentation. Either the given format is wrong or the value does not match to the given options. Usually not dependent on the implementation but on the user input.
+* 612   `Referenced sub-recipe is not in the database.` - A referenced recipe was not provided in this or a previous request. Please provide the required recipe in advance.
+* 670   `At least one (sub-) recipe has no ingredients.` - “Something of nothing” does not work. You referenced a positive quantity of a sub-recipe that did have any quantitity itself.
 
 ## Indicators Results
 
