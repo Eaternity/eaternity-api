@@ -178,139 +178,960 @@ The drawback of reusing the id is that you will not be able to change the compos
 Make sure to that you are using the flag `transient=true` for the sub-recipes in any case. The sub-recipe on its own will then not be included in the monthly summary.
 
 
-### URL Parameters
+#### URL Parameters
 
 
 | Parameters | Type  | Description      |
 |:----------|:--------|:------------------|
-|transient|boolean|Recipes with this flag set to `true` will be excluded from reports and statistics. Make sure to use this flag properly to keep reports meaningful.|
 |full-resource|boolean|Specifies whether our JSON answer will contain all fields (except the additional indicators) or a short answer. Default: false. Works recipes and supplies. This helps to save bandwidth for slow connections.|
 |indicators|boolean|Specifies wether the JSON answer will contain the additional indicator fields. Default: false. Works for recipes, ingredients, and supplies. This helps to save bandwidth for slow connections and the response is generally faster.|
 
 
-## Batch Operations on Recipe Resources [/recipes/batch]
+## Batch Operations on Recipe Resources [/recipes/batch?full-resource=true&indicators=true]
 
 Batch operations allow you to create, update or delete multiple recipes at once. They are the most efficient way to work with the Eaternity API. The batch operations can check consistency in between recipes that depend on each other. For example, if you have a recipe with a sub-recipe, the batch operation will check if the sub-recipe is already in the database and will return an error if it is not. This is not possible with single requests.
  Batch operations are limited by the computational resources required for the calculations. We recommend a maximum of 100 recipes per request but the limit is not fixed. The server will return an error if the request is too large. The batch operations are not atomic, meaning that if one recipe fails, the others may still be processed. The response will contain the status of each recipe in the batch.
 
-The `full-resource` url parameter is supported. The transient parameter can be set selectively per recipe inside the batch.
+The `transient` parameter can be set selectively per recipe inside the batch.Transient recipes are not included in the monthly summary and do not contribute to the kitchen's statistics. This applies for recipes that are transmitted for use as subrecipes or sent for testing purposes.
 
 The message in the response provides more details about the failure of individual recipes.
 
 ### Create or update a batch of recipes [POST]
 Create or update a batch of recipes at once. If a recipe id is provided, the recipe is either created with this id or the existing recipe is overwritten. The status code tells the difference.
 
-The `kitchen-id` may be used to store the recipe into a specific kitchen.
+The `kitchen-id` is used to to attribute the impact to the respective kitchen's statistics.
 
-The additional integer `request-id` field enables you to track back the recipes you sent in case you don't want to use your own id's. Either a request id or a recipe id is required.
-The request-id differs from the recipe id and has just the lifetime of a single request (not stored on Eaternity's end).
+The additional integer `request-id` field enables you to track back the recipes you sent in case you don't want to use your own ids. Either a request id or a recipe id is required.
+The request-id differs from the recipe id and has just the lifetime of a single request.
+
+---
+In the following request, one menu item "Fitness Risotto" contains a single recipe "Mushroom gravy on pumpkin risotto".
+
+This recipe is again composed of two recipes, "pumpkin risotto" and "Mushroom gravy". The recipes are all included in the batch.
+
+The menu item is sold in the kitchen kitchen-restaurant-a on 2016 11 28. The id of the menu item is "menu-id1-fitness-2016-11-28" to illustrate that if a menu item is composed of identical recipes but in a different kitchen, the id of the menu item has to be different. The menu item is marked as not transient, meaning that it will be included in the monthly summary. The two recipes are transient, meaning that they will not again contribute to the monthly summary (their impact is already included in the menu item).
+
 
 + Request (application/json)
 
-        [
+
+[
+  {
+    "request-id": 0,
+    "recipe": {
+      "id": "internal-recipe-id3",
+      "transient": true,
+      "kitchen-id": "kitchen-restaurant-a",
+      "titles": [
         {
-            "request-id": 1,
-            "transient": false,
-            "recipe": {
-                "kitchen-id": "198764",
-                "titles": [
-                    {
-                        "language": "de",
-                        "value": "Kürbisrisotto"
-                    }
-                ],
-                "instructions": [
-                        {
-                            "language": "de",
-                            "value": "Den Karottenkuchen im Ofen backen und noch warm geniessen."
-                        }],
-                "servings": 10,
-                "ingredients": [
-                    {  ...  }
-                ]
-          }
-        },
-        {
-            "request-id": 2,
-            "transient": true,
-            "recipe": {
-                "kitchen-id": "198764",
-                "titles": [
-                    {
-                        "language": "de",
-                        "value": "Kürbisrisotto"
-                    }
-                ],
-                "instructions": [
-                        {
-                            "language": "de",
-                            "value": "Den Karottenkuchen im Ofen backen und noch warm geniessen."
-                        }],
-                "servings": 10,
-                "ingredients": [
-                    {  ...  }
-                ]
-          }
-        },
-        {
-            "request-id": 3,
-            "transient": false,
-            "recipe": {
-                "id": "d1ed2263-b1b2-4f50-9e9d-ba62cae81f29",
-                "kitchen-id": "112233",
-                "titles": [
-                    {
-                        "language": "de",
-                        "value": "Kürbisrisotto"
-                    }
-                ],
-                "instructions": [
-                        {
-                            "language": "de",
-                            "value": "Den Karottenkuchen im Ofen backen und noch warm geniessen."
-                        }],
-                "servings": 10,
-                "ingredients": [
-                    {  ...  }
-                ]
-          }
+          "language": "en",
+          "value": "Mushroom gravy on pumpkin risotto"
         }
-        ]
+      ],
+      "recipe-portions": 1,
+      "ingredients": [
+        {
+          "id": "internal-recipe-id1",
+          "type": "recipes",
+          "amount": 250,
+          "unit": "gram"
+        },
+        {
+          "id": "internal-recipe-id2",
+          "type": "recipes",
+          "amount": 50,
+          "unit": "gram"
+        }
+      ]
+    }
+  },
+  {
+    "request-id": 1,
+    "transient": true,
+    "recipe": {
+      "id": "internal-recipe-id1",
+      "kitchen-id": "kitchen-restaurant-a",
+      "titles": [
+        {
+          "language": "en",
+          "value": "pumpkin risotto"
+        }
+      ],
+      "recipe-portions": 100,
+      "ingredients": [
+        {
+          "id": "101",
+          "type": "conceptual-ingredients",
+          "names": [
+            {
+              "language": "en",
+              "value": "pumpkin"
+            },
+            {
+              "language": "de",
+              "value": "Kürbis"
+            }
+          ],
+          "amount": 250,
+          "unit": "gram"
+        },
+        {
+          "id": "102",
+          "type": "conceptual-ingredients",
+          "names": [
+            {
+              "language": "en",
+              "value": "risotto rice"
+            }
+          ],
+          "amount": 5000,
+          "unit": "gram",
+          "origin": "Italy",
+          "transport": "ground",
+          "conservation": "dried"
+        }
+      ]
+    }
+  },
+  {
+    "request-id": 2,
+    "transient": true,
+    "recipe": {
+      "id": "internal-recipe-id2",
+      "kitchen-id": "kitchen-restaurant-a",
+      "titles": [
+        {
+          "language": "en",
+          "value": "Mushroom gravy"
+        }
+      ],
+      "recipe-portions": 5,
+      "ingredients": [
+        {
+          "id": "103",
+          "type": "conceptual-ingredients",
+          "names": [
+            {
+              "language": "en",
+              "value": "Mushrooms"
+            }
+          ],
+          "amount": 150,
+          "unit": "gram"
+        },
+        {
+          "id": "104",
+          "type": "conceptual-ingredients",
+          "names": [
+            {
+              "language": "de",
+              "value": "onions"
+            }
+          ],
+          "amount": 78,
+          "unit": "gram"
+        }
+      ]
+    }
+  },
+  {
+    "request-id": 3,
+    "recipe": {
+      "id": "menu-id1-fitness-2016-11-28",
+      "kitchen-id": "kitchen-restaurant-a",
+      "transient": false,
+      "menu-line-name": "Fitness",
+      "menu-line-id": 1,
+      "titles": [
+        {
+          "language": "en",
+          "value": "Fitness Risotto"
+        }
+      ],
+      "recipe-portions": 1,
+      "date": "2016-11-28",
+      "ingredients": [
+        {
+          "id": "internal-recipe-id3",
+          "type": "recipes",
+          "amount": 288,
+          "unit": "gram"
+        }
+      ]
+    }
+  }
+]
 
 + Response 200 (application/json)
 
-        [
-        {
-            "statuscode": 200,
-            "message": "",
-            "request-id": 1,
-            "recipe": {
-                "id": "d1ed2263-b1b2-4f50-9e9d-1324529",
-                "kitchen-id": "198764",
-                "co2-value": 765,
-                "eaternity-award": false,
-                "rating": "B"
-            }
+[
+  {
+    "statuscode": 200,
+    "message": "",
+    "recipe-id": "internal-recipe-id3",
+    "request-id": 0,
+    "recipe": {
+      "food-unit": 1.36,
+      "final-weight-per-portion": 300,
+      "indicators": {
+        "vita-score": {
+          "vita-score-points": 356.3,
+          "vita-score-rating": "C",
+          "vita-score-improvement-percentage": -4.79,
+          "energy-kcals": 889.16,
+          "nutrition-label": false,
+          "fruit-risk-factor-amount-gram": 0,
+          "fruit-risk-factor-points": 61.24,
+          "vegetable-risk-factor-amount-gram": 29.01,
+          "vegetable-risk-factor-points": 30.57,
+          "wholegrain-risk-factor-amount-gram": 0,
+          "wholegrain-risk-factor-points": 82.86,
+          "nuts-seeds-risk-factor-amount-gram": 0,
+          "nuts-seeds-risk-factor-points": 13.98,
+          "milk-risk-factor-amount-gram": 0,
+          "milk-risk-factor-points": 9.42,
+          "processed-meat-risk-factor-amount-gram": 0,
+          "processed-meat-risk-factor-points": 0,
+          "red-meat-risk-factor-amount-gram": 0,
+          "red-meat-risk-factor-points": 0,
+          "salt-risk-factor-amount-gram": 0.01,
+          "salt-risk-factor-points": 0,
+          "high-in-energy-risk-factor-points": 35.34,
+          "high-in-fat-risk-factor-points": 0,
+          "low-in-fat-risk-factor-points": 88.66,
+          "high-in-protein-risk-factor-points": 0,
+          "low-in-protein-risk-factor-points": 34.23
         },
-        {
-            "statuscode": 200,
-            "message": "",
-            "request-id": 2,
-            "recipe": {
-                "kitchen-id": "198764",
-                "co2-value": 765,
-                "eaternity-award": false,
-                "rating": "B"
-            }
-        },
-        {
-            "statuscode": 601,
-            "message": "The ingredient 384767656 is not yet matched. Retry next day.",
-            "request-id": 3
+        "environment": {
+          "scarce-water-liters": 0.05,
+          "water-footprint-rating": "A",
+          "water-footprint-reduction-value": 49.58,
+          "water-footprint-award": true,
+          "water-footprint-improvement-percentage": 99.9,
+          "rainforest-label": true,
+          "rainforest-rating": "A",
+          "animal-treatment-label": true,
+          "animal-treatment-rating": "A",
+          "season-label": false,
+          "season-rating": "E",
+          "local-label": false,
+          "local-rating": "E"
         }
-        ]
+      },
+      "eaternity-award": true,
+      "co2-value": 431,
+      "rating": "A",
+      "co2-value-improvement-percentage": 59,
+      "co2-value-reduction-value": 624,
+      "id": "internal-recipe-id3",
+      "kitchen-id": "kitchen-restaurant-a",
+      "titles": [
+        {
+          "language": "en",
+          "value": "Mushroom gravy on pumpkin risotto"
+        }
+      ],
+      "servings": 1,
+      "recipe-portions": 1,
+      "ingredients": [
+        {
+          "foodUnit": 1.29,
+          "indicators": {
+            "vita-score": {
+              "vita-score-points": 354.93,
+              "vita-score-rating": "C",
+              "vita-score-improvement-percentage": -4.39,
+              "energy-kcals": 872.11,
+              "nutrition-label": false,
+              "fruit-risk-factor-amount-gram": 0,
+              "fruit-risk-factor-points": 61.24,
+              "vegetable-risk-factor-amount-gram": 11.9,
+              "vegetable-risk-factor-points": 30.57,
+              "wholegrain-risk-factor-amount-gram": 0,
+              "wholegrain-risk-factor-points": 82.86,
+              "nuts-seeds-risk-factor-amount-gram": 0,
+              "nuts-seeds-risk-factor-points": 13.98,
+              "milk-risk-factor-amount-gram": 0,
+              "milk-risk-factor-points": 9.42,
+              "processed-meat-risk-factor-amount-gram": 0,
+              "processed-meat-risk-factor-points": 0,
+              "red-meat-risk-factor-amount-gram": 0,
+              "red-meat-risk-factor-points": 0,
+              "salt-risk-factor-amount-gram": 0.01,
+              "salt-risk-factor-points": 0,
+              "high-in-energy-risk-factor-points": 32.82,
+              "high-in-fat-risk-factor-points": 0,
+              "low-in-fat-risk-factor-points": 88.66,
+              "high-in-protein-risk-factor-points": 0,
+              "low-in-protein-risk-factor-points": 35.38
+            },
+            "environment": {
+              "scarce-water-liters": 0.02,
+              "water-footprint-rating": "A",
+              "water-footprint-reduction-value": 47.24,
+              "water-footprint-award": true,
+              "water-footprint-improvement-percentage": 99.96,
+              "rainforest-label": true,
+              "rainforest-rating": "A",
+              "animal-treatment-label": true,
+              "animal-treatment-rating": "A",
+              "season-label": false,
+              "season-rating": "E",
+              "local-label": false,
+              "local-rating": "E"
+            }
+          },
+          "co2-value": 404,
+          "rating": "A",
+          "co2-value-improvement-percentage": 60,
+          "co2-value-reduction-value": 601,
+          "bar-chart": 94,
+          "id": "internal-recipe-id1",
+          "type": "recipes",
+          "amount": 250,
+          "unit": "gram",
+          "origin": "",
+          "transport": "",
+          "production": "",
+          "processing": "",
+          "conservation": "",
+          "packaging": ""
+        },
+        {
+          "foodUnit": 0.06,
+          "indicators": {
+            "vita-score": {
+              "vita-score-points": 266.22,
+              "vita-score-rating": "A",
+              "vita-score-improvement-percentage": 21.7,
+              "energy-kcals": 17.04,
+              "nutrition-label": false,
+              "fruit-risk-factor-amount-gram": 0,
+              "fruit-risk-factor-points": 61.24,
+              "vegetable-risk-factor-amount-gram": 17.11,
+              "vegetable-risk-factor-points": 0,
+              "wholegrain-risk-factor-amount-gram": 0,
+              "wholegrain-risk-factor-points": 82.86,
+              "nuts-seeds-risk-factor-amount-gram": 0,
+              "nuts-seeds-risk-factor-points": 13.98,
+              "milk-risk-factor-amount-gram": 0,
+              "milk-risk-factor-points": 9.42,
+              "processed-meat-risk-factor-amount-gram": 0,
+              "processed-meat-risk-factor-points": 0,
+              "red-meat-risk-factor-amount-gram": 0,
+              "red-meat-risk-factor-points": 0,
+              "salt-risk-factor-amount-gram": 0.01,
+              "salt-risk-factor-points": 0,
+              "high-in-energy-risk-factor-points": 0,
+              "high-in-fat-risk-factor-points": 0,
+              "low-in-fat-risk-factor-points": 73.86,
+              "high-in-protein-risk-factor-points": 24.86,
+              "low-in-protein-risk-factor-points": 0
+            },
+            "environment": {
+              "scarce-water-liters": 0.03,
+              "water-footprint-rating": "A",
+              "water-footprint-reduction-value": 2.34,
+              "water-footprint-award": true,
+              "water-footprint-improvement-percentage": 98.71,
+              "rainforest-label": true,
+              "rainforest-rating": "A",
+              "animal-treatment-label": true,
+              "animal-treatment-rating": "A",
+              "season-label": false,
+              "season-rating": "E",
+              "local-label": false,
+              "local-rating": "E"
+            }
+          },
+          "co2-value": 27,
+          "rating": "B",
+          "co2-value-improvement-percentage": 47,
+          "co2-value-reduction-value": 23,
+          "bar-chart": 6,
+          "id": "internal-recipe-id2",
+          "type": "recipes",
+          "amount": 50,
+          "unit": "gram",
+          "origin": "",
+          "transport": "",
+          "production": "",
+          "processing": "",
+          "conservation": "",
+          "packaging": ""
+        }
+      ]
+    }
+  },
+  {
+    "statuscode": 200,
+    "message": "",
+    "recipe-id": "internal-recipe-id1",
+    "request-id": 1,
+    "recipe": {
+      "food-unit": 0.27,
+      "final-weight-per-portion": 52.5,
+      "indicators": {
+        "vita-score": {
+          "vita-score-points": 322.11,
+          "vita-score-rating": "B",
+          "vita-score-improvement-percentage": 5.26,
+          "energy-kcals": 183.14,
+          "nutrition-label": false,
+          "fruit-risk-factor-amount-gram": 0,
+          "fruit-risk-factor-points": 61.24,
+          "vegetable-risk-factor-amount-gram": 2.5,
+          "vegetable-risk-factor-points": 30.57,
+          "wholegrain-risk-factor-amount-gram": 0,
+          "wholegrain-risk-factor-points": 82.86,
+          "nuts-seeds-risk-factor-amount-gram": 0,
+          "nuts-seeds-risk-factor-points": 13.98,
+          "milk-risk-factor-amount-gram": 0,
+          "milk-risk-factor-points": 9.42,
+          "processed-meat-risk-factor-amount-gram": 0,
+          "processed-meat-risk-factor-points": 0,
+          "red-meat-risk-factor-amount-gram": 0,
+          "red-meat-risk-factor-points": 0,
+          "salt-risk-factor-amount-gram": 0,
+          "salt-risk-factor-points": 0,
+          "high-in-energy-risk-factor-points": 0,
+          "high-in-fat-risk-factor-points": 0,
+          "low-in-fat-risk-factor-points": 88.66,
+          "high-in-protein-risk-factor-points": 0,
+          "low-in-protein-risk-factor-points": 35.38
+        },
+        "environment": {
+          "scarce-water-liters": 0,
+          "water-footprint-rating": "A",
+          "water-footprint-reduction-value": 9.92,
+          "water-footprint-award": true,
+          "water-footprint-improvement-percentage": 99.96,
+          "rainforest-label": true,
+          "rainforest-rating": "A",
+          "animal-treatment-label": true,
+          "animal-treatment-rating": "A",
+          "season-label": false,
+          "season-rating": "E",
+          "local-label": false,
+          "local-rating": "E"
+        }
+      },
+      "eaternity-award": true,
+      "co2-value": 85,
+      "rating": "A",
+      "co2-value-improvement-percentage": 60,
+      "co2-value-reduction-value": 126,
+      "id": "internal-recipe-id1",
+      "kitchen-id": "kitchen-restaurant-a",
+      "titles": [
+        {
+          "language": "en",
+          "value": "pumpkin risotto"
+        }
+      ],
+      "servings": 100,
+      "recipe-portions": 100,
+      "ingredients": [
+        {
+          "foodUnit": 0.19,
+          "indicators": {
+            "vita-score": {
+              "vita-score-points": 285.13,
+              "vita-score-rating": "B",
+              "vita-score-improvement-percentage": 16.14,
+              "energy-kcals": 58.55,
+              "nutrition-label": false,
+              "fruit-risk-factor-amount-gram": 0,
+              "fruit-risk-factor-points": 61.24,
+              "vegetable-risk-factor-amount-gram": 250,
+              "vegetable-risk-factor-points": 0,
+              "wholegrain-risk-factor-amount-gram": 0,
+              "wholegrain-risk-factor-points": 82.86,
+              "nuts-seeds-risk-factor-amount-gram": 0,
+              "nuts-seeds-risk-factor-points": 13.98,
+              "milk-risk-factor-amount-gram": 0,
+              "milk-risk-factor-points": 9.42,
+              "processed-meat-risk-factor-amount-gram": 0,
+              "processed-meat-risk-factor-points": 0,
+              "red-meat-risk-factor-amount-gram": 0,
+              "red-meat-risk-factor-points": 0,
+              "salt-risk-factor-amount-gram": 0.01,
+              "salt-risk-factor-points": 0,
+              "high-in-energy-risk-factor-points": 0,
+              "high-in-fat-risk-factor-points": 0,
+              "low-in-fat-risk-factor-points": 88.66,
+              "high-in-protein-risk-factor-points": 0,
+              "low-in-protein-risk-factor-points": 28.97
+            },
+            "environment": {
+              "scarce-water-liters": 0.41,
+              "water-footprint-rating": "A",
+              "water-footprint-reduction-value": 6.55,
+              "water-footprint-award": true,
+              "water-footprint-improvement-percentage": 94.16,
+              "rainforest-label": true,
+              "rainforest-rating": "A",
+              "animal-treatment-label": true,
+              "animal-treatment-rating": "A",
+              "season-label": false,
+              "season-rating": "E",
+              "local-label": false,
+              "local-rating": "E"
+            }
+          },
+          "co2-value": 25,
+          "rating": "A",
+          "co2-value-improvement-percentage": 83,
+          "co2-value-reduction-value": 123,
+          "bar-chart": 0,
+          "id": "101",
+          "type": "conceptual-ingredients",
+          "names": [
+            {
+              "language": "en",
+              "value": "pumpkin"
+            },
+            {
+              "language": "de",
+              "value": "Kürbis"
+            }
+          ],
+          "amount": 250,
+          "unit": "gram",
+          "origin": "",
+          "transport": "",
+          "production": "",
+          "processing": "",
+          "conservation": "",
+          "packaging": "",
+          "gtin": ""
+        },
+        {
+          "foodUnit": 26.91,
+          "indicators": {
+            "vita-score": {
+              "vita-score-points": 410.79,
+              "vita-score-rating": "C",
+              "vita-score-improvement-percentage": -20.82,
+              "energy-kcals": 18255.85,
+              "nutrition-label": false,
+              "fruit-risk-factor-amount-gram": 0,
+              "fruit-risk-factor-points": 61.24,
+              "vegetable-risk-factor-amount-gram": 0,
+              "vegetable-risk-factor-points": 30.57,
+              "wholegrain-risk-factor-amount-gram": 0,
+              "wholegrain-risk-factor-points": 82.86,
+              "nuts-seeds-risk-factor-amount-gram": 0,
+              "nuts-seeds-risk-factor-points": 13.98,
+              "milk-risk-factor-amount-gram": 0,
+              "milk-risk-factor-points": 9.42,
+              "processed-meat-risk-factor-amount-gram": 0,
+              "processed-meat-risk-factor-points": 0,
+              "red-meat-risk-factor-amount-gram": 0,
+              "red-meat-risk-factor-points": 0,
+              "salt-risk-factor-amount-gram": 0.13,
+              "salt-risk-factor-points": 0,
+              "high-in-energy-risk-factor-points": 88.66,
+              "high-in-fat-risk-factor-points": 0,
+              "low-in-fat-risk-factor-points": 88.66,
+              "high-in-protein-risk-factor-points": 0,
+              "low-in-protein-risk-factor-points": 35.4
+            },
+            "environment": {
+              "scarce-water-liters": 0,
+              "water-footprint-rating": "A",
+              "water-footprint-reduction-value": 985.53,
+              "water-footprint-award": true,
+              "water-footprint-improvement-percentage": 100,
+              "rainforest-label": true,
+              "rainforest-rating": "A",
+              "animal-treatment-label": true,
+              "animal-treatment-rating": "A",
+              "season-label": false,
+              "season-rating": "E",
+              "local-label": false,
+              "local-rating": "E"
+            }
+          },
+          "co2-value": 8452,
+          "rating": "A",
+          "co2-value-improvement-percentage": 60,
+          "co2-value-reduction-value": 12504,
+          "bar-chart": 100,
+          "id": "102",
+          "type": "conceptual-ingredients",
+          "names": [
+            {
+              "language": "en",
+              "value": "risotto rice"
+            }
+          ],
+          "amount": 5000,
+          "unit": "gram",
+          "origin": "Italy",
+          "transport": "ground",
+          "production": "",
+          "processing": "",
+          "conservation": "dried",
+          "packaging": "",
+          "gtin": ""
+        }
+      ]
+    }
+  },
+  {
+    "statuscode": 200,
+    "message": "",
+    "recipe-id": "internal-recipe-id2",
+    "request-id": 2,
+    "recipe": {
+      "food-unit": 0.06,
+      "final-weight-per-portion": 45.6,
+      "indicators": {
+        "vita-score": {
+          "vita-score-points": 266.22,
+          "vita-score-rating": "A",
+          "vita-score-improvement-percentage": 21.7,
+          "energy-kcals": 15.54,
+          "nutrition-label": false,
+          "fruit-risk-factor-amount-gram": 0,
+          "fruit-risk-factor-points": 61.24,
+          "vegetable-risk-factor-amount-gram": 15.6,
+          "vegetable-risk-factor-points": 0,
+          "wholegrain-risk-factor-amount-gram": 0,
+          "wholegrain-risk-factor-points": 82.86,
+          "nuts-seeds-risk-factor-amount-gram": 0,
+          "nuts-seeds-risk-factor-points": 13.98,
+          "milk-risk-factor-amount-gram": 0,
+          "milk-risk-factor-points": 9.42,
+          "processed-meat-risk-factor-amount-gram": 0,
+          "processed-meat-risk-factor-points": 0,
+          "red-meat-risk-factor-amount-gram": 0,
+          "red-meat-risk-factor-points": 0,
+          "salt-risk-factor-amount-gram": 0.01,
+          "salt-risk-factor-points": 0,
+          "high-in-energy-risk-factor-points": 0,
+          "high-in-fat-risk-factor-points": 0,
+          "low-in-fat-risk-factor-points": 73.86,
+          "high-in-protein-risk-factor-points": 24.86,
+          "low-in-protein-risk-factor-points": 0
+        },
+        "environment": {
+          "scarce-water-liters": 0.03,
+          "water-footprint-rating": "A",
+          "water-footprint-reduction-value": 2.13,
+          "water-footprint-award": true,
+          "water-footprint-improvement-percentage": 98.71,
+          "rainforest-label": true,
+          "rainforest-rating": "A",
+          "animal-treatment-label": true,
+          "animal-treatment-rating": "A",
+          "season-label": false,
+          "season-rating": "E",
+          "local-label": false,
+          "local-rating": "E"
+        }
+      },
+      "eaternity-award": false,
+      "co2-value": 24,
+      "rating": "B",
+      "co2-value-improvement-percentage": 47,
+      "co2-value-reduction-value": 22,
+      "id": "internal-recipe-id2",
+      "kitchen-id": "kitchen-restaurant-a",
+      "titles": [
+        {
+          "language": "en",
+          "value": "Mushroom gravy"
+        }
+      ],
+      "servings": 5,
+      "recipe-portions": 5,
+      "ingredients": [
+        {
+          "foodUnit": 0.21,
+          "indicators": {
+            "vita-score": {
+              "vita-score-points": 316.19,
+              "vita-score-rating": "B",
+              "vita-score-improvement-percentage": 7,
+              "energy-kcals": 47.32,
+              "nutrition-label": false,
+              "fruit-risk-factor-amount-gram": 0,
+              "fruit-risk-factor-points": 61.24,
+              "vegetable-risk-factor-amount-gram": 0,
+              "vegetable-risk-factor-points": 30.57,
+              "wholegrain-risk-factor-amount-gram": 0,
+              "wholegrain-risk-factor-points": 82.86,
+              "nuts-seeds-risk-factor-amount-gram": 0,
+              "nuts-seeds-risk-factor-points": 13.98,
+              "milk-risk-factor-amount-gram": 0,
+              "milk-risk-factor-points": 9.42,
+              "processed-meat-risk-factor-amount-gram": 0,
+              "processed-meat-risk-factor-points": 0,
+              "red-meat-risk-factor-amount-gram": 0,
+              "red-meat-risk-factor-points": 0,
+              "salt-risk-factor-amount-gram": 0.02,
+              "salt-risk-factor-points": 0,
+              "high-in-energy-risk-factor-points": 0,
+              "high-in-fat-risk-factor-points": 0,
+              "low-in-fat-risk-factor-points": 63.4,
+              "high-in-protein-risk-factor-points": 54.72,
+              "low-in-protein-risk-factor-points": 0
+            },
+            "environment": {
+              "scarce-water-liters": 0,
+              "water-footprint-rating": "A",
+              "water-footprint-reduction-value": 7.79,
+              "water-footprint-award": true,
+              "water-footprint-improvement-percentage": 100,
+              "rainforest-label": true,
+              "rainforest-rating": "A",
+              "animal-treatment-label": true,
+              "animal-treatment-rating": "A",
+              "season-label": false,
+              "season-rating": "E",
+              "local-label": false,
+              "local-rating": "E"
+            }
+          },
+          "co2-value": 92,
+          "rating": "B",
+          "co2-value-improvement-percentage": 44,
+          "co2-value-reduction-value": 73,
+          "bar-chart": 76,
+          "id": "103",
+          "type": "conceptual-ingredients",
+          "names": [
+            {
+              "language": "en",
+              "value": "Mushrooms"
+            }
+          ],
+          "amount": 150,
+          "unit": "gram",
+          "origin": "",
+          "transport": "",
+          "production": "",
+          "processing": "",
+          "conservation": "",
+          "packaging": "",
+          "gtin": ""
+        },
+        {
+          "foodUnit": 0.08,
+          "indicators": {
+            "vita-score": {
+              "vita-score-points": 277.8,
+              "vita-score-rating": "A",
+              "vita-score-improvement-percentage": 18.29,
+              "energy-kcals": 30.39,
+              "nutrition-label": false,
+              "fruit-risk-factor-amount-gram": 0,
+              "fruit-risk-factor-points": 61.24,
+              "vegetable-risk-factor-amount-gram": 78,
+              "vegetable-risk-factor-points": 0,
+              "wholegrain-risk-factor-amount-gram": 0,
+              "wholegrain-risk-factor-points": 82.86,
+              "nuts-seeds-risk-factor-amount-gram": 0,
+              "nuts-seeds-risk-factor-points": 13.98,
+              "milk-risk-factor-amount-gram": 0,
+              "milk-risk-factor-points": 9.42,
+              "processed-meat-risk-factor-amount-gram": 0,
+              "processed-meat-risk-factor-points": 0,
+              "red-meat-risk-factor-amount-gram": 0,
+              "red-meat-risk-factor-points": 0,
+              "salt-risk-factor-amount-gram": 0.01,
+              "salt-risk-factor-points": 0,
+              "high-in-energy-risk-factor-points": 0,
+              "high-in-fat-risk-factor-points": 0,
+              "low-in-fat-risk-factor-points": 88.66,
+              "high-in-protein-risk-factor-points": 0,
+              "low-in-protein-risk-factor-points": 21.64
+            },
+            "environment": {
+              "scarce-water-liters": 0.14,
+              "water-footprint-rating": "A",
+              "water-footprint-reduction-value": 2.87,
+              "water-footprint-award": true,
+              "water-footprint-improvement-percentage": 95.38,
+              "rainforest-label": true,
+              "rainforest-rating": "A",
+              "animal-treatment-label": true,
+              "animal-treatment-rating": "A",
+              "season-label": false,
+              "season-rating": "E",
+              "local-label": false,
+              "local-rating": "E"
+            }
+          },
+          "co2-value": 30,
+          "rating": "A",
+          "co2-value-improvement-percentage": 53,
+          "co2-value-reduction-value": 34,
+          "bar-chart": 24,
+          "id": "104",
+          "type": "conceptual-ingredients",
+          "names": [
+            {
+              "language": "de",
+              "value": "onions"
+            }
+          ],
+          "amount": 78,
+          "unit": "gram",
+          "origin": "",
+          "transport": "",
+          "production": "",
+          "processing": "",
+          "conservation": "",
+          "packaging": "",
+          "gtin": ""
+        }
+      ]
+    }
+  },
+  {
+    "statuscode": 200,
+    "message": "",
+    "recipe-id": "menu-id1-fitness-2016-11-28",
+    "request-id": 3,
+    "recipe": {
+      "food-unit": 1.3,
+      "final-weight-per-portion": 288,
+      "indicators": {
+        "vita-score": {
+          "vita-score-points": 351.04,
+          "vita-score-rating": "C",
+          "vita-score-improvement-percentage": -3.25,
+          "energy-kcals": 853.59,
+          "nutrition-label": false,
+          "fruit-risk-factor-amount-gram": 0,
+          "fruit-risk-factor-points": 61.24,
+          "vegetable-risk-factor-amount-gram": 27.85,
+          "vegetable-risk-factor-points": 30.57,
+          "wholegrain-risk-factor-amount-gram": 0,
+          "wholegrain-risk-factor-points": 82.86,
+          "nuts-seeds-risk-factor-amount-gram": 0,
+          "nuts-seeds-risk-factor-points": 13.98,
+          "milk-risk-factor-amount-gram": 0,
+          "milk-risk-factor-points": 9.42,
+          "processed-meat-risk-factor-amount-gram": 0,
+          "processed-meat-risk-factor-points": 0,
+          "red-meat-risk-factor-amount-gram": 0,
+          "red-meat-risk-factor-points": 0,
+          "salt-risk-factor-amount-gram": 0.01,
+          "salt-risk-factor-points": 0,
+          "high-in-energy-risk-factor-points": 30.08,
+          "high-in-fat-risk-factor-points": 0,
+          "low-in-fat-risk-factor-points": 88.66,
+          "high-in-protein-risk-factor-points": 0,
+          "low-in-protein-risk-factor-points": 34.23
+        },
+        "environment": {
+          "scarce-water-liters": 0.05,
+          "water-footprint-rating": "A",
+          "water-footprint-reduction-value": 47.6,
+          "water-footprint-award": true,
+          "water-footprint-improvement-percentage": 99.9,
+          "rainforest-label": true,
+          "rainforest-rating": "A",
+          "animal-treatment-label": true,
+          "animal-treatment-rating": "A",
+          "season-label": false,
+          "season-rating": "E",
+          "local-label": false,
+          "local-rating": "E"
+        }
+      },
+      "eaternity-award": true,
+      "co2-value": 414,
+      "rating": "A",
+      "co2-value-improvement-percentage": 59,
+      "co2-value-reduction-value": 599,
+      "id": "menu-id1-fitness-2016-11-28",
+      "kitchen-id": "kitchen-restaurant-a",
+      "titles": [
+        {
+          "language": "en",
+          "value": "Fitness Risotto"
+        }
+      ],
+      "date": "2016-11-28",
+      "servings": 1,
+      "recipe-portions": 1,
+      "ingredients": [
+        {
+          "foodUnit": 1.3,
+          "indicators": {
+            "vita-score": {
+              "vita-score-points": 351.04,
+              "vita-score-rating": "C",
+              "vita-score-improvement-percentage": -3.25,
+              "energy-kcals": 853.59,
+              "nutrition-label": false,
+              "fruit-risk-factor-amount-gram": 0,
+              "fruit-risk-factor-points": 61.24,
+              "vegetable-risk-factor-amount-gram": 27.85,
+              "vegetable-risk-factor-points": 30.57,
+              "wholegrain-risk-factor-amount-gram": 0,
+              "wholegrain-risk-factor-points": 82.86,
+              "nuts-seeds-risk-factor-amount-gram": 0,
+              "nuts-seeds-risk-factor-points": 13.98,
+              "milk-risk-factor-amount-gram": 0,
+              "milk-risk-factor-points": 9.42,
+              "processed-meat-risk-factor-amount-gram": 0,
+              "processed-meat-risk-factor-points": 0,
+              "red-meat-risk-factor-amount-gram": 0,
+              "red-meat-risk-factor-points": 0,
+              "salt-risk-factor-amount-gram": 0.01,
+              "salt-risk-factor-points": 0,
+              "high-in-energy-risk-factor-points": 30.08,
+              "high-in-fat-risk-factor-points": 0,
+              "low-in-fat-risk-factor-points": 88.66,
+              "high-in-protein-risk-factor-points": 0,
+              "low-in-protein-risk-factor-points": 34.23
+            },
+            "environment": {
+              "scarce-water-liters": 0.05,
+              "water-footprint-rating": "A",
+              "water-footprint-reduction-value": 47.6,
+              "water-footprint-award": true,
+              "water-footprint-improvement-percentage": 99.9,
+              "rainforest-label": true,
+              "rainforest-rating": "A",
+              "animal-treatment-label": true,
+              "animal-treatment-rating": "A",
+              "season-label": false,
+              "season-rating": "E",
+              "local-label": false,
+              "local-rating": "E"
+            }
+          },
+          "co2-value": 414,
+          "rating": "A",
+          "co2-value-improvement-percentage": 59,
+          "co2-value-reduction-value": 599,
+          "bar-chart": 100,
+          "id": "internal-recipe-id3",
+          "type": "recipes",
+          "amount": 288,
+          "unit": "gram",
+          "origin": "",
+          "transport": "",
+          "production": "",
+          "processing": "",
+          "conservation": "",
+          "packaging": ""
+        }
+      ],
+      "menu-line-name": "Fitness",
+      "menu-line-id": 1
+    }
+  }
+]
 
-
+## Batch Operations on Recipe Resources [/recipes/batch]
 ### Delete a batch of recipes [DELETE]
 
 + Request (application/json)
@@ -340,9 +1161,9 @@ The request-id differs from the recipe id and has just the lifetime of a single 
         ]
 
 
-## Recipes [/recipes]
+## Individual Recipes [/recipes]
 
-### URL Parameters
+#### URL Parameters
 
 
 | Parameters | Type  | Description      |
@@ -1821,7 +2642,7 @@ The language field must contain one of the [ISO 639-1](http://www.loc.gov/standa
 
 
 ### Id Generation
-The id's of recipes, kitchens and supplies can be generated in two different ways. The first possibility is to create a new resource through a `POST` to the API, then the id is generated by Eaternity.
+The ids of recipes, kitchens and supplies can be generated in two different ways. The first possibility is to create a new resource through a `POST` to the API, then the id is generated by Eaternity.
 The second possibility is to create a new resource through a `PUT`, providing your own id in the URL itself (e.g. /recipes/298734), then your id is used on our servers. This is the recommended approach, as it helps us coordinating your requests.
 The id can be any alphanumeric value following this [regular expression](https://regexr.com/3mho5): [-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|] (the allowed characters for a HTTP URL).
 
