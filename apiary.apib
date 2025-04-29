@@ -39,39 +39,43 @@ Create a kitchen without specifying a particular kitchen ID.
 
 + Request (application/json)
 
-        {   "kitchen": {
-                "name": "police canteen",
-                "location": "zurich, switzerland",
-                "email": "test@example.com",
-                "language": "en"
-            }
-        }
+{
+  "kitchen": {
+    "name": "Kitchen Restaurant A",
+    "location": "Zurich, Switzerland",
+    "email": "kitchen-a@test-customer.com",
+    "language": "en",
+    "id": "kitchen-restaurant-a"
+  }
+}
 
 + Response 201 (application/json)
 
     + Headers
 
-            Location: https://co2.eaternity.ch/api/kitchens/198764
+            Location: http://co2.eaternity.ch/api/kitchens/kitchen-restaurant-a
 
     + Body
-
-            {   "kitchen": {
-                    "id": "198764",
-                    "name": "police canteen",
-                    "location": "zurich, switzerland",
-                    "email": "test@example.com",
-                    "language": "en"
-                }
-            }
+{
+  "kitchen": {
+    "name": "Kitchen Restaurant A",
+    "location": "Zurich, Switzerland",
+    "email": "kitchen-a@test-customer.com",
+    "language": "en",
+    "id": "kitchen-restaurant-a"
+  }
+}
 
 ### Get all kitchens of this client [GET]
 A list of kitchen ids of this client (one API Key) is returned.
 
 + Response 200 (application/json)
 
-        {
-            "kitchens": [ "45674","42344","42233","48855" ]
-        }
+{
+  "kitchens": [
+    "kitchen-restaurant-a"
+  ]
+}
 
 ## Kitchen [/kitchens/{kitchen_id}]
 
@@ -83,61 +87,65 @@ Get the whole kitchen resource.
 
 + Response 200 (application/json)
 
-        {   "kitchen": {
-                "id": "198764",
-                "name": "police canteen",
-                "location": "zurich, switzerland",
-                "email": "test@example.com",
-                "language": "en"
-            }
-        }
+{
+  "kitchen": {
+    "name": "Kitchen Restaurant A",
+    "location": "Zurich, Switzerland",
+    "email": "kitchen-a@test-customer.com",
+    "language": "en",
+    "id": "kitchen-restaurant-a"
+  }
+}
 
 ### Create or update a kitchen [PUT]
 Update or create the kitchen with the specific id
 
 + Request (application/json)
 
-        {   "kitchen": {
-                "name": "police canteen",
-                "location": "zurich, switzerland",
-                "email": "test@example.com",
-                "language": "en"
-            }
-        }
+{
+  "kitchen": {
+    "name": "Kitchen Restaurant A",
+    "location": "Zurich, Switzerland",
+    "email": "kitchen-a@test-customer.com",
+    "language": "en"
+  }
+}
 
 + Response 200 (application/json)
 
     + Headers
 
-            Location: https://co2.eaternity.ch/api/kitchens/198764
+            Location: http://co2.eaternity.ch/api/kitchens/kitchen-restaurant-a
 
     + Body
 
-            {   "kitchen": {
-                    "id": "198764",
-                    "name": "police canteen",
-                    "location": "zurich, switzerland",
-                    "email": "test@example.com",
-                    "language": "en"
-                }
-            }
+{
+  "kitchen": {
+    "name": "Kitchen Restaurant A",
+    "location": "Zurich, Switzerland",
+    "email": "kitchen-a@test-customer.com",
+    "language": "en",
+    "id": "kitchen-restaurant-a"
+  }
+}
 
 + Response 201 (application/json)
 
     + Headers
 
-            Location: https://co2.eaternity.ch/api/kitchens/198764
+            Location: http://co2.eaternity.ch/api/kitchens/kitchen-restaurant-a
 
     + Body
 
-            {   "kitchen": {
-                    "id": "198764",
-                    "name": "police canteen",
-                    "location": "zurich, switzerland",
-                    "email": "test@example.com",
-                    "language": "en"
-                }
-            }
+{
+  "kitchen": {
+    "name": "Kitchen Restaurant A",
+    "location": "Zurich, Switzerland",
+    "email": "kitchen-a@test-customer.com",
+    "language": "en",
+    "id": "kitchen-restaurant-a"
+  }
+}
 
 
 ### Delete a kitchen [DELETE]
