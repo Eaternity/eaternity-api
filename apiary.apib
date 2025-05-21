@@ -2679,7 +2679,7 @@ Sadly, sometimes requests to the API are not successful. Failures can occur for 
 * 405   `Method not allowed` - When the resource exists but the HTTP method verb is not allowed on this resource.
 * 422   `Request Validation Error` - When the request is not valid against the schema we ask. For example you send an integer where a string was expected.
 
-* 500   `Server error` - Just try again.
+* 500   `Server error` - Just try again or contact our tech support.
 
 * 601   `Manual matching missing` - An ingredient was requested, whose id is not yet manually matched into the Eaternity Database. Retry once a day.
 * 602   `No automatic match found` - At least one ingredient name could not get automatically matched into the Eaternity Database. Retry once a day or try with a different ingredient name.
@@ -2725,21 +2725,6 @@ If requested, a collection of indicators will be added to the return JSON for Re
                     "foodUnit": 14.1
                 }
         }
-
-
-
-
-### Climate Score
-
-The CO₂eq values are given in the following unit for the different resources.
-
-
-| Property  | Type    | Description |
-|:----------|:------------------|:----------|
-|co2-value|int|Absolute value [g CO₂e(quivalent) / serving (given or normalized)] or for the specified amount of ingredient|
-|rating|string|Rating [A,B,C,D,E]. A is best, E is worst.|
-|eaternity-award|boolean|If the item receives the Climate Award.|
-|bar-chart|int|How much this ingredient contributes to the total CO₂-Value of the recipe or the supply in percent [0% - 100%]|
 
 
 ### Vita Score
