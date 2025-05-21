@@ -192,7 +192,7 @@ Make sure to that you are using the flag `transient=true` for the sub-recipes in
 Batch operations allow you to create, update or delete multiple recipes at once. They are the most efficient way to work with the Eaternity API. The batch operations can check consistency in between recipes that depend on each other. For example, if you have a recipe with a sub-recipe, the batch operation will check if the sub-recipe is also present in the batch and will return an error if it is not. Presence of sub-recipes is not validated with single requests.
  Batch operations are limited by the computational resources required for the calculations. We recommend a maximum of 100 recipes per request but the limit is not fixed. The server will return an error if the request is too large. The batch operations are not atomic, meaning that if one recipe fails, the others may still be processed. The response will contain the status of each recipe in the batch.
 
-The `transient` parameter can be set selectively per recipe inside the batch.Transient recipes are not included in the monthly summary and do not contribute to the kitchen's statistics. This applies for recipes that are transmitted for use as subrecipes or sent for testing purposes.
+The `transient` parameter can be set selectively per recipe inside the batch. Transient recipes only contribute to the monthly summary and the kitchen's statistics if they are used as sub-recipes in other recipes that are not transient. Therefore `transient` should be set to `true` for recipes that are transmitted for use as sub-recipes or sent for testing purposes.
 
 The message in the response provides more details about the failure of individual recipes.
 
