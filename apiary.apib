@@ -199,7 +199,7 @@ The message in each batch item provides more details about the failure of indivi
 ### Create or update a batch of recipes [POST]
 Create or update a batch of recipes at once. If a recipe id is provided, the recipe is either created with this id or the existing recipe is overwritten. The status code tells the difference.
 
-The `kitchen-id` is used to to attribute the impact to the respective kitchen's statistics.
+The `kitchen-id` is used to attribute the impact to the respective kitchen's statistics.
 
 The additional integer `request-id` field enables you to track back the recipes you sent in case you don't want to use your own ids. Either a request id or a recipe id is required.
 The request-id differs from the recipe id and has just the lifetime of a single request.
@@ -209,7 +209,7 @@ In the following request, one menu item "Fitness Risotto" contains a single reci
 
 This recipe is again composed of two recipes, "pumpkin risotto" and "Mushroom gravy". The recipes are all included in the batch.
 
-The menu item is sold in the kitchen kitchen-restaurant-a on 2016 11 28. The id of the menu item is "menu-id1-fitness-2016-11-28" to illustrate that if a menu item is composed of identical recipes but in a different kitchen, the id of the menu item has to be different. The menu item is marked as not transient, meaning that it will be included in the monthly summary. The two recipes are transient, meaning that they will not again contribute to the monthly summary (their impact is already included in the menu item).
+The menu item is sold in the kitchen kitchen-restaurant-a on 2016 11 28. Note that each (sub-) recipe has to have a unique identifier ("id"). In our example the unique identifier for the menu "Fitness Risotto" is "menu-id1-fitness-2016-11-28" and for the "Mushroom gravy on pumpkin risotto" it is "internal-recipe-id3. The menu item is marked as not transient, meaning that it will be included in the monthly summary. The two recipes are transient, meaning that they will not again contribute to the monthly summary (their impact is already included in the menu item).
 
 
 + Request (application/json)
