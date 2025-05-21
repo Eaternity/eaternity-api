@@ -1160,6 +1160,9 @@ The menu item is sold in the kitchen kitchen-restaurant-a on 2016 11 28. Note th
 
 ## Individual Recipes [/recipes]
 
+If it suits your case better, instead of creating a batch of recipes, you can use the following resources to create, read, update and delete single recipes.
+
+
 #### URL Parameters
 
 
@@ -1854,7 +1857,7 @@ There is no hard limit on the number of ingredients, but requests may time out a
 |nutrient-values|list of nutrient values |Structured list of the nutrients values per defined nutrient as defined below.|no|
 |gtin|string|global trade item number: [www.gtin.info](http://www.gtin.info/)|no|
 
-There is a generic recommendation for the properties to be filled out, to handle the complexity of the data collection, which is to specify for ingredients if the product is air-freighted or not air-freighted, fresh, deep-frozen, dried, preserved, baked, canned, boiled, organic, Fairtrade certified, or fish from aquaculture.
+To reduce ambiguity and minimize manual follow-ups, we strongly recommend specifying certain ingredient attributes, even if technically optional. These include indicators such as air-freighted, fresh, deep-frozen, dried, preserved, baked, canned, boiled, organic, Fairtrade certified, and aquaculture-sourced (for fish). Providing this data up front helps prevent incorrect assumptions and eliminates the need for iterative clarification with you as the client.
 
 ### Ingredient Properties In Responses only
 To receive informations on the ingredients, the URL parameter `full-resource` must be set to `true`. This works for all recipe endpoints like `/recipes/{id}` and `/recipes/batch`.
