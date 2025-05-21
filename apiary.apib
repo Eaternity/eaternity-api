@@ -1930,11 +1930,17 @@ Each request for a Ingredient may contains a list of Nutrients. Each Nutrient re
 |uric-acid-milligram     |float    | Harnsäure (mg)  | Der Harnsäuregehalt in Milligramm pro 100g    |no|
 |alcohol-volume-percent       |float    | Alkoholgehalt (% vol)  | Laut LMIV Art. 9 (1k) muss der Alkoholgehalt in Volumenprozent (% vol) angegeben werden, sobald er 1,2 %vol überschreitet.    |no|
 
-# Group Indicator Properties
+# Group Indicators
 
-## Indicators Results
+The Eaternity API provides access to a set of indicators for evaluating the environmental impact and nutritional quality of recipes, ingredients, and supplies. These indicators support informed decision-making and promote sustainability within the food industry.
 
-If requested with the url parameter `indicators=true`, a collection of indicators will be added to the response JSON for Recipes, Ingredients, and Supplies. The  indicators appear as follows:
+## CO₂-Value
+
+The CO₂-Value represents the amount of CO₂e emissions associated with a recipe, supply, or ingredient, expressed in grams. It is calculated based on the specified ingredient properties, with predictive models filling in any missing data. The CO₂-Value serves as a core indicator of the environmental footprint. For details on the calculation methodology, refer to the [Eaternity CO₂-Value documentation](https://eaternity.notion.site).
+
+## Additional Indicator Results
+
+When the URL parameter `indicators=true` is included in the request, the response JSON will include a collection of additional indicators for Recipes, Ingredients, and Supplies. These indicators are returned in the following format:
 
 
 + Response 201 (application/json)
