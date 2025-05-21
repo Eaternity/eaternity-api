@@ -194,7 +194,7 @@ Batch operations allow you to create, update or delete multiple recipes at once.
 
 The `transient` parameter can be set selectively per recipe inside the batch. Transient recipes only contribute to the monthly summary and the kitchen's statistics if they are used as sub-recipes in other recipes that are not transient. Therefore `transient` should be set to `true` for recipes that are transmitted for use as sub-recipes or sent for testing purposes.
 
-The message in the response provides more details about the failure of individual recipes.
+The message in each batch item provides more details about the failure of individual recipes.
 
 ### Create or update a batch of recipes [POST]
 Create or update a batch of recipes at once. If a recipe id is provided, the recipe is either created with this id or the existing recipe is overwritten. The status code tells the difference.
