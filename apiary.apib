@@ -1930,6 +1930,75 @@ Each request for a Ingredient may contains a list of Nutrients. Each Nutrient re
 |uric-acid-milligram     |float    | Harnsäure (mg)  | Der Harnsäuregehalt in Milligramm pro 100g    |no|
 |alcohol-volume-percent       |float    | Alkoholgehalt (% vol)  | Laut LMIV Art. 9 (1k) muss der Alkoholgehalt in Volumenprozent (% vol) angegeben werden, sobald er 1,2 %vol überschreitet.    |no|
 
+# Group Indicator Properties
+
+## Indicators Results
+
+If requested with the url parameter `indicators=true`, a collection of indicators will be added to the response JSON for Recipes, Ingredients, and Supplies. The  indicators appear as follows:
+
+
++ Response 201 (application/json)
+
+        {   
+            ...
+            "indicators": {
+                    "vita-score": {
+                        "vita-score-points": 346,
+                        "vita-score-rating": "B",
+                        "vita-score-award": true,
+                        "energy-kcals": 457,
+                        "nutrition-label": true,
+                        "nutrition-rating": "A"
+                    },
+                    "environment": {
+                        "animal-treatment-label": true,
+                        "animal-treatment-rating": "A",
+                        "rainforest-label": false,
+                        "rainforest-rating": "E",
+                        "local-label": true,
+                        "local-rating": "A",
+                        "season-label": true,
+                        "season-rating": "A",
+                        "scarce-water-liters": 6.0,
+                        "water-footprint-rating": "C",
+                        "water-footprint-award": false
+                    },
+                    "foodUnit": 14.1
+                }
+              ...
+        }
+
+
+### Vita Score
+
+([Documentation of the Vita Score](http://www.eaternity.org/foodprint/vita-score))
+
+
+| Property  | Type    | Description |
+|:----------|:------------------|:----------|
+|vita-score-points|int|The total score in points.|
+|vita-score-rating|string|Rating of Vita Score: [A,B,C,D,E]. A is best, E is worst|
+|vita-score-award|boolean|If the item receives the Vita Score Award.|
+|energy-kcals|int|the total nutritional energy for the item in kilocalories|
+|nutrition-label|boolean|whether a menu is nutritionally balanced|
+
+### Environmental Footprints
+
+([Documentation of the Environmental Footprints](http://www.eaternity.org/foodprint/environmental-footprints))
+
+| Property  | Type    | Description |
+|:----------|:------------------|:----------|
+|animal-treatment-label|boolean|whether the item conforms with animal welfare standards ( has an "A" rating )|
+|animal-treatment-rating|string|Animal-treatment rating: [A,B,C,D,E]. A is best, E is worst|
+|rainforest-label|boolean|whether the item meets the standard of avoiding deforestation ( has an "A" rating )|
+|rainforest-rating|string|Rainforest rating: [A,B,C,D,E]. A is best, E is worst|
+|local-label|boolean|whether the item is produced locally|
+|local-rating|string|Local rating: [A,B,C,D,E]. A is best, E is worst|
+|season-label|boolean|whether the item is used in season|
+|season-rating|boolean|Season rating: [A,B,C,D,E]. A is best, E is worst|
+|scarce-water-liters|int|the total scarce water amount for the item in Liters|
+|water-footprint-rating|string|Water-use rating: [A,B,C,D,E]. A is best, E is worst|
+|water-footprint-award|boolean|If the item receives the Water Footprint Award.|
 
 
 # Group Supply Resources
@@ -2688,72 +2757,3 @@ Sadly, sometimes requests to the API are not successful. Failures can occur for 
 * 612   `Referenced sub-recipe is not in the database.` - A referenced recipe was not provided in this or a previous request. Please provide the required recipe in advance.
 * 670   `At least one (sub-) recipe has no ingredients.` - “Something of nothing” does not work. You referenced a positive quantity of a sub-recipe that did have any quantitity itself.
 
-## Indicators Results
-
-If requested, a collection of indicators will be added to the return JSON for Recipes, Ingredients, and Supplies. The  indicators appear as follows:
-
-
-+ Response 201 (application/json)
-
-        {
-            "co2-value": 765,
-            "eaternity-award": false,
-            "rating": "B",
-            "bar-chart": 99,
-            "indicators": {
-                    "vita-score": {
-                        "vita-score-points": 346,
-                        "vita-score-rating": "B",
-                        "vita-score-award": true,
-                        "energy-kcals": 457,
-                        "nutrition-label": true,
-                        "nutrition-rating": "A"
-                    },
-                    "environment": {
-                        "animal-treatment-label": true,
-                        "animal-treatment-rating": "A",
-                        "rainforest-label": false,
-                        "rainforest-rating": "E",
-                        "local-label": true,
-                        "local-rating": "A",
-                        "season-label": true,
-                        "season-rating": "A",
-                        "scarce-water-liters": 6.0,
-                        "water-footprint-rating": "C",
-                        "water-footprint-award": false
-                    },
-                    "foodUnit": 14.1
-                }
-        }
-
-
-### Vita Score
-
-([Documentation of the Vita Score](http://www.eaternity.org/foodprint/vita-score))
-
-
-| Property  | Type    | Description |
-|:----------|:------------------|:----------|
-|vita-score-points|int|The total score in points.|
-|vita-score-rating|string|Rating of Vita Score: [A,B,C,D,E]. A is best, E is worst|
-|vita-score-award|boolean|If the item receives the Vita Score Award.|
-|energy-kcals|int|the total nutritional energy for the item in kilocalories|
-|nutrition-label|boolean|whether a menu is nutritionally balanced|
-
-### Environmental Footprints
-
-([Documentation of the Environmental Footprints](http://www.eaternity.org/foodprint/environmental-footprints))
-
-| Property  | Type    | Description |
-|:----------|:------------------|:----------|
-|animal-treatment-label|boolean|whether the item conforms with animal welfare standards ( has an "A" rating )|
-|animal-treatment-rating|string|Animal-treatment rating: [A,B,C,D,E]. A is best, E is worst|
-|rainforest-label|boolean|whether the item meets the standard of avoiding deforestation ( has an "A" rating )|
-|rainforest-rating|string|Rainforest rating: [A,B,C,D,E]. A is best, E is worst|
-|local-label|boolean|whether the item is produced locally|
-|local-rating|string|Local rating: [A,B,C,D,E]. A is best, E is worst|
-|season-label|boolean|whether the item is used in season|
-|season-rating|boolean|Season rating: [A,B,C,D,E]. A is best, E is worst|
-|scarce-water-liters|int|the total scarce water amount for the item in Liters|
-|water-footprint-rating|string|Water-use rating: [A,B,C,D,E]. A is best, E is worst|
-|water-footprint-award|boolean|If the item receives the Water Footprint Award.|
