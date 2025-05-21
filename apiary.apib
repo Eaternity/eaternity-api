@@ -1953,6 +1953,91 @@ Supplies are ordered from and delivered by a specific supplier in the supply cha
 + Parameters
     + kitchen_id (string, required) - the id of the kitchen.
 
+### Create a batch of supplies [POST]
+Create or update a batch of supplies at once. If a supply id is provided, the supply is either created with this id or the existing supply is overwritten. The status code tells the difference. The `full-resource` and `indicators` parameters are supported.
+
+The additional `request-id` field enables you to track back the supply you sent in case you don't want to use your own id. Either a request id or a recipe id is required.
+The request-id differs from the supply id and has just the lifetime of a single request (not stored on Eaternity's end).
+
++ Request (application/json)
+
+        [
+        {
+            "request-id": 1,
+            "supply": {
+                "id": "d1ed2263",
+                "kitchen-id": "293833",
+                "supplier": "Vegetable Supplies Ltd.",
+                "supplier-id": "el3i5y-2in5y-2hbllll01",
+                "supply-date": "2013-06-01",
+                "ingredients": [
+                {
+                    "id": "100100191",
+                    "type": "conceptual-ingredients",
+                    "names":  [
+                        {
+                            "language": "de",
+                            "value": "Tomaten"
+                        }],
+                    "amount": 150,
+                    "unit": "gram",
+                    "origin": "spain",
+                    "transport": "air",
+                    "production": "greenhouse",
+                    "processing": "raw",
+                    "conservation": "fresh",
+                    "packaging": "plastic"
+                }
+                ]
+            }
+        },
+        {
+            "request-id": 2,
+            "supply": {
+                "kitchen-id": "11122233",
+                "supplier": "Vegetable Supplies Ltd.",
+                "supplier-id": "el3i5y-2in5y-2hbllll01",
+                "supply-date": "2013-06-06",
+                "ingredients": [
+                {
+                    "id": "100100191",
+                    "type": "conceptual-ingredients",
+                    "names":  [
+                        {
+                            "language": "de",
+                            "value": "Tomaten"
+                        }],
+                    "amount": 150,
+                    "unit": "gram",
+                    "origin": "spain",
+                    "transport": "air",
+                    "production": "greenhouse",
+                    "processing": "raw",
+                    "conservation": "fresh",
+                    "packaging": "plastic"
+                }
+                ]
+            }
+        }
+        ]
+
++ Response 200 (application/json)
+
+        [
+        {
+            "statuscode": 200,
+            "message": "",
+            "request-id": 1,
+            "supply-id": "d1ed2263"
+        },
+        {
+            "statuscode": 500,
+            "message": "Server Error. Just try again.",
+            "request-id": 2
+        }
+        ]
+
+
 ### Create a supply [POST]
 Create a supply without specifying an id. If the request is sent with `full-resource=true`, then a complete response will be given, the same as the response to the GET command below. The parameter `indicators=true` is also supported when `full-resource=true` is specified.
 
@@ -2135,91 +2220,6 @@ Update or create this supply with the specific id. The supply always needs to ha
 + Response 204
 
 ## Batch operations on supply resources [/supplies/batch]
-
-### Create a batch of supplies [POST]
-Create or update a batch of supplies at once. If a supply id is provided, the supply is either created with this id or the existing supply is overwritten. The status code tells the difference. The `full-resource` and `indicators` parameters are supported.
-
-The additional `request-id` field enables you to track back the supply you sent in case you don't want to use your own id. Either a request id or a recipe id is required.
-The request-id differs from the supply id and has just the lifetime of a single request (not stored on Eaternity's end).
-
-+ Request (application/json)
-
-        [
-        {
-            "request-id": 1,
-            "supply": {
-                "id": "d1ed2263",
-                "kitchen-id": "293833",
-                "supplier": "Vegetable Supplies Ltd.",
-                "supplier-id": "el3i5y-2in5y-2hbllll01",
-                "supply-date": "2013-06-01",
-                "ingredients": [
-                {
-                    "id": "100100191",
-                    "type": "conceptual-ingredients",
-                    "names":  [
-                        {
-                            "language": "de",
-                            "value": "Tomaten"
-                        }],
-                    "amount": 150,
-                    "unit": "gram",
-                    "origin": "spain",
-                    "transport": "air",
-                    "production": "greenhouse",
-                    "processing": "raw",
-                    "conservation": "fresh",
-                    "packaging": "plastic"
-                }
-                ]
-            }
-        },
-        {
-            "request-id": 2,
-            "supply": {
-                "kitchen-id": "11122233",
-                "supplier": "Vegetable Supplies Ltd.",
-                "supplier-id": "el3i5y-2in5y-2hbllll01",
-                "supply-date": "2013-06-06",
-                "ingredients": [
-                {
-                    "id": "100100191",
-                    "type": "conceptual-ingredients",
-                    "names":  [
-                        {
-                            "language": "de",
-                            "value": "Tomaten"
-                        }],
-                    "amount": 150,
-                    "unit": "gram",
-                    "origin": "spain",
-                    "transport": "air",
-                    "production": "greenhouse",
-                    "processing": "raw",
-                    "conservation": "fresh",
-                    "packaging": "plastic"
-                }
-                ]
-            }
-        }
-        ]
-
-+ Response 200 (application/json)
-
-        [
-        {
-            "statuscode": 200,
-            "message": "",
-            "request-id": 1,
-            "supply-id": "d1ed2263"
-        },
-        {
-            "statuscode": 500,
-            "message": "Server Error. Just try again.",
-            "request-id": 2
-        }
-        ]
-
 
 ### Delete a batch of supplies [DELETE]
 
