@@ -2,7 +2,8 @@ FORMAT: 1A
 HOST: https://co2.eaternity.ch/api
 
 # Eaternity API
-The Eaternity Database API is a Web Service that calculates the Climate Score (CO₂eq), the Vita Score and other environmental footprints of recipes, restaurants and ingredients dynamically. It includes daily changing information on origin,
+### Summary
+The Eaternity Database API is a Web Service that calculates the Climate Score (CO₂eq), the Vita Score and other environmental footprints of recipes (by posting them to our [recipe ressource](#recipe-resources-batch-operations-on-recipe-resources-post)), restaurants (by posting supplies to our [supply ressource](#supply-resources-supply-collection-post)) and ingredients dynamically. It includes daily changing information on origin,
 seasonality and other factors in the calculation ([more Informations on the indicators](http://www.eaternity.org/foodprint/)). Data provided to Eaternity via this API allows for in-depth analyses and reports ([more Informations on the reports](http://www.eaternity.org/app/report)).
 
 ### Terms & Conditions
@@ -20,6 +21,7 @@ To access the API, use **Basic Authentication** with your API key as the usernam
     ```
 
 Join us on Slack [here](https://eaternity-edb-api-slack-invite.herokuapp.com) to get in touch with our developers.
+
 
 # Group Kitchen Resources
 The first step to using the Eaternity API is to create a kitchen. A kitchen is a place where food is prepared and sold. It can be a restaurant, a factory, a canteen or anything similar. The kitchen resource contains all information about the kitchen, including the name, location. Kitchens are the basic grouping for recipes and supplies. Reports and statistics are provided on this level.
@@ -209,7 +211,7 @@ In the following request, one menu item "Fitness Risotto" contains a single reci
 
 This recipe is again composed of two recipes, "pumpkin risotto" and "Mushroom gravy". The recipes are all included in the batch.
 
-The menu item is sold in the kitchen kitchen-restaurant-a on 2016 11 28. Note that each (sub-) recipe has to have a unique identifier ("id"). In our example the unique identifier for the menu "Fitness Risotto" is "menu-id1-fitness-2016-11-28" and for the "Mushroom gravy on pumpkin risotto" it is "internal-recipe-id3. The menu item is marked as not transient, meaning that it will be included in the monthly summary. The two recipes are transient, meaning that they will not again contribute to the monthly summary (their impact is already included in the menu item).
+The menu item is sold in the kitchen kitchen-restaurant-a on 2016 11 28. Note that each (sub-) recipe has to have a unique identifier ("id"). In our example the unique identifier for the menu "Fitness Risotto" is "menu-id1-fitness-2016-11-28" and for the "Mushroom gravy on pumpkin risotto" it is "internal-recipe-id3". The menu item is marked as not transient, meaning that it will be included in the monthly summary. The two recipes are transient, meaning that they will not again contribute to the monthly summary (their impact is already included in the menu item).
 
 
 + Request (application/json)
@@ -1930,7 +1932,7 @@ Each request for a Ingredient may contains a list of Nutrients. Each Nutrient re
 |uric-acid-milligram     |float    | Harnsäure (mg)  | Der Harnsäuregehalt in Milligramm pro 100g    |no|
 |alcohol-volume-percent       |float    | Alkoholgehalt (% vol)  | Laut LMIV Art. 9 (1k) muss der Alkoholgehalt in Volumenprozent (% vol) angegeben werden, sobald er 1,2 %vol überschreitet.    |no|
 
-# Group Indicators
+# Group Impact Indicators
 
 The Eaternity API provides access to a set of indicators for evaluating the environmental impact and nutritional quality of recipes, ingredients, and supplies. These indicators support informed decision-making and promote sustainability within the food industry.
 
