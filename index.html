@@ -1,9 +1,9 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><title>Eaternity Client API</title><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><style>@import url('https://fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata|Raleway:200');.hljs-comment,.hljs-title{color:#8e908c}.hljs-variable,.hljs-attribute,.hljs-tag,.hljs-regexp,.ruby .hljs-constant,.xml .hljs-tag .hljs-title,.xml .hljs-pi,.xml .hljs-doctype,.html .hljs-doctype,.css .hljs-id,.css .hljs-class,.css .hljs-pseudo{color:#c82829}.hljs-number,.hljs-preprocessor,.hljs-pragma,.hljs-built_in,.hljs-literal,.hljs-params,.hljs-constant{color:#f5871f}.ruby .hljs-class .hljs-title,.css .hljs-rules .hljs-attribute{color:#eab700}.hljs-string,.hljs-value,.hljs-inheritance,.hljs-header,.ruby .hljs-symbol,.xml .hljs-cdata{color:#718c00}.css .hljs-hexcolor{color:#3e999f}.hljs-function,.python .hljs-decorator,.python .hljs-title,.ruby .hljs-function .hljs-title,.ruby .hljs-title .hljs-keyword,.perl .hljs-sub,.javascript .hljs-title,.coffeescript .hljs-title{color:#4271ae}.hljs-keyword,.javascript .hljs-function{color:#8959a8}.hljs{display:block;background:white;color:#4d4d4c;padding:.5em}.coffeescript .javascript,.javascript .xml,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata{opacity:.5}.right .hljs-comment{color:#969896}.right .css .hljs-class,.right .css .hljs-id,.right .css .hljs-pseudo,.right .hljs-attribute,.right .hljs-regexp,.right .hljs-tag,.right .hljs-variable,.right .html .hljs-doctype,.right .ruby .hljs-constant,.right .xml .hljs-doctype,.right .xml .hljs-pi,.right .xml .hljs-tag .hljs-title{color:#c66}.right .hljs-built_in,.right .hljs-constant,.right .hljs-literal,.right .hljs-number,.right .hljs-params,.right .hljs-pragma,.right .hljs-preprocessor{color:#de935f}.right .css .hljs-rule .hljs-attribute,.right .ruby .hljs-class .hljs-title{color:#f0c674}.right .hljs-header,.right .hljs-inheritance,.right .hljs-name,.right .hljs-string,.right .hljs-value,.right .ruby .hljs-symbol,.right .xml .hljs-cdata{color:#b5bd68}.right .css .hljs-hexcolor,.right .hljs-title{color:#8abeb7}.right .coffeescript .hljs-title,.right .hljs-function,.right .javascript .hljs-title,.right .perl .hljs-sub,.right .python .hljs-decorator,.right .python .hljs-title,.right .ruby .hljs-function .hljs-title,.right .ruby .hljs-title .hljs-keyword{color:#81a2be}.right .hljs-keyword,.right .javascript .hljs-function{color:#b294bb}.right .hljs{display:block;overflow-x:auto;background:#1d1f21;color:#c5c8c6;padding:.5em;-webkit-text-size-adjust:none}.right .coffeescript .javascript,.right .javascript .xml,.right .tex .hljs-formula,.right .xml .css,.right .xml .hljs-cdata,.right .xml .javascript,.right .xml .vbscript{opacity:.5}body{color:black;background:white;font:400 14px / 1.42 'Roboto',Helvetica,sans-serif}header{border-bottom:1px solid #f2f2f2;margin-bottom:12px}h1,h2,h3,h4,h5{color:black;margin:12px 0}h1 .permalink,h2 .permalink,h3 .permalink,h4 .permalink,h5 .permalink{margin-left:0;opacity:0;transition:opacity .25s ease}h1:hover .permalink,h2:hover .permalink,h3:hover .permalink,h4:hover .permalink,h5:hover .permalink{opacity:1}.triple h1 .permalink,.triple h2 .permalink,.triple h3 .permalink,.triple h4 .permalink,.triple h5 .permalink{opacity:.15}.triple h1:hover .permalink,.triple h2:hover .permalink,.triple h3:hover .permalink,.triple h4:hover .permalink,.triple h5:hover .permalink{opacity:.15}h1{font:200 36px 'Raleway',Helvetica,sans-serif;font-size:36px}h2{font:200 36px 'Raleway',Helvetica,sans-serif;font-size:30px}h3{font-size:100%;text-transform:uppercase}h5{font-size:100%;font-weight:normal}p{margin:0 0 10px}p.choices{line-height:1.6}a{color:#428bca;text-decoration:none}li p{margin:0}hr.split{border:0;height:1px;width:100%;padding-left:6px;margin:12px auto;background-image:linear-gradient(to right, rgba(0,0,0,0) 20%, rgba(0,0,0,0.2) 51.4%, rgba(255,255,255,0.2) 51.4%, rgba(255,255,255,0) 80%)}dl dt{float:left;width:130px;clear:left;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700}dl dd{margin-left:150px}blockquote{color:rgba(0,0,0,0.5);font-size:15.5px;padding:10px 20px;margin:12px 0;border-left:5px solid #e8e8e8}blockquote p:last-child{margin-bottom:0}pre{background-color:#f5f5f5;padding:12px;border:1px solid #cfcfcf;border-radius:6px;overflow:auto}pre code{color:black;background-color:transparent;padding:0;border:none}code{color:#444;background-color:#f5f5f5;font:'Inconsolata',monospace;padding:1px 4px;border:1px solid #cfcfcf;border-radius:3px}ul,ol{padding-left:2em}table{border-collapse:collapse;border-spacing:0;margin-bottom:12px}table tr:nth-child(2n){background-color:#fafafa}table th,table td{padding:6px 12px;border:1px solid #e6e6e6}.text-muted{opacity:.5}.note,.warning{padding:.3em 1em;margin:1em 0;border-radius:2px;font-size:90%}.note h1,.warning h1,.note h2,.warning h2,.note h3,.warning h3,.note h4,.warning h4,.note h5,.warning h5,.note h6,.warning h6{font-family:200 36px 'Raleway',Helvetica,sans-serif;font-size:135%;font-weight:500}.note p,.warning p{margin:.5em 0}.note{color:black;background-color:#f0f6fb;border-left:4px solid #428bca}.note h1,.note h2,.note h3,.note h4,.note h5,.note h6{color:#428bca}.warning{color:black;background-color:#fbf1f0;border-left:4px solid #c9302c}.warning h1,.warning h2,.warning h3,.warning h4,.warning h5,.warning h6{color:#c9302c}header{margin-top:24px}nav{position:fixed;top:24px;bottom:0;overflow-y:auto}nav .resource-group{padding:0}nav .resource-group .heading{position:relative}nav .resource-group .heading .chevron{position:absolute;top:12px;right:12px;opacity:.5}nav .resource-group .heading a{display:block;color:black;opacity:.7;border-left:2px solid transparent;margin:0}nav .resource-group .heading a:hover{text-decoration:none;background-color:bad-color;border-left:2px solid black}nav ul{list-style-type:none;padding-left:0}nav ul a{display:block;font-size:13px;color:rgba(0,0,0,0.7);padding:8px 12px;border-top:1px solid #d9d9d9;border-left:2px solid transparent;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}nav ul a:hover{text-decoration:none;background-color:bad-color;border-left:2px solid black}nav ul>li{margin:0}nav ul>li:first-child{margin-top:-12px}nav ul>li:last-child{margin-bottom:-12px}nav ul ul a{padding-left:24px}nav ul ul li{margin:0}nav ul ul li:first-child{margin-top:0}nav ul ul li:last-child{margin-bottom:0}nav>div>div>ul>li:first-child>a{border-top:none}.preload *{transition:none !important}.pull-left{float:left}.pull-right{float:right}.badge{display:inline-block;float:right;min-width:10px;min-height:14px;padding:3px 7px;font-size:12px;color:#000;background-color:#f2f2f2;border-radius:10px;margin:-2px 0}.badge.get{color:#70bbe1;background-color:#d9edf7}.badge.head{color:#70bbe1;background-color:#d9edf7}.badge.options{color:#70bbe1;background-color:#d9edf7}.badge.put{color:#f0db70;background-color:#fcf8e3}.badge.patch{color:#f0db70;background-color:#fcf8e3}.badge.post{color:#93cd7c;background-color:#dff0d8}.badge.delete{color:#ce8383;background-color:#f2dede}.collapse-button{float:right}.collapse-button .close{display:none;color:#428bca;cursor:pointer}.collapse-button .open{color:#428bca;cursor:pointer}.collapse-button.show .close{display:inline}.collapse-button.show .open{display:none}.collapse-content{max-height:0;overflow:hidden;transition:max-height .3s ease-in-out}nav{width:220px}.container{max-width:940px;margin-left:auto;margin-right:auto}.container .row .content{margin-left:244px;width:696px}.container .row:after{content:'';display:block;clear:both}.container-fluid nav{width:22%}.container-fluid .row .content{margin-left:24%}.container-fluid.triple nav{width:16.5%;padding-right:1px}.container-fluid.triple .row .content{position:relative;margin-left:16.5%;padding-left:24px}.middle:before,.middle:after{content:'';display:table}.middle:after{clear:both}.middle{box-sizing:border-box;width:51.5%;padding-right:12px}.right{box-sizing:border-box;float:right;width:48.5%;padding-left:12px}.right a{color:#428bca}.right h1,.right h2,.right h3,.right h4,.right h5,.right p,.right div{color:white}.right pre{background-color:#1d1f21;border:1px solid #1d1f21}.right pre code{color:#c5c8c6}.right .description{margin-top:12px}.triple .resource-heading{font-size:125%}.definition{margin-top:12px;margin-bottom:12px}.definition .method{font-weight:bold}.definition .method.get{color:#2e8ab8}.definition .method.head{color:#2e8ab8}.definition .method.options{color:#2e8ab8}.definition .method.post{color:#56b82e}.definition .method.put{color:#b8a22e}.definition .method.patch{color:#b8a22e}.definition .method.delete{color:#b82e2e}.definition .uri{word-break:break-all;word-wrap:break-word}.definition .hostname{opacity:.5}.example-names{background-color:#eee;padding:12px;border-radius:6px}.example-names .tab-button{cursor:pointer;color:black;border:1px solid #ddd;padding:6px;margin-left:12px}.example-names .tab-button.active{background-color:#d5d5d5}.right .example-names{background-color:#444}.right .example-names .tab-button{color:white;border:1px solid #666;border-radius:6px}.right .example-names .tab-button.active{background-color:#5e5e5e}#nav-background{position:fixed;left:0;top:0;bottom:0;width:16.5%;padding-right:14.4px;background-color:#fbfbfb;border-right:1px solid #f0f0f0;z-index:-1}#right-panel-background{position:absolute;right:-12px;top:-12px;bottom:-12px;width:48.6%;background-color:#333;z-index:-1}@media (max-width:1200px){nav{width:198px}.container{max-width:840px}.container .row .content{margin-left:224px;width:606px}}@media (max-width:992px){nav{width:169.4px}.container{max-width:720px}.container .row .content{margin-left:194px;width:526px}}@media (max-width:768px){nav{display:none}.container{width:95%;max-width:none}.container .row .content,.container-fluid .row .content,.container-fluid.triple .row .content{margin-left:auto;margin-right:auto;width:95%}#nav-background{display:none}#right-panel-background{width:48.6%}}.back-to-top{position:fixed;z-index:1;bottom:0;right:24px;padding:4px 8px;color:rgba(0,0,0,0.5);background-color:#f2f2f2;text-decoration:none !important;border-top:1px solid #d9d9d9;border-left:1px solid #d9d9d9;border-right:1px solid #d9d9d9;border-top-left-radius:3px;border-top-right-radius:3px}.resource-group{padding:12px;margin-bottom:12px;background-color:white;border:1px solid #d9d9d9;border-radius:6px}.resource-group h2.group-heading,.resource-group .heading a{padding:12px;margin:-12px -12px 12px -12px;background-color:#f2f2f2;border-bottom:1px solid #d9d9d9;border-top-left-radius:6px;border-top-right-radius:6px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}.triple .content .resource-group{padding:0;border:none}.triple .content .resource-group h2.group-heading,.triple .content .resource-group .heading a{margin:0 0 12px 0;border:1px solid #d9d9d9}nav .resource-group .heading a{padding:12px;margin-bottom:0}nav .resource-group .collapse-content{padding:0}.action{margin-bottom:12px;padding:12px 12px 0 12px;overflow:hidden;border:1px solid transparent;border-radius:6px}.action h4.action-heading{padding:6px 12px;margin:-12px -12px 12px -12px;border-bottom:1px solid transparent;border-top-left-radius:6px;border-top-right-radius:6px;overflow:hidden}.action h4.action-heading .name{float:right;font-weight:normal;padding:6px 0}.action h4.action-heading .method{padding:6px 12px;margin-right:12px;border-radius:3px;display:inline-block}.action h4.action-heading .method.get{color:#fff;background-color:#337ab7}.action h4.action-heading .method.head{color:#fff;background-color:#337ab7}.action h4.action-heading .method.options{color:#fff;background-color:#337ab7}.action h4.action-heading .method.put{color:#fff;background-color:#ed9c28}.action h4.action-heading .method.patch{color:#fff;background-color:#ed9c28}.action h4.action-heading .method.post{color:#fff;background-color:#5cb85c}.action h4.action-heading .method.delete{color:#fff;background-color:#d9534f}.action h4.action-heading code{color:#444;background-color:#f5f5f5;border-color:#cfcfcf;font-weight:normal;word-break:break-all;display:inline-block;margin-top:2px}.action dl.inner{padding-bottom:2px}.action .title{border-bottom:1px solid white;margin:0 -12px -1px -12px;padding:12px}.action.get{border-color:#bce8f1}.action.get h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.head{border-color:#bce8f1}.action.head h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.options{border-color:#bce8f1}.action.options h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.post{border-color:#d6e9c6}.action.post h4.action-heading{color:#5cb85c;background:#dff0d8;border-bottom-color:#d6e9c6}.action.put{border-color:#faebcc}.action.put h4.action-heading{color:#ed9c28;background:#fcf8e3;border-bottom-color:#faebcc}.action.patch{border-color:#faebcc}.action.patch h4.action-heading{color:#ed9c28;background:#fcf8e3;border-bottom-color:#faebcc}.action.delete{border-color:#ebccd1}.action.delete h4.action-heading{color:#d9534f;background:#f2dede;border-bottom-color:#ebccd1}</style></head><body class="preload"><div id="nav-background"></div><div class="container-fluid triple"><div class="row"><nav><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#top">Overview</a></div><div class="collapse-content"><ul><li><a href="#header-terms-&amp;-conditions">Terms & Conditions</a></li><li><a href="#header-authentication">Authentication</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#kitchen-resources">Kitchen Resources</a></div><div class="collapse-content"><ul><li><a href="#header-kitchen-properties">Kitchen Properties</a></li><li><a href="#kitchen-resources-kitchen-collection">Kitchen Collection</a><ul><li><a href="#kitchen-resources-kitchen-collection-post"><span class="badge post"><i class="fa fa-plus"></i></span>Create new kitchen</a></li><li><a href="#kitchen-resources-kitchen-collection-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Get all kitchens of this client</a></li></ul></li><li><a href="#kitchen-resources-kitchen">Kitchen</a><ul><li><a href="#kitchen-resources-kitchen-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Get a kitchen</a></li><li><a href="#kitchen-resources-kitchen-put"><span class="badge put"><i class="fa fa-pencil"></i></span>Create or update a kitchen</a></li><li><a href="#kitchen-resources-kitchen-delete"><span class="badge delete"><i class="fa fa-times"></i></span>Delete a kitchen</a></li></ul></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#recipe-resources">Recipe Resources</a></div><div class="collapse-content"><ul><li><a href="#header-uniqueness-of-recipes">Uniqueness of Recipes</a></li><li><a href="#header-sub-recipes">Sub-Recipes</a></li><li><a href="#header-url-parameters">URL Parameters</a></li><li><a href="#recipe-resources-batch-operations-on-recipe-resources">Batch Operations on Recipe Resources</a><ul><li><a href="#recipe-resources-batch-operations-on-recipe-resources-post"><span class="badge post"><i class="fa fa-plus"></i></span>Create or update a batch of recipes</a></li><li><a href="#recipe-resources-batch-operations-on-recipe-resources-delete"><span class="badge delete"><i class="fa fa-times"></i></span>Delete a batch of recipes</a></li></ul></li><li><a href="#recipe-resources-individual-recipes">Individual Recipes</a><ul><li><a href="#recipe-resources-individual-recipes-post"><span class="badge post"><i class="fa fa-plus"></i></span>Create a recipe</a></li><li><a href="#recipe-resources-individual-recipes-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Get Recipe</a></li><li><a href="#recipe-resources-individual-recipes-put"><span class="badge put"><i class="fa fa-pencil"></i></span>Update or create new recipe</a></li><li><a href="#recipe-resources-individual-recipes-delete"><span class="badge delete"><i class="fa fa-times"></i></span>Delete the recipe</a></li></ul></li><li><a href="#recipe-resources-kitchen-recipe-collection">Kitchen Recipe Collection</a><ul><li><a href="#recipe-resources-kitchen-recipe-collection-post"><span class="badge post"><i class="fa fa-plus"></i></span>Create a recipe</a></li><li><a href="#recipe-resources-kitchen-recipe-collection-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Get all recipes contained in this kitchen</a></li></ul></li><li><a href="#recipe-resources-kitchen-recipe">Kitchen Recipe</a><ul><li><a href="#recipe-resources-kitchen-recipe-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Get Recipe</a></li><li><a href="#recipe-resources-kitchen-recipe-put"><span class="badge put"><i class="fa fa-pencil"></i></span>Create or update a single recipe</a></li><li><a href="#recipe-resources-kitchen-recipe-delete"><span class="badge delete"><i class="fa fa-times"></i></span>Delete recipe</a></li></ul></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#recipe-properties">Recipe Properties</a></div><div class="collapse-content"><ul><li><a href="#header-recipe-properties-in-requests">Recipe Properties In Requests</a></li><li><a href="#header-recipe-properties-in-responses-only">Recipe Properties In Responses only</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#ingredient-properties">Ingredient Properties</a></div><div class="collapse-content"><ul><li><a href="#header-ingredient-properties-in-requests">Ingredient Properties In Requests</a></li><li><a href="#header-ingredient-properties-in-responses-only">Ingredient Properties In Responses only</a></li><li><a href="#header-nutrient-values">Nutrient Values</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#supply-resources">Supply Resources</a></div><div class="collapse-content"><ul><li><a href="#header-supply-properties">Supply Properties</a></li><li><a href="#supply-resources-supply-collection">Supply Collection</a><ul><li><a href="#supply-resources-supply-collection-post"><span class="badge post"><i class="fa fa-plus"></i></span>Create a supply</a></li><li><a href="#supply-resources-supply-collection-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Get all supplies in this kitchen</a></li></ul></li><li><a href="#supply-resources-supply">Supply</a><ul><li><a href="#supply-resources-supply-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Get a supply</a></li><li><a href="#supply-resources-supply-put"><span class="badge put"><i class="fa fa-pencil"></i></span>Update or create a supply</a></li><li><a href="#supply-resources-supply-delete"><span class="badge delete"><i class="fa fa-times"></i></span>Delete a supply</a></li></ul></li><li><a href="#supply-resources-batch-operations-on-supply-resources">Batch operations on supply resources</a><ul><li><a href="#supply-resources-batch-operations-on-supply-resources-post"><span class="badge post"><i class="fa fa-plus"></i></span>Create a batch of supplies</a></li><li><a href="#supply-resources-batch-operations-on-supply-resources-delete"><span class="badge delete"><i class="fa fa-times"></i></span>Delete a batch of supplies</a></li></ul></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#product-resources-for-retail">Product Resources for Retail</a></div><div class="collapse-content"><ul><li><a href="#header-product-properties">Product Properties</a></li><li><a href="#product-resources-for-retail-product-collection">Product Collection</a><ul><li><a href="#product-resources-for-retail-product-collection-put"><span class="badge put"><i class="fa fa-pencil"></i></span>Create a product</a></li><li><a href="#product-resources-for-retail-product-collection-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Receive a product</a></li></ul></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#forecast-resources">Forecast Resources</a></div><div class="collapse-content"><ul><li><a href="#forecast-resources-create-a-new-forecast-post"><span class="badge post"><i class="fa fa-plus"></i></span>Create a forecast</a></li><li><a href="#forecast-resources-forecast-results-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Get a forecast</a></li><li><a href="#forecast-resources-update-portions-post"><span class="badge post"><i class="fa fa-plus"></i></span>Update portions</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#advanced-information">Advanced Information</a></div><div class="collapse-content"><ul><li><a href="#header-localization">Localization</a></li><li><a href="#header-id-generation">Id Generation</a></li><li><a href="#header-notes-on-the-format">Notes On The Format</a></li><li><a href="#header-ssl">SSL</a></li><li><a href="#header-use-server-name-indication-(sni)">Use Server Name Indication (SNI)</a></li><li><a href="#header-server-responses">Server Responses</a></li><li><a href="#header-indicators-results">Indicators Results</a></li><li><a href="#header-climate-score">Climate Score</a></li><li><a href="#header-vita-score">Vita Score</a></li><li><a href="#header-environmental-footprints">Environmental Footprints</a></li></ul></div></div><p style="text-align: center; word-wrap: break-word;"><a href="https://co2.eaternity.ch/api">https://co2.eaternity.ch/api</a></p></nav><div class="content"><div id="right-panel-background"></div><div class="middle"><header><h1 id="top">Eaternity Client API</h1></header></div><div class="right"><h5>API Endpoint</h5><a href="https://co2.eaternity.ch/api">https://co2.eaternity.ch/api</a></div><div class="middle"><p>The Eaternity Database API is a Web Service that calculates the Climate Score (CO₂eq), the Vita Score and other environmental footprints of recipes, restaurants and ingredients dynamically. It includes daily changing information on origin,
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Eaternity API</title><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><style>@import url('https://fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata|Raleway:200');.hljs-comment,.hljs-title{color:#8e908c}.hljs-variable,.hljs-attribute,.hljs-tag,.hljs-regexp,.ruby .hljs-constant,.xml .hljs-tag .hljs-title,.xml .hljs-pi,.xml .hljs-doctype,.html .hljs-doctype,.css .hljs-id,.css .hljs-class,.css .hljs-pseudo{color:#c82829}.hljs-number,.hljs-preprocessor,.hljs-pragma,.hljs-built_in,.hljs-literal,.hljs-params,.hljs-constant{color:#f5871f}.ruby .hljs-class .hljs-title,.css .hljs-rules .hljs-attribute{color:#eab700}.hljs-string,.hljs-value,.hljs-inheritance,.hljs-header,.ruby .hljs-symbol,.xml .hljs-cdata{color:#718c00}.css .hljs-hexcolor{color:#3e999f}.hljs-function,.python .hljs-decorator,.python .hljs-title,.ruby .hljs-function .hljs-title,.ruby .hljs-title .hljs-keyword,.perl .hljs-sub,.javascript .hljs-title,.coffeescript .hljs-title{color:#4271ae}.hljs-keyword,.javascript .hljs-function{color:#8959a8}.hljs{display:block;background:white;color:#4d4d4c;padding:.5em}.coffeescript .javascript,.javascript .xml,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata{opacity:.5}.right .hljs-comment{color:#969896}.right .css .hljs-class,.right .css .hljs-id,.right .css .hljs-pseudo,.right .hljs-attribute,.right .hljs-regexp,.right .hljs-tag,.right .hljs-variable,.right .html .hljs-doctype,.right .ruby .hljs-constant,.right .xml .hljs-doctype,.right .xml .hljs-pi,.right .xml .hljs-tag .hljs-title{color:#c66}.right .hljs-built_in,.right .hljs-constant,.right .hljs-literal,.right .hljs-number,.right .hljs-params,.right .hljs-pragma,.right .hljs-preprocessor{color:#de935f}.right .css .hljs-rule .hljs-attribute,.right .ruby .hljs-class .hljs-title{color:#f0c674}.right .hljs-header,.right .hljs-inheritance,.right .hljs-name,.right .hljs-string,.right .hljs-value,.right .ruby .hljs-symbol,.right .xml .hljs-cdata{color:#b5bd68}.right .css .hljs-hexcolor,.right .hljs-title{color:#8abeb7}.right .coffeescript .hljs-title,.right .hljs-function,.right .javascript .hljs-title,.right .perl .hljs-sub,.right .python .hljs-decorator,.right .python .hljs-title,.right .ruby .hljs-function .hljs-title,.right .ruby .hljs-title .hljs-keyword{color:#81a2be}.right .hljs-keyword,.right .javascript .hljs-function{color:#b294bb}.right .hljs{display:block;overflow-x:auto;background:#1d1f21;color:#c5c8c6;padding:.5em;-webkit-text-size-adjust:none}.right .coffeescript .javascript,.right .javascript .xml,.right .tex .hljs-formula,.right .xml .css,.right .xml .hljs-cdata,.right .xml .javascript,.right .xml .vbscript{opacity:.5}body{color:black;background:white;font:400 14px / 1.42 'Roboto',Helvetica,sans-serif}header{border-bottom:1px solid #f2f2f2;margin-bottom:12px}h1,h2,h3,h4,h5{color:black;margin:12px 0}h1 .permalink,h2 .permalink,h3 .permalink,h4 .permalink,h5 .permalink{margin-left:0;opacity:0;transition:opacity .25s ease}h1:hover .permalink,h2:hover .permalink,h3:hover .permalink,h4:hover .permalink,h5:hover .permalink{opacity:1}.triple h1 .permalink,.triple h2 .permalink,.triple h3 .permalink,.triple h4 .permalink,.triple h5 .permalink{opacity:.15}.triple h1:hover .permalink,.triple h2:hover .permalink,.triple h3:hover .permalink,.triple h4:hover .permalink,.triple h5:hover .permalink{opacity:.15}h1{font:200 36px 'Raleway',Helvetica,sans-serif;font-size:36px}h2{font:200 36px 'Raleway',Helvetica,sans-serif;font-size:30px}h3{font-size:100%;text-transform:uppercase}h5{font-size:100%;font-weight:normal}p{margin:0 0 10px}p.choices{line-height:1.6}a{color:#428bca;text-decoration:none}li p{margin:0}hr.split{border:0;height:1px;width:100%;padding-left:6px;margin:12px auto;background-image:linear-gradient(to right, rgba(0,0,0,0) 20%, rgba(0,0,0,0.2) 51.4%, rgba(255,255,255,0.2) 51.4%, rgba(255,255,255,0) 80%)}dl dt{float:left;width:130px;clear:left;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700}dl dd{margin-left:150px}blockquote{color:rgba(0,0,0,0.5);font-size:15.5px;padding:10px 20px;margin:12px 0;border-left:5px solid #e8e8e8}blockquote p:last-child{margin-bottom:0}pre{background-color:#f5f5f5;padding:12px;border:1px solid #cfcfcf;border-radius:6px;overflow:auto}pre code{color:black;background-color:transparent;padding:0;border:none}code{color:#444;background-color:#f5f5f5;font:'Inconsolata',monospace;padding:1px 4px;border:1px solid #cfcfcf;border-radius:3px}ul,ol{padding-left:2em}table{border-collapse:collapse;border-spacing:0;margin-bottom:12px}table tr:nth-child(2n){background-color:#fafafa}table th,table td{padding:6px 12px;border:1px solid #e6e6e6}.text-muted{opacity:.5}.note,.warning{padding:.3em 1em;margin:1em 0;border-radius:2px;font-size:90%}.note h1,.warning h1,.note h2,.warning h2,.note h3,.warning h3,.note h4,.warning h4,.note h5,.warning h5,.note h6,.warning h6{font-family:200 36px 'Raleway',Helvetica,sans-serif;font-size:135%;font-weight:500}.note p,.warning p{margin:.5em 0}.note{color:black;background-color:#f0f6fb;border-left:4px solid #428bca}.note h1,.note h2,.note h3,.note h4,.note h5,.note h6{color:#428bca}.warning{color:black;background-color:#fbf1f0;border-left:4px solid #c9302c}.warning h1,.warning h2,.warning h3,.warning h4,.warning h5,.warning h6{color:#c9302c}header{margin-top:24px}nav{position:fixed;top:24px;bottom:0;overflow-y:auto}nav .resource-group{padding:0}nav .resource-group .heading{position:relative}nav .resource-group .heading .chevron{position:absolute;top:12px;right:12px;opacity:.5}nav .resource-group .heading a{display:block;color:black;opacity:.7;border-left:2px solid transparent;margin:0}nav .resource-group .heading a:hover{text-decoration:none;background-color:bad-color;border-left:2px solid black}nav ul{list-style-type:none;padding-left:0}nav ul a{display:block;font-size:13px;color:rgba(0,0,0,0.7);padding:8px 12px;border-top:1px solid #d9d9d9;border-left:2px solid transparent;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}nav ul a:hover{text-decoration:none;background-color:bad-color;border-left:2px solid black}nav ul>li{margin:0}nav ul>li:first-child{margin-top:-12px}nav ul>li:last-child{margin-bottom:-12px}nav ul ul a{padding-left:24px}nav ul ul li{margin:0}nav ul ul li:first-child{margin-top:0}nav ul ul li:last-child{margin-bottom:0}nav>div>div>ul>li:first-child>a{border-top:none}.preload *{transition:none !important}.pull-left{float:left}.pull-right{float:right}.badge{display:inline-block;float:right;min-width:10px;min-height:14px;padding:3px 7px;font-size:12px;color:#000;background-color:#f2f2f2;border-radius:10px;margin:-2px 0}.badge.get{color:#70bbe1;background-color:#d9edf7}.badge.head{color:#70bbe1;background-color:#d9edf7}.badge.options{color:#70bbe1;background-color:#d9edf7}.badge.put{color:#f0db70;background-color:#fcf8e3}.badge.patch{color:#f0db70;background-color:#fcf8e3}.badge.post{color:#93cd7c;background-color:#dff0d8}.badge.delete{color:#ce8383;background-color:#f2dede}.collapse-button{float:right}.collapse-button .close{display:none;color:#428bca;cursor:pointer}.collapse-button .open{color:#428bca;cursor:pointer}.collapse-button.show .close{display:inline}.collapse-button.show .open{display:none}.collapse-content{max-height:0;overflow:hidden;transition:max-height .3s ease-in-out}nav{width:220px}.container{max-width:940px;margin-left:auto;margin-right:auto}.container .row .content{margin-left:244px;width:696px}.container .row:after{content:'';display:block;clear:both}.container-fluid nav{width:22%}.container-fluid .row .content{margin-left:24%}.container-fluid.triple nav{width:16.5%;padding-right:1px}.container-fluid.triple .row .content{position:relative;margin-left:16.5%;padding-left:24px}.middle:before,.middle:after{content:'';display:table}.middle:after{clear:both}.middle{box-sizing:border-box;width:51.5%;padding-right:12px}.right{box-sizing:border-box;float:right;width:48.5%;padding-left:12px}.right a{color:#428bca}.right h1,.right h2,.right h3,.right h4,.right h5,.right p,.right div{color:white}.right pre{background-color:#1d1f21;border:1px solid #1d1f21}.right pre code{color:#c5c8c6}.right .description{margin-top:12px}.triple .resource-heading{font-size:125%}.definition{margin-top:12px;margin-bottom:12px}.definition .method{font-weight:bold}.definition .method.get{color:#2e8ab8}.definition .method.head{color:#2e8ab8}.definition .method.options{color:#2e8ab8}.definition .method.post{color:#56b82e}.definition .method.put{color:#b8a22e}.definition .method.patch{color:#b8a22e}.definition .method.delete{color:#b82e2e}.definition .uri{word-break:break-all;word-wrap:break-word}.definition .hostname{opacity:.5}.example-names{background-color:#eee;padding:12px;border-radius:6px}.example-names .tab-button{cursor:pointer;color:black;border:1px solid #ddd;padding:6px;margin-left:12px}.example-names .tab-button.active{background-color:#d5d5d5}.right .example-names{background-color:#444}.right .example-names .tab-button{color:white;border:1px solid #666;border-radius:6px}.right .example-names .tab-button.active{background-color:#5e5e5e}#nav-background{position:fixed;left:0;top:0;bottom:0;width:16.5%;padding-right:14.4px;background-color:#fbfbfb;border-right:1px solid #f0f0f0;z-index:-1}#right-panel-background{position:absolute;right:-12px;top:-12px;bottom:-12px;width:48.6%;background-color:#333;z-index:-1}@media (max-width:1200px){nav{width:198px}.container{max-width:840px}.container .row .content{margin-left:224px;width:606px}}@media (max-width:992px){nav{width:169.4px}.container{max-width:720px}.container .row .content{margin-left:194px;width:526px}}@media (max-width:768px){nav{display:none}.container{width:95%;max-width:none}.container .row .content,.container-fluid .row .content,.container-fluid.triple .row .content{margin-left:auto;margin-right:auto;width:95%}#nav-background{display:none}#right-panel-background{width:48.6%}}.back-to-top{position:fixed;z-index:1;bottom:0;right:24px;padding:4px 8px;color:rgba(0,0,0,0.5);background-color:#f2f2f2;text-decoration:none !important;border-top:1px solid #d9d9d9;border-left:1px solid #d9d9d9;border-right:1px solid #d9d9d9;border-top-left-radius:3px;border-top-right-radius:3px}.resource-group{padding:12px;margin-bottom:12px;background-color:white;border:1px solid #d9d9d9;border-radius:6px}.resource-group h2.group-heading,.resource-group .heading a{padding:12px;margin:-12px -12px 12px -12px;background-color:#f2f2f2;border-bottom:1px solid #d9d9d9;border-top-left-radius:6px;border-top-right-radius:6px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}.triple .content .resource-group{padding:0;border:none}.triple .content .resource-group h2.group-heading,.triple .content .resource-group .heading a{margin:0 0 12px 0;border:1px solid #d9d9d9}nav .resource-group .heading a{padding:12px;margin-bottom:0}nav .resource-group .collapse-content{padding:0}.action{margin-bottom:12px;padding:12px 12px 0 12px;overflow:hidden;border:1px solid transparent;border-radius:6px}.action h4.action-heading{padding:6px 12px;margin:-12px -12px 12px -12px;border-bottom:1px solid transparent;border-top-left-radius:6px;border-top-right-radius:6px;overflow:hidden}.action h4.action-heading .name{float:right;font-weight:normal;padding:6px 0}.action h4.action-heading .method{padding:6px 12px;margin-right:12px;border-radius:3px;display:inline-block}.action h4.action-heading .method.get{color:#fff;background-color:#337ab7}.action h4.action-heading .method.head{color:#fff;background-color:#337ab7}.action h4.action-heading .method.options{color:#fff;background-color:#337ab7}.action h4.action-heading .method.put{color:#fff;background-color:#ed9c28}.action h4.action-heading .method.patch{color:#fff;background-color:#ed9c28}.action h4.action-heading .method.post{color:#fff;background-color:#5cb85c}.action h4.action-heading .method.delete{color:#fff;background-color:#d9534f}.action h4.action-heading code{color:#444;background-color:#f5f5f5;border-color:#cfcfcf;font-weight:normal;word-break:break-all;display:inline-block;margin-top:2px}.action dl.inner{padding-bottom:2px}.action .title{border-bottom:1px solid white;margin:0 -12px -1px -12px;padding:12px}.action.get{border-color:#bce8f1}.action.get h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.head{border-color:#bce8f1}.action.head h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.options{border-color:#bce8f1}.action.options h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.post{border-color:#d6e9c6}.action.post h4.action-heading{color:#5cb85c;background:#dff0d8;border-bottom-color:#d6e9c6}.action.put{border-color:#faebcc}.action.put h4.action-heading{color:#ed9c28;background:#fcf8e3;border-bottom-color:#faebcc}.action.patch{border-color:#faebcc}.action.patch h4.action-heading{color:#ed9c28;background:#fcf8e3;border-bottom-color:#faebcc}.action.delete{border-color:#ebccd1}.action.delete h4.action-heading{color:#d9534f;background:#f2dede;border-bottom-color:#ebccd1}</style></head><body class="preload"><div id="nav-background"></div><div class="container-fluid triple"><div class="row"><nav><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#top">Overview</a></div><div class="collapse-content"><ul><li><a href="#header-terms-&amp;-conditions">Terms & Conditions</a></li><li><a href="#header-authentication">Authentication</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#kitchen-resources">Kitchen Resources</a></div><div class="collapse-content"><ul><li><a href="#header-kitchen-properties">Kitchen Properties</a></li><li><a href="#kitchen-resources-kitchen-collection">Kitchen Collection</a><ul><li><a href="#kitchen-resources-kitchen-collection-post"><span class="badge post"><i class="fa fa-plus"></i></span>Create new kitchen</a></li><li><a href="#kitchen-resources-kitchen-collection-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Get all kitchens of this client</a></li></ul></li><li><a href="#kitchen-resources-kitchen">Kitchen</a><ul><li><a href="#kitchen-resources-kitchen-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Get a kitchen</a></li><li><a href="#kitchen-resources-kitchen-put"><span class="badge put"><i class="fa fa-pencil"></i></span>Create or update a kitchen</a></li><li><a href="#kitchen-resources-kitchen-delete"><span class="badge delete"><i class="fa fa-times"></i></span>Delete a kitchen</a></li></ul></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#recipe-resources">Recipe Resources</a></div><div class="collapse-content"><ul><li><a href="#header-uniqueness-of-recipes">Uniqueness of Recipes</a></li><li><a href="#header-sub-recipes">Sub-Recipes</a></li><li><a href="#header-url-parameters">URL Parameters</a></li><li><a href="#recipe-resources-batch-operations-on-recipe-resources">Batch Operations on Recipe Resources</a><ul><li><a href="#recipe-resources-batch-operations-on-recipe-resources-post"><span class="badge post"><i class="fa fa-plus"></i></span>Create or update a batch of recipes</a></li><li><a href="#recipe-resources-batch-operations-on-recipe-resources-delete"><span class="badge delete"><i class="fa fa-times"></i></span>Delete a batch of recipes</a></li></ul></li><li><a href="#recipe-resources-individual-recipes">Individual Recipes</a><ul><li><a href="#recipe-resources-individual-recipes-post"><span class="badge post"><i class="fa fa-plus"></i></span>Create a recipe</a></li><li><a href="#recipe-resources-individual-recipes-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Get Recipe</a></li><li><a href="#recipe-resources-individual-recipes-put"><span class="badge put"><i class="fa fa-pencil"></i></span>Update or create new recipe</a></li><li><a href="#recipe-resources-individual-recipes-delete"><span class="badge delete"><i class="fa fa-times"></i></span>Delete the recipe</a></li></ul></li><li><a href="#recipe-resources-kitchen-recipe-collection">Kitchen Recipe Collection</a><ul><li><a href="#recipe-resources-kitchen-recipe-collection-post"><span class="badge post"><i class="fa fa-plus"></i></span>Create a recipe</a></li><li><a href="#recipe-resources-kitchen-recipe-collection-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Get all recipes contained in this kitchen</a></li></ul></li><li><a href="#recipe-resources-kitchen-recipe">Kitchen Recipe</a><ul><li><a href="#recipe-resources-kitchen-recipe-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Get Recipe</a></li><li><a href="#recipe-resources-kitchen-recipe-put"><span class="badge put"><i class="fa fa-pencil"></i></span>Create or update a single recipe</a></li><li><a href="#recipe-resources-kitchen-recipe-delete"><span class="badge delete"><i class="fa fa-times"></i></span>Delete recipe</a></li></ul></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#recipe-properties">Recipe Properties</a></div><div class="collapse-content"><ul><li><a href="#header-recipe-properties-in-requests">Recipe Properties In Requests</a></li><li><a href="#header-recipe-properties-in-responses-only">Recipe Properties In Responses only</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#ingredient-properties">Ingredient Properties</a></div><div class="collapse-content"><ul><li><a href="#header-ingredient-properties-in-requests">Ingredient Properties In Requests</a></li><li><a href="#header-ingredient-properties-in-responses-only">Ingredient Properties In Responses only</a></li><li><a href="#header-nutrient-values">Nutrient Values</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#indicators">Indicators</a></div><div class="collapse-content"><ul><li><a href="#header-co₂-value">CO₂-Value</a></li><li><a href="#header-additional-indicator-results">Additional Indicator Results</a></li><li><a href="#header-vita-score">Vita Score</a></li><li><a href="#header-environmental-footprints">Environmental Footprints</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#supply-resources">Supply Resources</a></div><div class="collapse-content"><ul><li><a href="#header-supply-properties">Supply Properties</a></li><li><a href="#supply-resources-supply-collection">Supply Collection</a><ul><li><a href="#supply-resources-supply-collection-post"><span class="badge post"><i class="fa fa-plus"></i></span>Create a batch of supplies</a></li><li><a href="#supply-resources-supply-collection-post-1"><span class="badge post"><i class="fa fa-plus"></i></span>Create a supply</a></li><li><a href="#supply-resources-supply-collection-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Get all supplies in this kitchen</a></li></ul></li><li><a href="#supply-resources-supply">Supply</a><ul><li><a href="#supply-resources-supply-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Get a supply</a></li><li><a href="#supply-resources-supply-put"><span class="badge put"><i class="fa fa-pencil"></i></span>Update or create a supply</a></li><li><a href="#supply-resources-supply-delete"><span class="badge delete"><i class="fa fa-times"></i></span>Delete a supply</a></li></ul></li><li><a href="#supply-resources-batch-operations-on-supply-resources-delete"><span class="badge delete"><i class="fa fa-times"></i></span>Delete a batch of supplies</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#product-resources-for-retail">Product Resources for Retail</a></div><div class="collapse-content"><ul><li><a href="#header-product-properties">Product Properties</a></li><li><a href="#product-resources-for-retail-product-collection">Product Collection</a><ul><li><a href="#product-resources-for-retail-product-collection-put"><span class="badge put"><i class="fa fa-pencil"></i></span>Create a product</a></li><li><a href="#product-resources-for-retail-product-collection-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Receive a product</a></li></ul></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#forecast-resources">Forecast Resources</a></div><div class="collapse-content"><ul><li><a href="#forecast-resources-create-a-new-forecast-post"><span class="badge post"><i class="fa fa-plus"></i></span>Create a forecast</a></li><li><a href="#forecast-resources-forecast-results-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Get a forecast</a></li><li><a href="#forecast-resources-update-portions-post"><span class="badge post"><i class="fa fa-plus"></i></span>Update portions</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#advanced-information">Advanced Information</a></div><div class="collapse-content"><ul><li><a href="#header-localization">Localization</a></li><li><a href="#header-id-generation">Id Generation</a></li><li><a href="#header-notes-on-the-format">Notes On The Format</a></li><li><a href="#header-ssl">SSL</a></li><li><a href="#header-use-server-name-indication-(sni)">Use Server Name Indication (SNI)</a></li><li><a href="#header-server-responses">Server Responses</a></li></ul></div></div><p style="text-align: center; word-wrap: break-word;"><a href="https://co2.eaternity.ch/api">https://co2.eaternity.ch/api</a></p></nav><div class="content"><div id="right-panel-background"></div><div class="middle"><header><h1 id="top">Eaternity API</h1></header></div><div class="right"><h5>API Endpoint</h5><a href="https://co2.eaternity.ch/api">https://co2.eaternity.ch/api</a></div><div class="middle"><p>The Eaternity Database API is a Web Service that calculates the Climate Score (CO₂eq), the Vita Score and other environmental footprints of recipes, restaurants and ingredients dynamically. It includes daily changing information on origin,
 seasonality and other factors in the calculation (<a href="http://www.eaternity.org/foodprint/">more Informations on the indicators</a>). Data provided to Eaternity via this API allows for in-depth analyses and reports (<a href="http://www.eaternity.org/app/report">more Informations on the reports</a>).</p>
 <h3 id="header-terms-&amp;-conditions">Terms &amp; Conditions <a class="permalink" href="#header-terms-&amp;-conditions" aria-hidden="true">¶</a></h3>
 <p>By accessing the APIs, you accept the Eaternity’s <a href="http://www.eaternity.org/legal">Terms &amp; Conditions</a>. If You are using the APIs on behalf of an entity, you represent and warrant that you have authority to bind that entity to the Terms &amp; Conditions and by accepting the Terms, you are doing so on behalf of that entity.</p>
 <h3 id="header-authentication">Authentication <a class="permalink" href="#header-authentication" aria-hidden="true">¶</a></h3>
-<p>To access the API, use <strong>Basic Authentication</strong> with your API key as the username and an empty password.</p>
+<p>To access the API, use <strong>Basic Authentication</strong> with your API key as the username and an empty password. Contact our team to get your unique API key.</p>
 <ul>
 <li>
 <p>Example</p>
@@ -13,7 +13,7 @@ seasonality and other factors in the calculation (<a href="http://www.eaternity.
 </li>
 </ul>
 <p>Join us on Slack <a href="https://eaternity-edb-api-slack-invite.herokuapp.com">here</a> to get in touch with our developers.</p>
-</div><div class="middle"><section id="kitchen-resources" class="resource-group"><h2 class="group-heading">Kitchen Resources <a href="#kitchen-resources" class="permalink">&para;</a></h2><p>A kitchen is any place where food is prepared and or sold. It can be a restaurant, a factory, a canteen or anything similar. The kitchen resource contains all information about the kitchen, including the name, location. Kitchens are the basis basic grouping for recipes and supplies. Reports and statistics are provided on this level.</p>
+</div><div class="middle"><section id="kitchen-resources" class="resource-group"><h2 class="group-heading">Kitchen Resources <a href="#kitchen-resources" class="permalink">&para;</a></h2><p>The first step to using the Eaternity API is to create a kitchen. A kitchen is a place where food is prepared and sold. It can be a restaurant, a factory, a canteen or anything similar. The kitchen resource contains all information about the kitchen, including the name, location. Kitchens are the basic grouping for recipes and supplies. Reports and statistics are provided on this level.</p>
 <h2 id="header-kitchen-properties">Kitchen Properties <a class="permalink" href="#header-kitchen-properties" aria-hidden="true">¶</a></h2>
 <table>
 <thead>
@@ -52,7 +52,7 @@ seasonality and other factors in the calculation (<a href="http://www.eaternity.
 <tr>
 <td style="text-align:left">id</td>
 <td style="text-align:left">string</td>
-<td style="text-align:left">the id of the kitchen. Either generated by Eaternity or supplied by the client through a PUT</td>
+<td style="text-align:left">the id of the kitchen. Either generated by Eaternity or supplied by the client.</td>
 <td style="text-align:left">no</td>
 </tr>
 </tbody>
@@ -73,7 +73,7 @@ seasonality and other factors in the calculation (<a href="http://www.eaternity.
     "<span class="hljs-attribute">language</span>": <span class="hljs-value"><span class="hljs-string">"en"</span></span>,
     "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"kitchen-restaurant-a"</span>
   </span>}
-</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div></div><div class="middle"><div id="kitchen-resources-kitchen-collection-post" class="action post"><h4 class="action-heading"><div class="name">Create new kitchen</div><a href="#kitchen-resources-kitchen-collection-post" class="method post">POST</a><code class="uri">/kitchens/</code></h4><p>Create a kitchen without specifying a particular kitchen ID.</p>
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div></div><div class="middle"><div id="kitchen-resources-kitchen-collection-post" class="action post"><h4 class="action-heading"><div class="name">Create new kitchen</div><a href="#kitchen-resources-kitchen-collection-post" class="method post">POST</a><code class="uri">/kitchens/</code></h4><p>This endpoint creates a new kitchen. If the kitchen id is not provided, a new id is generated. The id must be unique for each kitchen. The id is used to identify the kitchen in all other requests. The id must be alphanumeric and can contain dashes and underscores. The id must not contain spaces or special characters.</p>
 </div></div><hr class="split"><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://co2.eaternity.ch/api</span>/kitchens/</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">kitchens</span>": <span class="hljs-value">[
     <span class="hljs-string">"kitchen-restaurant-a"</span>
@@ -112,9 +112,9 @@ seasonality and other factors in the calculation (<a href="http://www.eaternity.
     "<span class="hljs-attribute">language</span>": <span class="hljs-value"><span class="hljs-string">"en"</span></span>,
     "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"kitchen-restaurant-a"</span>
   </span>}
-</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div></div><div class="middle"><div id="kitchen-resources-kitchen-put" class="action put"><h4 class="action-heading"><div class="name">Create or update a kitchen</div><a href="#kitchen-resources-kitchen-put" class="method put">PUT</a><code class="uri">/kitchens/{kitchen_id}</code></h4><p>Update or create the kitchen with the specific id</p>
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div></div><div class="middle"><div id="kitchen-resources-kitchen-put" class="action put"><h4 class="action-heading"><div class="name">Create or update a kitchen</div><a href="#kitchen-resources-kitchen-put" class="method put">PUT</a><code class="uri">/kitchens/{kitchen_id}</code></h4><p>Update or create the kitchen with the specified id. The id is used to identify the kitchen in all other requests. The id must be alphanumeric and can contain dashes and underscores. The id must not contain spaces or special characters.</p>
 <div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>kitchen_id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>the id of the kitchen.</p>
-</dd></dl></div></div></div><hr class="split"><div class="right"><div class="definition"><span class="method delete">DELETE</span>&nbsp;<span class="uri"><span class="hostname">https://co2.eaternity.ch/api</span>/kitchens/<span class="hljs-attribute" title="kitchen_id">kitchen_id</span></span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">204</span></div><div class="tab"><div><div class="inner"><div class="description text-muted">This response has no content.</div><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="kitchen-resources-kitchen-delete" class="action delete"><h4 class="action-heading"><div class="name">Delete a kitchen</div><a href="#kitchen-resources-kitchen-delete" class="method delete">DELETE</a><code class="uri">/kitchens/{kitchen_id}</code></h4><p>Deletes this kitchen from the server</p>
+</dd></dl></div></div></div><hr class="split"><div class="right"><div class="definition"><span class="method delete">DELETE</span>&nbsp;<span class="uri"><span class="hostname">https://co2.eaternity.ch/api</span>/kitchens/<span class="hljs-attribute" title="kitchen_id">kitchen_id</span></span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">204</span></div><div class="tab"><div><div class="inner"><div class="description text-muted">This response has no content.</div><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="kitchen-resources-kitchen-delete" class="action delete"><h4 class="action-heading"><div class="name">Delete a kitchen</div><a href="#kitchen-resources-kitchen-delete" class="method delete">DELETE</a><code class="uri">/kitchens/{kitchen_id}</code></h4><p>Deletes this kitchen from the server and also all data that is related to this kitchen. Use with caution.</p>
 <div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>kitchen_id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>the id of the kitchen.</p>
 </dd></dl></div></div></div><hr class="split"><div class="middle"><section id="recipe-resources" class="resource-group"><h2 class="group-heading">Recipe Resources <a href="#recipe-resources" class="permalink">&para;</a></h2><p>A recipe is a collection of ingredients, instructions and other information that describes how a food item sold in a restaurant is composed. It is the basis for the calculation of the CO₂-value and other indicators. The recipe resource contains all information about the recipe, including the ingredients, instructions, and other metadata.</p>
 <h3 id="header-uniqueness-of-recipes">Uniqueness of Recipes <a class="permalink" href="#header-uniqueness-of-recipes" aria-hidden="true">¶</a></h3>
@@ -141,19 +141,19 @@ The drawback of reusing the id is that you will not be able to change the compos
 <tr>
 <td style="text-align:left">full-resource</td>
 <td style="text-align:left">boolean</td>
-<td style="text-align:left">Specifies whether our JSON answer will contain all fields (except the additional indicators) or a short answer. Default: false. Works recipes and supplies. This helps to save bandwidth for slow connections.</td>
+<td style="text-align:left">Specifies whether our JSON answer will contain all fields (except the additional indicators) or a short answer. Default: false. Works for recipes and supplies. This helps to save bandwidth for slow connections.</td>
 </tr>
 <tr>
 <td style="text-align:left">indicators</td>
 <td style="text-align:left">boolean</td>
-<td style="text-align:left">Specifies wether the JSON answer will contain the additional indicator fields. Default: false. Works for recipes, ingredients, and supplies. This helps to save bandwidth for slow connections and the response is generally faster.</td>
+<td style="text-align:left">Specifies whether the JSON answer will contain the additional indicator fields. Default: false. Works for recipes, ingredients, and supplies.</td>
 </tr>
 </tbody>
 </table>
-</section></div><div class="middle"><div id="recipe-resources-batch-operations-on-recipe-resources" class="resource"><h3 class="resource-heading">Batch Operations on Recipe Resources <a href="#recipe-resources-batch-operations-on-recipe-resources" class="permalink">&para;</a></h3><p>Batch operations allow you to create, update or delete multiple recipes at once. They are the most efficient way to work with the Eaternity API. The batch operations can check consistency in between recipes that depend on each other. For example, if you have a recipe with a sub-recipe, the batch operation will check if the sub-recipe is already in the database and will return an error if it is not. This is not possible with single requests.
+</section></div><div class="middle"><div id="recipe-resources-batch-operations-on-recipe-resources" class="resource"><h3 class="resource-heading">Batch Operations on Recipe Resources <a href="#recipe-resources-batch-operations-on-recipe-resources" class="permalink">&para;</a></h3><p>Batch operations allow you to create, update or delete multiple recipes at once. They are the most efficient way to work with the Eaternity API. The batch operations can check consistency in between recipes that depend on each other. For example, if you have a recipe with a sub-recipe, the batch operation will check if the sub-recipe is also present in the batch and will return an error if it is not. Presence of sub-recipes is not validated with single requests.
 Batch operations are limited by the computational resources required for the calculations. We recommend a maximum of 100 recipes per request but the limit is not fixed. The server will return an error if the request is too large. The batch operations are not atomic, meaning that if one recipe fails, the others may still be processed. The response will contain the status of each recipe in the batch.</p>
-<p>The <code>transient</code> parameter can be set selectively per recipe inside the batch.Transient recipes are not included in the monthly summary and do not contribute to the kitchen’s statistics. This applies for recipes that are transmitted for use as subrecipes or sent for testing purposes.</p>
-<p>The message in the response provides more details about the failure of individual recipes.</p>
+<p>The <code>transient</code> parameter can be set selectively per recipe inside the batch. Transient recipes only contribute to the monthly summary and the kitchen’s statistics if they are used as sub-recipes in other recipes that are not transient. Therefore <code>transient</code> should be set to <code>true</code> for recipes that are transmitted for use as sub-recipes or sent for testing purposes.</p>
+<p>The message in each batch item provides more details about the failure of individual recipes.</p>
 </div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://co2.eaternity.ch/api</span>/recipes/batch?full-resource=true&indicators=true</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
   {
     "<span class="hljs-attribute">request-id</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
@@ -1065,13 +1065,13 @@ Batch operations are limited by the computational resources required for the cal
     </span>}
   </span>}
 ]</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div></div><div class="middle"><div id="recipe-resources-batch-operations-on-recipe-resources-post" class="action post"><h4 class="action-heading"><div class="name">Create or update a batch of recipes</div><a href="#recipe-resources-batch-operations-on-recipe-resources-post" class="method post">POST</a><code class="uri">/recipes/batch?full-resource=true&amp;indicators=true</code></h4><p>Create or update a batch of recipes at once. If a recipe id is provided, the recipe is either created with this id or the existing recipe is overwritten. The status code tells the difference.</p>
-<p>The <code>kitchen-id</code> is used to to attribute the impact to the respective kitchen’s statistics.</p>
+<p>The <code>kitchen-id</code> is used to attribute the impact to the respective kitchen’s statistics.</p>
 <p>The additional integer <code>request-id</code> field enables you to track back the recipes you sent in case you don’t want to use your own ids. Either a request id or a recipe id is required.
 The request-id differs from the recipe id and has just the lifetime of a single request.</p>
 <hr>
 <p>In the following request, one menu item “Fitness Risotto” contains a single recipe “Mushroom gravy on pumpkin risotto”.</p>
 <p>This recipe is again composed of two recipes, “pumpkin risotto” and “Mushroom gravy”. The recipes are all included in the batch.</p>
-<p>The menu item is sold in the kitchen kitchen-restaurant-a on 2016 11 28. The id of the menu item is “menu-id1-fitness-2016-11-28” to illustrate that if a menu item is composed of identical recipes but in a different kitchen, the id of the menu item has to be different. The menu item is marked as not transient, meaning that it will be included in the monthly summary. The two recipes are transient, meaning that they will not again contribute to the monthly summary (their impact is already included in the menu item).</p>
+<p>The menu item is sold in the kitchen kitchen-restaurant-a on 2016 11 28. Note that each (sub-) recipe has to have a unique identifier (“id”). In our example the unique identifier for the menu “Fitness Risotto” is “menu-id1-fitness-2016-11-28” and for the “Mushroom gravy on pumpkin risotto” it is &quot;internal-recipe-id3. The menu item is marked as not transient, meaning that it will be included in the monthly summary. The two recipes are transient, meaning that they will not again contribute to the monthly summary (their impact is already included in the menu item).</p>
 </div></div><hr class="split"><div class="right"><div class="definition"><span class="method delete">DELETE</span>&nbsp;<span class="uri"><span class="hostname">https://co2.eaternity.ch/api</span>/recipes/batch?full-resource=true&indicators=true</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">recipes</span>": <span class="hljs-value">[
     <span class="hljs-string">"3948756"</span>,
@@ -1094,7 +1094,8 @@ The request-id differs from the recipe id and has just the lifetime of a single 
     "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Concurrency problem: You requested deleting this recipe several times in this batch."</span></span>,
     "<span class="hljs-attribute">recipe-id</span>": <span class="hljs-value"><span class="hljs-string">"3948757"</span>
   </span>}
-]</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div></div><div class="middle"><div id="recipe-resources-batch-operations-on-recipe-resources-delete" class="action delete"><h4 class="action-heading"><div class="name">Delete a batch of recipes</div><a href="#recipe-resources-batch-operations-on-recipe-resources-delete" class="method delete">DELETE</a><code class="uri">/recipes/batch?full-resource=true&amp;indicators=true</code></h4></div></div><hr class="split"><div class="middle"><div id="recipe-resources-individual-recipes" class="resource"><h3 class="resource-heading">Individual Recipes <a href="#recipe-resources-individual-recipes" class="permalink">&para;</a></h3><h4 id="header-url-parameters-1">URL Parameters <a class="permalink" href="#header-url-parameters-1" aria-hidden="true">¶</a></h4>
+]</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div></div><div class="middle"><div id="recipe-resources-batch-operations-on-recipe-resources-delete" class="action delete"><h4 class="action-heading"><div class="name">Delete a batch of recipes</div><a href="#recipe-resources-batch-operations-on-recipe-resources-delete" class="method delete">DELETE</a><code class="uri">/recipes/batch?full-resource=true&amp;indicators=true</code></h4></div></div><hr class="split"><div class="middle"><div id="recipe-resources-individual-recipes" class="resource"><h3 class="resource-heading">Individual Recipes <a href="#recipe-resources-individual-recipes" class="permalink">&para;</a></h3><p>If it suits your case better, instead of creating a batch of recipes, you can use the following resources to create, read, update and delete single recipes.</p>
+<h4 id="header-url-parameters-1">URL Parameters <a class="permalink" href="#header-url-parameters-1" aria-hidden="true">¶</a></h4>
 <table>
 <thead>
 <tr>
@@ -1925,7 +1926,7 @@ There is no hard limit on the number of ingredients, but requests may time out a
 </tr>
 </tbody>
 </table>
-<p>There is a generic recommendation for the properties to be filled out, to handle the complexity of the data collection, which is to specify for ingredients if the product is air-freighted or not air-freighted, fresh, deep-frozen, dried, preserved, baked, canned, boiled, organic, Fairtrade certified, or fish from aquaculture.</p>
+<p>To reduce ambiguity and minimize manual follow-ups, we strongly recommend specifying certain ingredient attributes, even if technically optional. These include indicators such as air-freighted, fresh, deep-frozen, dried, preserved, baked, canned, boiled, organic, Fairtrade certified, and aquaculture-sourced (for fish). Providing this data up front helps prevent incorrect assumptions and eliminates the need for iterative clarification with you as the client.</p>
 <h3 id="header-ingredient-properties-in-responses-only">Ingredient Properties In Responses only <a class="permalink" href="#header-ingredient-properties-in-responses-only" aria-hidden="true">¶</a></h3>
 <p>To receive informations on the ingredients, the URL parameter <code>full-resource</code> must be set to <code>true</code>. This works for all recipe endpoints like <code>/recipes/{id}</code> and <code>/recipes/batch</code>.</p>
 <table>
@@ -2301,6 +2302,150 @@ There is no hard limit on the number of ingredients, but requests may time out a
 </tr>
 </tbody>
 </table>
+</section></div><div class="middle"><section id="indicators" class="resource-group"><h2 class="group-heading">Indicators <a href="#indicators" class="permalink">&para;</a></h2><p>The Eaternity API provides access to a set of indicators for evaluating the environmental impact and nutritional quality of recipes, ingredients, and supplies. These indicators support informed decision-making and promote sustainability within the food industry.</p>
+<h2 id="header-co₂-value">CO₂-Value <a class="permalink" href="#header-co₂-value" aria-hidden="true">¶</a></h2>
+<p>The CO₂-Value represents the amount of CO₂e emissions associated with a recipe, supply, or ingredient, expressed in grams. It is calculated based on the specified ingredient properties, with predictive models filling in any missing data. The CO₂-Value serves as a core indicator of the environmental footprint. For details on the calculation methodology, refer to the <a href="https://eaternity.notion.site">Eaternity CO₂-Value documentation</a>.</p>
+<h2 id="header-additional-indicator-results">Additional Indicator Results <a class="permalink" href="#header-additional-indicator-results" aria-hidden="true">¶</a></h2>
+<p>When the URL parameter <code>indicators=true</code> is included in the request, the response JSON will include a collection of additional indicators for Recipes, Ingredients, and Supplies. These indicators are returned in the following format:</p>
+<ul>
+<li>
+<p>Response 201 (application/json)</p>
+<pre><code><span class="hljs-collection">{   
+      ...
+      <span class="hljs-string">"indicators"</span>: <span class="hljs-collection">{
+              <span class="hljs-string">"vita-score"</span>: <span class="hljs-collection">{
+                  <span class="hljs-string">"vita-score-points"</span>: <span class="hljs-number">346</span>,
+                  <span class="hljs-string">"vita-score-rating"</span>: <span class="hljs-string">"B"</span>,
+                  <span class="hljs-string">"vita-score-award"</span>: <span class="hljs-literal">true</span>,
+                  <span class="hljs-string">"energy-kcals"</span>: <span class="hljs-number">457</span>,
+                  <span class="hljs-string">"nutrition-label"</span>: <span class="hljs-literal">true</span>,
+                  <span class="hljs-string">"nutrition-rating"</span>: <span class="hljs-string">"A"</span>
+              }</span>,
+              <span class="hljs-string">"environment"</span>: <span class="hljs-collection">{
+                  <span class="hljs-string">"animal-treatment-label"</span>: <span class="hljs-literal">true</span>,
+                  <span class="hljs-string">"animal-treatment-rating"</span>: <span class="hljs-string">"A"</span>,
+                  <span class="hljs-string">"rainforest-label"</span>: <span class="hljs-literal">false</span>,
+                  <span class="hljs-string">"rainforest-rating"</span>: <span class="hljs-string">"E"</span>,
+                  <span class="hljs-string">"local-label"</span>: <span class="hljs-literal">true</span>,
+                  <span class="hljs-string">"local-rating"</span>: <span class="hljs-string">"A"</span>,
+                  <span class="hljs-string">"season-label"</span>: <span class="hljs-literal">true</span>,
+                  <span class="hljs-string">"season-rating"</span>: <span class="hljs-string">"A"</span>,
+                  <span class="hljs-string">"scarce-water-liters"</span>: <span class="hljs-number">6.0</span>,
+                  <span class="hljs-string">"water-footprint-rating"</span>: <span class="hljs-string">"C"</span>,
+                  <span class="hljs-string">"water-footprint-award"</span>: <span class="hljs-literal">false</span>
+              }</span>,
+              <span class="hljs-string">"foodUnit"</span>: <span class="hljs-number">14.1</span>
+          }</span>
+        ...
+  }</span></code></pre>
+</li>
+</ul>
+<h3 id="header-vita-score">Vita Score <a class="permalink" href="#header-vita-score" aria-hidden="true">¶</a></h3>
+<p>(<a href="http://www.eaternity.org/foodprint/vita-score">Documentation of the Vita Score</a>)</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Property</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">vita-score-points</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">The total score in points.</td>
+</tr>
+<tr>
+<td style="text-align:left">vita-score-rating</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">Rating of Vita Score: [A,B,C,D,E]. A is best, E is worst</td>
+</tr>
+<tr>
+<td style="text-align:left">vita-score-award</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left">If the item receives the Vita Score Award.</td>
+</tr>
+<tr>
+<td style="text-align:left">energy-kcals</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">the total nutritional energy for the item in kilocalories</td>
+</tr>
+<tr>
+<td style="text-align:left">nutrition-label</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left">whether a menu is nutritionally balanced</td>
+</tr>
+</tbody>
+</table>
+<h3 id="header-environmental-footprints">Environmental Footprints <a class="permalink" href="#header-environmental-footprints" aria-hidden="true">¶</a></h3>
+<p>(<a href="http://www.eaternity.org/foodprint/environmental-footprints">Documentation of the Environmental Footprints</a>)</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Property</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">animal-treatment-label</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left">whether the item conforms with animal welfare standards ( has an “A” rating )</td>
+</tr>
+<tr>
+<td style="text-align:left">animal-treatment-rating</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">Animal-treatment rating: [A,B,C,D,E]. A is best, E is worst</td>
+</tr>
+<tr>
+<td style="text-align:left">rainforest-label</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left">whether the item meets the standard of avoiding deforestation ( has an “A” rating )</td>
+</tr>
+<tr>
+<td style="text-align:left">rainforest-rating</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">Rainforest rating: [A,B,C,D,E]. A is best, E is worst</td>
+</tr>
+<tr>
+<td style="text-align:left">local-label</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left">whether the item is produced locally</td>
+</tr>
+<tr>
+<td style="text-align:left">local-rating</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">Local rating: [A,B,C,D,E]. A is best, E is worst</td>
+</tr>
+<tr>
+<td style="text-align:left">season-label</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left">whether the item is used in season</td>
+</tr>
+<tr>
+<td style="text-align:left">season-rating</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left">Season rating: [A,B,C,D,E]. A is best, E is worst</td>
+</tr>
+<tr>
+<td style="text-align:left">scarce-water-liters</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">the total scarce water amount for the item in Liters</td>
+</tr>
+<tr>
+<td style="text-align:left">water-footprint-rating</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">Water-use rating: [A,B,C,D,E]. A is best, E is worst</td>
+</tr>
+<tr>
+<td style="text-align:left">water-footprint-award</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left">If the item receives the Water Footprint Award.</td>
+</tr>
+</tbody>
+</table>
 </section></div><div class="middle"><section id="supply-resources" class="resource-group"><h2 class="group-heading">Supply Resources <a href="#supply-resources" class="permalink">&para;</a></h2><p>Supplies are ordered from and delivered by a specific supplier in the supply chain. They can serve as the data pool for all the Eaternity Reports, as well as we can provide feedback on single purchases.</p>
 <h2 id="header-supply-properties">Supply Properties <a class="permalink" href="#header-supply-properties" aria-hidden="true">¶</a></h2>
 <table>
@@ -2381,7 +2526,83 @@ There is no hard limit on the number of ingredients, but requests may time out a
 </tr>
 </tbody>
 </table>
-</section></div><div class="middle"><div id="supply-resources-supply-collection" class="resource"><h3 class="resource-heading">Supply Collection <a href="#supply-resources-supply-collection" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://co2.eaternity.ch/api</span>/kitchens/<span class="hljs-attribute" title="kitchen_id">kitchen_id</span>/supplies/</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{   <span class="hljs-string">"supply"</span>: {
+</section></div><div class="middle"><div id="supply-resources-supply-collection" class="resource"><h3 class="resource-heading">Supply Collection <a href="#supply-resources-supply-collection" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://co2.eaternity.ch/api</span>/kitchens/<span class="hljs-attribute" title="kitchen_id">kitchen_id</span>/supplies/</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+  {
+    "<span class="hljs-attribute">request-id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+    "<span class="hljs-attribute">supply</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"d1ed2263"</span></span>,
+      "<span class="hljs-attribute">kitchen-id</span>": <span class="hljs-value"><span class="hljs-string">"293833"</span></span>,
+      "<span class="hljs-attribute">supplier</span>": <span class="hljs-value"><span class="hljs-string">"Vegetable Supplies Ltd."</span></span>,
+      "<span class="hljs-attribute">supplier-id</span>": <span class="hljs-value"><span class="hljs-string">"el3i5y-2in5y-2hbllll01"</span></span>,
+      "<span class="hljs-attribute">supply-date</span>": <span class="hljs-value"><span class="hljs-string">"2013-06-01"</span></span>,
+      "<span class="hljs-attribute">ingredients</span>": <span class="hljs-value">[
+        {
+          "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"100100191"</span></span>,
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"conceptual-ingredients"</span></span>,
+          "<span class="hljs-attribute">names</span>": <span class="hljs-value">[
+            {
+              "<span class="hljs-attribute">language</span>": <span class="hljs-value"><span class="hljs-string">"de"</span></span>,
+              "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-string">"Tomaten"</span>
+            </span>}
+          ]</span>,
+          "<span class="hljs-attribute">amount</span>": <span class="hljs-value"><span class="hljs-number">150</span></span>,
+          "<span class="hljs-attribute">unit</span>": <span class="hljs-value"><span class="hljs-string">"gram"</span></span>,
+          "<span class="hljs-attribute">origin</span>": <span class="hljs-value"><span class="hljs-string">"spain"</span></span>,
+          "<span class="hljs-attribute">transport</span>": <span class="hljs-value"><span class="hljs-string">"air"</span></span>,
+          "<span class="hljs-attribute">production</span>": <span class="hljs-value"><span class="hljs-string">"greenhouse"</span></span>,
+          "<span class="hljs-attribute">processing</span>": <span class="hljs-value"><span class="hljs-string">"raw"</span></span>,
+          "<span class="hljs-attribute">conservation</span>": <span class="hljs-value"><span class="hljs-string">"fresh"</span></span>,
+          "<span class="hljs-attribute">packaging</span>": <span class="hljs-value"><span class="hljs-string">"plastic"</span>
+        </span>}
+      ]
+    </span>}
+  </span>},
+  {
+    "<span class="hljs-attribute">request-id</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+    "<span class="hljs-attribute">supply</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">kitchen-id</span>": <span class="hljs-value"><span class="hljs-string">"11122233"</span></span>,
+      "<span class="hljs-attribute">supplier</span>": <span class="hljs-value"><span class="hljs-string">"Vegetable Supplies Ltd."</span></span>,
+      "<span class="hljs-attribute">supplier-id</span>": <span class="hljs-value"><span class="hljs-string">"el3i5y-2in5y-2hbllll01"</span></span>,
+      "<span class="hljs-attribute">supply-date</span>": <span class="hljs-value"><span class="hljs-string">"2013-06-06"</span></span>,
+      "<span class="hljs-attribute">ingredients</span>": <span class="hljs-value">[
+        {
+          "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"100100191"</span></span>,
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"conceptual-ingredients"</span></span>,
+          "<span class="hljs-attribute">names</span>": <span class="hljs-value">[
+            {
+              "<span class="hljs-attribute">language</span>": <span class="hljs-value"><span class="hljs-string">"de"</span></span>,
+              "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-string">"Tomaten"</span>
+            </span>}
+          ]</span>,
+          "<span class="hljs-attribute">amount</span>": <span class="hljs-value"><span class="hljs-number">150</span></span>,
+          "<span class="hljs-attribute">unit</span>": <span class="hljs-value"><span class="hljs-string">"gram"</span></span>,
+          "<span class="hljs-attribute">origin</span>": <span class="hljs-value"><span class="hljs-string">"spain"</span></span>,
+          "<span class="hljs-attribute">transport</span>": <span class="hljs-value"><span class="hljs-string">"air"</span></span>,
+          "<span class="hljs-attribute">production</span>": <span class="hljs-value"><span class="hljs-string">"greenhouse"</span></span>,
+          "<span class="hljs-attribute">processing</span>": <span class="hljs-value"><span class="hljs-string">"raw"</span></span>,
+          "<span class="hljs-attribute">conservation</span>": <span class="hljs-value"><span class="hljs-string">"fresh"</span></span>,
+          "<span class="hljs-attribute">packaging</span>": <span class="hljs-value"><span class="hljs-string">"plastic"</span>
+        </span>}
+      ]
+    </span>}
+  </span>}
+]</code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+  {
+    "<span class="hljs-attribute">statuscode</span>": <span class="hljs-value"><span class="hljs-number">200</span></span>,
+    "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
+    "<span class="hljs-attribute">request-id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+    "<span class="hljs-attribute">supply-id</span>": <span class="hljs-value"><span class="hljs-string">"d1ed2263"</span>
+  </span>},
+  {
+    "<span class="hljs-attribute">statuscode</span>": <span class="hljs-value"><span class="hljs-number">500</span></span>,
+    "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Server Error. Just try again."</span></span>,
+    "<span class="hljs-attribute">request-id</span>": <span class="hljs-value"><span class="hljs-number">2</span>
+  </span>}
+]</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div></div><div class="middle"><div id="supply-resources-supply-collection-post" class="action post"><h4 class="action-heading"><div class="name">Create a batch of supplies</div><a href="#supply-resources-supply-collection-post" class="method post">POST</a><code class="uri">/kitchens/{kitchen_id}/supplies/</code></h4><p>Create or update a batch of supplies at once. If a supply id is provided, the supply is either created with this id or the existing supply is overwritten. The status code tells the difference. The <code>full-resource</code> and <code>indicators</code> parameters are supported.</p>
+<p>The additional <code>request-id</code> field enables you to track back the supply you sent in case you don’t want to use your own id. Either a request id or a recipe id is required.
+The request-id differs from the supply id and has just the lifetime of a single request (not stored on Eaternity’s end).</p>
+<div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>kitchen_id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>the id of the kitchen.</p>
+</dd></dl></div></div></div><hr class="split"><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://co2.eaternity.ch/api</span>/kitchens/<span class="hljs-attribute" title="kitchen_id">kitchen_id</span>/supplies/</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{   <span class="hljs-string">"supply"</span>: {
         <span class="hljs-string">"supplier"</span>: <span class="hljs-string">"Vegetable Supplies Ltd."</span>,
         <span class="hljs-string">"supplier-id"</span>: <span class="hljs-string">"el3i5y-2in5y-2hbllll01"</span>,
         <span class="hljs-string">"invoice-id"</span>: <span class="hljs-string">"778888800000001"</span>,
@@ -2422,7 +2643,7 @@ There is no hard limit on the number of ingredients, but requests may time out a
   "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
   "<span class="hljs-attribute">request-id</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
   "<span class="hljs-attribute">supply-id</span>": <span class="hljs-value"><span class="hljs-string">"d1ed2263"</span>
-</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div></div><div class="middle"><div id="supply-resources-supply-collection-post" class="action post"><h4 class="action-heading"><div class="name">Create a supply</div><a href="#supply-resources-supply-collection-post" class="method post">POST</a><code class="uri">/kitchens/{kitchen_id}/supplies/</code></h4><p>Create a supply without specifying an id. If the request is sent with <code>full-resource=true</code>, then a complete response will be given, the same as the response to the GET command below. The parameter <code>indicators=true</code> is also supported when <code>full-resource=true</code> is specified.</p>
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div></div><div class="middle"><div id="supply-resources-supply-collection-post-1" class="action post"><h4 class="action-heading"><div class="name">Create a supply</div><a href="#supply-resources-supply-collection-post-1" class="method post">POST</a><code class="uri">/kitchens/{kitchen_id}/supplies/</code></h4><p>Create a supply without specifying an id. If the request is sent with <code>full-resource=true</code>, then a complete response will be given, the same as the response to the GET command below. The parameter <code>indicators=true</code> is also supported when <code>full-resource=true</code> is specified.</p>
 <div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>kitchen_id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>the id of the kitchen.</p>
 </dd></dl></div></div></div><hr class="split"><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://co2.eaternity.ch/api</span>/kitchens/<span class="hljs-attribute" title="kitchen_id">kitchen_id</span>/supplies/</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">supplies</span>": <span class="hljs-value">[
@@ -2523,82 +2744,7 @@ There is no hard limit on the number of ingredients, but requests may time out a
 </dd><dt>supply_id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>the id of the supply.</p>
 </dd></dl></div></div></div><hr class="split"><div class="right"><div class="definition"><span class="method delete">DELETE</span>&nbsp;<span class="uri"><span class="hostname">https://co2.eaternity.ch/api</span>/kitchens/<span class="hljs-attribute" title="kitchen_id">kitchen_id</span>/supplies/<span class="hljs-attribute" title="supply_id">supply_id</span>?indicators=true</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">204</span></div><div class="tab"><div><div class="inner"><div class="description text-muted">This response has no content.</div><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="supply-resources-supply-delete" class="action delete"><h4 class="action-heading"><div class="name">Delete a supply</div><a href="#supply-resources-supply-delete" class="method delete">DELETE</a><code class="uri">/kitchens/{kitchen_id}/supplies/{supply_id}?indicators=true</code></h4><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>kitchen_id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>the id of the kitchen.</p>
 </dd><dt>supply_id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>the id of the supply.</p>
-</dd></dl></div></div></div><hr class="split"><div class="middle"><div id="supply-resources-batch-operations-on-supply-resources" class="resource"><h3 class="resource-heading">Batch operations on supply resources <a href="#supply-resources-batch-operations-on-supply-resources" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://co2.eaternity.ch/api</span>/supplies/batch</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
-  {
-    "<span class="hljs-attribute">request-id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
-    "<span class="hljs-attribute">supply</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"d1ed2263"</span></span>,
-      "<span class="hljs-attribute">kitchen-id</span>": <span class="hljs-value"><span class="hljs-string">"293833"</span></span>,
-      "<span class="hljs-attribute">supplier</span>": <span class="hljs-value"><span class="hljs-string">"Vegetable Supplies Ltd."</span></span>,
-      "<span class="hljs-attribute">supplier-id</span>": <span class="hljs-value"><span class="hljs-string">"el3i5y-2in5y-2hbllll01"</span></span>,
-      "<span class="hljs-attribute">supply-date</span>": <span class="hljs-value"><span class="hljs-string">"2013-06-01"</span></span>,
-      "<span class="hljs-attribute">ingredients</span>": <span class="hljs-value">[
-        {
-          "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"100100191"</span></span>,
-          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"conceptual-ingredients"</span></span>,
-          "<span class="hljs-attribute">names</span>": <span class="hljs-value">[
-            {
-              "<span class="hljs-attribute">language</span>": <span class="hljs-value"><span class="hljs-string">"de"</span></span>,
-              "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-string">"Tomaten"</span>
-            </span>}
-          ]</span>,
-          "<span class="hljs-attribute">amount</span>": <span class="hljs-value"><span class="hljs-number">150</span></span>,
-          "<span class="hljs-attribute">unit</span>": <span class="hljs-value"><span class="hljs-string">"gram"</span></span>,
-          "<span class="hljs-attribute">origin</span>": <span class="hljs-value"><span class="hljs-string">"spain"</span></span>,
-          "<span class="hljs-attribute">transport</span>": <span class="hljs-value"><span class="hljs-string">"air"</span></span>,
-          "<span class="hljs-attribute">production</span>": <span class="hljs-value"><span class="hljs-string">"greenhouse"</span></span>,
-          "<span class="hljs-attribute">processing</span>": <span class="hljs-value"><span class="hljs-string">"raw"</span></span>,
-          "<span class="hljs-attribute">conservation</span>": <span class="hljs-value"><span class="hljs-string">"fresh"</span></span>,
-          "<span class="hljs-attribute">packaging</span>": <span class="hljs-value"><span class="hljs-string">"plastic"</span>
-        </span>}
-      ]
-    </span>}
-  </span>},
-  {
-    "<span class="hljs-attribute">request-id</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
-    "<span class="hljs-attribute">supply</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">kitchen-id</span>": <span class="hljs-value"><span class="hljs-string">"11122233"</span></span>,
-      "<span class="hljs-attribute">supplier</span>": <span class="hljs-value"><span class="hljs-string">"Vegetable Supplies Ltd."</span></span>,
-      "<span class="hljs-attribute">supplier-id</span>": <span class="hljs-value"><span class="hljs-string">"el3i5y-2in5y-2hbllll01"</span></span>,
-      "<span class="hljs-attribute">supply-date</span>": <span class="hljs-value"><span class="hljs-string">"2013-06-06"</span></span>,
-      "<span class="hljs-attribute">ingredients</span>": <span class="hljs-value">[
-        {
-          "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"100100191"</span></span>,
-          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"conceptual-ingredients"</span></span>,
-          "<span class="hljs-attribute">names</span>": <span class="hljs-value">[
-            {
-              "<span class="hljs-attribute">language</span>": <span class="hljs-value"><span class="hljs-string">"de"</span></span>,
-              "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-string">"Tomaten"</span>
-            </span>}
-          ]</span>,
-          "<span class="hljs-attribute">amount</span>": <span class="hljs-value"><span class="hljs-number">150</span></span>,
-          "<span class="hljs-attribute">unit</span>": <span class="hljs-value"><span class="hljs-string">"gram"</span></span>,
-          "<span class="hljs-attribute">origin</span>": <span class="hljs-value"><span class="hljs-string">"spain"</span></span>,
-          "<span class="hljs-attribute">transport</span>": <span class="hljs-value"><span class="hljs-string">"air"</span></span>,
-          "<span class="hljs-attribute">production</span>": <span class="hljs-value"><span class="hljs-string">"greenhouse"</span></span>,
-          "<span class="hljs-attribute">processing</span>": <span class="hljs-value"><span class="hljs-string">"raw"</span></span>,
-          "<span class="hljs-attribute">conservation</span>": <span class="hljs-value"><span class="hljs-string">"fresh"</span></span>,
-          "<span class="hljs-attribute">packaging</span>": <span class="hljs-value"><span class="hljs-string">"plastic"</span>
-        </span>}
-      ]
-    </span>}
-  </span>}
-]</code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
-  {
-    "<span class="hljs-attribute">statuscode</span>": <span class="hljs-value"><span class="hljs-number">200</span></span>,
-    "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
-    "<span class="hljs-attribute">request-id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
-    "<span class="hljs-attribute">supply-id</span>": <span class="hljs-value"><span class="hljs-string">"d1ed2263"</span>
-  </span>},
-  {
-    "<span class="hljs-attribute">statuscode</span>": <span class="hljs-value"><span class="hljs-number">500</span></span>,
-    "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Server Error. Just try again."</span></span>,
-    "<span class="hljs-attribute">request-id</span>": <span class="hljs-value"><span class="hljs-number">2</span>
-  </span>}
-]</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div></div><div class="middle"><div id="supply-resources-batch-operations-on-supply-resources-post" class="action post"><h4 class="action-heading"><div class="name">Create a batch of supplies</div><a href="#supply-resources-batch-operations-on-supply-resources-post" class="method post">POST</a><code class="uri">/supplies/batch</code></h4><p>Create or update a batch of supplies at once. If a supply id is provided, the supply is either created with this id or the existing supply is overwritten. The status code tells the difference. The <code>full-resource</code> and <code>indicators</code> parameters are supported.</p>
-<p>The additional <code>request-id</code> field enables you to track back the supply you sent in case you don’t want to use your own id. Either a request id or a recipe id is required.
-The request-id differs from the supply id and has just the lifetime of a single request (not stored on Eaternity’s end).</p>
-</div></div><hr class="split"><div class="right"><div class="definition"><span class="method delete">DELETE</span>&nbsp;<span class="uri"><span class="hostname">https://co2.eaternity.ch/api</span>/supplies/batch</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+</dd></dl></div></div></div><hr class="split"><div class="middle"><div id="supply-resources-batch-operations-on-supply-resources" class="resource"><h3 class="resource-heading">Batch operations on supply resources <a href="#supply-resources-batch-operations-on-supply-resources" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method delete">DELETE</span>&nbsp;<span class="uri"><span class="hostname">https://co2.eaternity.ch/api</span>/supplies/batch</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">supplies</span>": <span class="hljs-value">[
     <span class="hljs-string">"d1ed2263"</span>,
     <span class="hljs-string">"d1ed2267"</span>
@@ -3127,7 +3273,7 @@ The id can be any alphanumeric value following this <a href="https://regexr.com/
 <p>422   <code>Request Validation Error</code> - When the request is not valid against the schema we ask. For example you send an integer where a string was expected.</p>
 </li>
 <li>
-<p>500   <code>Server error</code> - Just try again.</p>
+<p>500   <code>Server error</code> - Just try again or contact our tech support.</p>
 </li>
 <li>
 <p>601   <code>Manual matching missing</code> - An ingredient was requested, whose id is not yet manually matched into the Eaternity Database. Retry once a day.</p>
@@ -3148,183 +3294,7 @@ The id can be any alphanumeric value following this <a href="https://regexr.com/
 <p>670   <code>At least one (sub-) recipe has no ingredients.</code> - “Something of nothing” does not work. You referenced a positive quantity of a sub-recipe that did have any quantitity itself.</p>
 </li>
 </ul>
-<h2 id="header-indicators-results">Indicators Results <a class="permalink" href="#header-indicators-results" aria-hidden="true">¶</a></h2>
-<p>If requested, a collection of indicators will be added to the return JSON for Recipes, Ingredients, and Supplies. The  indicators appear as follows:</p>
-<ul>
-<li>
-<p>Response 201 (application/json)</p>
-<pre><code>{
-      "<span class="hljs-attribute">co2-value</span>": <span class="hljs-value"><span class="hljs-number">765</span></span>,
-      "<span class="hljs-attribute">eaternity-award</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
-      "<span class="hljs-attribute">rating</span>": <span class="hljs-value"><span class="hljs-string">"B"</span></span>,
-      "<span class="hljs-attribute">bar-chart</span>": <span class="hljs-value"><span class="hljs-number">99</span></span>,
-      "<span class="hljs-attribute">indicators</span>": <span class="hljs-value">{
-              "<span class="hljs-attribute">vita-score</span>": <span class="hljs-value">{
-                  "<span class="hljs-attribute">vita-score-points</span>": <span class="hljs-value"><span class="hljs-number">346</span></span>,
-                  "<span class="hljs-attribute">vita-score-rating</span>": <span class="hljs-value"><span class="hljs-string">"B"</span></span>,
-                  "<span class="hljs-attribute">vita-score-award</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-                  "<span class="hljs-attribute">energy-kcals</span>": <span class="hljs-value"><span class="hljs-number">457</span></span>,
-                  "<span class="hljs-attribute">nutrition-label</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-                  "<span class="hljs-attribute">nutrition-rating</span>": <span class="hljs-value"><span class="hljs-string">"A"</span>
-              </span>}</span>,
-              "<span class="hljs-attribute">environment</span>": <span class="hljs-value">{
-                  "<span class="hljs-attribute">animal-treatment-label</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-                  "<span class="hljs-attribute">animal-treatment-rating</span>": <span class="hljs-value"><span class="hljs-string">"A"</span></span>,
-                  "<span class="hljs-attribute">rainforest-label</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
-                  "<span class="hljs-attribute">rainforest-rating</span>": <span class="hljs-value"><span class="hljs-string">"E"</span></span>,
-                  "<span class="hljs-attribute">local-label</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-                  "<span class="hljs-attribute">local-rating</span>": <span class="hljs-value"><span class="hljs-string">"A"</span></span>,
-                  "<span class="hljs-attribute">season-label</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-                  "<span class="hljs-attribute">season-rating</span>": <span class="hljs-value"><span class="hljs-string">"A"</span></span>,
-                  "<span class="hljs-attribute">scarce-water-liters</span>": <span class="hljs-value"><span class="hljs-number">6.0</span></span>,
-                  "<span class="hljs-attribute">water-footprint-rating</span>": <span class="hljs-value"><span class="hljs-string">"C"</span></span>,
-                  "<span class="hljs-attribute">water-footprint-award</span>": <span class="hljs-value"><span class="hljs-literal">false</span>
-              </span>}</span>,
-              "<span class="hljs-attribute">foodUnit</span>": <span class="hljs-value"><span class="hljs-number">14.1</span>
-          </span>}
-  </span>}</code></pre>
-</li>
-</ul>
-<h3 id="header-climate-score">Climate Score <a class="permalink" href="#header-climate-score" aria-hidden="true">¶</a></h3>
-<p>The CO₂eq values are given in the following unit for the different resources.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Property</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">co2-value</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">Absolute value [g CO₂e(quivalent) / serving (given or normalized)] or for the specified amount of ingredient</td>
-</tr>
-<tr>
-<td style="text-align:left">rating</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">Rating [A,B,C,D,E]. A is best, E is worst.</td>
-</tr>
-<tr>
-<td style="text-align:left">eaternity-award</td>
-<td style="text-align:left">boolean</td>
-<td style="text-align:left">If the item receives the Climate Award.</td>
-</tr>
-<tr>
-<td style="text-align:left">bar-chart</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">How much this ingredient contributes to the total CO₂-Value of the recipe or the supply in percent [0% - 100%]</td>
-</tr>
-</tbody>
-</table>
-<h3 id="header-vita-score">Vita Score <a class="permalink" href="#header-vita-score" aria-hidden="true">¶</a></h3>
-<p>(<a href="http://www.eaternity.org/foodprint/vita-score">Documentation of the Vita Score</a>)</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Property</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">vita-score-points</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">The total score in points.</td>
-</tr>
-<tr>
-<td style="text-align:left">vita-score-rating</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">Rating of Vita Score: [A,B,C,D,E]. A is best, E is worst</td>
-</tr>
-<tr>
-<td style="text-align:left">vita-score-award</td>
-<td style="text-align:left">boolean</td>
-<td style="text-align:left">If the item receives the Vita Score Award.</td>
-</tr>
-<tr>
-<td style="text-align:left">energy-kcals</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">the total nutritional energy for the item in kilocalories</td>
-</tr>
-<tr>
-<td style="text-align:left">nutrition-label</td>
-<td style="text-align:left">boolean</td>
-<td style="text-align:left">whether a menu is nutritionally balanced</td>
-</tr>
-</tbody>
-</table>
-<h3 id="header-environmental-footprints">Environmental Footprints <a class="permalink" href="#header-environmental-footprints" aria-hidden="true">¶</a></h3>
-<p>(<a href="http://www.eaternity.org/foodprint/environmental-footprints">Documentation of the Environmental Footprints</a>)</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Property</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">animal-treatment-label</td>
-<td style="text-align:left">boolean</td>
-<td style="text-align:left">whether the item conforms with animal welfare standards ( has an “A” rating )</td>
-</tr>
-<tr>
-<td style="text-align:left">animal-treatment-rating</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">Animal-treatment rating: [A,B,C,D,E]. A is best, E is worst</td>
-</tr>
-<tr>
-<td style="text-align:left">rainforest-label</td>
-<td style="text-align:left">boolean</td>
-<td style="text-align:left">whether the item meets the standard of avoiding deforestation ( has an “A” rating )</td>
-</tr>
-<tr>
-<td style="text-align:left">rainforest-rating</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">Rainforest rating: [A,B,C,D,E]. A is best, E is worst</td>
-</tr>
-<tr>
-<td style="text-align:left">local-label</td>
-<td style="text-align:left">boolean</td>
-<td style="text-align:left">whether the item is produced locally</td>
-</tr>
-<tr>
-<td style="text-align:left">local-rating</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">Local rating: [A,B,C,D,E]. A is best, E is worst</td>
-</tr>
-<tr>
-<td style="text-align:left">season-label</td>
-<td style="text-align:left">boolean</td>
-<td style="text-align:left">whether the item is used in season</td>
-</tr>
-<tr>
-<td style="text-align:left">season-rating</td>
-<td style="text-align:left">boolean</td>
-<td style="text-align:left">Season rating: [A,B,C,D,E]. A is best, E is worst</td>
-</tr>
-<tr>
-<td style="text-align:left">scarce-water-liters</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">the total scarce water amount for the item in Liters</td>
-</tr>
-<tr>
-<td style="text-align:left">water-footprint-rating</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">Water-use rating: [A,B,C,D,E]. A is best, E is worst</td>
-</tr>
-<tr>
-<td style="text-align:left">water-footprint-award</td>
-<td style="text-align:left">boolean</td>
-<td style="text-align:left">If the item receives the Water Footprint Award.</td>
-</tr>
-</tbody>
-</table>
-</section></div><div class="middle"><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 13 May 2025</p></div></div></div></div><script>/* eslint-env browser */
+</section></div><div class="middle"><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 22 May 2025</p></div></div></div></div><script>/* eslint-env browser */
 /* eslint quotes: [2, "single"] */
 'use strict';
 
