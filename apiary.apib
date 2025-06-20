@@ -1820,6 +1820,7 @@ Deletes this recipe  from the server
 |ingredients|list of ingredients|a list of all ingredient resources in this recipe |yes|
 |menu-line-name|string|A descriptor for the menu line ("Menu 1", "Garden Menu", "Vegan Menu")|no|
 |menu-line-id|long|A number to identify the menu line|no|
+|weight|int|the final weight of the recipe per portion in gram. This is used to factor evaporation and losses.|no; fallback is the sum of ingredients|
 
 ### Recipe Properties In Responses only
 | Property | Type  | Description      | Required |
