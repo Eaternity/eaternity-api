@@ -1866,17 +1866,17 @@ To receive informations on the ingredients, the URL parameter `full-resource` mu
 
 | Property | Type  | Description    | Required |
 |:----------|:--------|:------------------|:----------|
-|rating|string|the CO₂-ingredient rating [A,B,C,D,E]. A is best, E is worst.||
+|rating|string|the CO₂-ingredient rating [A,B,C,D,E]. A is best, E is worst ([Find Icons to display CO₂ ratings here](https://eaternity.notion.site/Icons-Scores-28adec9ad8334857b76ef79bb542fbe4?source=copy_link)).||
 |bar-chart|float|to generate a bar chart for all ingredients of a recipe. How much this ingredient contributes to the total CO₂-value of the recipe in percent (0.00% - 100.00%)||
 |co2-value|int|the absolute value of CO₂e emissions for the ingredient in [g] for the specified amount of ingredient||
-|co2-value-improvement-percentage|float|Comparison of this recipes's co2 footprint per food unit to the average||
+|co2-value-improvement-percentage|float|Comparison of this recipes's CO₂ footprint per food unit to the average||
 |co2-value-reduction-value|float|The amount of gramm CO₂ saved by serving this recipe instead of serving the amount of an average product that provides the same nutritional value (g)||
 
 Just like for recipes, the URL parameter `indicators` must be set to `true` to receive the indicators for the ingredients.
  Property | Type  | Description    | Required |
 |:----------|:--------|:------------------|:----------|
 |indicators|dictionary|the vita and nutritional indicators described in the respective section||
-
+₂
 The parameters of the properties origin, transport, production, processing, conservation and packaging can be set to multiple values. They need to be provided  in a comma separated list.
 `"production": "organic, fair-trade, Max Havelaar"`
 
@@ -1938,7 +1938,7 @@ The Eaternity API provides access to a set of indicators for evaluating the envi
 
 ## CO₂-Value
 
-The CO₂-Value represents the amount of CO₂e emissions associated with a recipe, supply, or ingredient, expressed in grams. It is calculated based on the specified ingredient properties, with predictive models filling in any missing data. The CO₂-Value serves as a core indicator of the environmental footprint. For details on the calculation methodology, refer to the [Eaternity CO₂-Value documentation](https://eaternity.notion.site).
+The CO₂-Value represents the amount of CO₂e emissions associated with a recipe, supply, or ingredient, expressed in grams. It is calculated based on the specified ingredient properties, with predictive models filling in any missing data. The CO₂-Value serves as a core indicator of the environmental footprint. For details on the calculation methodology, refer to the [Eaternity CO₂-Value documentation](https://eaternity.notion.site). The return values for CO₂ are documented [here](https://eaternity.github.io/eaternity-api/#header-ingredient-properties-in-responses-only).
 
 ## Additional Indicator Results
 
