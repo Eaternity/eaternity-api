@@ -1832,6 +1832,7 @@ Deletes this recipe  from the server
 |eaternity-award|boolean|true if the CO₂-Value of the recipe is climate friendly, false otherwise | |
 |rating|string|the CO₂-recipe rating [A,B,C,D,E]. A is best, E is worst.| .|
 |indicators|dictionary|the vita and nutritional indicators described above|.|
+|nutrient-values-estimated-per-recipe-portion|object|Aggregated nutrient values per recipe portion, calculated by summing all ingredient nutrients and dividing by recipe-portions (when `nutrient-values=true` parameter is set). Values are based on backend-estimated nutrients.||
 
 
 
@@ -1872,6 +1873,7 @@ To receive informations on the ingredients, the URL parameter `full-resource` mu
 |co2-value|int|the absolute value of CO₂e emissions for the ingredient in [g] for the specified amount of ingredient||
 |co2-value-improvement-percentage|float|Comparison of this recipes's CO₂ footprint per food unit to the average||
 |co2-value-reduction-value|float|The amount of gramm CO₂ saved by serving this recipe instead of serving the amount of an average product that provides the same nutritional value (g)||
+|nutrient-values-estimated-per-specified-amount|object|Backend-estimated nutrient values per specified amount of the ingredient (when `nutrient-values=true` parameter is set).||
 
 Just like for recipes, the URL parameter `indicators` must be set to `true` to receive the indicators for the ingredients.
  Property | Type  | Description    | Required |
@@ -2354,6 +2356,7 @@ The Product resourcres are directed towards users that have limited information 
 |co2-value-improvement-percentage|float|Comparison of this product's co2 footprint per food unit to the average||
 |co2-value-reduction-value|float|The amount of co2 saved by serving this product instead of serving the amount of an average product that provides the same nutritional value||
 |foodUnit|float|The nutrional value of this product for the given amount||
+|nutrient-values-estimated-per-specified-amount|object|Backend-estimated nutrient values, scaled to the specified amount of the product (when `nutrient-values=true` parameter is set).||
 |indicators|dictionary|The vita and nutritional indicators described above||
 
 ## Product Collection [/products/{id}]
