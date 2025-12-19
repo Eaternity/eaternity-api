@@ -2759,13 +2759,11 @@ Next to common HTTP status codes, the Eaternity API uses a set of custom status 
 * 502   `Bad Gateway` - The request could not be completed because the Eaternity API is currently not responding to the Content Delivery Network. Please try again later.
 
 * 602   `Matching missing` - For at least one ingredient name no matching rules to the Eaternity Database were found. Retry once a day or try with a different ingredient name.
-* 610   `Missing required property` - A required resource property was not given in the request. Please provide the required field.
-* 611   `Wrong property value` - A resource property was not provided according to the documentation. Either the given format is wrong or the value does not match to the given options. Usually not dependent on the implementation but on the user input.
+* 611   `Kitchen does not exist` - The kitchen with the given id does not exist.
 * 612   `Referenced sub-recipe is not in the database.` - A referenced recipe was not provided in this or a previous request. Please provide the required recipe in advance.
 * 670   `At least one (sub-) recipe has no ingredients.` - “Something of nothing” does not work. You referenced a positive quantity of a sub-recipe that did have any quantitity itself.
-* 673   `Amount Estimation Failed` - For at least one ingredient, amount estimation failed. This is caused by inconclusive nutrient values or missing ingredient information. Please check the ingredient or wait for manual matching.
-* 674   `Ingredient Splitter Failed` - The ingredient splitter could not split the ingredient declaration into ingredients. This is caused by inconclusive ingredient information. Please check the ingredient or wait for manual matching.
+* 673   `Amount Estimation Failed` - For at least one ingredient, amount estimation failed. This is caused by inconclusive nutrient values or missing ingredient information. Please check the ingredient.
+* 674   `Ingredient Splitter Failed` - The ingredient splitter could not split the ingredient declaration into ingredients. This is caused by inconclusive ingredient information. Please check the ingredient.
 * 675   `Ingredient Unit Unknown` - For at least one ingredient, the unit is unknown. Please check the ingredient units.
-* 678   `CO₂ calculation failed` - The CO₂ calculation failed. An unknown issue occurred. The response body will otherwise be complete. Please try again later or contact Eaternity support.
-* 679   `Vita Score calculation not possible` - The Vita Score calculation failed. An unknown issue occurred. The response body will otherwise be complete. Please try again later or contact Eaternity support.
-* 681   `Storage time to low`- For at least one ingredient, even the fastest mode of transport was too slow given the storage time. Nevertheless, the fastest mode was added as a fallback.
+* 678   `CO₂ calculation failed` - The CO₂ calculation failed. An unknown issue occurred. Please try again later or contact Eaternity support.
+* 679   `Vita Score calculation not possible` - The Vita Score calculation failed. An unknown issue occurred. Please try again later or contact Eaternity support.
