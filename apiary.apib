@@ -2745,27 +2745,29 @@ To make SSL work for the Eaternity Database API, the desired hostname (co2.eater
 `openssl s_client -connect co2.eaternity.ch:443 -servername eaternity.ch`
 
 ### Server Responses
-A successful request will be prompted with either `200 - Success` or `204 - No Content`.
+Next to common HTTP status codes, the Eaternity API uses a set of custom status codes to indicate the success or failure of a request. The following table lists the used status codes and their meanings:
 
-Sadly, sometimes requests to the API are not successful. Failures can occur for a wide range of reasons. In all cases, the API returns an HTTP Status Code that indicates the nature of the failure (below), with a response body in JSON format containing additional information.
 
-* 200   `Success` - If a resource was requested, it will be available at the top level of the response body.
+* 200   `OK` - If a resource was requested, it will be available at the top level of the response body.
 * 201   `Created` -  The request was successful and a resource was created. The Location Header field indicates the URI the resource can be found.
 * 204   `No Content` - The request was successful and the body intentionally contains no data.
 
 * 400   `Bad request` - This occurs when the request was not sent according to the documentation. Can be either the JSON format or the content. Check the documentation and the syntax of your request and try again.
-* 401   `No authorization` - A valid API key was not provided with the request, so the API could not associate a client with the request.
+* 401   `Unauthorized` - A valid API key was not provided with the request, so the API could not associate a client with the request.
 * 403   `Forbidden` - The Kitchen is not authorized to calculate environmental values of recipes. Only users that pay for the "Eaternity License" are allowed to do so. Please contact Eaternity to get an up-to-date pricing.
-* 404   `Not found` - Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.
-* 405   `Method not allowed` - When the resource exists but the HTTP method verb is not allowed on this resource.
-* 422   `Request Validation Error` - When the request is not valid against the schema we ask. For example you send an integer where a string was expected.
+* 404   `Not Found` - Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.
+* 405   `Method Not Allowed` - When the resource exists but the HTTP method verb is not allowed on this resource.
+* 422   `Unprocessable Content` - When the request is not valid against the schema we ask. For example you send an integer where a string was expected.
 
-* 500   `Server error` - Just try again or contact our tech support.
+* 500   `Internal Server Error` - Unexpected error. If you receive this error, please try again later. If the error persists, please contact Eaternity support.
+* 502   `Bad Gateway` - The request could not be completed because the Eaternity API is currently not responding to the Content Delivery Network. Please try again later.
 
-* 601   `Manual matching missing` - An ingredient was requested, whose id is not yet manually matched into the Eaternity Database. Retry once a day.
-* 602   `No automatic match found` - At least one ingredient name could not get automatically matched into the Eaternity Database. Retry once a day or try with a different ingredient name.
-* 610   `Missing required property` - A required resource property was not given in the request. Please provide the required field.
-* 611   `Wrong property value` - A resource property was not provided according to the documentation. Either the given format is wrong or the value does not match to the given options. Usually not dependent on the implementation but on the user input.
+* 602   `Matching missing` - For at least one ingredient name no matching rules to the Eaternity Database were found. Retry once a day or try with a different ingredient name.
+* 611   `Kitchen does not exist` - The kitchen with the given id does not exist.
 * 612   `Referenced sub-recipe is not in the database.` - A referenced recipe was not provided in this or a previous request. Please provide the required recipe in advance.
 * 670   `At least one (sub-) recipe has no ingredients.` - “Something of nothing” does not work. You referenced a positive quantity of a sub-recipe that did have any quantitity itself.
-
+* 673   `Amount Estimation Failed` - For at least one ingredient, amount estimation failed. This is caused by inconclusive nutrient values or missing ingredient information. Please check the ingredient.
+* 674   `Ingredient Splitter Failed` - The ingredient splitter could not split the ingredient declaration into ingredients. This is caused by inconclusive ingredient information. Please check the ingredient.
+* 675   `Ingredient Unit Unknown` - For at least one ingredient, the unit is unknown. Please check the ingredient units.
+* 678   `CO₂ calculation failed` - The CO₂ calculation failed. An unknown issue occurred. Please try again later or contact Eaternity support.
+* 679   `Vita Score calculation not possible` - The Vita Score calculation failed. An unknown issue occurred. Please try again later or contact Eaternity support.
