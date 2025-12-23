@@ -3268,11 +3268,10 @@ The id can be any alphanumeric value following this <a href="https://regexr.com/
 <p>To make SSL work for the Eaternity Database API, the desired hostname (<a href="http://co2.eaternity.ch">co2.eaternity.ch</a>) needs to be specified with every request according to the SNI-Speficiation. An example request to our service including SNI, using the <code>-servername</code> argument is as follows:</p>
 <p><code>openssl s_client -connect co2.eaternity.ch:443 -servername eaternity.ch</code></p>
 <h3 id="header-server-responses">Server Responses <a class="permalink" href="#header-server-responses" aria-hidden="true">¶</a></h3>
-<p>A successful request will be prompted with either <code>200 - Success</code> or <code>204 - No Content</code>.</p>
-<p>Sadly, sometimes requests to the API are not successful. Failures can occur for a wide range of reasons. In all cases, the API returns an HTTP Status Code that indicates the nature of the failure (below), with a response body in JSON format containing additional information.</p>
+<p>Next to common HTTP status codes, the Eaternity API uses a set of custom status codes to indicate the success or failure of a request. The following table lists the used status codes and their meanings:</p>
 <ul>
 <li>
-<p>200   <code>Success</code> - If a resource was requested, it will be available at the top level of the response body.</p>
+<p>200   <code>OK</code> - If a resource was requested, it will be available at the top level of the response body.</p>
 </li>
 <li>
 <p>201   <code>Created</code> -  The request was successful and a resource was created. The Location Header field indicates the URI the resource can be found.</p>
@@ -3284,34 +3283,31 @@ The id can be any alphanumeric value following this <a href="https://regexr.com/
 <p>400   <code>Bad request</code> - This occurs when the request was not sent according to the documentation. Can be either the JSON format or the content. Check the documentation and the syntax of your request and try again.</p>
 </li>
 <li>
-<p>401   <code>No authorization</code> - A valid API key was not provided with the request, so the API could not associate a client with the request.</p>
+<p>401   <code>Unauthorized</code> - A valid API key was not provided with the request, so the API could not associate a client with the request.</p>
 </li>
 <li>
 <p>403   <code>Forbidden</code> - The Kitchen is not authorized to calculate environmental values of recipes. Only users that pay for the “Eaternity License” are allowed to do so. Please contact Eaternity to get an up-to-date pricing.</p>
 </li>
 <li>
-<p>404   <code>Not found</code> - Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.</p>
+<p>404   <code>Not Found</code> - Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.</p>
 </li>
 <li>
-<p>405   <code>Method not allowed</code> - When the resource exists but the HTTP method verb is not allowed on this resource.</p>
+<p>405   <code>Method Not Allowed</code> - When the resource exists but the HTTP method verb is not allowed on this resource.</p>
 </li>
 <li>
-<p>422   <code>Request Validation Error</code> - When the request is not valid against the schema we ask. For example you send an integer where a string was expected.</p>
+<p>422   <code>Unprocessable Content</code> - When the request is not valid against the schema we ask. For example you send an integer where a string was expected.</p>
 </li>
 <li>
-<p>500   <code>Server error</code> - Just try again or contact our tech support.</p>
+<p>500   <code>Internal Server Error</code> - Unexpected error. If you receive this error, please try again later. If the error persists, please contact Eaternity support.</p>
 </li>
 <li>
-<p>601   <code>Manual matching missing</code> - An ingredient was requested, whose id is not yet manually matched into the Eaternity Database. Retry once a day.</p>
+<p>502   <code>Bad Gateway</code> - The request could not be completed because the Eaternity API is currently not responding to the Content Delivery Network. Please try again later.</p>
 </li>
 <li>
-<p>602   <code>No automatic match found</code> - At least one ingredient name could not get automatically matched into the Eaternity Database. Retry once a day or try with a different ingredient name.</p>
+<p>602   <code>Matching missing</code> - For at least one ingredient name no matching rules to the Eaternity Database were found. Retry once a day or try with a different ingredient name.</p>
 </li>
 <li>
-<p>610   <code>Missing required property</code> - A required resource property was not given in the request. Please provide the required field.</p>
-</li>
-<li>
-<p>611   <code>Wrong property value</code> - A resource property was not provided according to the documentation. Either the given format is wrong or the value does not match to the given options. Usually not dependent on the implementation but on the user input.</p>
+<p>611   <code>Kitchen does not exist</code> - The kitchen with the given id does not exist.</p>
 </li>
 <li>
 <p>612   <code>Referenced sub-recipe is not in the database.</code> - A referenced recipe was not provided in this or a previous request. Please provide the required recipe in advance.</p>
@@ -3319,8 +3315,23 @@ The id can be any alphanumeric value following this <a href="https://regexr.com/
 <li>
 <p>670   <code>At least one (sub-) recipe has no ingredients.</code> - “Something of nothing” does not work. You referenced a positive quantity of a sub-recipe that did have any quantitity itself.</p>
 </li>
+<li>
+<p>673   <code>Amount Estimation Failed</code> - For at least one ingredient, amount estimation failed. This is caused by inconclusive nutrient values or missing ingredient information. Please check the ingredient.</p>
+</li>
+<li>
+<p>674   <code>Ingredient Splitter Failed</code> - The ingredient splitter could not split the ingredient declaration into ingredients. This is caused by inconclusive ingredient information. Please check the ingredient.</p>
+</li>
+<li>
+<p>675   <code>Ingredient Unit Unknown</code> - For at least one ingredient, the unit is unknown. Please check the ingredient units.</p>
+</li>
+<li>
+<p>678   <code>CO₂ calculation failed</code> - The CO₂ calculation failed. An unknown issue occurred. Please try again later or contact Eaternity support.</p>
+</li>
+<li>
+<p>679   <code>Vita Score calculation not possible</code> - The Vita Score calculation failed. An unknown issue occurred. Please try again later or contact Eaternity support.</p>
+</li>
 </ul>
-</section></div><div class="middle"><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 11 Nov 2025</p></div></div></div></div><script>/* eslint-env browser */
+</section></div><div class="middle"><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 23 Dec 2025</p></div></div></div></div><script>/* eslint-env browser */
 /* eslint quotes: [2, "single"] */
 'use strict';
 
